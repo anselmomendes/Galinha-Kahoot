@@ -1,0 +1,27 @@
+import 'package:flutter_modular/flutter_modular_test.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
+import 'package:galinha_karoot/app/modules/welcome/welcome_controller.dart';
+import 'package:galinha_karoot/app/app_module.dart';
+
+void main() {
+  initModule(AppModule());
+  WelcomeController welcome;
+
+  setUp(() {
+    welcome = AppModule.to.get<WelcomeController>();
+  });
+
+  group('WelcomeController Test', () {
+    test("First Test", () {
+      expect(welcome, isInstanceOf<WelcomeController>());
+    });
+
+    test("Set Value", () {
+      expect(welcome.value, equals(0));
+      welcome.increment();
+      expect(welcome.value, equals(1));
+    });
+  });
+}
