@@ -1,0 +1,17 @@
+welcome
+teacher 
+ > teacherLogin
+   > teacherHome
+     > cadastrarCaso
+     > acessarCaso
+       > textos
+       > editarQuiz
+     > criarCaso
+     > criarTurma
+     > acessarTurma
+ > teacherCadastro
+
+studant
+ > studant
+
+
