@@ -15,3 +15,25 @@ studant
  > studant
 
 
+welcome
+
+teacher_home
+  teacher_cadastro
+  teacher_login
+
+casos_home
+  casos_criar
+  casos_atualizar
+  casos_acessar
+
+turma_home
+  turma_criar
+  turma_acessar
+  turma_atualizar
+
+estudante_home
+  estudante_login
+  estudante_cadastro
+
+
+
