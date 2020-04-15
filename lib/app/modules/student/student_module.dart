@@ -1,8 +1,8 @@
+import 'package:galinha_karoot/app/modules/student/pages/student_page.dart';
 import 'package:galinha_karoot/app/modules/student/services/student_service.dart';
 import 'package:galinha_karoot/app/modules/student/repositories/student_repository.dart';
 import 'package:galinha_karoot/app/modules/student/student_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/student/student_page.dart';
 
 class StudentModule extends ChildModule {
   @override

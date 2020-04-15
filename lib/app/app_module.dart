@@ -1,8 +1,14 @@
+import 'package:galinha_karoot/app/modules/cases/cases_module.dart';
+import 'package:galinha_karoot/app/modules/class/class_module.dart';
+import 'package:galinha_karoot/app/modules/student/student_module.dart';
+import 'package:galinha_karoot/app/modules/teacher/teacher_module.dart';
+import 'package:galinha_karoot/app/modules/welcome/welcome_controller.dart';
 import 'package:galinha_karoot/app/app_controller.dart';
 import 'package:galinha_karoot/app/app_widget.dart';
 import 'package:galinha_karoot/app/modules/home/home_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
+import 'package:galinha_karoot/app/modules/welcome/welcome_module.dart';
 
 class AppModule extends MainModule {
   @override
@@ -12,7 +18,11 @@ class AppModule extends MainModule {
 
   @override
   List<Router> get routers => [
-        Router(Modular.initialRoute, module: HomeModule()),
+        Router(Modular.initialRoute, module: WelcomeModule()),
+        Router('/cases', module: CasesModule()),
+        Router('/class', module: ClassModule()),
+        Router('/student', module: StudentModule()),
+        Router('/teacher', module: TeacherModule()),
       ];
 
   @override

@@ -1,8 +1,8 @@
+import 'package:galinha_karoot/app/modules/class/pages/class_page.dart';
 import 'package:galinha_karoot/app/modules/class/services/class_service.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:galinha_karoot/app/modules/class/class_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/class/class_page.dart';
 
 class ClassModule extends ChildModule {
   @override
