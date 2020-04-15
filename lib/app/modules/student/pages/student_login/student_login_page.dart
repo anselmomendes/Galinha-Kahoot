@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CasesPage extends StatefulWidget {
+class StudentLoginPage extends StatefulWidget {
   final String title;
-  const CasesPage({Key key, this.title = "Cases"}) : super(key: key);
+  const StudentLoginPage({Key key, this.title = "StudentLogin"})
+      : super(key: key);
 
   @override
-  _CasesPageState createState() => _CasesPageState();
+  _StudentLoginPageState createState() => _StudentLoginPageState();
 }
 
-class _CasesPageState extends State<CasesPage> {
+class _StudentLoginPageState extends State<StudentLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

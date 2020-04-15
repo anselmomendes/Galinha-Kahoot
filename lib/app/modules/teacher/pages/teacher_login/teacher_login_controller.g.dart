@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'class_controller.dart';
+part of 'teacher_login_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'class_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$ClassController on _ClassBase, Store {
-  final _$valueAtom = Atom(name: '_ClassBase.value');
+mixin _$TeacherLoginController on _TeacherLoginBase, Store {
+  final _$valueAtom = Atom(name: '_TeacherLoginBase.value');
 
   @override
   int get value {
@@ -26,15 +26,16 @@ mixin _$ClassController on _ClassBase, Store {
     }, _$valueAtom, name: '${_$valueAtom.name}_set');
   }
 
-  final _$_ClassBaseActionController = ActionController(name: '_ClassBase');
+  final _$_TeacherLoginBaseActionController =
+      ActionController(name: '_TeacherLoginBase');
 
   @override
   void increment() {
-    final _$actionInfo = _$_ClassBaseActionController.startAction();
+    final _$actionInfo = _$_TeacherLoginBaseActionController.startAction();
     try {
       return super.increment();
     } finally {
-      _$_ClassBaseActionController.endAction(_$actionInfo);
+      _$_TeacherLoginBaseActionController.endAction(_$actionInfo);
     }
   }
 
