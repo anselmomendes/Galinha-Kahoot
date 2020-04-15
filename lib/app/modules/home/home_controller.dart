@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/widgets.dart';
 import 'package:galinha_karoot/app/modules/home/services/interfaces/todo_service_interfaces.dart';
 import 'package:mobx/mobx.dart';
 import 'models/todo_model.dart';

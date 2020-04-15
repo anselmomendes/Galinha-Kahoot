@@ -1,6 +1,5 @@
 import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:galinha_karoot/app/modules/teacher/teacher_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/teacher_module.dart';
