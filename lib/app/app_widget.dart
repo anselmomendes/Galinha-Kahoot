@@ -8,7 +8,7 @@ class AppWidget extends StatelessWidget {
       navigatorKey: Modular.navigatorKey,
       title: 'Flutter Slidy',
       theme: ThemeData.light(),
-      initialRoute: '/teacher_login',
+      initialRoute: '/',
       onGenerateRoute: Modular.generateRoute,
     );
   }

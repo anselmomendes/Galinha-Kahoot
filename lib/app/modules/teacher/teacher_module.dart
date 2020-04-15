@@ -14,7 +14,7 @@ class TeacherModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/', child: (_, args) => TeacherLoginPage()),
+        Router('/login_professor', child: (_, args) => TeacherLoginPage()),
       ];
 
   static Inject get to => Inject<TeacherModule>.of();

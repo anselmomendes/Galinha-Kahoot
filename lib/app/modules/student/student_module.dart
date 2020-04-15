@@ -14,7 +14,7 @@ class StudentModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/', child: (_, args) => StudentLoginPage()),
+        Router('/login_aluno', child: (_, args) => StudentLoginPage()),
       ];
 
   static Inject get to => Inject<StudentModule>.of();
