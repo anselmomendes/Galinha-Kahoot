@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:galinha_karoot/app/modules/student/widgets_student/custom_drawer.dart';
 
 class StudentMenuPage extends StatefulWidget {
   final String title;
@@ -13,7 +14,9 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: AppBar(
+        centerTitle: true,
         title: Text(widget.title),
       ),
       body: Center(
