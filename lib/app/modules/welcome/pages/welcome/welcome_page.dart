@@ -35,7 +35,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: Column(
                   children: <Widget>[
                     Image.asset(
-                      "images/bits.png",
+                      "assets/bits.png",
                       width: 200,
                     ),
                   ],

@@ -36,7 +36,7 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
                 child: Column(
                   children: <Widget>[
                     Image.asset(
-                      "images/bits.png",
+                      "assets/bits.png",
                       width: 200,
                     ),
                     // Text(
