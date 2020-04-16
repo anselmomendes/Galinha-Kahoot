@@ -1,4 +1,5 @@
 import 'package:galinha_karoot/app/modules/student/pages/student_menu/student_menu_controller.dart';
+import 'package:galinha_karoot/app/modules/student/pages/student_cadastro/student_cadastro_controller.dart';
 import 'package:galinha_karoot/app/modules/student/pages/student_login/student_login_controller.dart';
 import 'package:galinha_karoot/app/modules/student/pages/student_login/student_login_page.dart';
 import 'package:galinha_karoot/app/modules/student/pages/student_menu/student_menu_page.dart';
