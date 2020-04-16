@@ -110,7 +110,7 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
               child: SizedBox.expand(
                 child: FlatButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, 'area_professor');
+                    Navigator.pushNamed(context, 'teacher_area');
                   },
                   //NAVIGATOR PARA A PRIMEIRA TELA
                   /*onPressed: () {

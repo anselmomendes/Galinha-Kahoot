@@ -1,3 +1,4 @@
+import 'package:galinha_karoot/app/modules/student/pages/student_cadastro/student_cadastro_controller.dart';
 import 'package:galinha_karoot/app/modules/student/pages/student_login/student_login_controller.dart';
 import 'package:galinha_karoot/app/modules/student/pages/student_login/student_login_page.dart';
 import 'package:galinha_karoot/app/modules/student/services/student_service.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class StudentModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => StudentCadastroController()),
         Bind((i) => StudentLoginController()),
         Bind((i) => StudentService()),
         Bind((i) => StudentRepository()),
@@ -14,7 +16,7 @@ class StudentModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/login_aluno', child: (_, args) => StudentLoginPage()),
+        //Router('/login_aluno', child: (_, args) => StudentLoginPage()),
       ];
 
   static Inject get to => Inject<StudentModule>.of();
