@@ -51,17 +51,7 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                 child: Column(
               children: <Widget>[
                 GestureDetector(
-                  onTap: () {
-                    /*
-                    Navigator.push(
-                        context,
-                        // !Mudar para o bottomTabSelect
-////                  MaterialPageRoute(builder: (context) => SintomasCasoPage())); //Passar argumento do caso pra dar certo ao ler cada um. Pode ser o ID...
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                TabSelect())); //Passar argumento do caso pra dar certo ao ler cada um. Pode ser o ID...
-                  */
-                  },
+                  onTap: () {},
                   child: Card(
                     elevation: 10,
                     child: FlatButton(
@@ -82,10 +72,6 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                               style: TextStyle(fontSize: 18),
                             ), //Texto do caso
 
-                            //Espaço entre o texto e o botão switch
-
-                            //this goes in as one of the children in our column
-                            //Botão switch
                             Padding(
                               padding: const EdgeInsets.only(left: 150),
                               child: Switch(
@@ -104,10 +90,6 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                       ),
                     ),
                   ),
-                  // Container(
-                  //   color: Colors.yellow,
-                  //   child: Text('TURN LIGHTS ON'),
-                  // ),
                 ),
                 Card(
                     elevation: 10,
@@ -125,10 +107,6 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                             style: TextStyle(fontSize: 18),
                           ), //Texto do caso
 
-                          //Espaço entre o texto e o botão switch
-
-                          //this goes in as one of the children in our column
-                          //Botão switch
                           Padding(
                             padding: const EdgeInsets.only(left: 150),
                             child: Switch(
@@ -161,10 +139,6 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                             style: TextStyle(fontSize: 18),
                           ), //Texto do caso
 
-                          //Espaço entre o texto e o botão switch
-
-                          //this goes in as one of the children in our column
-                          //Botão switch
                           Padding(
                             padding: const EdgeInsets.only(left: 150),
                             child: Switch(
@@ -229,12 +203,7 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                           Text(
                             " Caso 5",
                             style: TextStyle(fontSize: 18),
-                          ), //Texto do caso
-
-                          //Espaço entre o texto e o botão switch
-
-                          //this goes in as one of the children in our column
-                          //Botão switch
+                          ),
 
                           Padding(
                             padding: const EdgeInsets.only(left: 150),
@@ -270,175 +239,6 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
         tooltip: "Adicionar novo caso",
         backgroundColor: Colors.red,
       ),
-
-      // SingleChildScrollView(
-      //   padding: EdgeInsets.only(
-      //     top: 40.0,
-      //     left: 40.0,
-      //     right: 40.0,
-      //   ),
-      //   child:
-
-      // Column(
-      //     children: <Widget>[
-
-      //       Text("Bem vindo (a), Eunice!\n", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30,),
-      //       textAlign: TextAlign.left,),
-
-      //   Container(
-      //     height: 50.0,
-      //     alignment: Alignment.centerRight,
-      //     decoration: BoxDecoration(
-      //       gradient: LinearGradient(
-      //         begin: Alignment.topLeft,
-      //         end: Alignment.bottomRight,
-      //         stops: [0.3, 1],
-      //         colors: [ Colors.green, Colors.green],
-      //       ),
-      //       borderRadius: BorderRadius.all(
-      //         Radius.circular(10.0),
-      //       ),
-      //     ),
-      //     child: SizedBox.expand(
-      //       child: FlatButton(
-      //         //NAVIGATOR PARA VISUALIZAR ENTRADAS
-      //         onPressed: () {
-      //           // Navigator.push(
-      //           //   context,
-      //           //   MaterialPageRoute(builder: (context) => VisualizarEntradas()),
-      //           // );
-      //         },
-      //         child: Text(
-      //           "Visualizar entradas",
-      //           style: TextStyle(
-      //             fontSize: 16,
-      //             color: Colors.white,
-      //             // fontWeight: FontWeight.w900,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-
-      //   SizedBox(
-      //     height: 20.0,
-      //   ),
-
-      //   Container(
-      //     height: 50.0,
-      //     alignment: Alignment.centerRight,
-      //     decoration: BoxDecoration(
-      //       gradient: LinearGradient(
-      //         begin: Alignment.topLeft,
-      //         end: Alignment.bottomRight,
-      //         stops: [0, 1],
-      //         colors: [
-      //           Colors.green, Colors.green,
-      //         ],
-      //       ),
-      //       borderRadius: BorderRadius.all(
-      //         Radius.circular(10.0),
-      //       ),
-      //     ),
-      //     child: SizedBox.expand(
-      //       child: FlatButton(
-      //         onPressed: () {
-      //           // Navigator.push(
-      //           //   context,
-      //           //   MaterialPageRoute(builder: (context) => CadastrarEntrada()),
-      //           // );
-      //         },
-      //         child: Text(
-      //           "Cadastrar nova entrada",
-      //           style: TextStyle(
-      //             fontSize: 16,
-      //             color: Colors.white,
-      //             // fontWeight: FontWeight.w900,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-
-      //   SizedBox(
-      //     height: 20.0,
-      //   ),
-
-      //   Container(
-      //     height: 50.0,
-      //     alignment: Alignment.centerRight,
-      //     decoration: BoxDecoration(
-      //       gradient: LinearGradient(
-      //         begin: Alignment.topLeft,
-      //         end: Alignment.bottomRight,
-      //         stops: [0, 1],
-      //         colors: [
-      //           Colors.orange, Colors.redAccent,
-      //         ],
-      //       ),
-      //       borderRadius: BorderRadius.all(
-      //         Radius.circular(10.0),
-      //       ),
-      //     ),
-      //     child: SizedBox.expand(
-      //       child: FlatButton(
-      //         onPressed: () {
-      //           // Navigator.push(
-      //           //   context,
-      //           //   MaterialPageRoute(builder: (context) => VisualizarSaidas()),
-      //           // );
-      //         },
-      //         child: Text(
-      //           "Visualizar saídas",
-      //           style: TextStyle(
-      //             fontSize: 16,
-      //             color: Colors.white,
-      //             // fontWeight: FontWeight.w900,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-
-      //   SizedBox(
-      //     height: 20.0,
-      //   ),
-      //   Container(
-      //     height: 50.0,
-      //     alignment: Alignment.centerRight,
-      //     decoration: BoxDecoration(
-      //       gradient: LinearGradient(
-      //         begin: Alignment.topLeft,
-      //         end: Alignment.bottomRight,
-      //         stops: [0, 1],
-      //         colors: [
-      //           Colors.orange, Colors.redAccent,
-      //         ],
-      //       ),
-      //       borderRadius: BorderRadius.all(
-      //         Radius.circular(10.0),
-      //       ),
-      //     ),
-      //     child: SizedBox.expand(
-      //       child: FlatButton(
-      //         onPressed: () {
-      //           // Navigator.push(
-      //           //   context,
-      //           //   MaterialPageRoute(builder: (context) => CadastrarSaida()),
-      //           // );
-      //         },
-      //         child: Text(
-      //           "Cadastrar nova saída",
-      //           style: TextStyle(
-      //             fontSize: 16,
-      //             color: Colors.white,
-      //             // fontWeight: FontWeight.w900,
-      //           ),
-      //         ),
-      //       ),
-      //     ),
-      //   ),
-      // ],
     );
   }
 }

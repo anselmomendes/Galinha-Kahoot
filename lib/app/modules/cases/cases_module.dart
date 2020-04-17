@@ -1,20 +1,21 @@
-import 'package:galinha_karoot/app/modules/cases/pages/cases_relatorio/cases_relatorio_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_kahoot/cases_kahoot_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_procedimento/cases_procedimento_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_exames/cases_exames_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_avaliacao/cases_avaliacao_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_anamnese/cases_anamnese_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_anamnese/cases_anamnese_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_avaliacao/cases_avaliacao_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_exames/cases_exames_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_procedimento/cases_procedimento_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_relatorio/cases_relatorio_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_sintomas/cases_sintomas_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_anamnese/anamnese_modeule_repository.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_anamnese/cases_anamnese_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_anamnese/cases_anamnese_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_avaliacao/cases_avaliacao_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_avaliacao/cases_avaliacao_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_exames/cases_exames_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_exames/cases_exames_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_kahoot/cases_kahoot_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_procedimento/cases_procedimento_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_procedimento/cases_procedimento_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_page.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_page.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_register/cases_register_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_register/cases_register_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_sintomas/cases_sintomas_page.dart';
 import 'package:galinha_karoot/app/modules/cases/services/cases_service.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -22,6 +23,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class CasesModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => AnamneseModeuleRepository()),
         Bind((i) => CasesRelatorioController()),
         Bind((i) => CasesProcedimentoController()),
         Bind((i) => CasesExamesController()),
