@@ -51,12 +51,13 @@ class CustomDrawer extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 18.0, fontWeight: FontWeight.bold),
                             ),
-                            Text(
-                              'Entre ou cadastre-se',
-                              style: TextStyle(
-                                color: Theme.of(context).accentColor,
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold
+                            GestureDetector(
+                              child: Text(
+                                'Entre ou cadastre-se',
+                                style: TextStyle(
+                                    color: Theme.of(context).accentColor,
+                                    fontSize: 16.0,
+                                    fontWeight: FontWeight.bold),
                               ),
                             )
                           ],

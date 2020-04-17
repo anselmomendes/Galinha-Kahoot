@@ -14,7 +14,8 @@ class AppWidget extends StatelessWidget {
         accentColor: Color.fromARGB(255, 4, 125, 141),
         
       ),
-      initialRoute: '/teacher_login',
+      //initialRoute: '/teacher_login',
+      initialRoute: '/student_menu',
       onGenerateRoute: Modular.generateRoute,
     );
   }

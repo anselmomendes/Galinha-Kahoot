@@ -32,7 +32,7 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                         EdgeInsets.all(MediaQuery.of(context).size.width * 0.2),
                     children: <Widget>[
                   Column(children: <Widget>[
-                    Image.asset("images/bits.png",
+                    Image.asset("assets/bits.png",
                         width: MediaQuery.of(context).size.width * 0.3),
                     SizedBox(height: 20),
                     Text("Entrar como aluno",
