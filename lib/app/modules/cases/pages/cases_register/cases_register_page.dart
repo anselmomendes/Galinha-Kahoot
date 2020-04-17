@@ -216,86 +216,17 @@ class _CasesRegisterPageState extends State<CasesRegisterPage> {
                       style: TextStyle(color: Colors.white),
                     ),
                     onPressed: () {
-                      // Map<String, String> dados = <String, String>{
-                      //   "titulo": _tituloController.text,
-                      //   "descricao": _descController.text,
-                      //   "conta": _contaSelecionada,
-                      //   "categoria": _categoriaSelecionada,
-                      //   "valor": _valorController.text,
-                      //   // "categoria" : this.categoria.toString(),
-                      //   // "subcategoria" : this.subcategoria.toString() //CONTA?
-                      // };
-
-                      //Verifica se as entradas de texto estão vazias
-                      //Se estiver vazio, abre o popup de alerta
-
-                      //   if (_descController.text == "" ||
-                      //           _tituloController.text == "" ||
-                      //           _contaSelecionada == "" ||
-                      //           _categoriaSelecionada == "" ||
-                      //           _valorController.text == ""
-                      //       //num.tryParse(valorController.text) == null
-                      //       ) {
-
-                      //     return new Alert(
-                      //       context: context,
-                      //       type: AlertType.error,
-                      //       title: "AVISO",
-                      //       desc: "Verifique se os dados estão corretos!",
-                      //       buttons: [
-                      //         DialogButton(
-                      //           child: Text(
-                      //             "OK",
-                      //             style: TextStyle(
-                      //                 color: Colors.white, fontSize: 20),
-                      //           ),
-                      //           onPressed: () => Navigator.pop(context),
-                      //           width: 120,
-                      //         )
-                      //       ],
-                      //     ).show();
-                      //   } else {
-
-                      //   CollectionReference entradas;
-
-                      //   entradas = Firestore.instance
-                      //   .collection("entradaCollection")
-                      //   .document("entradaDocument").collection("entradas");
-
-                      //   entradas.document().setData(dados).whenComplete(() {
-                      //   print("Conta adicionada com sucesso");
-
-                      //     // addEntrada = Firestore.instance
-                      //     //     .collection("agricultores")
-                      //     //     .document(widget.user.usuario.uid)
-                      //     //     .collection("addEntrada");
-
-                      //     // addEntrada
-                      //     //     .document()
-                      //     //     .setData(dados)
-                      //     //     .whenComplete(() {
-                      //     //   print("Document Added");
-                      //     // }).catchError((e) => print(e));
-
-                      //     //Seta novamente os campos para ficar "em branco". Dispose não estava funcionando
-                      //     _descController.text = "";
-                      //     _tituloController.text = "";
-                      //     _valorController.text = "";
-                      //     _contaSelecionada = "";
-                      //     _categoriaSelecionada = "";
-
-                      //     Navigator.pop(context);
-                      //     // Navigator.pop(context);
-                      //     // Navigator.pop(context);
-
-                      //   }
-
-                      // );
-                      // }
+                      //
                     }),
                 Divider(
                   height: 20,
                   color: Colors.transparent,
+                ),
+                FlatButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/cases_home');
+                  },
+                  child: Icon(Icons.check),
                 ),
               ],
             ),

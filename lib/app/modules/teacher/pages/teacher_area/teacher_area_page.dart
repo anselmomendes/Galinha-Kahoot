@@ -63,7 +63,11 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                   */
                   },
                   child: Card(
-                      elevation: 10,
+                    elevation: 10,
+                    child: FlatButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/cases_home');
+                      },
                       child: Container(
                         padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
                         height: 40,
@@ -97,7 +101,9 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                             ),
                           ],
                         ),
-                      )),
+                      ),
+                    ),
+                  ),
                   // Container(
                   //   color: Colors.yellow,
                   //   child: Text('TURN LIGHTS ON'),

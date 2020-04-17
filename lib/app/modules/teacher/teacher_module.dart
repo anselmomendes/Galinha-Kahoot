@@ -19,7 +19,7 @@ class TeacherModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/login_professor', child: (_, args) => TeacherLoginPage()),
+        Router('/teacher_login', child: (_, args) => TeacherLoginPage()),
         Router('/teacher_area', child: (_, args) => TeacherAreaPage()),
       ];
 
