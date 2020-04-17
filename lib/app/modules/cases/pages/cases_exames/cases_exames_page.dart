@@ -56,7 +56,7 @@ class _CasesExamesPageState extends State<CasesExamesPage> {
                 //   height: 200,
                 //   decoration: new BoxDecoration(
                 //     image: new DecorationImage(
-                //       image: new AssetImage("images/bits.PNG"),
+                //       image: new AssetImage("assets/bits.PNG"),
                 //       fit: BoxFit.contain,
                 //     ),
                 //   ),
