@@ -63,7 +63,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: FlatButton(
                   //NAVIGATOR PARA A PRIMEIRA TELA
                   onPressed: () {
-                    Navigator.pushNamed(context, '/login_professor');
+                    Navigator.pushNamed(context, '/teacher_login');
                   },
                   child: Text(
                     "Sou professor",

@@ -18,7 +18,7 @@ class StudentModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/', child: (_, args) => StudentLoginPage()),
+        Router('/student_login', child: (_, args) => StudentLoginPage()),
         Router('/student_menu', child: (_, args) => StudentMenuPage())
       ];
 

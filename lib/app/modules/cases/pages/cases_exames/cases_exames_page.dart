@@ -68,7 +68,7 @@ class _CasesExamesPageState extends State<CasesExamesPage> {
               height: 400,
               decoration: new BoxDecoration(
                 image: new DecorationImage(
-                  image: new AssetImage("images/hemograma.png"),
+                  image: new AssetImage("assets/hemograma.png"),
                   fit: BoxFit.contain,
                 ),
               ),
