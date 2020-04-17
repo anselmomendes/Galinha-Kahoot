@@ -55,7 +55,7 @@ class _CasesRelatorioPageState extends State<CasesRelatorioPage> {
                   height: 200,
                   decoration: new BoxDecoration(
                     image: new DecorationImage(
-                      image: new AssetImage("images/bits.png"),
+                      image: new AssetImage("assets/bits.png"),
                       fit: BoxFit.contain,
                     ),
                   ),
