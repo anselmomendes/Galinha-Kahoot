@@ -66,10 +66,16 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                         style: TextStyle(fontSize: 18)),
                     SizedBox(height: 20),
                     FlatButton(
-                        textColor: Colors.white,
-                        color: Colors.redAccent,
-                        child: Text("Entrar"),
-                        onPressed: _openCaso)
+                      textColor: Colors.white,
+                      color: Colors.redAccent,
+                      child: Text("Entrar"),
+                      //onPressed: _openCaso) // MÉTODO ANTERIOR
+                      // NOVA MÉTODO DE ACESSO
+                      onPressed: () { 
+                        //_openCaso();
+                        Navigator.pushNamed(context, '/student/student_menu');
+                      },
+                    )
                   ]),
                 ]))));
   }
@@ -121,6 +127,8 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
         ],
       ).show();
     }
+    // IR PARA PAGINA DE MENU
+    Navigator.pushNamed(context, '/student/student_menu');
 
     // Go to caso
     /*Widget destination =

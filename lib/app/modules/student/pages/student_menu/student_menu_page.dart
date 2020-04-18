@@ -23,13 +23,16 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
           child: Column(
         children: <Widget>[
           Card(
+            margin: EdgeInsets.all(15),
+            elevation: 20,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
+                const SizedBox(height: 15,),
                 const ListTile(
                   leading: Icon(Icons.person),
                   title: Text('Dados do aluno'),
-                  subtitle: Text('Tenha acesso ao seu cadastro.'),
+                  subtitle: Text('Caro aluno, aqui você acessa os seus dados.'),
                 ),
                 ButtonBar(
                   children: <Widget>[
@@ -42,27 +45,26 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
               ],
             ),
           ),
-          Divider(
-            height: 25,
-          ),
           Card(
+            margin: EdgeInsets.all(15),
+            elevation: 20,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
+                const SizedBox(height: 15,),
                 const ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Turma'),
-                  subtitle: Text(
-                      'Acesse uma nova turma ou verifique o seu histórico de turmas.'),
+                  leading: Icon(Icons.people),
+                  title: Text('Turmas'),
+                  subtitle: Text('Acesso uma nova turma ou o seu histórico.'),
                 ),
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
-                      child: const Text('HISTÓRICO'),
+                      child: const Text('NOVA TURMA'),
                       onPressed: () {/* ... */},
                     ),
                     FlatButton(
-                      child: const Text('NOVA TURMA'),
+                      child: const Text('HISTÓRICO'),
                       onPressed: () {/* ... */},
                     ),
                   ],
