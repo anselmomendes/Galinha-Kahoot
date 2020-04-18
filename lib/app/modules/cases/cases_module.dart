@@ -19,16 +19,6 @@ class CasesModule extends ChildModule {
   List<Router> get routers => [
         Router('/cases_home', child: (_, args) => CasesHomePage()),
         Router('/cases_register', child: (_, args) => CasesRegisterPage()),
-        /*
-        Router('/cases_sintomas', child: (_, args) => CasesSintomasPage()),
-        Router('/cases_anamnese', child: (_, args) => CasesAnamnesePage()),
-        Router('/cases_avaliacao', child: (_, args) => CasesAvaliacaoPage()),
-        Router('/cases_exames', child: (_, args) => CasesExamesPage()),
-        Router('/cases_procedimento',
-            child: (_, args) => CasesProcedimentoPage()),
-        Router('/cases_kahoot', child: (_, args) => CasesKahootPage()),
-        Router('/cases_relatorio', child: (_, args) => CasesRelatorioPage()),
-        */
       ];
 
   static Inject get to => Inject<CasesModule>.of();
