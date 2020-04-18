@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_anamnese/cases_anamnese_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_avaliacao/cases_avaliacao_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_exames/cases_exames_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_kahoot/cases_kahoot_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_procedimento/cases_procedimento_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_page.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_anamnese/cases_anamnese_module.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_avaliacao/cases_avaliacao_module.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_exames/cases_exames_module.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_kahoot/cases_kahoot_module.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_procedimento/cases_procedimento_module.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
 
 class CasesHomePage extends StatefulWidget {
   @override
@@ -17,14 +17,14 @@ class _CasesHomePageState extends State<CasesHomePage> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
-  static const List<Widget> _widgetOptions = <Widget>[
-    CasesSintomasPage(),
-    CasesAnamnesePage(),
-    CasesAvaliacaoPage(),
-    CasesExamesPage(),
-    CasesProcedimentoPage(),
-    CasesKahootPage(),
-    CasesRelatorioPage(),
+  final List<Widget> _widgetOptions = <Widget>[
+    CasesAnamneseModule(),
+    CasesAvaliacaoModule(),
+    CasesExamesModule(),
+    CasesKahootModule(),
+    CasesProcedimentoModule(),
+    CasesRelatorioModule(),
+    CasesSintomasModule(),
   ];
 
   void _onItemTapped(int index) {
@@ -36,9 +36,6 @@ class _CasesHomePageState extends State<CasesHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('BottomNavigationBar Sample'),
-      ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),

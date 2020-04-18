@@ -56,7 +56,10 @@ class _TeacherAreaPageState extends State<TeacherAreaPage> {
                     elevation: 10,
                     child: FlatButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/cases_home');
+                        Navigator.pushReplacementNamed(
+                          context,
+                          '/cases_home',
+                        ); // (context, '/cases_home');
                       },
                       child: Container(
                         padding: EdgeInsets.fromLTRB(10, 5, 10, 5),
