@@ -3,7 +3,7 @@ import 'package:galinha_karoot/app/modules/student/widgets_student/custom_drawer
 
 class StudentMenuPage extends StatefulWidget {
   final String title;
-  const StudentMenuPage({Key key, this.title = "StudentMenu"})
+  const StudentMenuPage({Key key, this.title = "Aluno"})
       : super(key: key);
 
   @override
@@ -28,17 +28,20 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(height: 15,),
+                //const SizedBox(height: 15,),
                 const ListTile(
-                  leading: Icon(Icons.person),
-                  title: Text('Dados do aluno'),
-                  subtitle: Text('Caro aluno, aqui você acessa os seus dados.'),
+                  //contentPadding: EdgeInsets.only(left: 30),
+                  leading: Icon(Icons.playlist_add),
+                  title: Text('Acessar Turma'),
+                  subtitle: Text('Acesse a turma através de QR Code.'),
                 ),
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
-                      child: const Text('ACESSAR'),
-                      onPressed: () {/* ... */},
+                      child: const Text('ACESSAR TURMA'),
+                      onPressed: () {
+                        //Navigator.pushNamed(context, '/')
+                      },
                     ),
                   ],
                 ),
@@ -51,19 +54,15 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(height: 15,),
+                //const SizedBox(height: 15,),
                 const ListTile(
-                  leading: Icon(Icons.people),
-                  title: Text('Turmas'),
-                  subtitle: Text('Acesso uma nova turma ou o seu histórico.'),
+                  leading: Icon(Icons.history),
+                  title: Text('Hitórico de Turmas'),
+                  subtitle: Text('Acesso seu histórico de turmas.'),
                 ),
                 ButtonBar(
                   children: <Widget>[
-                    FlatButton(
-                      child: const Text('NOVA TURMA'),
-                      onPressed: () {/* ... */},
-                    ),
-                    FlatButton(
+                     FlatButton(
                       child: const Text('HISTÓRICO'),
                       onPressed: () {/* ... */},
                     ),

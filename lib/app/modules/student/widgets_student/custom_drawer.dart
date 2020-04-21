@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:galinha_karoot/app/modules/student/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override
@@ -53,13 +54,14 @@ class CustomDrawer extends StatelessWidget {
                             ),
                             GestureDetector(
                               child: Text(
-                                'Entre ou cadastre-se',
+                                'Entre ou cadastre-se >',
                                 style: TextStyle(
                                     color: Theme.of(context).accentColor,
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold),
                               ),
-                            )
+                              onTap: () {},
+                            ),
                           ],
                         )),
                     //Divider(),
@@ -67,6 +69,12 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Divider(),
+              DrawerTile(Icons.home, 'Início'),
+              DrawerTile(Icons.list, 'Minha conta'),
+              DrawerTile(Icons.playlist_add, 'Acessar turma'),
+              DrawerTile(Icons.history, 'Histórico de turma'),
+              DrawerTile(Icons.info_outline, 'Sobre')
+              
             ],
           )
         ],
