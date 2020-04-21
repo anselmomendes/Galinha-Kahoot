@@ -96,7 +96,8 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: FlatButton(
                   //NAVIGATOR PARA A PRIMEIRA TELA
                   onPressed: () {
-                    Navigator.pushNamed(context, '/student/student_login');
+                    // Navigator.pushNamed(context, '/student/student_login');
+                    Navigator.pushNamed(context, '/student/student_menu_options');
                   },
                   child: Text(
                     "Sou aluno",

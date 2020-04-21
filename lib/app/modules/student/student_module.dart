@@ -1,3 +1,4 @@
+import 'package:galinha_karoot/app/modules/student/pages/student_login_options/student_menu_options_page.dart';
 import 'package:galinha_karoot/app/modules/student/pages/student_menu/student_menu_controller.dart';
 import 'package:galinha_karoot/app/modules/student/pages/student_cadastro/student_cadastro_controller.dart';
 import 'package:galinha_karoot/app/modules/student/pages/student_login/student_login_controller.dart';
@@ -19,7 +20,8 @@ class StudentModule extends ChildModule {
   @override
   List<Router> get routers => [
         Router('/student_login', child: (_, args) => StudentLoginPage()),
-        Router('/student_menu', child: (_, args) => StudentMenuPage())
+        Router('/student_menu_options', child: (_, args) => StudentMenuOptionsPage()),
+        Router('/student_menu', child: (_, args) => StudentMenuPage()),
       ];
 
   static Inject get to => Inject<StudentModule>.of();
