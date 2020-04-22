@@ -19,7 +19,7 @@ class _StudentMenuOptionsPageState extends State<StudentMenuOptionsPage> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
           SizedBox(height: 5),
           Text(
-              "Há duas maneira de acesso a área do Aluno. \nEscolhar uma das opções abaixo:",
+              "Há duas maneiras de acessar à área do Aluno.\nEscolha uma das opções abaixo:",
               textAlign: TextAlign.center),
           SizedBox(height: 20),
           Card(
@@ -46,7 +46,7 @@ class _StudentMenuOptionsPageState extends State<StudentMenuOptionsPage> {
                     FlatButton(
                       child: const Text('LOGIN'),
                       onPressed: () {
-                        //Navigator.pushNamed(context, '/')
+                        Navigator.pushNamed(context, '/student/student_login_email');
                       },
                     ),
                   ],
