@@ -1,0 +1,61 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
+import 'package:galinha_karoot/app/modules/common/EmailPasswordForm.dart';
+import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+
+class StudentEmailLoginPage extends StatefulWidget {
+  final String title;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  StudentEmailLoginPage({Key key, this.title = "Entrar como aluno"})
+      : super(key: key);
+
+  @override
+  _StudentEmailLoginPageState createState() => _StudentEmailLoginPageState();
+}
+
+
+class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      resizeToAvoidBottomPadding: false,
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        onTap:(){
+          FocusScope.of(context).unfocus();
+        },
+        child:Center(
+        child:     
+          SingleChildScrollView(            
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width * appPadding), 
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children:<Widget>[
+                    Image.asset("assets/bits.png", width: MediaQuery.of(context).size.width * appLogoMediumSize),
+                    SizedBox(height: 20),
+                    Text(widget.title, style: headerTextStyle),
+                    EmailPasswordForm(auth: widget._auth, callback: _authCallback),
+                    InkWell(child: Text("Não tem uma conta?", style: TextStyle(color: Colors.blue)),
+                            onTap: () => _gotoRegister()
+                    )
+                  ]
+                )      
+          )
+        )
+      )
+    );
+  }
+
+  _authCallback(result){
+    print(result);
+  }
+
+  _gotoRegister(){
+    Navigator.pushNamed(context, '/student/student_register');
+  }
+}
+
