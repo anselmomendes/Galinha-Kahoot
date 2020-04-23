@@ -2,20 +2,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:galinha_karoot/app/modules/common/EmailPasswordForm.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
-class TeacherLoginPage extends StatefulWidget {
-  
-  TeacherLoginPage({Key key, this.title = "Entrar como professor"})
-      : super(key: key);
-
+class StudentEmailLoginPage extends StatefulWidget {
   final String title;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
+  StudentEmailLoginPage({Key key, this.title = "Entrar como aluno"})
+      : super(key: key);
+
   @override
-  _TeacherLoginPageState createState() => _TeacherLoginPageState();
+  _StudentEmailLoginPageState createState() => _StudentEmailLoginPageState();
 }
 
-class _TeacherLoginPageState extends State<TeacherLoginPage> {
+
+class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,7 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
   }
 
   _gotoRegister(){
-    Navigator.pushNamed(context, '/teacher/teacher_cadastro');
+    Navigator.pushNamed(context, '/student/student_register');
   }
 }
+

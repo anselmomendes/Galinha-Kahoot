@@ -1,21 +1,20 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'styles.dart';
+import 'EmailPasswordForm.dart';
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/common/EmailPasswordForm.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class TeacherLoginPage extends StatefulWidget {
-  
-  TeacherLoginPage({Key key, this.title = "Entrar como professor"})
-      : super(key: key);
+class AuthPage extends StatefulWidget {
+  AuthPage(this.title, this.registerPage) : super();
 
   final String title;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final Widget registerPage;
 
   @override
-  _TeacherLoginPageState createState() => _TeacherLoginPageState();
+  _AuthPageState createState() => _AuthPageState();
 }
 
-class _TeacherLoginPageState extends State<TeacherLoginPage> {
+class _AuthPageState extends State<AuthPage> {
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +33,12 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children:<Widget>[
-                    Image.asset("assets/bits.png", width: MediaQuery.of(context).size.width * appLogoMediumSize),
+                    Image.asset("images/logo.png", width: MediaQuery.of(context).size.width * appLogoMediumSize),
                     SizedBox(height: 20),
                     Text(widget.title, style: headerTextStyle),
                     EmailPasswordForm(auth: widget._auth, callback: _authCallback),
                     InkWell(child: Text("Não tem uma conta?", style: TextStyle(color: Colors.blue)),
-                            onTap: () => _gotoRegister()
+                            onTap: () => _gotoPage(widget.registerPage)
                     )
                   ]
                 )      
@@ -53,7 +52,7 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
     print(result);
   }
 
-  _gotoRegister(){
-    Navigator.pushNamed(context, '/teacher/teacher_cadastro');
+  _gotoPage(Widget page){
+    Navigator.of(context).push(MaterialPageRoute<void>(builder: (_)=> page));
   }
 }

@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:galinha_karoot/app/modules/common/styles.dart';
 
 class TeacherCadastroPage extends StatefulWidget {
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   final String title;
-  const TeacherCadastroPage({Key key, this.title = "TeacherCadastro"})
+  TeacherCadastroPage({Key key, this.title = "Novo cadastro"})
       : super(key: key);
 
   @override
@@ -10,293 +14,108 @@ class TeacherCadastroPage extends StatefulWidget {
 }
 
 class _TeacherCadastroPageState extends State<TeacherCadastroPage> {
-  final _tituloController = TextEditingController();
-  final _descController = TextEditingController();
-  final _valorController = TextEditingController();
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+    final TextEditingController _universityController = TextEditingController();
+    final TextEditingController _nameController = TextEditingController();
+    bool _success;
+    String _userEmail;
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.redAccent,
-          title: Text("Cadastro de novo Docente"),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            Card(
-              elevation: 0,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Padding(
-                        padding: const EdgeInsets.only(top: 8, left: 10),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.person,
-                                size: 20, color: Colors.grey[600]),
-                            Text(
-                              " Nome Completo:",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          bottom: 10.0, left: 10, right: 10),
-                      child: TextField(
-                        controller: _tituloController, //Colocar devedor
-                        decoration: InputDecoration(
-                            hintText: "Nome completo do docente"),
-                      ),
-                    )
-                  ]),
-            ),
+    @override
+    Widget build(BuildContext context) {
+      return Scaffold(
+          body: _body()       
+        );
+    }
+    _body(){      
+      var screenWidth = MediaQuery.of(context).size.width;
 
-            Card(
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.school, size: 20, color: Colors.grey[600]),
-                          Text(
-                            " Universidade: ",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 10.0, left: 10, right: 10),
-                    child: TextField(
-                      controller: _descController,
-                      decoration:
-                          InputDecoration(hintText: "Adicione a universidade"),
-                    ),
-                  )
-                ],
-              ),
-            ),
 
-            Card(
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.subject,
-                              size: 20, color: Colors.grey[600]),
-                          Text(
-                            " Disciplinas ministradas: ",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 10.0, left: 10, right: 10),
-                    child: TextField(
-                      controller: _descController,
-                      decoration:
-                          InputDecoration(hintText: "Adicione as disciplinas"),
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-//VALOR
-
-            Card(
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.assignment_ind,
-                              size: 20, color: Colors.grey[600]),
-                          Text(
-                            " Nome de usuário: ",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 10.0, left: 10, right: 10),
-                    child: TextField(
-                      controller: _descController,
-                      decoration: InputDecoration(
-                          hintText: "Adicione um nome de usuário"),
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-            Card(
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.security,
-                              size: 20, color: Colors.grey[600]),
-                          Text(
-                            " Senha: ",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 10.0, left: 10, right: 10),
-                    child: TextField(
-                      controller: _descController,
-                      decoration:
-                          InputDecoration(hintText: "Adicione uma nova senha"),
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-            Divider(),
-            // Linha com os botões
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+      return SingleChildScrollView(
+          padding: EdgeInsets.only(top: screenWidth * 0.2, left: screenWidth * 0.05, right: screenWidth * 0.05),
+          child: Center(
+            child: Column(
               children: <Widget>[
-                RaisedButton(
-                  color: Colors.red,
-                  child:
-                      Text("Cancelar", style: TextStyle(color: Colors.white)),
-                  onPressed: () => {Navigator.pop(context)},
+                Image.asset("assets/bits.png", width: MediaQuery.of(context).size.width * appLogoMediumSize),
+                SizedBox(height: 20),
+                Text("Registro de professor", style: headerTextStyle),
+                SizedBox(height: 20),
+
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: <Widget>[
+
+                      // Nome
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: 'Nome', 
+                          hintText: "Nome completo",
+                          prefixIcon:Icon(Icons.person),               
+                        )
+                      ),
+
+                      // Universidade
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: 'Universidade', 
+                          hintText: "Nome da Universidade",
+                          prefixIcon:Icon(Icons.school),               
+                        )
+                      ),
+
+                      // Email
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: 'Email', 
+                          hintText: "Endereço de email",
+                          prefixIcon:Icon(Icons.mail),               
+                        )
+                      ),                      
+
+                      // Senha
+                      TextFormField(
+                        controller: _nameController,
+                        decoration: const InputDecoration(
+                          labelText: 'Senha', 
+                          hintText: "Senha",
+                          prefixIcon:Icon(Icons.lock),               
+                        )
+                      ),     
+
+                    ]                    
+                  )
                 ),
-                VerticalDivider(),
-                RaisedButton(
-                    color: Theme.of(context).primaryColor,
-                    child: Text(
-                      "Confirmar",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      // Map<String, String> dados = <String, String>{
-                      //   "titulo": _tituloController.text,
-                      //   "descricao": _descController.text,
-                      //   "conta": _contaSelecionada,
-                      //   "categoria": _categoriaSelecionada,
-                      //   "valor": _valorController.text,
-                      //   // "categoria" : this.categoria.toString(),
-                      //   // "subcategoria" : this.subcategoria.toString() //CONTA?
-                      // };
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    FlatButton(onPressed: _register,color: appColor, child: Text('Registrar-se', style: TextStyle(color: Colors.white)))
+                  ]
+                )
 
-                      //Verifica se as entradas de texto estão vazias
-                      //Se estiver vazio, abre o popup de alerta
+              ]
+            )
+          )
+        );
+    }
 
-                      //   if (_descController.text == "" ||
-                      //           _tituloController.text == "" ||
-                      //           _contaSelecionada == "" ||
-                      //           _categoriaSelecionada == "" ||
-                      //           _valorController.text == ""
-                      //       //num.tryParse(valorController.text) == null
-                      //       ) {
+    @override
+    void dispose() {
+      _emailController.dispose();
+      _passwordController.dispose();
+      super.dispose();
+    }
 
-                      //     return new Alert(
-                      //       context: context,
-                      //       type: AlertType.error,
-                      //       title: "AVISO",
-                      //       desc: "Verifique se os dados estão corretos!",
-                      //       buttons: [
-                      //         DialogButton(
-                      //           child: Text(
-                      //             "OK",
-                      //             style: TextStyle(
-                      //                 color: Colors.white, fontSize: 20),
-                      //           ),
-                      //           onPressed: () => Navigator.pop(context),
-                      //           width: 120,
-                      //         )
-                      //       ],
-                      //     ).show();
-                      //   } else {
-
-                      //   CollectionReference entradas;
-
-                      //   entradas = Firestore.instance
-                      //   .collection("entradaCollection")
-                      //   .document("entradaDocument").collection("entradas");
-
-                      //   entradas.document().setData(dados).whenComplete(() {
-                      //   print("Conta adicionada com sucesso");
-
-                      //     // addEntrada = Firestore.instance
-                      //     //     .collection("agricultores")
-                      //     //     .document(widget.user.usuario.uid)
-                      //     //     .collection("addEntrada");
-
-                      //     // addEntrada
-                      //     //     .document()
-                      //     //     .setData(dados)
-                      //     //     .whenComplete(() {
-                      //     //   print("Document Added");
-                      //     // }).catchError((e) => print(e));
-
-                      //     //Seta novamente os campos para ficar "em branco". Dispose não estava funcionando
-                      //     _descController.text = "";
-                      //     _tituloController.text = "";
-                      //     _valorController.text = "";
-                      //     _contaSelecionada = "";
-                      //     _categoriaSelecionada = "";
-
-                      //     Navigator.pop(context);
-                      //     // Navigator.pop(context);
-                      //     // Navigator.pop(context);
-
-                      //   }
-
-                      // );
-                      // }
-                    }),
-                Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-              ],
-            ),
-          ]),
-        ));
-  }
+    void _register() async {
+      final FirebaseUser user = (await widget._auth.createUserWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      )).user;
+      print(user);
+    }
 }

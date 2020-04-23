@@ -46,7 +46,7 @@ class _StudentMenuOptionsPageState extends State<StudentMenuOptionsPage> {
                     FlatButton(
                       child: const Text('LOGIN'),
                       onPressed: () {
-                        //Navigator.pushNamed(context, '/')
+                        Navigator.pushNamed(context, '/student/student_login_email');
                       },
                     ),
                   ],
