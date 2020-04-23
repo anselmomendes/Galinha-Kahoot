@@ -31,14 +31,22 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                 //const SizedBox(height: 15,),
                 const ListTile(
                   //contentPadding: EdgeInsets.only(left: 30),
-                  leading: Icon(Icons.playlist_add),
-                  title: Text('Acessar Turma'),
-                  subtitle: Text('Acesse a turma através de QR Code.'),
+                  leading: Icon(Icons.local_hospital,),
+                  title: Text('Casos'),
+                  subtitle: Text('Acesse ou crie casos médicos.'),
                 ),
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
-                      child: const Text('ACESSAR TURMA'),
+                      color: Colors.red,
+                      child: const Text('ACESSAR'),
+                      onPressed: () {
+                        //Navigator.pushNamed(context, '/')
+                      },
+                    ),
+                    FlatButton(
+                      color: Colors.red,
+                      child: const Text('CRIAR'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
                       },
@@ -54,16 +62,48 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                //const SizedBox(height: 15,),
+                const SizedBox(height: 15,),
                 const ListTile(
-                  leading: Icon(Icons.history),
-                  title: Text('Hitórico de Turmas'),
-                  subtitle: Text('Acesso seu histórico de turmas.'),
+                  //contentPadding: EdgeInsets.only(left: 30),
+                  leading: Icon(Icons.list),
+                  title: Text('Turmas'),
+                  subtitle: Text('Acesse status de turmas ou crie novas turmas.'),
+                ),
+                ButtonBar(
+                  children: <Widget>[
+                    FlatButton(
+                      child: const Text('ACESSAR'),
+                      onPressed: () {
+                        //Navigator.pushNamed(context, '/')
+                      },
+                    ),
+                    FlatButton(
+                      child: const Text('CRIAR'),
+                      onPressed: () {
+                        //Navigator.pushNamed(context, '/')
+                      },
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Card(
+            margin: EdgeInsets.all(15),
+            elevation: 20,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                const SizedBox(height: 15,),
+                const ListTile(
+                  leading: Icon(Icons.description),
+                  title: Text('Relatório'),
+                  subtitle: Text('Acesse os relatórios do Quiz do casos clínicos.'),
                 ),
                 ButtonBar(
                   children: <Widget>[
                      FlatButton(
-                      child: const Text('HISTÓRICO'),
+                      child: const Text('ACESSAR'),
                       onPressed: () {/* ... */},
                     ),
                   ],
