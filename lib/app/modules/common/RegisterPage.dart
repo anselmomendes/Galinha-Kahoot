@@ -10,6 +10,11 @@ class RegisterPage extends StatefulWidget{
 }
 
 class RegisterPageState extends State<RegisterPage> {
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return null;
+  }
 
 
 
