@@ -38,6 +38,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
+                      color: Colors.red,
                       child: const Text('ACESSAR TURMA'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
@@ -63,6 +64,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                 ButtonBar(
                   children: <Widget>[
                      FlatButton(
+                      color: Colors.red,
                       child: const Text('HISTÓRICO'),
                       onPressed: () {/* ... */},
                     ),

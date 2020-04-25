@@ -3,7 +3,7 @@ import 'package:galinha_karoot/app/modules/teacher/widgets_teacher/custom_drawer
 
 class TeacherMenuPage extends StatefulWidget {
   final String title;
-  const TeacherMenuPage({Key key, this.title = "TeacherMenu"})
+  const TeacherMenuPage({Key key, this.title = "Professor"})
       : super(key: key);
 
   @override
@@ -72,12 +72,14 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
+                      color: Colors.red,
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
                       },
                     ),
                     FlatButton(
+                      color: Colors.red,
                       child: const Text('CRIAR'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
@@ -103,6 +105,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                 ButtonBar(
                   children: <Widget>[
                      FlatButton(
+                      color: Colors.red,
                       child: const Text('ACESSAR'),
                       onPressed: () {/* ... */},
                     ),
