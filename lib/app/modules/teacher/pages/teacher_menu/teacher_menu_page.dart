@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:galinha_karoot/app/modules/teacher/widgets_teacher/custom_drawer.dart';
 
@@ -42,6 +44,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
+                        Navigator.pushNamed(context, '/teacher/teacher_menu/teacher_list_cases');
                       },
                     ),
                     FlatButton(

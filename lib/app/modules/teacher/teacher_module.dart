@@ -1,3 +1,5 @@
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_page.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_menu/teacher_menu_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_area/teacher_area_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_area/teacher_area_page.dart';
@@ -13,6 +15,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class TeacherModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => TeacherListCasesController()),
         Bind((i) => TeacherMenuController()),
         Bind((i) => TeacherAreaController()),
         Bind((i) => TeacherCadastroController()),
@@ -26,7 +29,8 @@ class TeacherModule extends ChildModule {
         Router('/teacher_login', child: (_, args) => TeacherLoginPage()),
         Router('/teacher_area', child: (_, args) => TeacherAreaPage()),
         Router('/teacher_cadastro', child: (_, args) => TeacherCadastroPage()),
-        Router('/teacher_menu', child: (_, args) => TeacherMenuPage())
+        Router('/teacher_menu', child: (_, args) => TeacherMenuPage()),
+        Router('/teacher_list_cases', child: (_, args) => TeacherListCasesPage())
       ];
 
   static Inject get to => Inject<TeacherModule>.of();
