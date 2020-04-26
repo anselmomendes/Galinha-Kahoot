@@ -54,16 +54,23 @@ class _TeacherListCasesPageState
                         children: <Widget>[
                           ListTile(
                             //isThreeLine: true,
-                            leading: Icon(
-                              Icons.edit,
+                            leading: IconButton(
                               color: Colors.brown,
+                              onPressed: () {
+                                controller.save(model);
+                              },
+                              icon: Icon(Icons.edit),
                             ),
-                            trailing: Icon(
-                              Icons.delete,
+                            trailing: IconButton(
+                              alignment: Alignment.center,
+                              icon: Icon(Icons.delete),
                               color: Colors.red,
+                              onPressed: () {
+                                controller.delete(model);
+                              },
                             ),
                             title: Text(
-                              'Caso ${index + 1}',
+                              'Caso ${model.position.toString()}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,

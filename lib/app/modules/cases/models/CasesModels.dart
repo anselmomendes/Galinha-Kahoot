@@ -38,7 +38,7 @@ class CasesModel {
         answers5: doc["answers5"],
         position: doc["position"],
         right: doc["right"],
-        reference: doc["reference"],
+        reference: doc.reference,
         idClass: doc["idClass"],
         idTeacher: doc["idTeacher"],
       );
@@ -52,7 +52,6 @@ class CasesModel {
         "answers4": answers4,
         "answers5": answers5,
         "position": position,
-        "reference": reference,
         "right": right,
         "idClass": idClass,
         "idTeacher": idTeacher,
