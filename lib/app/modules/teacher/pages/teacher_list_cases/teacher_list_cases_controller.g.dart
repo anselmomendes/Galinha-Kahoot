@@ -9,32 +9,55 @@ part of 'teacher_list_cases_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TeacherListCasesController on _TeacherListCasesControllerBase, Store {
-  final _$valueAtom = Atom(name: '_TeacherListCasesControllerBase.value');
+  final _$casesListAtom =
+      Atom(name: '_TeacherListCasesControllerBase.casesList');
 
   @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
+  ObservableStream<List<CasesModel>> get casesList {
+    _$casesListAtom.context.enforceReadPolicy(_$casesListAtom);
+    _$casesListAtom.reportObserved();
+    return super.casesList;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
+  set casesList(ObservableStream<List<CasesModel>> value) {
+    _$casesListAtom.context.conditionallyRunInAction(() {
+      super.casesList = value;
+      _$casesListAtom.reportChanged();
+    }, _$casesListAtom, name: '${_$casesListAtom.name}_set');
   }
 
   final _$_TeacherListCasesControllerBaseActionController =
       ActionController(name: '_TeacherListCasesControllerBase');
 
   @override
-  void increment() {
+  dynamic getList() {
     final _$actionInfo =
         _$_TeacherListCasesControllerBaseActionController.startAction();
     try {
-      return super.increment();
+      return super.getList();
+    } finally {
+      _$_TeacherListCasesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic save(CasesModel model) {
+    final _$actionInfo =
+        _$_TeacherListCasesControllerBaseActionController.startAction();
+    try {
+      return super.save(model);
+    } finally {
+      _$_TeacherListCasesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic delete(CasesModel model) {
+    final _$actionInfo =
+        _$_TeacherListCasesControllerBaseActionController.startAction();
+    try {
+      return super.delete(model);
     } finally {
       _$_TeacherListCasesControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -42,7 +65,7 @@ mixin _$TeacherListCasesController on _TeacherListCasesControllerBase, Store {
 
   @override
   String toString() {
-    final string = 'value: ${value.toString()}';
+    final string = 'casesList: ${casesList.toString()}';
     return '{$string}';
   }
 }

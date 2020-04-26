@@ -54,7 +54,10 @@ class CasesRepository extends Disposable implements ICasesRepository {
 
   @override
   Stream<List<CasesModel>> get() {
-    return firestore.collection('Cases').snapshots().map((query) =>
-        query.documents.map((doc) => CasesModel.fromDocument(doc)).toList());
+    var a = firestore.collection('Cases').orderBy('position').snapshots().map(
+        (query) => query.documents
+            .map((doc) => CasesModel.fromDocument(doc))
+            .toList());
+    return a;
   }
 }

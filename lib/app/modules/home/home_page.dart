@@ -19,51 +19,53 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Observer(builder: (_) {
-        if (controller.todoList.data == null)
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        else if (controller.todoList.hasError)
-          return Center(
-            child: RaisedButton(
-              onPressed: () => controller.getList(),
-              child: Text('Error'),
-            ),
-          );
-        else {
-          List<TodoModel> list = controller.todoList.data;
+      body: Observer(
+        builder: (_) {
+          if (controller.todoList.data == null)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          else if (controller.todoList.hasError)
+            return Center(
+              child: RaisedButton(
+                onPressed: () => controller.getList(),
+                child: Text('Error'),
+              ),
+            );
+          else {
+            List<TodoModel> list = controller.todoList.data;
 
-          return ListView.builder(
-              itemCount: list.length,
-              itemBuilder: (_, index) {
-                TodoModel model = list[index];
+            return ListView.builder(
+                itemCount: list.length,
+                itemBuilder: (_, index) {
+                  TodoModel model = list[index];
 
-                return ListTile(
-                  onTap: () {
-                    _showDialog(model: model);
-                  },
-                  title: Text(model.title),
-                  leading: IconButton(
-                    icon: Icon(
-                      Icons.remove_circle_outline,
-                      color: Colors.red,
+                  return ListTile(
+                    onTap: () {
+                      _showDialog(model: model);
+                    },
+                    title: Text(model.title),
+                    leading: IconButton(
+                      icon: Icon(
+                        Icons.remove_circle_outline,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        controller.delete(model);
+                      },
                     ),
-                    onPressed: () {
-                      controller.delete(model);
-                    },
-                  ),
-                  trailing: Checkbox(
-                    value: model.check,
-                    onChanged: (v) {
-                      model.check = v;
-                      controller.save(model);
-                    },
-                  ),
-                );
-              });
-        }
-      }),
+                    trailing: Checkbox(
+                      value: model.check,
+                      onChanged: (v) {
+                        model.check = v;
+                        controller.save(model);
+                      },
+                    ),
+                  );
+                });
+          }
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: _showDialog,
         child: Icon(Icons.add),
