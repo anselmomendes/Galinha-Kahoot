@@ -1,18 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:dio/dio.dart';
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
+import 'package:galinha_karoot/app/modules/cases/repositories/interfaces/cases_repositories__interface.dart';
 
-class CasesRepository extends Disposable {
-  Future fetchPost(Dio client) async {
-    final response =
-        await client.get('https://jsonplaceholder.typicode.com/posts/1');
-    return response.data;
-  }
+class CasesRepository extends Disposable implements ICasesRepository {
+  final Firestore firestore;
 
-  //dispose will be called automatically
+  CasesRepository({@required this.firestore});
+
   @override
   void dispose() {}
-<<<<<<< Updated upstream
-=======
 
   @override
   Future save(CasesModel model) async {
@@ -59,5 +57,4 @@ class CasesRepository extends Disposable {
     return firestore.collection('Cases').snapshots().map((query) =>
         query.documents.map((doc) => CasesModel.fromDocument(doc)).toList());
   }
->>>>>>> Stashed changes
 }

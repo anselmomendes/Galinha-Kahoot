@@ -1,6 +1,5 @@
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/interfaces/cases_repositories_interfaces.dart';
 import 'package:mobx/mobx.dart';
 
 part 'cases_register_controller.g.dart';
