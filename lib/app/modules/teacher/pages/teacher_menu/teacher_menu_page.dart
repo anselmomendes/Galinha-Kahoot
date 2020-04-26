@@ -45,8 +45,8 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         // Navigator.pushNamed(context, '/');
-                        print('Testando 1 2 3');
-                        Navigator.pushNamed(context, '/teacher/teacher_list_cases');
+                        Navigator.pushNamed(
+                            context, '/teacher/teacher_list_cases');
                       },
                     ),
                     FlatButton(
@@ -118,7 +118,11 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                     FlatButton(
                       color: Colors.red,
                       child: const Text('ACESSAR'),
-                      onPressed: () {/* ... */},
+                      onPressed: () {
+                        Navigator.pushNamed(
+                            //context, '/teacher/teacher_list_cases');
+                            context, '/teacher/teacher_report');
+                      },
                     ),
                   ],
                 ),
