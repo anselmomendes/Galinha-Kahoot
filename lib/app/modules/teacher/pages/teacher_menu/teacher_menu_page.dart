@@ -5,8 +5,7 @@ import 'package:galinha_karoot/app/modules/teacher/widgets_teacher/custom_drawer
 
 class TeacherMenuPage extends StatefulWidget {
   final String title;
-  const TeacherMenuPage({Key key, this.title = "Professor"})
-      : super(key: key);
+  const TeacherMenuPage({Key key, this.title = "Professor"}) : super(key: key);
 
   @override
   _TeacherMenuPageState createState() => _TeacherMenuPageState();
@@ -33,7 +32,9 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                 //const SizedBox(height: 15,),
                 const ListTile(
                   //contentPadding: EdgeInsets.only(left: 30),
-                  leading: Icon(Icons.local_hospital,),
+                  leading: Icon(
+                    Icons.local_hospital,
+                  ),
                   title: Text('Casos'),
                   subtitle: Text('Acesse ou crie casos médicos.'),
                 ),
@@ -52,7 +53,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       color: Colors.red,
                       child: const Text('CRIAR'),
                       onPressed: () {
-                        //Navigator.pushNamed(context, '/')
+                        Navigator.pushNamed(context, '/cases/cases_register');
                       },
                     ),
                   ],
@@ -66,12 +67,15 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 const ListTile(
                   //contentPadding: EdgeInsets.only(left: 30),
                   leading: Icon(Icons.list),
                   title: Text('Turmas'),
-                  subtitle: Text('Acesse status de turmas ou crie novas turmas.'),
+                  subtitle:
+                      Text('Acesse status de turmas ou crie novas turmas.'),
                 ),
                 ButtonBar(
                   children: <Widget>[
@@ -100,15 +104,18 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(height: 15,),
+                const SizedBox(
+                  height: 15,
+                ),
                 const ListTile(
                   leading: Icon(Icons.description),
                   title: Text('Relatório'),
-                  subtitle: Text('Acesse os relatórios do Quiz do casos clínicos.'),
+                  subtitle:
+                      Text('Acesse os relatórios do Quiz do casos clínicos.'),
                 ),
                 ButtonBar(
                   children: <Widget>[
-                     FlatButton(
+                    FlatButton(
                       color: Colors.red,
                       child: const Text('ACESSAR'),
                       onPressed: () {/* ... */},

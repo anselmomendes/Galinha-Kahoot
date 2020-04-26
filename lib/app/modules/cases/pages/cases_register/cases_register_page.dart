@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/cases_register/cases_register_controller.dart';
+import 'package:galinha_karoot/app/modules/common/styles.dart';
 
 class CasesRegisterPage extends StatefulWidget {
   final String title;
@@ -9,228 +14,205 @@ class CasesRegisterPage extends StatefulWidget {
   _CasesRegisterPageState createState() => _CasesRegisterPageState();
 }
 
-class _CasesRegisterPageState extends State<CasesRegisterPage> {
-  final _tituloController = TextEditingController();
-  final _descController = TextEditingController();
-  final _valorController = TextEditingController();
+class _CasesRegisterPageState
+    extends ModularState<CasesRegisterPage, CasesRegisterController> {
+  final _question = TextEditingController();
+  final _answers1 = TextEditingController();
+  final _answers2 = TextEditingController();
+  final _answers3 = TextEditingController();
+  final _answers4 = TextEditingController();
+  final _answers5 = TextEditingController();
+  final _right = TextEditingController();
+  final _idClass = TextEditingController();
+  final _idTeacher = TextEditingController();
 
-////////
   @override
   Widget build(BuildContext context) {
+    var screenWidth = MediaQuery.of(context).size.width;
+    CasesModel model = CasesModel();
+
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.redAccent,
-          title: Text("Cadastro de novo Caso"),
-          centerTitle: true,
-        ),
-        body: SingleChildScrollView(
-          child: Column(children: <Widget>[
-            // ! Colocar abaixo novo caso (por enquanto tá a cópia do cadastro de professor)
-
-            Card(
-              elevation: 0,
+      appBar: AppBar(
+        backgroundColor: Colors.redAccent,
+        title: Text("Cadastro de novo Caso"),
+        centerTitle: true,
+      ),
+      body: SingleChildScrollView(
+          padding: EdgeInsets.only(
+              top: screenWidth * 0.2,
+              left: screenWidth * 0.05,
+              right: screenWidth * 0.05),
+          child: Center(
+              child: Column(children: <Widget>[
+            Image.asset("assets/bits.png",
+                width: MediaQuery.of(context).size.width * appLogoMediumSize),
+            SizedBox(height: 20),
+            Text("Registro de professor", style: headerTextStyle),
+            SizedBox(height: 20),
+            Form(
               child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: <Widget>[
-                    Padding(
-                        padding: const EdgeInsets.only(top: 8, left: 10),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.person,
-                                size: 20, color: Colors.grey[600]),
-                            Text(
-                              " Nome Completo:",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  color: Colors.grey[600],
-                                  fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.left,
-                            ),
-                          ],
-                        )),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          bottom: 10.0, left: 10, right: 10),
-                      child: TextField(
-                        controller: _tituloController, //Colocar devedor
-                        decoration: InputDecoration(
-                            hintText: "Nome completo do docente"),
-                      ),
-                    )
-                  ]),
-            ),
-
-            Card(
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.school, size: 20, color: Colors.grey[600]),
-                          Text(
-                            " Universidade: ",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
+                  // _question
+                  TextFormField(
+                      controller: _question,
+                      maxLength: 50,
+                      decoration: const InputDecoration(
+                        labelText: 'Pergunta',
+                        hintText: "Digite sua pergunta",
+                        prefixIcon: Icon(Icons.border_color),
                       )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 10.0, left: 10, right: 10),
-                    child: TextField(
-                      controller: _descController,
-                      decoration:
-                          InputDecoration(hintText: "Adicione a universidade"),
-                    ),
-                  )
+
+                  // _answers1
+                  TextFormField(
+                      controller: _answers1,
+                      maxLength: 20,
+                      decoration: const InputDecoration(
+                        labelText: 'Resposta 1',
+                        hintText: "Digite uma resposta",
+                        prefixIcon: Icon(Icons.filter_1),
+                      )),
+
+                  // _answers2
+                  TextFormField(
+                      controller: _answers2,
+                      maxLength: 20,
+                      decoration: const InputDecoration(
+                        labelText: 'Resposta 2',
+                        hintText: "Digite uma resposta",
+                        prefixIcon: Icon(Icons.filter_2),
+                      )),
+
+                  // _answers3
+                  TextFormField(
+                      controller: _answers3,
+                      maxLength: 20,
+                      decoration: const InputDecoration(
+                        labelText: 'Resposta 3',
+                        hintText: "Digite uma resposta",
+                        prefixIcon: Icon(Icons.filter_3),
+                      )),
+
+                  // _answers4
+                  TextFormField(
+                      controller: _answers4,
+                      maxLength: 20,
+                      decoration: const InputDecoration(
+                        labelText: 'Resposta 4',
+                        hintText: "Digite uma resposta",
+                        prefixIcon: Icon(Icons.filter_4),
+                      )),
+
+                  // _answers5
+                  TextFormField(
+                      controller: _answers5,
+                      maxLength: 20,
+                      decoration: const InputDecoration(
+                        labelText: 'Resposta 5',
+                        hintText: "Digite uma resposta",
+                        prefixIcon: Icon(Icons.filter_5),
+                      )),
+
+                  // _right
+                  TextFormField(
+                      controller: _right,
+                      keyboardType: TextInputType.number,
+                      maxLength: 1,
+                      decoration: const InputDecoration(
+                        labelText: 'Resposta Correta',
+                        hintText: 'Digite a alternativa correta',
+                        prefixIcon: Icon(Icons.done),
+                      )),
+
+                  // _idClass
+                  TextFormField(
+                      controller: _idClass,
+                      maxLength: 8,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: 'ID da classe',
+                        hintText: "Digite o ID da classe",
+                        prefixIcon: Icon(Icons.business),
+                      )),
+
+                  // _idTeacher
+                  TextFormField(
+                      controller: _idTeacher,
+                      maxLength: 8,
+                      keyboardType: TextInputType.number,
+                      decoration: const InputDecoration(
+                        labelText: 'ID do Professor',
+                        hintText: "Digite o ID do professor",
+                        prefixIcon: Icon(Icons.person),
+                      )),
                 ],
               ),
             ),
-
-            Card(
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.subject,
-                              size: 20, color: Colors.grey[600]),
-                          Text(
-                            " Disciplinas ministradas: ",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 10.0, left: 10, right: 10),
-                    child: TextField(
-                      controller: _descController,
-                      decoration:
-                          InputDecoration(hintText: "Adicione as disciplinas"),
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-//VALOR
-
-            Card(
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.assignment_ind,
-                              size: 20, color: Colors.grey[600]),
-                          Text(
-                            " Nome de usuário: ",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 10.0, left: 10, right: 10),
-                    child: TextField(
-                      controller: _descController,
-                      decoration: InputDecoration(
-                          hintText: "Adicione um nome de usuário"),
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-            Card(
-              elevation: 0,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                      padding: const EdgeInsets.only(top: 8, left: 10),
-                      child: Row(
-                        children: <Widget>[
-                          Icon(Icons.security,
-                              size: 20, color: Colors.grey[600]),
-                          Text(
-                            " Senha: ",
-                            style: TextStyle(
-                                fontSize: 16,
-                                color: Colors.grey[600],
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.left,
-                          ),
-                        ],
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                        bottom: 10.0, left: 10, right: 10),
-                    child: TextField(
-                      controller: _descController,
-                      decoration:
-                          InputDecoration(hintText: "Adicione uma nova senha"),
-                    ),
-                  )
-                ],
-              ),
-            ),
-
-            Divider(),
-            // Linha com os botões
+            SizedBox(height: 20),
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-                RaisedButton(
-                  color: Colors.red,
-                  child:
-                      Text("Cancelar", style: TextStyle(color: Colors.white)),
-                  onPressed: () => {Navigator.pop(context)},
-                ),
-                VerticalDivider(),
-                RaisedButton(
-                    color: Theme.of(context).primaryColor,
-                    child: Text(
-                      "Confirmar",
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    onPressed: () {
-                      //
-                    }),
-                Divider(
-                  height: 20,
-                  color: Colors.transparent,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/cases_home');
+                Observer(
+                  builder: (BuildContext context) {
+                    return FlatButton(
+                        onPressed: () {
+                          model.question = _question.text;
+                          model.answers1 = _answers1.text;
+                          model.answers2 = _answers2.text;
+                          model.answers3 = _answers3.text;
+                          model.answers4 = _answers4.text;
+                          model.answers5 = _answers5.text;
+                          model.right = _right.text;
+                          model.idClass = 1;
+                          model.idTeacher = 1;
+
+                          controller.save(model);
+                          _showAlertDialog(context);
+                        },
+                        color: appColor,
+                        child: Text('Registrar-se',
+                            style: TextStyle(color: Colors.white)));
                   },
-                  child: Icon(Icons.check),
-                ),
+                )
               ],
             ),
-          ]),
-        ));
+            SizedBox(
+              height: 20.0,
+            ),
+          ]))),
+    );
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    // configura o button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        _question.text = '';
+        _answers1.text = '';
+        _answers2.text = '';
+        _answers3.text = '';
+        _answers4.text = '';
+        _answers5.text = '';
+        _right.text = '';
+        _idClass.text = '';
+        _idTeacher.text = '';
+        Modular.to.pop();
+      },
+    );
+    // configura o  AlertDialog
+    AlertDialog alerta = AlertDialog(
+      title: Text("Caso registrado"),
+      content: Text("O caso foi registrado com sucesso!"),
+      actions: [
+        okButton,
+      ],
+    );
+    // exibe o dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
+    );
   }
 }

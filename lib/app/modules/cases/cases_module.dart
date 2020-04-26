@@ -10,7 +10,7 @@ class CasesModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => CasesHomeController()),
-        Bind((i) => CasesRegisterController()),
+        Bind((i) => CasesRegisterController(i.get<CasesRepository>())),
         Bind((i) => CasesService()),
         Bind((i) => CasesRepository()),
       ];

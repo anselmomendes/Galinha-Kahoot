@@ -97,7 +97,8 @@ class _WelcomePageState extends State<WelcomePage> {
                   //NAVIGATOR PARA A PRIMEIRA TELA
                   onPressed: () {
                     // Navigator.pushNamed(context, '/student/student_login');
-                    Navigator.pushNamed(context, '/student/student_menu_options');
+                    Navigator.pushNamed(
+                        context, '/student/student_menu_options');
                   },
                   child: Text(
                     "Sou aluno",
@@ -108,7 +109,10 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
               ),
-            )
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
           ],
         ),
       ),
