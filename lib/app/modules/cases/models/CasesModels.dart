@@ -8,7 +8,7 @@ class CasesModel {
   String answers3;
   String answers4;
   String answers5;
-  String position;
+  int position;
   String right;
   DocumentReference reference;
   int idClass;
@@ -22,7 +22,7 @@ class CasesModel {
       this.answers3 = '',
       this.answers4 = '',
       this.answers5 = '',
-      this.position = '',
+      this.position,
       this.right = '',
       this.reference,
       this.idClass,

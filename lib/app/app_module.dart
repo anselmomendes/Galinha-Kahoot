@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/cases_module.dart';
 import 'package:galinha_karoot/app/modules/class/class_module.dart';
 import 'package:galinha_karoot/app/modules/student/student_module.dart';
@@ -8,10 +9,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:galinha_karoot/app/modules/welcome/welcome_module.dart';
 
+import 'modules/cases/repositories/cases_repository.dart';
+
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
+        Bind((i) => CasesRepository(firestore: Firestore.instance)),
       ];
 
   @override

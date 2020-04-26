@@ -47,7 +47,7 @@ class _CasesRegisterPageState
             Image.asset("assets/bits.png",
                 width: MediaQuery.of(context).size.width * appLogoMediumSize),
             SizedBox(height: 20),
-            Text("Registro de professor", style: headerTextStyle),
+            Text("Cadastrar Casos", style: headerTextStyle),
             SizedBox(height: 20),
             Form(
               child: Column(

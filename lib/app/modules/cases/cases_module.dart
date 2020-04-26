@@ -13,7 +13,7 @@ class CasesModule extends ChildModule {
         Bind((i) => CasesHomeController()),
         Bind((i) => CasesRegisterController(i.get<CasesRepository>())),
         Bind((i) => CasesService()),
-        Bind((i) => CasesRepository(firestore: Firestore.instance)),
+        //Bind((i) => CasesRepository(firestore: Firestore.instance)),
       ];
 
   @override
