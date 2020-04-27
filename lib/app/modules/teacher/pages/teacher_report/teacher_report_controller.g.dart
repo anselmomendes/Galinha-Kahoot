@@ -9,6 +9,23 @@ part of 'teacher_report_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TeacherReportController on _TeacherReportControllerBase, Store {
+  final _$casesListAtom = Atom(name: '_TeacherReportControllerBase.casesList');
+
+  @override
+  ObservableStream<List<CasesModel>> get casesList {
+    _$casesListAtom.context.enforceReadPolicy(_$casesListAtom);
+    _$casesListAtom.reportObserved();
+    return super.casesList;
+  }
+
+  @override
+  set casesList(ObservableStream<List<CasesModel>> value) {
+    _$casesListAtom.context.conditionallyRunInAction(() {
+      super.casesList = value;
+      _$casesListAtom.reportChanged();
+    }, _$casesListAtom, name: '${_$casesListAtom.name}_set');
+  }
+
   final _$valueAtom = Atom(name: '_TeacherReportControllerBase.value');
 
   @override
@@ -41,8 +58,20 @@ mixin _$TeacherReportController on _TeacherReportControllerBase, Store {
   }
 
   @override
+  dynamic getList() {
+    final _$actionInfo =
+        _$_TeacherReportControllerBaseActionController.startAction();
+    try {
+      return super.getList();
+    } finally {
+      _$_TeacherReportControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
-    final string = 'value: ${value.toString()}';
+    final string =
+        'casesList: ${casesList.toString()},value: ${value.toString()}';
     return '{$string}';
   }
 }

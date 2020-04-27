@@ -19,7 +19,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 class TeacherModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => TeacherReportController()),
+        Bind((i) => TeacherReportController(i.get<CasesRepository>())),
+        //Bind((i) => TeacherReportController()),
         //Bind((i) => TeacherListCasesController()),
         Bind((i) => TeacherListCasesController(i.get<CasesRepository>())),
         Bind((i) => TeacherMenuController()),
