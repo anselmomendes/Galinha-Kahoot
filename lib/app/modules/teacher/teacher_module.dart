@@ -28,7 +28,8 @@ class TeacherModule extends ChildModule {
         Bind((i) => TeacherCadastroController()),
         Bind((i) => TeacherLoginController()),
         Bind((i) => TeacherService()),
-        Bind((i) => TeacherRepository()), //firestore: Firestore.instance)),
+        Bind((i) => TeacherRepository(
+            firestore: Firestore.instance)), //firestore: Firestore.instance)),
       ];
 
   @override
@@ -39,7 +40,7 @@ class TeacherModule extends ChildModule {
         Router('/teacher_menu', child: (_, args) => TeacherMenuPage()),
         Router('/teacher_list_cases',
             child: (_, args) => TeacherListCasesPage()),
-        //Router('/teacher_report', child: (_, args) => TeacherReportPage())
+        Router('/teacher_report', child: (_, args) => TeacherReportPage())
       ];
 
   static Inject get to => Inject<TeacherModule>.of();
