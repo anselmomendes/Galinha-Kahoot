@@ -45,7 +45,7 @@ class _TeacherListCasesPageState
                   CasesModel model = list[index];
 
                   return Container(
-                    height: 100,
+                    height: 150,
                     child: Card(
                       margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
                       elevation: 20,
@@ -53,24 +53,8 @@ class _TeacherListCasesPageState
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ListTile(
-                            //isThreeLine: true,
-                            leading: IconButton(
-                              color: Colors.brown,
-                              onPressed: () {
-                                controller.save(model);
-                              },
-                              icon: Icon(Icons.edit),
-                            ),
-                            trailing: IconButton(
-                              alignment: Alignment.center,
-                              icon: Icon(Icons.delete),
-                              color: Colors.red,
-                              onPressed: () {
-                                controller.delete(model);
-                              },
-                            ),
                             title: Text(
-                              'Caso ${model.position.toString()}',
+                              'Caso ${index + 1}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
@@ -84,6 +68,24 @@ class _TeacherListCasesPageState
                             ),
                             //subtitle: Text(model.right),
                           ),
+                          ButtonBar(
+                            children: <Widget>[
+                              FlatButton(
+                                color: Colors.red,
+                                child: const Text('EXCLUIR'),
+                                onPressed: () {
+                                  controller.delete(model);
+                                },
+                              ),
+                              FlatButton(
+                                color: Colors.red,
+                                child: const Text('EDITAR'),
+                                onPressed: () {
+                                  _showDialog(model: model);
+                                },
+                              ),
+                            ],
+                          ),
                         ],
                       ),
                     ),
@@ -94,6 +96,120 @@ class _TeacherListCasesPageState
           },
         ),
       ),
+    );
+  }
+
+  _showDialog({CasesModel model}) {
+    model ??= CasesModel();
+    showDialog(
+      context: context,
+      builder: (_) {
+        return SingleChildScrollView(
+          child: AlertDialog(
+            title: Text(
+              model.reference == null ? 'Adicionar Caso' : 'Alterar Caso',
+              style: TextStyle(
+                fontWeight: FontWeight.w500,
+                fontSize: 20,
+              ),
+            ),
+            content: Column(
+              children: <Widget>[
+                TextFormField(
+                  maxLength: 50,
+                  initialValue: model.question,
+                  onChanged: (v) => model.question = v,
+                  decoration: InputDecoration(
+                    labelText: 'Digite sua pergunta',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  maxLength: 20,
+                  initialValue: model.answers1,
+                  onChanged: (v) => model.answers1 = v,
+                  decoration: InputDecoration(
+                    labelText: 'Digite uma resposta',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  maxLength: 20,
+                  initialValue: model.answers2,
+                  onChanged: (v) => model.answers2 = v,
+                  decoration: InputDecoration(
+                    labelText: 'Digite uma resposta',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  maxLength: 20,
+                  initialValue: model.answers3,
+                  onChanged: (v) => model.answers3 = v,
+                  decoration: InputDecoration(
+                    labelText: 'Digite uma resposta',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  maxLength: 20,
+                  initialValue: model.answers4,
+                  onChanged: (v) => model.answers4 = v,
+                  decoration: InputDecoration(
+                    labelText: 'Digite uma resposta',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  maxLength: 20,
+                  initialValue: model.answers5,
+                  onChanged: (v) => model.answers5 = v,
+                  decoration: InputDecoration(
+                    labelText: 'Digite uma resposta',
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                TextFormField(
+                  maxLength: 1,
+                  keyboardType: TextInputType.number,
+                  initialValue: model.right,
+                  onChanged: (v) => model.right = v,
+                  decoration: InputDecoration(
+                    labelText: 'Digite a alternativa correta',
+                  ),
+                ),
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: () {
+                  Modular.to.pop();
+                },
+                child: Text('Cancelar', style: TextStyle(fontSize: 16)),
+              ),
+              FlatButton(
+                onPressed: () {
+                  controller.save(model);
+                  Modular.to.pop();
+                },
+                child: Text('Adicionar', style: TextStyle(fontSize: 16)),
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

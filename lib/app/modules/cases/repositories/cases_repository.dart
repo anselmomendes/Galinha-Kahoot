@@ -27,8 +27,6 @@ class CasesRepository extends Disposable implements ICasesRepository {
         'answers4': model.answers4,
         'answers5': model.answers5,
         'right': model.right,
-        'idClass': model.idClass,
-        'idTeacher': model.idTeacher,
         'position': total
       });
     } else {
@@ -40,8 +38,6 @@ class CasesRepository extends Disposable implements ICasesRepository {
         'answers4': model.answers4,
         'answers5': model.answers5,
         'right': model.right,
-        'idClass': model.idClass,
-        'idTeacher': model.idTeacher,
         'position': total
       });
     }

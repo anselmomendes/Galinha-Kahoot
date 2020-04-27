@@ -31,6 +31,8 @@ class _TeacherReportPageState
           Container(
             //height: 50,
             child: Center(
+              /*
+            child: SingleChildScrollView(
               child: Column(
                 children: <Widget>[
                   // Texto fixo na tela
@@ -127,6 +129,8 @@ class _TeacherReportPageState
               },
             ),
           ),
+          */
+              )
         ],
       ),
     );

@@ -11,22 +11,19 @@ class CasesModel {
   int position;
   String right;
   DocumentReference reference;
-  int idClass;
-  int idTeacher;
 
-  CasesModel(
-      {this.id,
-      this.question = '',
-      this.answers1 = '',
-      this.answers2 = '',
-      this.answers3 = '',
-      this.answers4 = '',
-      this.answers5 = '',
-      this.position,
-      this.right = '',
-      this.reference,
-      this.idClass,
-      this.idTeacher});
+  CasesModel({
+    this.id,
+    this.question = '',
+    this.answers1 = '',
+    this.answers2 = '',
+    this.answers3 = '',
+    this.answers4 = '',
+    this.answers5 = '',
+    this.position,
+    this.right = '',
+    this.reference,
+  });
 
   factory CasesModel.fromDocument(DocumentSnapshot doc) => CasesModel(
         id: doc["id"],
@@ -39,8 +36,6 @@ class CasesModel {
         position: doc["position"],
         right: doc["right"],
         reference: doc.reference,
-        idClass: doc["idClass"],
-        idTeacher: doc["idTeacher"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -53,7 +48,5 @@ class CasesModel {
         "answers5": answers5,
         "position": position,
         "right": right,
-        "idClass": idClass,
-        "idTeacher": idTeacher,
       };
 }
