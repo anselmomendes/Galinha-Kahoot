@@ -1,11 +1,12 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/teacher/widgets_teacher/custom_drawer.dart';
 
 class TeacherMenuPage extends StatefulWidget {
+  final bool showAppBar;
   final String title;
-  const TeacherMenuPage({Key key, this.title = "Professor"}) : super(key: key);
+  const TeacherMenuPage({Key key, this.title = "Professor", this.showAppBar})
+      : super(key: key);
 
   @override
   _TeacherMenuPageState createState() => _TeacherMenuPageState();
@@ -15,11 +16,13 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: CustomDrawer(),
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.title),
-      ),
+      //drawer: CustomDrawer(),
+      appBar: widget.showAppBar
+          ? AppBar(
+              centerTitle: true,
+              title: Text(widget.title),
+            )
+          : null,
       body: Center(
           child: Column(
         children: <Widget>[
@@ -83,7 +86,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       color: Colors.red,
                       child: const Text('ACESSAR'),
                       onPressed: () {
-                        //Navigator.pushNamed(context, '/')
+                        Navigator.pushNamed(context, '/class/class_list/');
                       },
                     ),
                     FlatButton(
@@ -92,6 +95,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
                         Navigator.pushNamed(context, '/class/class_register');
+                        //Navigator.pushNamed(context, '/class/class_register/');
                       },
                     ),
                   ],
@@ -122,7 +126,8 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       onPressed: () {
                         Navigator.pushNamed(
                             //context, '/teacher/teacher_list_cases');
-                            context, '/teacher/teacher_report');
+                            context,
+                            '/teacher/teacher_report');
                       },
                     ),
                   ],

@@ -15,8 +15,8 @@ class ClassModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        //Router('/', child: (_, args) => ClassPage()),
-        Router('/class_register', child: (_, args) => ClassRegisterPage())
+        Router('/class_register', child: (_, args) => ClassRegisterPage()),
+        //Router('/class_list', child: (_, args) => ClassListPage()),
       ];
 
   static Inject get to => Inject<ClassModule>.of();

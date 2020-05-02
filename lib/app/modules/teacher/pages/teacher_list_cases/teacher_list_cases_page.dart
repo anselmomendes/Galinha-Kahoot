@@ -5,9 +5,10 @@ import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 
 class TeacherListCasesPage extends StatefulWidget {
+  final bool showAppBar;
   final String title;
   const TeacherListCasesPage(
-      {Key key, this.title = "Lista de Casos do Professor"})
+      {Key key, this.title = "Lista de Casos do Professor", this.showAppBar})
       : super(key: key);
 
   @override
@@ -19,9 +20,11 @@ class _TeacherListCasesPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
+      appBar: widget.showAppBar
+          ? AppBar(
+              title: Text(widget.title),
+            )
+          : null,
       body: Container(
         child: Observer(
           builder: (_) {

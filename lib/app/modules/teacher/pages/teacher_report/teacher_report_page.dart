@@ -5,8 +5,9 @@ import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_report_controller.dart';
 
 class TeacherReportPage extends StatefulWidget {
+  final bool showAppBar;
   final String title;
-  const TeacherReportPage({Key key, this.title = "Relatório"})
+  const TeacherReportPage({Key key, this.title = "Relatório", this.showAppBar})
       : super(key: key);
 
   @override
@@ -22,10 +23,12 @@ class _TeacherReportPageState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(widget.title),
-      ),
+      appBar: widget.showAppBar
+          ? AppBar(
+              centerTitle: true,
+              title: Text(widget.title),
+            )
+          : null,
       body: Column(
         children: <Widget>[
           Container(

@@ -62,7 +62,7 @@ class _EmailPasswordFormState extends State<EmailPasswordForm> {
               */
                   // Para testes
                   onPressed: () {
-                    Navigator.pushNamed(context, '/teacher/teacher_menu');
+                    Navigator.pushNamed(context, '/teacher/teacher_root');
                   },
                   child: const Text('Entrar'),
                 ))
