@@ -7,7 +7,7 @@ import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_
 class TeacherReportPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
-  const TeacherReportPage({Key key, this.title = "Relatório", this.showAppBar})
+  const TeacherReportPage({Key key, this.title = "Relatório", this.showAppBar = true})
       : super(key: key);
 
   @override

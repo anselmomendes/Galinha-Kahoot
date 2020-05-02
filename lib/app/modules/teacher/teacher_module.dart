@@ -28,7 +28,7 @@ class TeacherModule extends ChildModule {
         Bind((i) => TeacherRootController()),
         Bind((i) => TeacherReportController(i.get<CasesRepository>())),
         Bind((i) => TeacherListCasesController(i.get<CasesRepository>())),
-        Bind((i) => TeacherListCasesController(i.get<CasesRepository>())),
+        //Bind((i) => TeacherListCasesController(i.get<CasesRepository>())),
         Bind((i) => TeacherMenuController()),
         Bind((i) => TeacherAreaController()),
         Bind((i) => TeacherCadastroController()),

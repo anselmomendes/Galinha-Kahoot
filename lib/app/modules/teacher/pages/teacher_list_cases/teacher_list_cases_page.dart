@@ -8,7 +8,7 @@ class TeacherListCasesPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
   const TeacherListCasesPage(
-      {Key key, this.title = "Lista de Casos do Professor", this.showAppBar})
+      {Key key, this.title = "Lista de Casos do Professor", this.showAppBar = true})
       : super(key: key);
 
   @override
