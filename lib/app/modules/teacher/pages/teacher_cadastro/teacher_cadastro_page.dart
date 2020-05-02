@@ -1,10 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 
 class TeacherCadastroPage extends StatefulWidget {
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final auth = Auth();
   final String title;
   TeacherCadastroPage({Key key, this.title = "Novo cadastro"})
       : super(key: key);
@@ -19,8 +20,6 @@ class _TeacherCadastroPageState extends State<TeacherCadastroPage> {
     final TextEditingController _passwordController = TextEditingController();
     final TextEditingController _universityController = TextEditingController();
     final TextEditingController _nameController = TextEditingController();
-    bool _success;
-    String _userEmail;
 
     @override
     Widget build(BuildContext context) {
@@ -59,7 +58,7 @@ class _TeacherCadastroPageState extends State<TeacherCadastroPage> {
 
                       // Universidade
                       TextFormField(
-                        controller: _nameController,
+                        controller: _universityController,
                         decoration: const InputDecoration(
                           labelText: 'Universidade', 
                           hintText: "Nome da Universidade",
@@ -69,7 +68,7 @@ class _TeacherCadastroPageState extends State<TeacherCadastroPage> {
 
                       // Email
                       TextFormField(
-                        controller: _nameController,
+                        controller: _emailController,
                         decoration: const InputDecoration(
                           labelText: 'Email', 
                           hintText: "Endereço de email",
@@ -79,7 +78,7 @@ class _TeacherCadastroPageState extends State<TeacherCadastroPage> {
 
                       // Senha
                       TextFormField(
-                        controller: _nameController,
+                        controller: _passwordController,
                         decoration: const InputDecoration(
                           labelText: 'Senha', 
                           hintText: "Senha",
@@ -112,10 +111,61 @@ class _TeacherCadastroPageState extends State<TeacherCadastroPage> {
     }
 
     void _register() async {
-      final FirebaseUser user = (await widget._auth.createUserWithEmailAndPassword(
-        email: _emailController.text,
-        password: _passwordController.text,
-      )).user;
-      print(user);
+
+      try{
+        String userId = (await widget.auth.signUp(
+          _emailController.text,
+          _passwordController.text,
+          ));
+          widget.auth.sendEmailVerification();
+          widget.auth.createUserMeta(userId, "teacher");
+          _showVerifyEmailSentDialog();
+      }
+      catch (e){
+        _showRegistrationError(e);
+      }
     }
+
+
+   void _showRegistrationError(e) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Houve um erro!"),
+          content: new Text(e),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.pushNamed(context, "/teacher/teacher_registro");              
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }  
+
+   void _showVerifyEmailSentDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Verifique seu email."),
+          content: new Text("Um link para verificação foi enviado para seu email."),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.pushNamed(context, Modular.initialRoute);              
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }  
 }

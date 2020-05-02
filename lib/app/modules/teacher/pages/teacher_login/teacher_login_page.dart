@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 import 'package:galinha_karoot/app/modules/common/EmailPasswordForm.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 
@@ -37,7 +38,7 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
                     Image.asset("assets/bits.png", width: MediaQuery.of(context).size.width * appLogoMediumSize),
                     SizedBox(height: 20),
                     Text(widget.title, style: headerTextStyle),
-                    EmailPasswordForm(auth: widget._auth, callback: _authCallback),
+                    EmailPasswordForm(callback: _authCallback),
                     InkWell(child: Text("Não tem uma conta?", style: TextStyle(color: Colors.blue)),
                             onTap: () => _gotoRegister()
                     )
@@ -49,9 +50,75 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
     );
   }
 
-  _authCallback(result){
-    print(result);
+  _authCallback(result) async{
+    try{
+      var user = (await Auth().getCurrentUser());
+      if (user.uid.length > 0 && user.uid != null){ // && 
+
+        // First check the role of the user
+        if (await Auth().getCurrentUserRole() == "student"){
+          throw Exception("Usuário já cadastrado como aluno!");
+        }
+
+        // Check for if mail is verified
+        if(user.isEmailVerified){
+          // String role = await Auth().getCurrentUserRole();
+          Navigator.pushNamed(context, '/teacher/teacher_area');          
+        }
+        else{
+          _showVerifyEmailSentDialog();
+        }        
+      }
+      else {
+        throw Exception("Usuário não cadastrado!");
+      }
+    }
+    catch (e){
+      _showSignInError(e);
+    }
   }
+
+   void _showSignInError(text) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Houve um erro!"),
+          content: new Text(text),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                Navigator.pop(context);              
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }  
+
+   void _showVerifyEmailSentDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Verifique seu email."),
+          content: new Text("Você precisa verificar seu email antes de continuar."),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                FocusScope.of(context).unfocus();              
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }  
 
   _gotoRegister(){
     Navigator.pushNamed(context, '/teacher/teacher_cadastro');

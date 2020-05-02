@@ -1,12 +1,15 @@
+import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
+
 import 'styles.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class EmailPasswordForm extends StatefulWidget{
 
-    EmailPasswordForm({Key key, this.auth, this.callback}): super(key: key);
-    final auth;
+    EmailPasswordForm({Key key, this.callback, this.ecallback}): super(key: key);
+    final Auth auth = Auth();
     final callback;
+    final ecallback;
 
     @override
     State<StatefulWidget> createState() => _EmailPasswordFormState();
@@ -58,7 +61,7 @@ class _EmailPasswordFormState extends State<EmailPasswordForm>{
                 textColor: Colors.white,
                 onPressed: () async {
                   if(_formKey.currentState.validate()){
-                    _signInEmailPassword();
+                    onSubmit();
                   }
                 },
                 child: const Text('Entrar'),
@@ -68,23 +71,27 @@ class _EmailPasswordFormState extends State<EmailPasswordForm>{
         ));
     }
 
-      // Example code of how to sign in with email and password.
-      void _signInEmailPassword() async {
-
-        try{
-          
-          final FirebaseUser user = (await widget.auth.signInWithEmailAndPassword(
-            email: _emailController.text,
-            password: _passwordController.text,
-          )).user;
-
-          widget.callback(user);
+    void onSubmit() async {
+      String userId;
+      try{
+        userId = await widget.auth.signIn(_emailController.text, _passwordController.text);
+        if (userId.length > 0 && userId != null) {
+          emitCallback(await widget.auth.getCurrentUser());
         }
-        catch (Exception){
-          print("Erro ao efetuar login...");
-        }
-
       }
+      catch (e){
+         emitError(e);
+      }
+
+    }
+
+    void emitCallback(FirebaseUser user){
+        widget.callback(user);
+    }
+
+    void emitError(error){
+      widget.ecallback(error);
+    }
 
     @override
     void dispose() {
