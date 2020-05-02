@@ -1,6 +1,9 @@
-/*
-abstract class ITodoRepository {
-  Stream<List<TodoModel>> get();
-  Future save(TodoModel model);
-  Future delete(TodoModel model);
-}*/
+import 'package:galinha_karoot/app/modules/teacher/models/TeacherModel.dart';
+
+abstract class ITeacherRepository {
+  Stream<List<TeacherModel>> getAllStream();
+  List<TeacherModel> getAll();
+  Future save(TeacherModel model);
+  Future delete(TeacherModel model);
+  Future create(TeacherModel model);
+}

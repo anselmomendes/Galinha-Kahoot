@@ -4,7 +4,7 @@ import 'styles.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class EmailPasswordForm extends StatefulWidget{
+class EmailPasswordForm extends StatefulWidget {
 
     EmailPasswordForm({Key key, this.callback, this.ecallback}): super(key: key);
     final Auth auth = Auth();
@@ -15,58 +15,61 @@ class EmailPasswordForm extends StatefulWidget{
     State<StatefulWidget> createState() => _EmailPasswordFormState();
 }
 
-class _EmailPasswordFormState extends State<EmailPasswordForm>{
+class _EmailPasswordFormState extends State<EmailPasswordForm> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
-    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-    final TextEditingController _emailController = TextEditingController();
-    final TextEditingController _passwordController = TextEditingController();
-
-
-    @override
-    Widget build(BuildContext context){
-        return Form(
-          key: _formKey,
-          child: Column(children: <Widget>[
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+        key: _formKey,
+        child: Column(
+          children: <Widget>[
             // Form de email
             TextFormField(
-              controller: _emailController,
-              decoration: const InputDecoration(labelText: 'Email'),
-              validator: (String value){
-                if (value.isEmpty){
-                  return "Por favor, insira um email!";
-                }
-                return null;
-              }
-            ),
+                controller: _emailController,
+                decoration: const InputDecoration(labelText: 'Email'),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return "Por favor, insira um email!";
+                  }
+                  return null;
+                }),
 
             // Form de senha
             TextFormField(
-              controller: _passwordController,
-              obscureText: true,
-              decoration: const InputDecoration(labelText: 'Senha'),
-              validator: (String value){
-                if (value.isEmpty){
-                  return "Por favor, insira uma senha!";
-                }
-                return null;
-              }
-            ),
+                controller: _passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(labelText: 'Senha'),
+                validator: (String value) {
+                  if (value.isEmpty) {
+                    return "Por favor, insira uma senha!";
+                  }
+                  return null;
+                }),
 
             // Botão de login
-            Container( 
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              alignment: Alignment.center,
-              child: RaisedButton(
-                color: appContrastColor,
-                textColor: Colors.white,
+            Container(
+                padding: const EdgeInsets.symmetric(vertical: 16.0),
+                alignment: Alignment.center,
+                child: RaisedButton(
+                  color: appContrastColor,
+                  textColor: Colors.white,
+                  /*
                 onPressed: () async {
+                  
                   if(_formKey.currentState.validate()){
                     onSubmit();
                   }
                 },
-                child: const Text('Entrar'),
-              )
-            )
+              */
+                  // Para testes
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/teacher/teacher_root');
+                  },
+                  child: const Text('Entrar'),
+                ))
           ],
         ));
     }
@@ -99,5 +102,4 @@ class _EmailPasswordFormState extends State<EmailPasswordForm>{
       _passwordController.dispose();
       super.dispose();
     }
-
 }

@@ -27,8 +27,10 @@ class StudentModule extends ChildModule {
   List<Router> get routers => [
         Router('/student_login', child: (_, args) => StudentLoginPage()),
         Router('/student_register', child: (_, args) => StudentCadastroPage()),
-        Router('/student_login_email', child: (_, args) => StudentEmailLoginPage()),
-        Router('/student_menu_options', child: (_, args) => StudentMenuOptionsPage()),
+        Router('/student_login_email',
+            child: (_, args) => StudentEmailLoginPage()),
+        Router('/student_menu_options',
+            child: (_, args) => StudentMenuOptionsPage()),
         Router('/student_menu', child: (_, args) => StudentMenuPage()),
       ];
 

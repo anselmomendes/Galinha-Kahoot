@@ -9,7 +9,7 @@ part of 'student_login_email_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$StudentEmailLoginController on _StudentEmailLoginBase, Store {
-  final _$valueAtom = Atom(name: '_StudentLoginBase.value');
+  final _$valueAtom = Atom(name: '_StudentEmailLoginBase.value');
 
   @override
   int get value {
@@ -26,16 +26,16 @@ mixin _$StudentEmailLoginController on _StudentEmailLoginBase, Store {
     }, _$valueAtom, name: '${_$valueAtom.name}_set');
   }
 
-  final _$_StudentLoginBaseActionController =
-      ActionController(name: '_StudentLoginBase');
+  final _$_StudentEmailLoginBaseActionController =
+      ActionController(name: '_StudentEmailLoginBase');
 
   @override
   void increment() {
-    final _$actionInfo = _$_StudentLoginBaseActionController.startAction();
+    final _$actionInfo = _$_StudentEmailLoginBaseActionController.startAction();
     try {
       return super.increment();
     } finally {
-      _$_StudentLoginBaseActionController.endAction(_$actionInfo);
+      _$_StudentEmailLoginBaseActionController.endAction(_$actionInfo);
     }
   }
 

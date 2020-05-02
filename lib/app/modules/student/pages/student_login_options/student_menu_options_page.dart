@@ -19,7 +19,7 @@ class _StudentMenuOptionsPageState extends State<StudentMenuOptionsPage> {
               style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
           SizedBox(height: 5),
           Text(
-              "Há duas maneiras de acessar à área do Aluno.\nEscolha uma das opções abaixo:",
+              "Há duas maneira de acesso. \nEscolhar uma das opções abaixo:",
               textAlign: TextAlign.center),
           SizedBox(height: 20),
           Card(
@@ -44,6 +44,7 @@ class _StudentMenuOptionsPageState extends State<StudentMenuOptionsPage> {
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
+                      color: Colors.red,
                       child: const Text('LOGIN'),
                       onPressed: () {
                         Navigator.pushNamed(context, '/student/student_login_email');
@@ -66,7 +67,7 @@ class _StudentMenuOptionsPageState extends State<StudentMenuOptionsPage> {
                 const ListTile(
                   leading: Icon(Icons.arrow_forward),
                   title: Text(
-                    'Acesso direto',
+                    'Acesso Direto',
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
@@ -75,6 +76,7 @@ class _StudentMenuOptionsPageState extends State<StudentMenuOptionsPage> {
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
+                      color: Colors.red,
                       child: const Text('ACESSO DIRETO'),
                       onPressed: () {
                         Navigator.pushNamed(context, '/student/student_login');
