@@ -36,7 +36,7 @@ class _AuthPageState extends State<AuthPage> {
                     Image.asset("images/logo.png", width: MediaQuery.of(context).size.width * appLogoMediumSize),
                     SizedBox(height: 20),
                     Text(widget.title, style: headerTextStyle),
-                    EmailPasswordForm(auth: widget._auth, callback: _authCallback),
+                    EmailPasswordForm(callback: _authCallback),
                     InkWell(child: Text("Não tem uma conta?", style: TextStyle(color: Colors.blue)),
                             onTap: () => _gotoPage(widget.registerPage)
                     )
