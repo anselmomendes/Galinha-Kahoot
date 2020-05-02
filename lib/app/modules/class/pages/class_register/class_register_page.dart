@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 class ClassRegisterPage extends StatefulWidget {
   final String title;
-  const ClassRegisterPage({Key key, this.title = "Criar Turmas"})
+  const ClassRegisterPage({Key key, this.title = "Cadastrar Turma"})
       : super(key: key);
 
   @override
@@ -17,10 +17,13 @@ class ClassRegisterPage extends StatefulWidget {
 
 class _ClassRegisterPageState
     extends ModularState<ClassRegisterPage, ClassRegisterController> {
-  
   final _casesID = TextEditingController();
   final _teacherID = TextEditingController();
   final _timer = TextEditingController();
+
+  String nomeCidade = "";
+  var _status = ['Ativado', 'Desativado'];
+  var _itemSelecionado = 'Ativado';
 
   final creationDate = new DateFormat("dd/MM/y").format(DateTime.now());
 
@@ -43,15 +46,35 @@ class _ClassRegisterPageState
           child: Column(
             children: <Widget>[
               SizedBox(height: 10),
-              Image.asset("assets/bits.png",
+              /* Image.asset("assets/bits.png",
                   width: MediaQuery.of(context).size.width * appLogoMediumSize),
+              SizedBox(height: 20), */
+              // Text("Cadastrar Turmas", style: headerTextStyle),
               SizedBox(height: 20),
-              Text("Cadastrar Turmas", style: headerTextStyle),
+              Text("Selecione o status:", style: headerTextStyle),
+              // Parte do DropDown
+              DropdownButton(
+                items: _status.map((String dropDownStringItem) {
+                  return DropdownMenuItem<String>(
+                    value: dropDownStringItem,
+                    child: Text(dropDownStringItem),
+                  );
+                }).toList(),
+                onChanged: (String novoItemSelecionado) {
+                  _dropDownItemSelected(novoItemSelecionado);
+                  setState(() {
+                    this._itemSelecionado = novoItemSelecionado;
+                  });
+                },
+                value: _itemSelecionado,
+              ),
               SizedBox(height: 20),
               Form(
                   child: Column(
                 children: <Widget>[
                   // _casesID
+                  // SizedBox(height: 20),
+                  Text("Selecione o temporizador:", style: headerTextStyle),
                   TextFormField(
                       controller: _casesID,
                       maxLength: 50,
@@ -61,6 +84,7 @@ class _ClassRegisterPageState
                         prefixIcon: Icon(Icons.border_color),
                       )),
                   // _teacherID
+                  Text("Selecione o caso:", style: headerTextStyle),
                   TextFormField(
                       controller: _teacherID,
                       maxLength: 50,
@@ -84,6 +108,11 @@ class _ClassRegisterPageState
                           model.casesID = _casesID.text;
                           model.teacherID = _teacherID.text;
                           model.creationDate = creationDate;
+                          if (_itemSelecionado.compareTo('Ativado') == true) {
+                            model.status = true;
+                          } else {
+                            model.status = false;
+                          }
 
                           controller.save(model);
                           _showAlertDialog(context);
@@ -102,6 +131,12 @@ class _ClassRegisterPageState
         ),
       ),
     );
+  }
+
+  void _dropDownItemSelected(String novoItem) {
+    setState(() {
+      this._itemSelecionado = novoItem;
+    });
   }
 
   void _showAlertDialog(BuildContext context) {
