@@ -40,7 +40,7 @@ class _TeacherReportPageState
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
                   SizedBox(height: 5),
                   Text(
-                      "Gere relatório por turmas. \nEscolhar a turma que deseja gerar o relatório:",
+                      "Gere relatório por turmas. \nEscolha a turma que deseja gerar o relatório:",
                       textAlign: TextAlign.center),
                   SizedBox(height: 20),
                 ],

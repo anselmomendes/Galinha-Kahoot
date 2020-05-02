@@ -12,21 +12,21 @@ abstract class _TeacherReportControllerBase with Store {
 
   @observable
   ObservableStream<List<CasesModel>> casesList;
-  
+
   @observable
   int value = 0;
 
-  _TeacherReportControllerBase(this.casesRepository){
+  _TeacherReportControllerBase(this.casesRepository) {
     getList();
-      }
-    
-      @action
-      void increment() {
-        value++;
-      }
-    
-    @action
-      getList() {
-        casesList = casesRepository.get().asObservable();
-      }
+  }
+
+  @action
+  void increment() {
+    value++;
+  }
+
+  @action
+  getList() {
+    casesList = casesRepository.get().asObservable();
+  }
 }
