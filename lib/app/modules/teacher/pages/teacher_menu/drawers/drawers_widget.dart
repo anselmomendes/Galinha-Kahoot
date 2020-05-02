@@ -1,8 +1,30 @@
 import 'package:flutter/material.dart';
-//import 'package:galinha_karoot/app/modules/student/tiles/drawer_tile.dart';
-import 'package:galinha_karoot/app/shared/widgets/tiles/drawer_tile.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_about/teacher_about_module.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_module.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_menu/teacher_menu_module.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil/teacher_perfil_module.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_report_module.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_root/teacher_root_controller.dart';
 
-class CustomDrawer extends StatelessWidget {
+class DrawersWidget extends StatelessWidget {
+  final controller = Modular.get<TeacherRootController>();
+
+  ListTile _getTile(
+      {@required String title, @required Function() action, IconData icon}) {
+    return ListTile(
+      leading: icon == null ? null : Icon(icon),
+      title: Text(
+        title,
+        style: TextStyle(fontSize: 20),
+      ),
+      onTap: () {
+        controller.changePage = action;
+        Modular.to.pop();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget _buildDrawerBack() => Container(
@@ -16,7 +38,6 @@ class CustomDrawer extends StatelessWidget {
     return Drawer(
       child: Stack(
         children: <Widget>[
-          //_buildDrawerBack(),
           ListView(
             padding: EdgeInsets.only(left: 32.0, top: 16.0),
             children: <Widget>[
@@ -34,14 +55,6 @@ class CustomDrawer extends StatelessWidget {
                         height: 110,
                       ),
                     ),
-/*                     Positioned(
-                        top: 8.0,
-                        left: 0.0,
-                        child: Text(
-                          'PeensA \n App',
-                          style: TextStyle(
-                              fontSize: 34.0, fontWeight: FontWeight.bold),
-                        )), */
                     Positioned(
                         left: 0.0,
                         bottom: 0.0,
@@ -65,22 +78,40 @@ class CustomDrawer extends StatelessWidget {
                             ),
                           ],
                         )),
-                    //Divider(),
                   ],
                 ),
               ),
               Divider(),
-              FlatButton(
-                child: DrawerTile(
-                  Icons.home,
-                  'Início',
-                ),
-                onPressed: () {},
-              ),
-              DrawerTile(Icons.list, 'Minha conta'),
-              DrawerTile(Icons.playlist_add, 'Acessar turma'),
-              DrawerTile(Icons.history, 'Histórico de turma'),
-              DrawerTile(Icons.info_outline, 'Sobre')
+              _getTile(
+                  icon: Icons.home,
+                  action: () => TeacherMenuModule(
+                        showAppBar: false,
+                      ),
+                  title: "Inicio"),
+              _getTile(
+                  icon: Icons.local_hospital,
+                  action: () => TeacherListCasesModule(
+                        showAppBar: false,
+                      ),
+                  title: "Acessar Casos"),
+              _getTile(
+                  icon: Icons.local_hospital,
+                  action: () => TeacherReportModule(
+                        showAppBar: false,
+                      ),
+                  title: "Relatorios"),
+              _getTile(
+                  icon: Icons.local_hospital,
+                  action: () => TeacherPerfilModule(
+                        showAppBar: false,
+                      ),
+                  title: "Meu Perfil"),
+              _getTile(
+                  icon: Icons.local_hospital,
+                  action: () => TeacherAboutModule(
+                        showAppBar: false,
+                      ),
+                  title: "Sobre"),
             ],
           )
         ],
