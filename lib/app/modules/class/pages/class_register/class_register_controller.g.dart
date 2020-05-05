@@ -26,8 +26,35 @@ mixin _$ClassRegisterController on _ClassRegisterBase, Store {
     }, _$classListAtom, name: '${_$classListAtom.name}_set');
   }
 
+  final _$selectedCaseAtom = Atom(name: '_ClassRegisterBase.selectedCase');
+
+  @override
+  dynamic get selectedCase {
+    _$selectedCaseAtom.context.enforceReadPolicy(_$selectedCaseAtom);
+    _$selectedCaseAtom.reportObserved();
+    return super.selectedCase;
+  }
+
+  @override
+  set selectedCase(dynamic value) {
+    _$selectedCaseAtom.context.conditionallyRunInAction(() {
+      super.selectedCase = value;
+      _$selectedCaseAtom.reportChanged();
+    }, _$selectedCaseAtom, name: '${_$selectedCaseAtom.name}_set');
+  }
+
   final _$_ClassRegisterBaseActionController =
       ActionController(name: '_ClassRegisterBase');
+
+  @override
+  void mudarSelected(dynamic newSelected) {
+    final _$actionInfo = _$_ClassRegisterBaseActionController.startAction();
+    try {
+      return super.mudarSelected(newSelected);
+    } finally {
+      _$_ClassRegisterBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   dynamic getList() {
@@ -61,7 +88,8 @@ mixin _$ClassRegisterController on _ClassRegisterBase, Store {
 
   @override
   String toString() {
-    final string = 'classList: ${classList.toString()}';
+    final string =
+        'classList: ${classList.toString()},selectedCase: ${selectedCase.toString()}';
     return '{$string}';
   }
 }
