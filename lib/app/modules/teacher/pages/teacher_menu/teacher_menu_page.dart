@@ -24,7 +24,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
             )
           : null,
       body: Center(
-          child: Column(
+          child: ListView(
         children: <Widget>[
           Card(
             margin: EdgeInsets.all(15),

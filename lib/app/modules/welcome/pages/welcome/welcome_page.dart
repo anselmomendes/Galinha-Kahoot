@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/welcome/pages/welcome/welcome_controller.dart';
 
 class WelcomePage extends StatefulWidget {
   final String title;
@@ -8,18 +11,22 @@ class WelcomePage extends StatefulWidget {
   _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _WelcomePageState extends State<WelcomePage> {
+class _WelcomePageState extends ModularState<WelcomePage, WelcomeController> {
+  @override
+  void initState() {
+    super.initState();
+    userIsLogged();
+  }
+
+  userIsLogged() async {
+    var result = await controller.autoLogIn();
+    if (result) {
+      Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    final _senhaController = TextEditingController();
-    final _emailController = TextEditingController();
-    String login;
-    String senha;
-
-    //Autenticação em string para testes. Trabalhos futuros: implementar autenticação mais segura.
-    login = "teste";
-    senha = "teste";
-
     return Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
@@ -109,6 +116,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: 20.0,
             ),
             SizedBox(
               height: 20.0,
