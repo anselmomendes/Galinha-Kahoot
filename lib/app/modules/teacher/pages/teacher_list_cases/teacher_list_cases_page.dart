@@ -8,7 +8,9 @@ class TeacherListCasesPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
   const TeacherListCasesPage(
-      {Key key, this.title = "Lista de Casos do Professor", this.showAppBar = true})
+      {Key key,
+      this.title = "Lista de Casos do Professor",
+      this.showAppBar = true})
       : super(key: key);
 
   @override
@@ -69,6 +71,9 @@ class _TeacherListCasesPageState
                                 fontSize: 16,
                               ),
                             ),
+                            onTap: () {
+                              Navigator.pushNamed(context, '/cases/cases_home');
+                            },
                             //subtitle: Text(model.right),
                           ),
                           ButtonBar(
