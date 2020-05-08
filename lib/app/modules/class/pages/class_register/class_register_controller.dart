@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
@@ -17,15 +18,14 @@ abstract class _ClassRegisterBase with Store {
   ObservableStream<List<ClassModel>> classList;
   ObservableStream<List<CasesModel>> casesList;
 
-  // Teste
+  /* // Teste
   @observable
   var selectedCase;
 
   @action
   void mudarSelected(var newSelected) {
     selectedCase = newSelected;
-  }
-
+  } */
 
   _ClassRegisterBase(this.classRepository, this.casesRepository) {
     getList();

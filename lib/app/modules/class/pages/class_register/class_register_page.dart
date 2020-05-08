@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -28,8 +29,7 @@ class _ClassRegisterPageState
   var _itemSelecionado = 'Ativado';
 
   var _currentTimeValue = 1;
-                              var selectedCase;
-
+  var selectedCase;
 
   final creationDate = new DateFormat("dd/MM/y").format(DateTime.now());
 
@@ -164,12 +164,11 @@ class _ClassRegisterPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
+
+                              model.creationDate = creationDate;
                               // Para teste
                               print(creationDate);
 
-                              model.casesID = _casesID.text;
-                              model.teacherID = _teacherID.text;
-                              model.creationDate = creationDate;
                               if (_itemSelecionado.compareTo('Ativado') ==
                                   true) {
                                 model.status = true;
@@ -177,8 +176,8 @@ class _ClassRegisterPageState
                                 model.status = false;
                               }
 
-                              // controller.save(model);
-                              // _showAlertDialog(context);
+                              controller.save(model);
+                              _showAlertDialog(context);
                             },
                             color: appColor,
                             child: Text('Salvar',

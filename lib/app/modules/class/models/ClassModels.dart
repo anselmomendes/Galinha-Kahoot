@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ClassModel {
-  int id;
+  String id;
   bool status;
   String casesID;
   String teacherID;

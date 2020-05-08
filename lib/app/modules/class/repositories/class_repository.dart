@@ -13,7 +13,7 @@ class ClassRepository extends Disposable {
   @override
   void dispose() {}
 
-    @override
+  @override
   Future save(ClassModel model) async {
     int total = (await Firestore.instance.collection('Class').getDocuments())
         .documents
@@ -21,7 +21,8 @@ class ClassRepository extends Disposable {
 
     if (model.reference == null) {
       model.reference = await Firestore.instance.collection('Class').add({
-        'status' : model.status,
+        // 'id': model.id,
+        'status': model.status,
         'casesID': model.casesID,
         'teacherID': model.teacherID,
         'creationDate': model.creationDate,
@@ -30,9 +31,14 @@ class ClassRepository extends Disposable {
         'right': model.right,
         'position': total
       });
+      print("ID da class: ${model.reference.documentID}");
+      model.reference.updateData({
+        'id' : model.reference.documentID
+      });
     } else {
       model.reference.updateData({
-        'status' : model.status,
+        // 'id': model.id,
+        'status': model.status,
         'casesID': model.casesID,
         'teacherID': model.teacherID,
         'creationDate': model.creationDate,
