@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -8,6 +9,7 @@ import 'package:galinha_karoot/app/modules/class/pages/class_register/class_regi
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 import 'package:intl/intl.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
+import 'package:random_string/random_string.dart';
 
 class ClassRegisterPage extends StatefulWidget {
   final String title;
@@ -24,14 +26,21 @@ class _ClassRegisterPageState
   final _teacherID = TextEditingController();
   final _timer = TextEditingController();
 
-  String nomeCidade = "";
+  // String nomeCidade = "";
+  // Variaveis para o status da class
   var _status = ['Ativado', 'Desativado'];
   var _itemSelecionado = 'Ativado';
 
-  var _currentTimeValue = 1;
+  // var _currentTimeValue = 1;
+
+  // Variável para seleção do caso no RadioListTile
   var selectedCase;
 
+  // Data de criação da class
   final creationDate = new DateFormat("dd/MM/y").format(DateTime.now());
+
+  // Código de acesso da class de 4 dígitos
+  int _accessCode = 999 + Random().nextInt(9999 - 999);
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +173,6 @@ class _ClassRegisterPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
-
                               model.creationDate = creationDate;
                               // Para teste
                               print(creationDate);
@@ -175,6 +183,10 @@ class _ClassRegisterPageState
                               } else {
                                 model.status = false;
                               }
+
+                              model.accessCode = _accessCode;
+
+                              print("Código de acesso: ${_accessCode}");
 
                               controller.save(model);
                               _showAlertDialog(context);

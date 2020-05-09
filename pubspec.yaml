@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  random_string: ^2.0.1
   shared_preferences: ^0.5.7
   rflutter_alert: ^1.0.3
   dio: ^3.0.9
