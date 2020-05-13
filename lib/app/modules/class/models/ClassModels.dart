@@ -8,7 +8,8 @@ class ClassModel {
   String teacherID;
   String creationDate;
   String modifiedDate;
-  int timer;
+  String endTime;
+  String timer;
   int position;
   String right;
   DocumentReference reference;
@@ -20,6 +21,7 @@ class ClassModel {
     this.casesID = '',
     this.creationDate = '',
     this.modifiedDate = '',
+    this.endTime,
     this.timer,
     this.position,
     this.right = '',
@@ -33,6 +35,7 @@ class ClassModel {
         casesID: doc["casesID"],
         creationDate: doc["creationDate"],
         modifiedDate: doc["modifiedDate"],
+        endTime: doc["endTime"],
         timer: doc["timer"],
         position: doc["position"],
         right: doc["right"],
@@ -46,6 +49,7 @@ class ClassModel {
         "casesID": casesID,
         "creationDate": creationDate,
         "modifiedDate": modifiedDate,
+        "endTime": endTime,
         "timer": timer,
         "position": position,
         "right": right,

@@ -28,6 +28,7 @@ class ClassRepository extends Disposable {
         'teacherID': model.teacherID,
         'creationDate': model.creationDate,
         'modifiedDate': model.modifiedDate,
+        'endTime': model.endTime,
         'timer': model.timer,
         'right': model.right,
         'position': total
@@ -45,6 +46,7 @@ class ClassRepository extends Disposable {
         'teacherID': model.teacherID,
         'creationDate': model.creationDate,
         'modifiedDate': model.modifiedDate,
+        'endTime': model.endTime,
         'timer': model.timer,
         'right': model.right,
         'position': total

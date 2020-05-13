@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
@@ -37,7 +38,13 @@ class _ClassRegisterPageState
   var selectedCase;
 
   // Data de criação da class
-  final creationDate = new DateFormat("dd/MM/y").format(DateTime.now());
+  var creationDate;
+
+  // Variável do temporizador selecionado (em minutos) - 5 dias (padrão)
+  Duration resultingDuration = Duration(minutes: 7200);
+
+  // Temporizador personalizado - data final para desativar a turma
+  var endTime;
 
   // Código de acesso da class de 4 dígitos
   int _accessCode = 999 + Random().nextInt(9999 - 999);
@@ -77,11 +84,6 @@ class _ClassRegisterPageState
               child: Column(
                 children: <Widget>[
                   SizedBox(height: 10),
-                  /* Image.asset("assets/bits.png",
-                  width: MediaQuery.of(context).size.width * appLogoMediumSize),
-              SizedBox(height: 20), */
-                  // Text("Cadastrar Turmas", style: headerTextStyle),
-                  SizedBox(height: 20),
                   Text("Selecione o status:", style: headerTextStyle),
                   // Parte do DropDown
                   DropdownButton(
@@ -101,7 +103,47 @@ class _ClassRegisterPageState
                   ),
                   // SizedBox(height: 20),
                   Divider(
-                    height: 40,
+                    height: 20,
+                  ),
+                  Text("Selecione o temporizador:", style: headerTextStyle),
+                  SizedBox(height: 5),
+                  selectionText(resultingDuration),
+                  SizedBox(height: 5),
+                  FlatButton(
+                      onPressed: () async {
+                        resultingDuration = await showDurationPicker(
+                          context: context,
+                          initialTime: new Duration(minutes: 30),
+                        );
+                        // var time = new DateTime.now();
+                        // var time2;
+                        if (resultingDuration != null) {
+                          Duration durationZeroTest = Duration(minutes: 0);
+
+                          if (resultingDuration.compareTo(durationZeroTest) ==
+                              0) {
+                            resultingDuration = Duration(minutes: 7200);
+                            // time2 = new DateTime.now().add(resultingDuration);
+                          }
+                          // time2 = new DateTime.now().add(resultingDuration);
+                        } else {
+                          resultingDuration = Duration(minutes: 7200);
+                          // time2 = new DateTime.now().add(resultingDuration);
+                        }
+                        // print(time);
+                        // print(time2);
+                        setState(() {
+                          resultingDuration = resultingDuration;
+                        });
+                        // print(resultingDuration);
+                      },
+                      color: appColor,
+                      child: Text(
+                        "Selecionar",
+                        style: TextStyle(color: Colors.white),
+                      )),
+                  Divider(
+                    height: 30,
                   ),
                   Form(
                       child: Column(
@@ -110,7 +152,7 @@ class _ClassRegisterPageState
                       Text("Selecione o caso:", style: headerTextStyle),
                       // Lista de de casos (teste)
                       Container(
-                        height: screenWidth * 1.0,
+                        height: screenWidth * 0.8,
                         child: Observer(
                           builder: (_) {
                             if (controller.casesList.data == null)
@@ -173,12 +215,29 @@ class _ClassRegisterPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
-                              model.creationDate = creationDate;
+
+                               model.creationDate = new DateFormat("dd/MM/y hh:mm").format(DateTime.now());
+                               model.endTime = DateTime.now().add(resultingDuration).toString();
+                               model.timer = resultingDuration.toString();
+
+                              // model.creationDate = creationDate;
+                              // model.endTime = re
                               // Para teste
-                              print(creationDate);
+                              /* print("Data de criação; ${creationDate}");
+                                                                        print("Data de fechamento: ${endTime}");
+                                                                        print("Data com temporizador: ${standartTimer}"); */
+
+                              // var testTime = DateTime.now();
+                              // var testTime2 =
+                              //     DateTime.now().add(Duration(minutes: 130));
+                              // print(testTime);
+                              // print(testTime2);
+                              // var diferenca = testTime2.difference(testTime);
+                              // print(diferenca);
+                              // print(testTime.isBefore(testTime2));
 
                               if (_itemSelecionado.compareTo('Ativado') ==
-                                  true) {
+                                  0) {
                                 model.status = true;
                               } else {
                                 model.status = false;
@@ -240,5 +299,16 @@ class _ClassRegisterPageState
         return alerta;
       },
     );
+  }
+
+  // Condicional para exibição do temporizado padrão ou o selecionado
+  Widget selectionText(Duration resultingDuration) {
+    Duration v = Duration(minutes: 7200);
+
+    if (resultingDuration.compareTo(v) == 0) {
+      return Text(
+          "Por padrão, a turma será desativada em ${resultingDuration.inDays} dias.");
+    }
+    return Text("Turma será desativada em ${resultingDuration.inMinutes} min.");
   }
 }
