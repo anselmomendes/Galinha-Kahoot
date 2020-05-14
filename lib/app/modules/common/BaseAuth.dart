@@ -7,11 +7,7 @@ abstract class BaseAuth {
 
   Future<String> signUp(String email, String password);
 
-  Future<bool> createUserMeta(String uid, String role);
-
   Future<FirebaseUser> getCurrentUser();
-
-  Future<String> getCurrentUserRole();
 
   Future<void> sendEmailVerification();
 
@@ -26,6 +22,12 @@ abstract class BaseAuth {
   Future<void> deleteUser();
 
   Future<void> sendPasswordResetMail(String email);
+
+  Future<bool> createUserMeta(String role, String university);
+
+  Future<Map> getUserMeta();
+
+  Future<String> getUserRole();
 }
 
 class Auth implements BaseAuth {
@@ -42,40 +44,9 @@ class Auth implements BaseAuth {
     return user.uid;
   }
 
-  Future<bool> createUserMeta(String uid, String role) async{
-    Firestore.instance.collection("users")
-      .where("uid", isEqualTo:uid)
-      .getDocuments()
-      .then((docs){
-        if (docs.documents.isEmpty){
-          Firestore.instance.collection("users").add({"uid":uid, "role": role});
-          return true;
-        }
-        else {
-          // throw Exception("Já existe um metadata de usuário vinculado à esta conta.");
-          return false;
-        }
-      });
-  }
-
   Future<FirebaseUser> getCurrentUser() async {
     FirebaseUser user = await _firebaseAuth.currentUser();
     return user;
-  }
-
-  Future<String> getCurrentUserRole() async {
-    FirebaseUser user = await _firebaseAuth.currentUser().then((user){
-        Firestore.instance.collection("users")
-          .where("uid", isEqualTo: user.uid)
-          .getDocuments().then((docs){
-              if(docs.documents[0].exists){
-                return docs.documents[0].data['role'];
-              }
-            }
-          );
-      }
-    ); 
-    return null;  
   }
 
   Future<void> signOut() async {
@@ -130,5 +101,59 @@ class Auth implements BaseAuth {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
     return null;
   }
+
+	List metaFields = ["uid", "role", "university"];
+
+  Future<bool> createUserMeta(String role, String university) async {
+		FirebaseUser currentUser = await getCurrentUser();
+		if (currentUser == null)
+			throw Exception("Access denied: No user currently signed in.");
+		
+		Map registerMeta = {"uid": currentUser, "role": role, "university": university};
+    	Firestore.instance.collection("users")
+        	.where("uid", isEqualTo: currentUser)
+        	.getDocuments()
+        	.then((docs){
+				if (docs.documents.isEmpty){
+					Firestore.instance.collection("users").add(registerMeta);
+					return true;
+				}
+				return false;
+			});
+		return false;
+    }
+
+	Future<Map> getUserMeta(){
+		Future<FirebaseUser> currentUser = getCurrentUser();		
+		var docs = Firestore.instance.collection("users")
+					.where("uid", isEqualTo: currentUser)
+					.getDocuments();
+
+		docs.then((value){
+			if(value.documents.isEmpty)
+				throw Exception("No meta found for current User. Is it really registered?");
+			else {
+				Map meta;
+				metaFields.forEach((element){
+					meta[element] = value.documents[0][element];
+				});
+				return meta;
+			}
+		});	
+		return null;
+	}
+
+	Future<String> getUserRole() async {
+		await getCurrentUser().then((user){
+			Firestore.instance.collection("users")
+			.where("uid", isEqualTo: user.uid)
+			.getDocuments().then((docs){
+				if(docs.documents[0].exists)
+					return docs.documents[0].data['role'];
+				if(docs.documents.isEmpty)
+					return false;
+			});
+		}); 
+		return null;}
 
 }
