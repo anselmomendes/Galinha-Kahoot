@@ -52,7 +52,7 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
         // &&
 
         // First check the role of the user
-        if (await Auth().getCurrentUserRole() == "student") {
+        if (await Auth().getUserRole() == "student") {
           throw Exception("Usuário já cadastrado como aluno!");
         }
 
