@@ -2,6 +2,7 @@ import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_con
 import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_page.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_register/cases_register_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_register/cases_register_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/cases_single/cases_single_page.dart';
 import 'package:galinha_karoot/app/modules/cases/services/cases_service.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -18,6 +19,10 @@ class CasesModule extends ChildModule {
   List<Router> get routers => [
         Router('/cases_home', child: (_, args) => CasesHomePage()),
         Router('/cases_register', child: (_, args) => CasesRegisterPage()),
+        Router('/cases_single',
+            child: (_, args) => CasesSinglePage(
+                  questionModel: args.data,
+                )),
       ];
 
   static Inject get to => Inject<CasesModule>.of();

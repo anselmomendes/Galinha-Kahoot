@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
+import 'package:galinha_karoot/app/modules/cases/models/QuestionModel.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 
 class TeacherListCasesPage extends StatefulWidget {
@@ -19,6 +20,14 @@ class TeacherListCasesPage extends StatefulWidget {
 
 class _TeacherListCasesPageState
     extends ModularState<TeacherListCasesPage, TeacherListCasesController> {
+  QuestionModel question_model = QuestionModel(
+    title: "Anselmo",
+    description:
+        "Após admissão evoluiu rapidamente com piora importante do estado geral, apresentando-se ao exame físico, taquicárdica, taquipnéica, desidratada 3+/4, hipocorada 3+/4, ictérica 2+/4.\n\nApresentou ainda lipotímia seguida de síncope.",
+    imageUrl:
+        "https://unifesspa.edu.br/images/conteudo/2019/Marca_-_Vertical__S%C3%ADmbolo_-_Tipografia.jpg",
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,7 +81,9 @@ class _TeacherListCasesPageState
                               ),
                             ),
                             onTap: () {
-                              Navigator.pushNamed(context, '/cases/cases_home');
+                              Navigator.pushNamed(
+                                  context, '/cases/cases_single',
+                                  arguments: question_model);
                             },
                             //subtitle: Text(model.right),
                           ),
