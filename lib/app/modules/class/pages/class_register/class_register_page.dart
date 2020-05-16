@@ -23,9 +23,10 @@ class ClassRegisterPage extends StatefulWidget {
 
 class _ClassRegisterPageState
     extends ModularState<ClassRegisterPage, ClassRegisterController> {
-  final _casesID = TextEditingController();
-  final _teacherID = TextEditingController();
-  final _timer = TextEditingController();
+  // final _casesID = TextEditingController();
+  // final _teacherID = TextEditingController();
+  // final _timer = TextEditingController();
+  var _casesID = "";
 
   // String nomeCidade = "";
   // Variaveis para o status da class
@@ -191,6 +192,7 @@ class _ClassRegisterPageState
                                           print(
                                               "Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
+                                          _casesID = model.id;
                                         },
                                         selected: selectedCase == model,
                                         activeColor: Colors.red,
@@ -215,10 +217,14 @@ class _ClassRegisterPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
-
-                               model.creationDate = new DateFormat("dd/MM/y hh:mm").format(DateTime.now());
-                               model.endTime = DateTime.now().add(resultingDuration).toString();
-                               model.timer = resultingDuration.toString();
+                              model.creationDate =
+                                  new DateFormat("dd/MM/y hh:mm")
+                                      .format(DateTime.now());
+                              model.endTime = DateTime.now()
+                                  .add(resultingDuration)
+                                  .toString();
+                              model.timer = resultingDuration.toString();
+                              model.casesID = _casesID;
 
                               // model.creationDate = creationDate;
                               // model.endTime = re
@@ -236,8 +242,7 @@ class _ClassRegisterPageState
                               // print(diferenca);
                               // print(testTime.isBefore(testTime2));
 
-                              if (_itemSelecionado.compareTo('Ativado') ==
-                                  0) {
+                              if (_itemSelecionado.compareTo('Ativado') == 0) {
                                 model.status = true;
                               } else {
                                 model.status = false;
@@ -279,8 +284,8 @@ class _ClassRegisterPageState
     Widget okButton = FlatButton(
       child: Text("OK"),
       onPressed: () {
-        _casesID.text = '';
-        _teacherID.text = '';
+        // _casesID.text = '';
+        // _teacherID.text = '';
         Modular.to.pop();
       },
     );
