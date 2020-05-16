@@ -29,6 +29,10 @@ class CasesRepository extends Disposable implements ICasesRepository {
         'right': model.right,
         'position': total
       });
+      print("ID da case: ${model.reference.documentID}");
+      model.reference.updateData({
+        'id' : model.reference.documentID
+      });
     } else {
       model.reference.updateData({
         'question': model.question,

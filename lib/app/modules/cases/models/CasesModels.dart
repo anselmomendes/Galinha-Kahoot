@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class CasesModel {
-  int id;
+  String id;
   String question;
   String answers1;
   String answers2;
