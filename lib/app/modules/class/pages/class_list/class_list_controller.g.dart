@@ -9,31 +9,51 @@ part of 'class_list_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ClassListController on _ClassListBase, Store {
-  final _$valueAtom = Atom(name: '_ClassListBase.value');
+  final _$classListAtom = Atom(name: '_ClassListBase.classList');
 
   @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
+  ObservableStream<List<ClassModel>> get classList {
+    _$classListAtom.context.enforceReadPolicy(_$classListAtom);
+    _$classListAtom.reportObserved();
+    return super.classList;
   }
 
   @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
+  set classList(ObservableStream<List<ClassModel>> value) {
+    _$classListAtom.context.conditionallyRunInAction(() {
+      super.classList = value;
+      _$classListAtom.reportChanged();
+    }, _$classListAtom, name: '${_$classListAtom.name}_set');
   }
 
   final _$_ClassListBaseActionController =
       ActionController(name: '_ClassListBase');
 
   @override
-  void increment() {
+  dynamic getList() {
     final _$actionInfo = _$_ClassListBaseActionController.startAction();
     try {
-      return super.increment();
+      return super.getList();
+    } finally {
+      _$_ClassListBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic save(ClassModel model) {
+    final _$actionInfo = _$_ClassListBaseActionController.startAction();
+    try {
+      return super.save(model);
+    } finally {
+      _$_ClassListBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic delete(ClassModel model) {
+    final _$actionInfo = _$_ClassListBaseActionController.startAction();
+    try {
+      return super.delete(model);
     } finally {
       _$_ClassListBaseActionController.endAction(_$actionInfo);
     }
@@ -41,7 +61,7 @@ mixin _$ClassListController on _ClassListBase, Store {
 
   @override
   String toString() {
-    final string = 'value: ${value.toString()}';
+    final string = 'classList: ${classList.toString()}';
     return '{$string}';
   }
 }

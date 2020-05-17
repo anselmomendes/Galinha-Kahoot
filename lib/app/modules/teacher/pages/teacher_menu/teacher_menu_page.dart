@@ -86,7 +86,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       color: Colors.red,
                       child: const Text('ACESSAR'),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/class/class_list/');
+                        Navigator.pushNamed(context, '/class/class_list');
                       },
                     ),
                     FlatButton(
