@@ -23,7 +23,7 @@ class _TeacherListCasesPageState
   QuestionModel question_model = QuestionModel(
     title: "Anselmo",
     description:
-        "Após admissão evoluiu rapidamente com piora importante do estado geral, apresentando-se ao exame físico, taquicárdica, taquipnéica, desidratada 3+/4, hipocorada 3+/4, ictérica 2+/4.\n\nApresentou ainda lipotímia seguida de síncope.",
+        "Na mitologia nórdica, Ragnarök (em português: destino dos deuses,) representa a escatologia nórdica, marcado por uma série de eventos que conduziriam ao fim do mundo. A palavra significa destino, referindo-se à última e decisiva batalha dos deuses contra os seus inimigos.",
     imageUrl:
         "https://unifesspa.edu.br/images/conteudo/2019/Marca_-_Vertical__S%C3%ADmbolo_-_Tipografia.jpg",
   );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:galinha_karoot/app/modules/cases/models/QuestionModel.dart';
+import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class CasesSinglePage extends StatefulWidget {
   final QuestionModel questionModel;
@@ -19,54 +20,36 @@ class _CasesSinglePageState extends State<CasesSinglePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
-            child: Column(children: <Widget>[
-              Container(
-                child: Image.network(
-                  widget.questionModel.imageUrl,
-                  height: 150,
-                  width: 300,
-                ),
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+        child: ListView(
+          children: <Widget>[
+            Container(
+              child: Image.network(
+                widget.questionModel.imageUrl,
+                height: 150,
+                width: 300,
               ),
-              Container(
-                height: 300,
-                child: Text(
-                  widget.questionModel.description,
-                  style: TextStyle(fontSize: 18),
-                ),
+            ),
+            Container(
+              height: 300,
+              child: Text(
+                widget.questionModel.description,
+                style: TextStyle(fontSize: 18),
               ),
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    FlatButton(
-                      color: Colors.red,
-                      child: const Text(
-                        'Voltar',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () {},
-                    ),
-                    SizedBox(
-                      width: 50,
-                    ),
-                    FlatButton(
-                      color: Colors.red,
-                      child: const Text(
-                        'Avançar',
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      onPressed: () {},
-                    ),
-                  ],
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  circularButton(text: 'Voltar', func: () {}),
+                  circularButton(text: 'Avançar', func: () {}),
+                ],
               ),
-            ]),
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }
