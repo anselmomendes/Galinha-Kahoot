@@ -93,7 +93,8 @@ class _TeacherListCasesPageState
                                 color: Colors.red,
                                 child: const Text('EXCLUIR'),
                                 onPressed: () {
-                                  controller.delete(model);
+                                  // controller.delete(model);
+                                  _showAlertDialogDelete(model: model);
                                 },
                               ),
                               FlatButton(
@@ -231,4 +232,44 @@ class _TeacherListCasesPageState
       },
     );
   }
+
+  void _showAlertDialogDelete({CasesModel model}) {
+    model ??= CasesModel();
+
+    Widget cancelButton = FlatButton(
+      child: Text("Cancelar"),
+      onPressed: () {
+        // _casesID.text = '';
+        // _teacherID.text = '';
+        Modular.to.pop();
+      },
+    );
+    // configura o button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        // _casesID.text = '';
+        // _teacherID.text = '';
+        controller.delete(model);
+        Modular.to.pop();
+      },
+    );
+    // configura o  AlertDialog
+    AlertDialog alerta = AlertDialog(
+      title: Text("Aviso"),
+      content: Text("Deseja excluir o caso?"),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+    // exibe o dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
+    );
+  }
+
 }
