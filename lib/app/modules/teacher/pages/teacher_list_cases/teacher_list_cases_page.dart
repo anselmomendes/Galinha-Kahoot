@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuestionModel.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 
 class TeacherListCasesPage extends StatefulWidget {
@@ -20,7 +19,7 @@ class TeacherListCasesPage extends StatefulWidget {
 
 class _TeacherListCasesPageState
     extends ModularState<TeacherListCasesPage, TeacherListCasesController> {
-  QuestionModel question_model = QuestionModel(
+  CasesModel caseModel = CasesModel(
     title: "Anselmo",
     description:
         "Na mitologia nórdica, Ragnarök (em português: destino dos deuses,) representa a escatologia nórdica, marcado por uma série de eventos que conduziriam ao fim do mundo. A palavra significa destino, referindo-se à última e decisiva batalha dos deuses contra os seus inimigos.",
@@ -68,14 +67,15 @@ class _TeacherListCasesPageState
                         children: <Widget>[
                           ListTile(
                             title: Text(
-                              'Caso ${index + 1}',
+                              model.title,
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
                               ),
                             ),
-                            subtitle: Text(
-                              model.question,
+                            subtitle: //Text(model.title),
+                                Text(
+                              model.description,
                               style: TextStyle(
                                 fontSize: 16,
                               ),
@@ -83,7 +83,7 @@ class _TeacherListCasesPageState
                             onTap: () {
                               Navigator.pushNamed(
                                   context, '/cases/cases_single',
-                                  arguments: question_model);
+                                  arguments: caseModel);
                             },
                             //subtitle: Text(model.right),
                           ),
@@ -136,20 +136,9 @@ class _TeacherListCasesPageState
             content: Column(
               children: <Widget>[
                 TextFormField(
-                  maxLength: 50,
-                  initialValue: model.question,
-                  onChanged: (v) => model.question = v,
-                  decoration: InputDecoration(
-                    labelText: 'Digite sua pergunta',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
                   maxLength: 20,
-                  initialValue: model.answers1,
-                  onChanged: (v) => model.answers1 = v,
+                  initialValue: model.title,
+                  onChanged: (v) => model.title = v,
                   decoration: InputDecoration(
                     labelText: 'Digite uma resposta',
                   ),
@@ -159,8 +148,8 @@ class _TeacherListCasesPageState
                 ),
                 TextFormField(
                   maxLength: 20,
-                  initialValue: model.answers2,
-                  onChanged: (v) => model.answers2 = v,
+                  initialValue: model.description,
+                  onChanged: (v) => model.description = v,
                   decoration: InputDecoration(
                     labelText: 'Digite uma resposta',
                   ),
@@ -170,44 +159,10 @@ class _TeacherListCasesPageState
                 ),
                 TextFormField(
                   maxLength: 20,
-                  initialValue: model.answers3,
-                  onChanged: (v) => model.answers3 = v,
+                  initialValue: model.imageUrl,
+                  onChanged: (v) => model.imageUrl = v,
                   decoration: InputDecoration(
                     labelText: 'Digite uma resposta',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  maxLength: 20,
-                  initialValue: model.answers4,
-                  onChanged: (v) => model.answers4 = v,
-                  decoration: InputDecoration(
-                    labelText: 'Digite uma resposta',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  maxLength: 20,
-                  initialValue: model.answers5,
-                  onChanged: (v) => model.answers5 = v,
-                  decoration: InputDecoration(
-                    labelText: 'Digite uma resposta',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  maxLength: 1,
-                  keyboardType: TextInputType.number,
-                  initialValue: model.right,
-                  onChanged: (v) => model.right = v,
-                  decoration: InputDecoration(
-                    labelText: 'Digite a alternativa correta',
                   ),
                 ),
               ],

@@ -1,3 +1,4 @@
+import 'package:galinha_karoot/app/modules/cases/repositories/question_repository.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_page.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_register/cases_register_controller.dart';
@@ -21,7 +22,7 @@ class CasesModule extends ChildModule {
         Router('/cases_register', child: (_, args) => CasesRegisterPage()),
         Router('/cases_single',
             child: (_, args) => CasesSinglePage(
-                  questionModel: args.data,
+                  casesModel: args.data,
                 )),
       ];
 

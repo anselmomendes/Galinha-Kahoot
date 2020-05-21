@@ -10,12 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:galinha_karoot/app/modules/welcome/welcome_module.dart';
 
 import 'modules/cases/repositories/cases_repository.dart';
+import 'modules/cases/repositories/question_repository.dart';
 
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         Bind((i) => AppController()),
         Bind((i) => CasesRepository(firestore: Firestore.instance)),
+        Bind((i) => QuestionRepository(firestore: Firestore.instance)),
       ];
 
   @override

@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -9,8 +8,6 @@ import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_register/class_register_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 import 'package:intl/intl.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
-import 'package:random_string/random_string.dart';
 
 class ClassRegisterPage extends StatefulWidget {
   final String title;
@@ -186,13 +183,12 @@ class _ClassRegisterPageState
                                       RadioListTile(
                                         value: model,
                                         groupValue: selectedCase,
-                                        title: Text(model.question),
+                                        title: Text(model.title),
                                         onChanged: (currentCase) {
                                           print(index);
-                                          print(
-                                              "Current Case ${currentCase.question}");
+                                          //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
-                                          _casesID = model.id;
+                                          _casesID = model.idCases;
                                         },
                                         selected: selectedCase == model,
                                         activeColor: Colors.red,

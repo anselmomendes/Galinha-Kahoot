@@ -7,7 +7,8 @@ import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_
 class TeacherReportPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
-  const TeacherReportPage({Key key, this.title = "Relatório", this.showAppBar = true})
+  const TeacherReportPage(
+      {Key key, this.title = "Relatório", this.showAppBar = true})
       : super(key: key);
 
   @override
@@ -101,14 +102,14 @@ class _TeacherReportPageState
                                   },
                                 ), */
                                   title: Text(
-                                    'Caso ${model.position.toString()}',
+                                    'Caso ${model.title}',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 18,
                                     ),
                                   ),
                                   subtitle: Text(
-                                    model.question,
+                                    model.description,
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),

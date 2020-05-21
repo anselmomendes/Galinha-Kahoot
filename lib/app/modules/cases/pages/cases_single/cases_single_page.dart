@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuestionModel.dart';
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class CasesSinglePage extends StatefulWidget {
-  final QuestionModel questionModel;
+  final CasesModel casesModel;
   final String title;
   const CasesSinglePage(
-      {Key key, this.title = "CasesSingle", @required this.questionModel})
+      {Key key, this.title = "CasesSingle", @required this.casesModel})
       : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class _CasesSinglePageState extends State<CasesSinglePage> {
           children: <Widget>[
             Container(
               child: Image.network(
-                widget.questionModel.imageUrl,
+                widget.casesModel.imageUrl,
                 height: 150,
                 width: 300,
               ),
@@ -34,7 +34,7 @@ class _CasesSinglePageState extends State<CasesSinglePage> {
             Container(
               height: 300,
               child: Text(
-                widget.questionModel.description,
+                widget.casesModel.title,
                 style: TextStyle(fontSize: 18),
               ),
             ),

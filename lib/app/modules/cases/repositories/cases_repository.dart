@@ -20,28 +20,20 @@ class CasesRepository extends Disposable implements ICasesRepository {
 
     if (model.reference == null) {
       model.reference = await Firestore.instance.collection('Cases').add({
-        'question': model.question,
-        'answers1': model.answers1,
-        'answers2': model.answers2,
-        'answers3': model.answers3,
-        'answers4': model.answers4,
-        'answers5': model.answers5,
-        'right': model.right,
+        'idCases': model.idCases,
+        'title': model.title,
+        'description': model.description,
+        'imageUrl': model.imageUrl,
         'position': total
       });
-      print("ID da case: ${model.reference.documentID}");
-      model.reference.updateData({
-        'id' : model.reference.documentID
-      });
+      //print("ID da case: ${model.reference.documentID}");
+      model.reference.updateData({'id': model.reference.documentID});
     } else {
       model.reference.updateData({
-        'question': model.question,
-        'answers1': model.answers1,
-        'answers2': model.answers2,
-        'answers3': model.answers3,
-        'answers4': model.answers4,
-        'answers5': model.answers5,
-        'right': model.right,
+        'idCases': model.idCases,
+        'title': model.title,
+        'description': model.description,
+        'imageUrl': model.imageUrl,
         'position': total
       });
     }

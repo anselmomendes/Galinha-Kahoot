@@ -16,13 +16,9 @@ class CasesRegisterPage extends StatefulWidget {
 
 class _CasesRegisterPageState
     extends ModularState<CasesRegisterPage, CasesRegisterController> {
-  final _question = TextEditingController();
-  final _answers1 = TextEditingController();
-  final _answers2 = TextEditingController();
-  final _answers3 = TextEditingController();
-  final _answers4 = TextEditingController();
-  final _answers5 = TextEditingController();
-  final _right = TextEditingController();
+  final _title = TextEditingController();
+  final _description = TextEditingController();
+  final _imageUrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,75 +47,35 @@ class _CasesRegisterPageState
               Form(
                 child: Column(
                   children: <Widget>[
-                    // _question
+                    // _title
                     TextFormField(
-                        controller: _question,
-                        maxLength: 50,
-                        decoration: const InputDecoration(
-                          labelText: 'Pergunta',
-                          hintText: "Digite sua pergunta",
-                          prefixIcon: Icon(Icons.border_color),
-                        )),
-
-                    // _answers1
-                    TextFormField(
-                        controller: _answers1,
+                        controller: _title,
                         maxLength: 20,
                         decoration: const InputDecoration(
-                          labelText: 'Resposta 1',
-                          hintText: "Digite uma resposta",
-                          prefixIcon: Icon(Icons.filter_1),
+                          labelText: 'Titulo do caso',
+                          hintText: "Digite o titulo do caso",
+                          prefixIcon: Icon(Icons.title),
                         )),
 
-                    // _answers2
+                    // _description
                     TextFormField(
-                        controller: _answers2,
+                        controller: _description,
                         maxLength: 20,
                         decoration: const InputDecoration(
-                          labelText: 'Resposta 2',
-                          hintText: "Digite uma resposta",
-                          prefixIcon: Icon(Icons.filter_2),
+                          labelText: 'Digite o texto para o caso',
+                          hintText: "Digite um texto para o caso",
+                          prefixIcon: Icon(Icons.format_align_left),
                         )),
 
-                    // _answers3
+                    // _imgUrl
                     TextFormField(
-                        controller: _answers3,
-                        maxLength: 20,
+                        controller: _imageUrl,
+                        keyboardType: TextInputType.text,
+                        maxLength: 40,
                         decoration: const InputDecoration(
-                          labelText: 'Resposta 3',
-                          hintText: "Digite uma resposta",
-                          prefixIcon: Icon(Icons.filter_3),
-                        )),
-
-                    // _answers4
-                    TextFormField(
-                        controller: _answers4,
-                        maxLength: 20,
-                        decoration: const InputDecoration(
-                          labelText: 'Resposta 4',
-                          hintText: "Digite uma resposta",
-                          prefixIcon: Icon(Icons.filter_4),
-                        )),
-
-                    // _answers5
-                    TextFormField(
-                        controller: _answers5,
-                        maxLength: 20,
-                        decoration: const InputDecoration(
-                          labelText: 'Resposta 5',
-                          hintText: "Digite uma resposta",
-                          prefixIcon: Icon(Icons.filter_5),
-                        )),
-
-                    // _right
-                    TextFormField(
-                        controller: _right,
-                        keyboardType: TextInputType.number,
-                        maxLength: 1,
-                        decoration: const InputDecoration(
-                          labelText: 'Resposta Correta',
-                          hintText: 'Digite a alternativa correta',
-                          prefixIcon: Icon(Icons.done),
+                          labelText: 'Digite a url da imagem',
+                          hintText: 'Digite o caminho da imagem',
+                          prefixIcon: Icon(Icons.image),
                         )),
                   ],
                 ),
@@ -128,26 +84,18 @@ class _CasesRegisterPageState
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Observer(
-                    builder: (BuildContext context) {
-                      return FlatButton(
-                          onPressed: () {
-                            model.question = _question.text;
-                            model.answers1 = _answers1.text;
-                            model.answers2 = _answers2.text;
-                            model.answers3 = _answers3.text;
-                            model.answers4 = _answers4.text;
-                            model.answers5 = _answers5.text;
-                            model.right = _right.text;
+                  FlatButton(
+                      onPressed: () {
+                        model.title = _title.text;
+                        model.description = _description.text;
+                        model.imageUrl = _imageUrl.text;
 
-                            controller.save(model);
-                            _showAlertDialog(context);
-                          },
-                          color: appColor,
-                          child: Text('Registrar-se',
-                              style: TextStyle(color: Colors.white)));
-                    },
-                  )
+                        controller.save(model);
+                        _showAlertDialog(context);
+                      },
+                      color: appColor,
+                      child: Text('Registrar-se',
+                          style: TextStyle(color: Colors.white))),
                 ],
               ),
               SizedBox(
@@ -165,13 +113,9 @@ class _CasesRegisterPageState
     Widget okButton = FlatButton(
       child: Text("OK"),
       onPressed: () {
-        _question.text = '';
-        _answers1.text = '';
-        _answers2.text = '';
-        _answers3.text = '';
-        _answers4.text = '';
-        _answers5.text = '';
-        _right.text = '';
+        _title.text = '';
+        _description.text = '';
+        _imageUrl.text = '';
         Modular.to.pop();
       },
     );
