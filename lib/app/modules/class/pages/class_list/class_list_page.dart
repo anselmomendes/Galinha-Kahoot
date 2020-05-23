@@ -75,7 +75,8 @@ class _ClassListPageState
                               /* Navigator.pushNamed(
                                   context, '/cases/cases_single',
                                   arguments: question_model) */
-                                  Navigator.pushNamed(context, '/class/class_detail')
+                                  Navigator.pushNamed(context, '/class/class_detail',
+                                  arguments: model,)
                               ;
                             },
                             //subtitle: Text(model.right),

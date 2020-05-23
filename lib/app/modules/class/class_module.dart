@@ -13,7 +13,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class ClassModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => ClassDetailController()),
+        Bind((i) => ClassDetailController(i.get<ClassRepository>())),
         Bind((i) => ClassRegisterController(
             i.get<ClassRepository>(), i.get<CasesRepository>())),
         Bind((i) => ClassListController(i.get<ClassRepository>())),
@@ -25,7 +25,7 @@ class ClassModule extends ChildModule {
   List<Router> get routers => [
         Router('/class_register', child: (_, args) => ClassRegisterPage()),
         Router('/class_list', child: (_, args) => ClassListPage()),
-        Router('/class_detail', child: (_, args) => ClassDetailPage())
+        Router('/class_detail', child: (_, args) => ClassDetailPage(classModel: args.data,))
       ];
 
   static Inject get to => Inject<ClassModule>.of();

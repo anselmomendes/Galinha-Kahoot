@@ -19,6 +19,10 @@ FontWeight headerFontWeight = FontWeight.w600;
 var headerTextStyle = TextStyle(fontSize: headerFontSize, fontWeight: headerFontWeight);
 var inputHeaderTextStyle = TextStyle(fontSize: 15,color: Colors.grey[600],fontWeight: FontWeight.bold);
 
+// ClassDetail
+var text1TextStyle = TextStyle(fontSize: headerFontSize, fontWeight: headerFontWeight);
+var text2TextStyle = TextStyle(fontSize: 16, fontWeight: FontWeight.normal);
+
 /* Sizes */
 var appLogoMediumSize = 0.3;
 var appLogoSmallSize = 0.2;
