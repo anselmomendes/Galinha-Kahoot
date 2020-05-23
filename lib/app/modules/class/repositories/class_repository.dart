@@ -22,9 +22,11 @@ class ClassRepository extends Disposable {
     if (model.reference == null) {
       model.reference = await Firestore.instance.collection('Class').add({
         // 'id': model.id,
+        'className': model.className,
         'accessCode': model.accessCode,
         'status': model.status,
         'casesID': model.casesID,
+        'titleCase': model.titleCase,
         'teacherID': model.teacherID,
         'creationDate': model.creationDate,
         'modifiedDate': model.modifiedDate,
@@ -40,9 +42,11 @@ class ClassRepository extends Disposable {
     } else {
       model.reference.updateData({
         // 'id': model.id,
+        'className': model.className,
         'accessCode': model.accessCode,
         'status': model.status,
         'casesID': model.casesID,
+        'titleCase': model.titleCase,
         'teacherID': model.teacherID,
         'creationDate': model.creationDate,
         'modifiedDate': model.modifiedDate,

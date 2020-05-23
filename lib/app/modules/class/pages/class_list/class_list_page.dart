@@ -58,6 +58,7 @@ class _ClassListPageState
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           ListTile(
+                            leading: Icon(Icons.arrow_forward_ios),
                             title: Text(
                               'Turma ${index + 1}',
                               style: TextStyle(
@@ -66,7 +67,8 @@ class _ClassListPageState
                               ),
                             ),
                             subtitle: Text(
-                              model.creationDate,
+                              // model.creationDate,
+                              'Turma: ${model.className}',
                               style: TextStyle(
                                 fontSize: 16,
                               ),

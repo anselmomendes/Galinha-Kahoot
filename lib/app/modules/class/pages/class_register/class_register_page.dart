@@ -23,7 +23,9 @@ class _ClassRegisterPageState
   // final _casesID = TextEditingController();
   // final _teacherID = TextEditingController();
   // final _timer = TextEditingController();
+  final _className = TextEditingController();
   var _casesID = "";
+  var _titleCases = "";
 
   // String nomeCidade = "";
   // Variaveis para o status da class
@@ -99,10 +101,19 @@ class _ClassRegisterPageState
                     },
                     value: _itemSelecionado,
                   ),
+                  Divider(height: 20),
+                  Text("Adicione o nome da turma:", style: headerTextStyle),
+                  // Nome da turma
+                    TextFormField(
+                        controller: _className,
+                        maxLength: 20,
+                        decoration: const InputDecoration(
+                          labelText: 'Nome da turma',
+                          hintText: "Digite o nome da turma",
+                          prefixIcon: Icon(Icons.title),
+                        )),
                   // SizedBox(height: 20),
-                  Divider(
-                    height: 20,
-                  ),
+                  // Divider(height: 20),
                   Text("Selecione o temporizador:", style: headerTextStyle),
                   SizedBox(height: 5),
                   selectionText(resultingDuration),
@@ -150,7 +161,7 @@ class _ClassRegisterPageState
                       Text("Selecione o caso:", style: headerTextStyle),
                       // Lista de de casos (teste)
                       Container(
-                        height: screenWidth * 0.8,
+                        height: screenWidth * 0.55,
                         child: Observer(
                           builder: (_) {
                             if (controller.casesList.data == null)
@@ -189,6 +200,7 @@ class _ClassRegisterPageState
                                           //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
                                           _casesID = model.idCases;
+                                          _titleCases = model.title;
                                         },
                                         selected: selectedCase == model,
                                         activeColor: Colors.red,
@@ -221,6 +233,9 @@ class _ClassRegisterPageState
                                   .toString();
                               model.timer = resultingDuration.toString();
                               model.casesID = _casesID;
+                              model.className = _className.text;
+                              model.titleCase = _titleCases;
+                              // model.className = _className;
 
                               // model.creationDate = creationDate;
                               // model.endTime = re

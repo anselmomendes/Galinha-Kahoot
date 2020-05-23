@@ -22,10 +22,12 @@ class ClassDetailPage extends StatefulWidget {
 
 class _ClassDetailPageState
     extends ModularState<ClassDetailPage, ClassDetailController> {
+  // Variável para o status da turma
   String _statusLocal;
 
-  void _checkStatus(String status) {
-    if (status.compareTo('true') == 0) {
+// Converter o status de 'true' ou 'false' para 'Ativado' ou 'Desativado'
+  void _checkStatus(bool status) {
+    if (status.toString().compareTo('true') == 0) {
       _statusLocal = 'Ativado';
     } else {
       _statusLocal = 'Desativado';
@@ -35,7 +37,6 @@ class _ClassDetailPageState
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    // ClassModel model = widget.classModel;
 
     return Scaffold(
       appBar: widget.showAppBar
@@ -58,24 +59,56 @@ class _ClassDetailPageState
                 ),
               );
             else {
+              // Pegando o valor de status e chamando função
+              // para conversão do status
               bool _statusBool = widget.classModel.status;
-              _statusLocal = _statusBool.toString();
-              _checkStatus(_statusLocal);
+              _checkStatus(_statusBool);
 
               return SingleChildScrollView(
                 padding: EdgeInsets.only(
-                    top: screenWidth * 0.1,
+                    top: screenWidth * 0.05,
                     left: screenWidth * 0.05,
                     right: screenWidth * 0.05),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     // Text("Cadastrar Casos", style: headerTextStyle),
-                    SizedBox(height: 20),
+                    // SizedBox(height: 20),
                     Form(
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
+                          // SizedBox(height: 25),
+                          Center(
+                            child: Column(
+                              children: <Widget>[
+                                Text("Olá professor! ",
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.w600)),
+                          SizedBox(height: 5),
+                          Text(
+                              "Aqui você encontra as informações da turma.",
+                              textAlign: TextAlign.center),
+                              ],
+                            ),
+
+                          ),
+                          SizedBox(height: 40),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Código de acesso: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${widget.classModel.accessCode}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
                             text: 'Status: ',
@@ -85,7 +118,51 @@ class _ClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${_statusLocal}',
+                                  text: _statusLocal, style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Nome da turma: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${widget.classModel.className}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Caso selecionado: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${widget.classModel.titleCase}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Autor: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${widget.classModel.teacherID}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -101,6 +178,36 @@ class _ClassDetailPageState
                             children: <TextSpan>[
                               TextSpan(
                                   text: '${widget.classModel.creationDate}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Temporizador: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${widget.classModel.timer}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Turma será desativada em: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${widget.classModel.endTime}',
                                   style: text2TextStyle),
                             ],
                           )),

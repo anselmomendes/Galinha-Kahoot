@@ -2,9 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ClassModel {
   String id;
+  String className;
   int accessCode;
   bool status;
   String casesID;
+  String titleCase;
   String teacherID;
   String creationDate;
   String modifiedDate;
@@ -16,9 +18,11 @@ class ClassModel {
 
   ClassModel({
     this.id,
+    this.className = '',
     this.accessCode,
     this.status = true,
     this.casesID = '',
+    this.titleCase = '',
     this.creationDate = '',
     this.modifiedDate = '',
     this.endTime,
@@ -30,9 +34,11 @@ class ClassModel {
 
   factory ClassModel.fromDocument(DocumentSnapshot doc) => ClassModel(
         id: doc["id"],
+        className: doc["className"],
         accessCode: doc["accessCode"],
         status: doc["status"],
         casesID: doc["casesID"],
+        titleCase: doc["titleCase"],
         creationDate: doc["creationDate"],
         modifiedDate: doc["modifiedDate"],
         endTime: doc["endTime"],
@@ -44,9 +50,11 @@ class ClassModel {
 
   Map<String, dynamic> toJson() => {
         "id": id,
+        "className": className,
         "accessoCode": accessCode,
         "status": status,
         "casesID": casesID,
+        "titleCase": titleCase,
         "creationDate": creationDate,
         "modifiedDate": modifiedDate,
         "endTime": endTime,
