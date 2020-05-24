@@ -1,0 +1,4 @@
+lib/app/modules/class/pages/class_edit/class_edit_page.dart
+test/app/modules/class/pages/class_edit/class_edit_page_test.dart
+lib/app/modules/class/pages/class_edit/class_edit_controller.dart
+test/app/modules/class/pages/class_edit/class_edit_controller_test.dart
