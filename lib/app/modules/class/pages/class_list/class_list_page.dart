@@ -98,7 +98,8 @@ class _ClassListPageState
                                 child: const Text('EDITAR'),
                                 onPressed: () {
                                   // _showDialog(model: model);
-                                  Navigator.pushNamed(context, '/class/class_edit');
+                                  // Navigator.pushNamed(context, '/class/class_edit');
+                                  Navigator.pushNamed(context, '/class/class_edit', arguments: model);
                                 },
                               ),
                             ],
