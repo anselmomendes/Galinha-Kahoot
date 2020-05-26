@@ -33,6 +33,8 @@ class _ClassEditPageState
   var _itemSelecionado = 'Ativado';
   String _currentStatus; */
 
+  String itemSelecionado;
+
   // Variável para seleção do caso no RadioListTile
   var selectedCase;
 
@@ -69,8 +71,7 @@ class _ClassEditPageState
               ),
             );
           else {
-            bool _statusBool = widget.classModel.status;
-            _checkStatus(_statusBool);
+            
             return Center(
               child: Column(
                 children: <Widget>[
@@ -89,12 +90,16 @@ class _ClassEditPageState
                     onChanged: (String novoItemSelecionado) {
                       // _dropDownItemSelected(novoItemSelecionado);
                       // setState(() {
-                        // _itemSelecionado = novoItemSelecionado;
+                      // _itemSelecionado = novoItemSelecionado;
+                      controller.itemSelecionado = novoItemSelecionado;
+                      print(controller.itemSelecionado);
+                      setState(() {
                         controller.itemSelecionado = novoItemSelecionado;
-                        print(controller.itemSelecionado);
+                        itemSelecionado = novoItemSelecionado;
+                      });
                       // });
                     },
-                    value: controller.itemSelecionado,
+                    value: itemSelecionado,
                   ),
                   Divider(height: 20),
                   Text("Alterar nome da turma:", style: headerTextStyle),
@@ -218,8 +223,14 @@ class _ClassEditPageState
         this._currentStatus = 'Ativado';
       }); */
       controller.itemSelecionado = 'Ativado';
+      setState(() {
+        itemSelecionado = 'Ativado';
+      });
     } else {
       controller.itemSelecionado = 'Desativado';
+      setState(() {
+        itemSelecionado = 'Desativado';
+      });
       // this._currentStatus = 'Desativado';
     }
   }
