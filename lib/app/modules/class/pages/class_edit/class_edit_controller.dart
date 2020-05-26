@@ -12,13 +12,21 @@ abstract class _ClassEditControllerBase with Store {
   final ClassRepository classRepository;
   final CasesRepository casesRepository;
 
+ 
+
   @observable
   ObservableStream<List<ClassModel>> classList;
   ObservableStream<List<CasesModel>> casesList;
 
-  _ClassEditControllerBase(this.classRepository, this.casesRepository){
+  _ClassEditControllerBase(this.classRepository, this.casesRepository) {
     getList();
   }
+
+  @observable
+  var status = ['Ativado', 'Desativado'];
+  var itemSelecionado = 'Ativado';
+  String currentStatus;
+
 
   @action
   getList() {
