@@ -22,10 +22,7 @@ abstract class _ClassEditControllerBase with Store {
     getList();
   }
 
-  @observable
-  var status = ['Ativado', 'Desativado'];
-  var itemSelecionado = 'Ativado';
-  String currentStatus;
+
 
 
   @action
@@ -49,5 +46,10 @@ abstract class _ClassEditControllerBase with Store {
   @action
   void increment() {
     value++;
-  } */
+  } 
+    @observable
+  var status = ['Ativado', 'Desativado'];
+  var itemSelecionado = 'Ativado';
+  String currentStatus;
+  */
 }

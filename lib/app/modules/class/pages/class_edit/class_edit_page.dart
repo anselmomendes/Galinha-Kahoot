@@ -6,6 +6,7 @@ import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_edit/class_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:intl/intl.dart';
 
 class ClassEditPage extends StatefulWidget {
   final ClassModel classModel;
@@ -28,12 +29,10 @@ class _ClassEditPageState
   var _casesID = "";
   var _titleCases = "";
 
-  /*  // Variaveis para o status da class
-  var _status = ['Ativado', 'Desativado'];
-  var _itemSelecionado = 'Ativado';
-  String _currentStatus; */
-
-  String itemSelecionado;
+  // Variaveis para o status da class
+  var status = ['Ativado', 'Desativado'];
+  String itemSelecionado = 'Ativado';
+  String currentStatus;
 
   // Variável para seleção do caso no RadioListTile
   var selectedCase;
@@ -41,10 +40,19 @@ class _ClassEditPageState
   // Variável do temporizador selecionado (em minutos) - 5 dias (padrão)
   Duration resultingDuration = Duration(minutes: 7200);
 
+  int currentTime;
+
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     // ClassModel model = ClassModel();
+
+    bool statusBool = widget.classModel.status;
+    checkStatus(statusBool);
+    String currentTitleCase = widget.classModel.titleCase;
+    currentTime = widget.classModel.timer;
+
 
     return Scaffold(
       appBar: widget.showAppBar
@@ -71,30 +79,25 @@ class _ClassEditPageState
               ),
             );
           else {
-            
             return Center(
               child: Column(
                 children: <Widget>[
                   SizedBox(height: 10),
                   Text("Alterar status:", style: headerTextStyle),
-                  // Text("Status atual: $_currentStatus"),
+                  Text("Status atual: ${currentStatus}"),
                   // Parte do DropDown
                   DropdownButton(
                     // items: _status.map((String dropDownStringItem) {
-                    items: controller.status.map((String dropDownStringItem) {
+                    items: status.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
                         value: dropDownStringItem,
                         child: Text(dropDownStringItem),
                       );
                     }).toList(),
                     onChanged: (String novoItemSelecionado) {
-                      // _dropDownItemSelected(novoItemSelecionado);
-                      // setState(() {
-                      // _itemSelecionado = novoItemSelecionado;
-                      controller.itemSelecionado = novoItemSelecionado;
-                      print(controller.itemSelecionado);
+                      itemSelecionado = novoItemSelecionado;
+                      print(itemSelecionado);
                       setState(() {
-                        controller.itemSelecionado = novoItemSelecionado;
                         itemSelecionado = novoItemSelecionado;
                       });
                       // });
@@ -114,6 +117,8 @@ class _ClassEditPageState
                     ),
                   ),
                   Text("Selecione o temporizador:", style: headerTextStyle),
+                  Text(
+                      "Temporizador atual: ${currentTime} minutos"),
                   SizedBox(height: 5),
                   selectionText(resultingDuration),
                   SizedBox(height: 5),
@@ -121,7 +126,7 @@ class _ClassEditPageState
                       onPressed: () async {
                         resultingDuration = await showDurationPicker(
                           context: context,
-                          initialTime: new Duration(minutes: 30),
+                          initialTime: new Duration(minutes: currentTime),
                         );
 
                         if (resultingDuration != null) {
@@ -151,9 +156,10 @@ class _ClassEditPageState
                     children: <Widget>[
                       // _casesID
                       Text("Selecione o caso:", style: headerTextStyle),
+                      Text("Caso atual: ${currentTitleCase}"),
                       // Lista de de casos (teste)
                       Container(
-                        height: screenWidth * 0.55,
+                        height: screenWidth * 0.45,
                         child: Observer(
                           builder: (_) {
                             if (controller.casesList.data == null)
@@ -207,6 +213,53 @@ class _ClassEditPageState
                       )
                     ],
                   )),
+                  Divider(
+                    height: 10,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Observer(builder: (BuildContext context) {
+                        return FlatButton(
+                            onPressed: () {
+                              /* model.endTime = DateTime.now()
+                                  .add(resultingDuration)
+                                  .toString(); */
+                              widget.classModel.timer = resultingDuration.inMinutes;
+                              widget.classModel.className = widget.classModel.className;
+
+                              if (selectedCase != null) {
+                                widget.classModel.titleCase = _titleCases;
+                              } else {
+                                // model.titleCase = widget.classModel.titleCase;
+                              }
+
+
+                              // importante
+                              // var testTime = DateTime.now();
+                              // var testTime2 =
+                              //     DateTime.now().add(Duration(minutes: 130));
+                              // print(testTime);
+                              // print(testTime2);
+                              // var diferenca = testTime2.difference(testTime);
+                              // print(diferenca);
+                              // print(testTime.isBefore(testTime2));
+
+                              if (itemSelecionado.compareTo('Ativado') == 0) {
+                                widget.classModel.status = true;
+                              } else {
+                                widget.classModel.status = false;
+                              }
+
+                              controller.save(widget.classModel);
+                              _showAlertDialog(context);
+                            },
+                            color: appColor,
+                            child: Text('Atualizar',
+                                style: TextStyle(color: Colors.white)));
+                      })
+                    ],
+                  ),
                 ],
               ),
             );
@@ -217,21 +270,11 @@ class _ClassEditPageState
   }
 
   // Converter o status de 'true' ou 'false' para 'Ativado' ou 'Desativado'
-  void _checkStatus(bool status) {
+  void checkStatus(bool status) {
     if (status.toString().compareTo('true') == 0) {
-      /* setState(() {
-        this._currentStatus = 'Ativado';
-      }); */
-      controller.itemSelecionado = 'Ativado';
-      setState(() {
-        itemSelecionado = 'Ativado';
-      });
+      currentStatus = 'Ativado';
     } else {
-      controller.itemSelecionado = 'Desativado';
-      setState(() {
-        itemSelecionado = 'Desativado';
-      });
-      // this._currentStatus = 'Desativado';
+      currentStatus = 'Desativado';
     }
   }
 
@@ -244,5 +287,32 @@ class _ClassEditPageState
           "Por padrão, a turma será desativada em ${resultingDuration.inDays} dias.");
     }
     return Text("Turma será desativada em ${resultingDuration.inMinutes} min.");
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    // configura o button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        // _casesID.text = '';
+        // _teacherID.text = '';
+        Modular.to.pop();
+      },
+    );
+    // configura o  AlertDialog
+    AlertDialog alerta = AlertDialog(
+      title: Text("Turma criada"),
+      content: Text("A turma foi criada com sucesso!"),
+      actions: [
+        okButton,
+      ],
+    );
+    // exibe o dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
+    );
   }
 }

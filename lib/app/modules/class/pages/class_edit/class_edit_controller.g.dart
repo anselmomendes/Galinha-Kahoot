@@ -26,23 +26,6 @@ mixin _$ClassEditController on _ClassEditControllerBase, Store {
     }, _$classListAtom, name: '${_$classListAtom.name}_set');
   }
 
-  final _$statusAtom = Atom(name: '_ClassEditControllerBase.status');
-
-  @override
-  List<String> get status {
-    _$statusAtom.context.enforceReadPolicy(_$statusAtom);
-    _$statusAtom.reportObserved();
-    return super.status;
-  }
-
-  @override
-  set status(List<String> value) {
-    _$statusAtom.context.conditionallyRunInAction(() {
-      super.status = value;
-      _$statusAtom.reportChanged();
-    }, _$statusAtom, name: '${_$statusAtom.name}_set');
-  }
-
   final _$_ClassEditControllerBaseActionController =
       ActionController(name: '_ClassEditControllerBase');
 
@@ -81,8 +64,7 @@ mixin _$ClassEditController on _ClassEditControllerBase, Store {
 
   @override
   String toString() {
-    final string =
-        'classList: ${classList.toString()},status: ${status.toString()}';
+    final string = 'classList: ${classList.toString()}';
     return '{$string}';
   }
 }

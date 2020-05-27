@@ -199,7 +199,7 @@ class _ClassRegisterPageState
                                           print(index);
                                           //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
-                                          _casesID = model.idCases;
+                                          _casesID = model.reference.documentID;
                                           _titleCases = model.title;
                                         },
                                         selected: selectedCase == model,
@@ -231,7 +231,8 @@ class _ClassRegisterPageState
                               model.endTime = DateTime.now()
                                   .add(resultingDuration)
                                   .toString();
-                              model.timer = resultingDuration.toString();
+                              // model.timer = resultingDuration.toString();
+                              model.timer = resultingDuration.inMinutes;
                               model.casesID = _casesID;
                               model.className = _className.text;
                               model.titleCase = _titleCases;

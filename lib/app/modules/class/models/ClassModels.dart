@@ -11,7 +11,7 @@ class ClassModel {
   String creationDate;
   String modifiedDate;
   String endTime;
-  String timer;
+  int timer;
   int position;
   String right;
   DocumentReference reference;
