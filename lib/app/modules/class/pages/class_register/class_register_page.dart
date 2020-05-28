@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -31,6 +32,9 @@ class _ClassRegisterPageState
   // Variaveis para o status da class
   var _status = ['Ativado', 'Desativado'];
   var _itemSelecionado = 'Ativado';
+
+  Timestamp myTimeStamp;
+  DateTime myDateTime;
 
   // var _currentTimeValue = 1;
 
@@ -104,14 +108,14 @@ class _ClassRegisterPageState
                   Divider(height: 20),
                   Text("Adicione o nome da turma:", style: headerTextStyle),
                   // Nome da turma
-                    TextFormField(
-                        controller: _className,
-                        maxLength: 20,
-                        decoration: const InputDecoration(
-                          labelText: 'Nome da turma',
-                          hintText: "Digite o nome da turma",
-                          prefixIcon: Icon(Icons.title),
-                        )),
+                  TextFormField(
+                      controller: _className,
+                      maxLength: 20,
+                      decoration: const InputDecoration(
+                        labelText: 'Nome da turma',
+                        hintText: "Digite o nome da turma",
+                        prefixIcon: Icon(Icons.title),
+                      )),
                   // SizedBox(height: 20),
                   // Divider(height: 20),
                   Text("Selecione o temporizador:", style: headerTextStyle),
@@ -225,17 +229,28 @@ class _ClassRegisterPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
+                              // Novo modelo para capturar data e horário
+                              myDateTime = DateTime.now();
                               model.creationDate =
-                                  new DateFormat("dd/MM/y hh:mm")
-                                      .format(DateTime.now());
-                              model.endTime = DateTime.now()
+                                  Timestamp.fromDate(myDateTime);
+                              model.endTime = Timestamp.fromDate(
+                                  myDateTime.add(resultingDuration));
+                              model.modifiedDate =
+                                  Timestamp.fromDate(myDateTime);
+
+                              // Modelo antigo de captura de data e horário
+                              // model.creationDate =
+                              //     new DateFormat("dd/MM/y hh:mm")
+                              //         .format(DateTime.now());
+                              /* model.endTime = myDateTime
                                   .add(resultingDuration)
-                                  .toString();
+                                  .toString(); */
                               // model.timer = resultingDuration.toString();
                               model.timer = resultingDuration.inMinutes;
                               model.casesID = _casesID;
                               model.className = _className.text;
                               model.titleCase = _titleCases;
+
                               // model.className = _className;
 
                               // model.creationDate = creationDate;

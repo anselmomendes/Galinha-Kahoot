@@ -8,9 +8,9 @@ class ClassModel {
   String casesID;
   String titleCase;
   String teacherID;
-  String creationDate;
-  String modifiedDate;
-  String endTime;
+  Timestamp creationDate;
+  Timestamp modifiedDate;
+  Timestamp endTime;
   int timer;
   int position;
   String right;
@@ -23,8 +23,8 @@ class ClassModel {
     this.status = true,
     this.casesID = '',
     this.titleCase = '',
-    this.creationDate = '',
-    this.modifiedDate = '',
+    this.creationDate,
+    this.modifiedDate,
     this.endTime,
     this.timer,
     this.position,

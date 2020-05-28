@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -39,9 +40,9 @@ class _ClassEditPageState
 
   // Variável do temporizador selecionado (em minutos) - 5 dias (padrão)
   Duration resultingDuration = Duration(minutes: 7200);
-
   int currentTime;
-
+  Timestamp myTimeStamp;
+  DateTime modifiedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -222,17 +223,15 @@ class _ClassEditPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
-                              /* model.endTime = DateTime.now()
-                                  .add(resultingDuration)
-                                  .toString(); */
                               widget.classModel.timer = resultingDuration.inMinutes;
                               widget.classModel.className = widget.classModel.className;
 
                               if (selectedCase != null) {
                                 widget.classModel.titleCase = _titleCases;
-                              } else {
-                                // model.titleCase = widget.classModel.titleCase;
                               }
+
+                              modifiedDate = DateTime.now();
+                              widget.classModel.modifiedDate = Timestamp.fromDate(modifiedDate);
 
 
                               // importante

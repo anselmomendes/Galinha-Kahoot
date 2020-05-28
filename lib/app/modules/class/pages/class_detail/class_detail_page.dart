@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_detail/class_detail_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:intl/intl.dart';
 
 class ClassDetailPage extends StatefulWidget {
   final ClassModel classModel;
@@ -24,15 +25,6 @@ class _ClassDetailPageState
     extends ModularState<ClassDetailPage, ClassDetailController> {
   // Variável para o status da turma
   String _statusLocal;
-
-// Converter o status de 'true' ou 'false' para 'Ativado' ou 'Desativado'
-  void _checkStatus(bool status) {
-    if (status.toString().compareTo('true') == 0) {
-      _statusLocal = 'Ativado';
-    } else {
-      _statusLocal = 'Desativado';
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +51,17 @@ class _ClassDetailPageState
                 ),
               );
             else {
-              // Pegando o valor de status e chamando função
-              // para conversão do status
+              // Conversão do status
               bool _statusBool = widget.classModel.status;
               _checkStatus(_statusBool);
+
+              // Tratamento de data
+              var creationDate;
+              var modifiedDate;
+              var endTime;
+              creationDate = DateFormat("dd/MM/y hh:mm a").format(widget.classModel.creationDate.toDate());
+              modifiedDate = DateFormat("dd/MM/y hh:mm a").format(widget.classModel.modifiedDate.toDate());
+              endTime = DateFormat("dd/MM/y hh:mm a").format(widget.classModel.endTime.toDate());
 
               return SingleChildScrollView(
                 padding: EdgeInsets.only(
@@ -83,17 +82,17 @@ class _ClassDetailPageState
                             child: Column(
                               children: <Widget>[
                                 Text("Olá professor! ",
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w600)),
-                          SizedBox(height: 5),
-                          Text(
-                              "Aqui você encontra as informações da turma.",
-                              textAlign: TextAlign.center),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600)),
+                                SizedBox(height: 5),
+                                Text(
+                                    "Aqui você encontra as informações da turma.",
+                                    textAlign: TextAlign.center),
                               ],
                             ),
-
                           ),
-                          SizedBox(height: 40),
+                          SizedBox(height: 30),
                           RichText(
                               text: TextSpan(
                             text: 'Código de acesso: ',
@@ -177,7 +176,22 @@ class _ClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${widget.classModel.creationDate}',
+                                  text: '${creationDate}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Turma criada em: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${modifiedDate}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -192,7 +206,7 @@ class _ClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${widget.classModel.timer}',
+                                  text: '${widget.classModel.timer} minutos',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -207,7 +221,7 @@ class _ClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${widget.classModel.endTime}',
+                                  text: '${endTime}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -224,5 +238,14 @@ class _ClassDetailPageState
         ),
       ),
     );
+  }
+
+  // Converter o status de 'true' ou 'false' para 'Ativado' ou 'Desativado'
+  void _checkStatus(bool status) {
+    if (status.toString().compareTo('true') == 0) {
+      _statusLocal = 'Ativado';
+    } else {
+      _statusLocal = 'Desativado';
+    }
   }
 }
