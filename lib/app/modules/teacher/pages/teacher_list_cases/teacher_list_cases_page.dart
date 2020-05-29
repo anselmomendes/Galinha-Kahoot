@@ -59,7 +59,7 @@ class _TeacherListCasesPageState
                         children: <Widget>[
                           ListTile(
                             title: Text(
-                              "Anselmo", //model.topicOne,
+                              model.title, //model.topicOne,
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
@@ -67,7 +67,7 @@ class _TeacherListCasesPageState
                             ),
                             subtitle: //Text(model.title),
                                 Text(
-                              "Anselmo", //model.textOne,
+                              model.description, //model.textOne,
                               style: TextStyle(
                                 fontSize: 16,
                               ),
@@ -86,15 +86,15 @@ class _TeacherListCasesPageState
                                 color: Colors.red,
                                 child: const Text('EXCLUIR'),
                                 onPressed: () {
-                                  // controller.delete(model);
-                                  //_showAlertDialogDelete(model: model);
+                                  controller.delete(model);
+                                  _showAlertDialogDelete(model: model);
                                 },
                               ),
                               FlatButton(
                                 color: Colors.red,
                                 child: const Text('EDITAR'),
                                 onPressed: () {
-                                  //_showDialog(model: model);
+                                  _showDialog(model: model);
                                 },
                               ),
                             ],
@@ -111,7 +111,7 @@ class _TeacherListCasesPageState
       ),
     );
   }
-/*
+
   _showDialog({CasesModel model}) {
     model ??= CasesModel();
     showDialog(
@@ -218,5 +218,5 @@ class _TeacherListCasesPageState
         return alerta;
       },
     );
-  }*/
+  }
 }

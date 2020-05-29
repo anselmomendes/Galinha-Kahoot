@@ -20,6 +20,8 @@ class CasesRepository extends Disposable implements ICasesRepository {
 
     if (model.reference == null) {
       model.reference = await Firestore.instance.collection('Cases').add({
+        'title': model.title,
+        'description': model.description,
         'topicOne': model.topicOne,
         'textOne': model.textOne,
         'imageUrlOne': model.imageUrlOne,
@@ -44,6 +46,8 @@ class CasesRepository extends Disposable implements ICasesRepository {
       model.reference.updateData({'id': model.reference.documentID});
     } else {
       model.reference.updateData({
+        'title': model.title,
+        'description': model.description,
         'topicOne': model.topicOne,
         'textOne': model.textOne,
         'imageUrlOne': model.imageUrlOne,

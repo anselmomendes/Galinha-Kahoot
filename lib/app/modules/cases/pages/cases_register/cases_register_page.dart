@@ -39,6 +39,7 @@ class _CasesRegisterPageState
   final _topicSix = TextEditingController();
   final _textSix = TextEditingController();
   final _imageUrlSix = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;

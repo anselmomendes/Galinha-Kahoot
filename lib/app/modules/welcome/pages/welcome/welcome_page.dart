@@ -20,12 +20,13 @@ class _WelcomePageState extends ModularState<WelcomePage, WelcomeController> {
 
   userIsLogged() async {
     var result = await controller.autoLogIn();
-    /*if (result) {
-      Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
-    }*/
-    if (true) {
+    if (result) {
       Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
     }
+    /*
+    if (true) {
+      Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
+    }*/
   }
 
   @override

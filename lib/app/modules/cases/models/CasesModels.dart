@@ -25,6 +25,8 @@ class CasesModel {
   DocumentReference reference;
 
   CasesModel({
+    this.title,
+    this.description,
     this.idCases,
     this.topicOne,
     this.textOne,
@@ -48,6 +50,8 @@ class CasesModel {
   });
 
   factory CasesModel.fromDocument(DocumentSnapshot doc) => CasesModel(
+        title: doc['title'],
+        description: doc['description'],
         idCases: doc['idCases'],
         topicOne: doc['topicOne'],
         textOne: doc['textOne'],
