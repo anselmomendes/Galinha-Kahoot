@@ -22,32 +22,37 @@ class CasesModel {
   String topicSix;
   String textSix;
   String imageUrlSix;
+  String topicSeven;
+  String textSeven;
+  String imageUrlSeven;
   DocumentReference reference;
 
-  CasesModel({
-    this.title,
-    this.description,
-    this.idCases,
-    this.topicOne,
-    this.textOne,
-    this.imageUrlOne,
-    this.topicTwo,
-    this.textTwo,
-    this.imageUrlTwo,
-    this.topicTree,
-    this.textTree,
-    this.imageUrlTree,
-    this.topicFour,
-    this.textFour,
-    this.imageUrlFour,
-    this.topicFive,
-    this.textFive,
-    this.imageUrlFive,
-    this.topicSix,
-    this.textSix,
-    this.imageUrlSix,
-    this.reference,
-  });
+  CasesModel(
+      {this.title,
+      this.description,
+      this.idCases,
+      this.topicOne,
+      this.textOne,
+      this.imageUrlOne,
+      this.topicTwo,
+      this.textTwo,
+      this.imageUrlTwo,
+      this.topicTree,
+      this.textTree,
+      this.imageUrlTree,
+      this.topicFour,
+      this.textFour,
+      this.imageUrlFour,
+      this.topicFive,
+      this.textFive,
+      this.imageUrlFive,
+      this.topicSix,
+      this.textSix,
+      this.imageUrlSix,
+      this.reference,
+      this.topicSeven,
+      this.textSeven,
+      this.imageUrlSeven});
 
   factory CasesModel.fromDocument(DocumentSnapshot doc) => CasesModel(
         title: doc['title'],
@@ -71,6 +76,9 @@ class CasesModel {
         topicSix: doc['topicSix'],
         textSix: doc['textSix'],
         imageUrlSix: doc['imageUrlSix'],
+        topicSeven: doc['topicSeven'],
+        textSeven: doc['textSeven'],
+        imageUrlSeven: doc['imageUrlSeven'],
         reference: doc.reference,
       );
 }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_anamnese/cases_anamnese_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_avaliacao/cases_avaliacao_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_exames/cases_exames_module.dart';
@@ -16,8 +15,6 @@ class CasesHomePage extends StatefulWidget {
 
 class _CasesHomePageState extends State<CasesHomePage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   final List<Widget> _widgetOptions = <Widget>[
     CasesAnamneseModule(),

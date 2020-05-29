@@ -1,3 +1,4 @@
+import 'package:galinha_karoot/app/modules/cases/store/cases_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'cases_exames_controller.g.dart';
@@ -5,11 +6,7 @@ part 'cases_exames_controller.g.dart';
 class CasesExamesController = _CasesExamesBase with _$CasesExamesController;
 
 abstract class _CasesExamesBase with Store {
-  @observable
-  int value = 0;
+  final CasesStore store;
 
-  @action
-  void increment() {
-    value++;
-  }
+  _CasesExamesBase(this.store);
 }

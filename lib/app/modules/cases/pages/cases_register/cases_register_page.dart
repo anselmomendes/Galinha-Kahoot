@@ -16,9 +16,6 @@ class CasesRegisterPage extends StatefulWidget {
 
 class _CasesRegisterPageState
     extends ModularState<CasesRegisterPage, CasesRegisterController> {
-  /*
-    Vamos criar outra tela para criar caso.
-    */
   final _title = TextEditingController();
   final _description = TextEditingController();
   final _topicOne = TextEditingController();
@@ -39,6 +36,9 @@ class _CasesRegisterPageState
   final _topicSix = TextEditingController();
   final _textSix = TextEditingController();
   final _imageUrlSix = TextEditingController();
+  final _topicSeven = TextEditingController();
+  final _textSeven = TextEditingController();
+  final _imageUrlSeven = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -170,6 +170,21 @@ class _CasesRegisterPageState
                         labelText: 'Url da imagem 6',
                         hintText: 'Url da imagem 6',
                         icon: Icon(Icons.description)),
+                    textFormFieldCustom(
+                        controller: _topicSeven,
+                        labelText: 'Digite o titulo do topíco 7',
+                        hintText: 'Digite o titulo do topíco 7',
+                        icon: Icon(Icons.description)),
+                    textFormFieldCustom(
+                        controller: _textSeven,
+                        labelText: 'Digite o digite o texto 7',
+                        hintText: 'Digite o digite o texto 7',
+                        icon: Icon(Icons.description)),
+                    textFormFieldCustom(
+                        controller: _imageUrlSeven,
+                        labelText: 'Url da imagem 7',
+                        hintText: 'Url da imagem 7',
+                        icon: Icon(Icons.description)),
                   ],
                 ),
               ),
@@ -200,6 +215,9 @@ class _CasesRegisterPageState
                         model.topicSix = _topicSix.text;
                         model.textSix = _textSix.text;
                         model.imageUrlSix = _imageUrlSix.text;
+                        model.topicSeven = _topicSeven.text;
+                        model.textSeven = _textSeven.text;
+                        model.imageUrlSeven = _imageUrlSeven.text;
 
                         controller.save(model);
                         _showAlertDialog(context);
@@ -244,6 +262,10 @@ class _CasesRegisterPageState
         _topicSix.text = '';
         _textSix.text = '';
         _imageUrlSix.text = '';
+        _topicSeven.text = '';
+        _textSeven.text = '';
+        _imageUrlSeven.text = '';
+
         Modular.to.pop();
       },
     );

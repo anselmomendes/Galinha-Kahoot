@@ -89,7 +89,7 @@ class _EmailPasswordFormState
   }
 
   void emitCallback(FirebaseUser user) {
-    controller.loginUser('Anselmo');
+    controller.loginUser('isLogin');
     widget.callback(user);
   }
 

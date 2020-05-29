@@ -25,7 +25,7 @@ class CasesRepository extends Disposable implements ICasesRepository {
         'topicOne': model.topicOne,
         'textOne': model.textOne,
         'imageUrlOne': model.imageUrlOne,
-        'topictwo': model.topicTwo,
+        'topicTwo': model.topicTwo,
         'textTwo': model.textTwo,
         'imageUrlTwo': model.imageUrlTwo,
         'topicTree': model.topicTree,

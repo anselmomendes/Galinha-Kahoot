@@ -1,5 +1,6 @@
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
+import 'package:galinha_karoot/app/modules/cases/store/cases_store.dart';
 import 'package:mobx/mobx.dart';
 
 part 'teacher_list_cases_controller.g.dart';
@@ -9,11 +10,12 @@ class TeacherListCasesController = _TeacherListCasesControllerBase
 
 abstract class _TeacherListCasesControllerBase with Store {
   final CasesRepository casesRepository;
+  final CasesStore store;
 
   @observable
   ObservableStream<List<CasesModel>> casesList;
 
-  _TeacherListCasesControllerBase(this.casesRepository) {
+  _TeacherListCasesControllerBase(this.casesRepository, this.store) {
     getList();
   }
 

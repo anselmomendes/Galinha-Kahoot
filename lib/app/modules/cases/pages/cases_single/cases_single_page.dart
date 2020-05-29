@@ -1,32 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
+import 'cases_single_controller.dart';
+
 class CasesSinglePage extends StatefulWidget {
-  final CasesModel casesModel;
   final String title;
-  const CasesSinglePage(
-      {Key key, this.title = "CasesSingle", @required this.casesModel})
+  const CasesSinglePage({Key key, this.title = "CasesSingle"})
       : super(key: key);
 
   @override
   _CasesSinglePageState createState() => _CasesSinglePageState();
 }
 
-class _CasesSinglePageState extends State<CasesSinglePage> {
+class _CasesSinglePageState
+    extends ModularState<CasesSinglePage, CasesSingleController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
         child: ListView(
           children: <Widget>[
             Container(
               child: Image.network(
-                widget.casesModel.imageUrlOne,
+                'https://musikcity.mus.br/ra/logos/viewMarabaPA.jpg', //widget.casesModel.imageUrlOne,
                 height: 150,
                 width: 300,
               ),
@@ -34,7 +32,7 @@ class _CasesSinglePageState extends State<CasesSinglePage> {
             Container(
               height: 300,
               child: Text(
-                widget.casesModel.textOne,
+                controller.store.casesModel.title, //widget.casesModel.textOne,
                 style: TextStyle(fontSize: 18),
               ),
             ),

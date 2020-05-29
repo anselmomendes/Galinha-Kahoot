@@ -73,9 +73,10 @@ class _TeacherListCasesPageState
                               ),
                             ),
                             onTap: () {
+                              controller.store.setModel(model);
                               Navigator.pushNamed(
                                 context,
-                                '/cases/cases_single',
+                                '/cases/cases_home',
                               );
                             },
                             //subtitle: Text(model.right),
