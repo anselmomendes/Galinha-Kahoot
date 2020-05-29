@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_about/teacher_about_module.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_module.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_menu/drawers/drawers_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_menu/teacher_menu_module.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil/teacher_perfil_module.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_report_module.dart';

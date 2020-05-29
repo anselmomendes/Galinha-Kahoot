@@ -59,7 +59,7 @@ class _TeacherListCasesPageState
                         children: <Widget>[
                           ListTile(
                             title: Text(
-                              "Anselmo", //model.topicOne,
+                              model.title, //model.topicOne,
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
@@ -67,7 +67,7 @@ class _TeacherListCasesPageState
                             ),
                             subtitle: //Text(model.title),
                                 Text(
-                              "Anselmo", //model.textOne,
+                              model.description, //model.textOne,
                               style: TextStyle(
                                 fontSize: 16,
                               ),
