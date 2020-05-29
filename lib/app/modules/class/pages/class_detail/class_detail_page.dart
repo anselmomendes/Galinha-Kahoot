@@ -33,6 +33,7 @@ class _ClassDetailPageState
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
+              backgroundColor: Colors.redAccent,
               title: Text(widget.title),
             )
           : null,
@@ -59,9 +60,12 @@ class _ClassDetailPageState
               var creationDate;
               var modifiedDate;
               var endTime;
-              creationDate = DateFormat("dd/MM/y hh:mm a").format(widget.classModel.creationDate.toDate());
-              modifiedDate = DateFormat("dd/MM/y hh:mm a").format(widget.classModel.modifiedDate.toDate());
-              endTime = DateFormat("dd/MM/y hh:mm a").format(widget.classModel.endTime.toDate());
+              creationDate = DateFormat("dd/MM/y hh:mm a")
+                  .format(widget.classModel.creationDate.toDate());
+              modifiedDate = DateFormat("dd/MM/y hh:mm a")
+                  .format(widget.classModel.modifiedDate.toDate());
+              endTime = DateFormat("dd/MM/y hh:mm a")
+                  .format(widget.classModel.endTime.toDate());
 
               return SingleChildScrollView(
                 padding: EdgeInsets.only(
@@ -221,8 +225,7 @@ class _ClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${endTime}',
-                                  style: text2TextStyle),
+                                  text: '${endTime}', style: text2TextStyle),
                             ],
                           )),
                           Divider(thickness: 2.0),

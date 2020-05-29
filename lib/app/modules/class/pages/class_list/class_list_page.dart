@@ -22,6 +22,7 @@ class _ClassListPageState
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
+              backgroundColor: Colors.redAccent,
               title: Text(widget.title),
             )
           : null,
@@ -77,9 +78,11 @@ class _ClassListPageState
                               /* Navigator.pushNamed(
                                   context, '/cases/cases_single',
                                   arguments: question_model) */
-                                  Navigator.pushNamed(context, '/class/class_detail',
-                                  arguments: model,)
-                              ;
+                              Navigator.pushNamed(
+                                context,
+                                '/class/class_detail',
+                                arguments: model,
+                              );
                             },
                             //subtitle: Text(model.right),
                           ),
@@ -99,7 +102,9 @@ class _ClassListPageState
                                 onPressed: () {
                                   // _showDialog(model: model);
                                   // Navigator.pushNamed(context, '/class/class_edit');
-                                  Navigator.pushNamed(context, '/class/class_edit', arguments: model);
+                                  Navigator.pushNamed(
+                                      context, '/class/class_edit',
+                                      arguments: model);
                                 },
                               ),
                             ],

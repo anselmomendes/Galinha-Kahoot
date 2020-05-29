@@ -57,6 +57,7 @@ class _ClassEditPageState
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
+              backgroundColor: Colors.redAccent,
               title: Text(widget.title),
               centerTitle: true,
             )
@@ -221,16 +222,18 @@ class _ClassEditPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
-                              widget.classModel.timer = resultingDuration.inMinutes;
-                              widget.classModel.className = widget.classModel.className;
+                              widget.classModel.timer =
+                                  resultingDuration.inMinutes;
+                              widget.classModel.className =
+                                  widget.classModel.className;
 
                               if (selectedCase != null) {
                                 widget.classModel.titleCase = _titleCases;
                               }
 
                               modifiedDate = DateTime.now();
-                              widget.classModel.modifiedDate = Timestamp.fromDate(modifiedDate);
-
+                              widget.classModel.modifiedDate =
+                                  Timestamp.fromDate(modifiedDate);
 
                               // importante
                               // var testTime = DateTime.now();
