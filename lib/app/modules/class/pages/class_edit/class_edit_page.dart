@@ -54,7 +54,6 @@ class _ClassEditPageState
     String currentTitleCase = widget.classModel.titleCase;
     currentTime = widget.classModel.timer;
 
-
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
@@ -118,8 +117,7 @@ class _ClassEditPageState
                     ),
                   ),
                   Text("Selecione o temporizador:", style: headerTextStyle),
-                  Text(
-                      "Temporizador atual: ${currentTime} minutos"),
+                  Text("Temporizador atual: ${currentTime} minutos"),
                   SizedBox(height: 5),
                   selectionText(resultingDuration),
                   SizedBox(height: 5),
@@ -193,13 +191,13 @@ class _ClassEditPageState
                                       RadioListTile(
                                         value: model,
                                         groupValue: selectedCase,
-                                        title: Text(model.title),
+                                        title: Text(model.topicOne),
                                         onChanged: (currentCase) {
                                           print(index);
                                           //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
                                           _casesID = model.idCases;
-                                          _titleCases = model.title;
+                                          _titleCases = model.topicOne;
                                         },
                                         selected: selectedCase == model,
                                         activeColor: Colors.red,

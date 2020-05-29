@@ -198,13 +198,12 @@ class _ClassRegisterPageState
                                       RadioListTile(
                                         value: model,
                                         groupValue: selectedCase,
-                                        title: Text(model.title),
+                                        title: Text(model.topicOne),
                                         onChanged: (currentCase) {
                                           print(index);
                                           //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
                                           _casesID = model.reference.documentID;
-                                          _titleCases = model.title;
                                         },
                                         selected: selectedCase == model,
                                         activeColor: Colors.red,

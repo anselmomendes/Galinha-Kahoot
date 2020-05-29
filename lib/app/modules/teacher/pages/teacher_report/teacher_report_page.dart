@@ -102,14 +102,14 @@ class _TeacherReportPageState
                                   },
                                 ), */
                                   title: Text(
-                                    'Caso ${model.title}',
+                                    'Caso ${model.topicOne}',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 18,
                                     ),
                                   ),
                                   subtitle: Text(
-                                    model.description,
+                                    model.textOne,
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),

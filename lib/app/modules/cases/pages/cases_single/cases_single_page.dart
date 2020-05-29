@@ -26,7 +26,7 @@ class _CasesSinglePageState extends State<CasesSinglePage> {
           children: <Widget>[
             Container(
               child: Image.network(
-                widget.casesModel.imageUrl,
+                widget.casesModel.imageUrlOne,
                 height: 150,
                 width: 300,
               ),
@@ -34,7 +34,7 @@ class _CasesSinglePageState extends State<CasesSinglePage> {
             Container(
               height: 300,
               child: Text(
-                widget.casesModel.title,
+                widget.casesModel.textOne,
                 style: TextStyle(fontSize: 18),
               ),
             ),

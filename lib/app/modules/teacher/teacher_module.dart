@@ -20,6 +20,9 @@ import 'package:galinha_karoot/app/modules/teacher/services/teacher_service.dart
 import 'package:galinha_karoot/app/modules/teacher/repositories/teacher_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'pages/teacher_register/teacher_register_controller.dart';
+import 'pages/teacher_register/teacher_register_page.dart';
+
 class TeacherModule extends ChildModule {
   @override
   List<Bind> get binds => [
@@ -34,6 +37,7 @@ class TeacherModule extends ChildModule {
         Bind((i) => TeacherCadastroController()),
         Bind((i) => TeacherLoginController()),
         Bind((i) => TeacherService()),
+        Bind((i) => TeacherRegisterController()),
         Bind((i) => TeacherRepository(
             firestore: Firestore.instance)), //firestore: Firestore.instance)),
       ];
@@ -47,7 +51,8 @@ class TeacherModule extends ChildModule {
         Router('/teacher_list_cases',
             child: (_, args) => TeacherListCasesPage()),
         Router('/teacher_report', child: (_, args) => TeacherReportPage()),
-        Router('/teacher_root', child: (_, args) => TeacherRootPage())
+        Router('/teacher_root', child: (_, args) => TeacherRootPage()),
+        Router('/register', child: (_, args) => TeacherRegisterPage())
       ];
 
   static Inject get to => Inject<TeacherModule>.of();

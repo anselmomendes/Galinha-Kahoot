@@ -19,14 +19,6 @@ class TeacherListCasesPage extends StatefulWidget {
 
 class _TeacherListCasesPageState
     extends ModularState<TeacherListCasesPage, TeacherListCasesController> {
-  CasesModel caseModel = CasesModel(
-    title: "Anselmo",
-    description:
-        "Na mitologia nórdica, Ragnarök (em português: destino dos deuses,) representa a escatologia nórdica, marcado por uma série de eventos que conduziriam ao fim do mundo. A palavra significa destino, referindo-se à última e decisiva batalha dos deuses contra os seus inimigos.",
-    imageUrl:
-        "https://unifesspa.edu.br/images/conteudo/2019/Marca_-_Vertical__S%C3%ADmbolo_-_Tipografia.jpg",
-  );
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,7 +59,7 @@ class _TeacherListCasesPageState
                         children: <Widget>[
                           ListTile(
                             title: Text(
-                              model.title,
+                              "Anselmo", //model.topicOne,
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
@@ -75,15 +67,16 @@ class _TeacherListCasesPageState
                             ),
                             subtitle: //Text(model.title),
                                 Text(
-                              model.description,
+                              "Anselmo", //model.textOne,
                               style: TextStyle(
                                 fontSize: 16,
                               ),
                             ),
                             onTap: () {
                               Navigator.pushNamed(
-                                  context, '/cases/cases_single',
-                                  arguments: caseModel);
+                                context,
+                                '/cases/cases_single',
+                              );
                             },
                             //subtitle: Text(model.right),
                           ),
@@ -94,14 +87,14 @@ class _TeacherListCasesPageState
                                 child: const Text('EXCLUIR'),
                                 onPressed: () {
                                   // controller.delete(model);
-                                  _showAlertDialogDelete(model: model);
+                                  //_showAlertDialogDelete(model: model);
                                 },
                               ),
                               FlatButton(
                                 color: Colors.red,
                                 child: const Text('EDITAR'),
                                 onPressed: () {
-                                  _showDialog(model: model);
+                                  //_showDialog(model: model);
                                 },
                               ),
                             ],
@@ -118,7 +111,7 @@ class _TeacherListCasesPageState
       ),
     );
   }
-
+/*
   _showDialog({CasesModel model}) {
     model ??= CasesModel();
     showDialog(
@@ -137,8 +130,8 @@ class _TeacherListCasesPageState
               children: <Widget>[
                 TextFormField(
                   maxLength: 20,
-                  initialValue: model.title,
-                  onChanged: (v) => model.title = v,
+                  initialValue: model.topicOne,
+                  onChanged: (v) => model.topicOne = v,
                   decoration: InputDecoration(
                     labelText: 'Digite uma resposta',
                   ),
@@ -148,8 +141,8 @@ class _TeacherListCasesPageState
                 ),
                 TextFormField(
                   maxLength: 20,
-                  initialValue: model.description,
-                  onChanged: (v) => model.description = v,
+                  initialValue: model.textOne,
+                  onChanged: (v) => model.textOne = v,
                   decoration: InputDecoration(
                     labelText: 'Digite uma resposta',
                   ),
@@ -159,8 +152,8 @@ class _TeacherListCasesPageState
                 ),
                 TextFormField(
                   maxLength: 20,
-                  initialValue: model.imageUrl,
-                  onChanged: (v) => model.imageUrl = v,
+                  initialValue: model.imageUrlOne,
+                  onChanged: (v) => model.imageUrlOne = v,
                   decoration: InputDecoration(
                     labelText: 'Digite uma resposta',
                   ),
@@ -225,6 +218,5 @@ class _TeacherListCasesPageState
         return alerta;
       },
     );
-  }
-
+  }*/
 }

@@ -20,20 +20,48 @@ class CasesRepository extends Disposable implements ICasesRepository {
 
     if (model.reference == null) {
       model.reference = await Firestore.instance.collection('Cases').add({
-        'idCases': model.idCases,
-        'title': model.title,
-        'description': model.description,
-        'imageUrl': model.imageUrl,
+        'topicOne': model.topicOne,
+        'textOne': model.textOne,
+        'imageUrlOne': model.imageUrlOne,
+        'topictwo': model.topicTwo,
+        'textTwo': model.textTwo,
+        'imageUrlTwo': model.imageUrlTwo,
+        'topicTree': model.topicTree,
+        'textTree': model.textTree,
+        'imageUrlTree': model.imageUrlTree,
+        'topicFour': model.topicFour,
+        'textFour': model.textFour,
+        'imageUrlFour': model.imageUrlFour,
+        'topicFive': model.topicFive,
+        'textFive': model.textFive,
+        'imageUrlFive': model.imageUrlFive,
+        'topicSix': model.topicSix,
+        'textSix': model.textSix,
+        'imageUrlSix': model.imageUrlSix,
         'position': total
       });
       //print("ID da case: ${model.reference.documentID}");
       model.reference.updateData({'id': model.reference.documentID});
     } else {
       model.reference.updateData({
-        'idCases': model.idCases,
-        'title': model.title,
-        'description': model.description,
-        'imageUrl': model.imageUrl,
+        'topicOne': model.topicOne,
+        'textOne': model.textOne,
+        'imageUrlOne': model.imageUrlOne,
+        'topicTwo': model.topicTwo,
+        'textTwo': model.textTwo,
+        'imageUrlTwo': model.imageUrlTwo,
+        'topicTree': model.topicTree,
+        'textTree': model.textTree,
+        'imageUrlTree': model.imageUrlTree,
+        'topicFour': model.topicFour,
+        'textFour': model.textFour,
+        'imageUrlFour': model.imageUrlFour,
+        'topicFive': model.topicFive,
+        'textFive': model.textFive,
+        'imageUrlFive': model.imageUrlFive,
+        'topicSix': model.topicSix,
+        'textSix': model.textSix,
+        'imageUrlSix': model.imageUrlSix,
         'position': total
       });
     }
