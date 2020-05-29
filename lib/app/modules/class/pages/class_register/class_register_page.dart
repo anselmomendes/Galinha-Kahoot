@@ -61,6 +61,7 @@ class _ClassRegisterPageState
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.redAccent,
         title: Text(widget.title),
         centerTitle: true,
       ),

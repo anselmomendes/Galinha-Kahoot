@@ -55,6 +55,7 @@ flutter:
   assets:
     - assets/bits.png
     - assets/hemograma.png
+    - assets/logo_bitsjr.png
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

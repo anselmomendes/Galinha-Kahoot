@@ -6,7 +6,7 @@ import 'package:galinha_karoot/app/modules/teacher/pages/teacher_root/teacher_ro
 
 class TeacherRootPage extends StatefulWidget {
   final String title;
-  const TeacherRootPage({Key key, this.title = "TeacherRoot"})
+  const TeacherRootPage({Key key, this.title = "Menu Professor"})
       : super(key: key);
 
   @override
@@ -19,7 +19,9 @@ class _TeacherRootPageState
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.redAccent,
         title: Text(widget.title),
+        centerTitle: true,
       ),
       drawer: Drawer(
         child: DrawersWidget(),

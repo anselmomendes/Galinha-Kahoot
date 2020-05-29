@@ -48,7 +48,7 @@ class _CasesRegisterPageState
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
-        title: Text("Cadastro de novo Caso"),
+        title: Text("Cadastro de Novo Caso"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(

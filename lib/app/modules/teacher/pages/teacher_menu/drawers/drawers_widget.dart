@@ -87,7 +87,7 @@ class DrawersWidget extends StatelessWidget {
                   action: () => TeacherMenuModule(
                         showAppBar: false,
                       ),
-                  title: "Inicio"),
+                  title: "Início"),
               _getTile(
                   icon: Icons.local_hospital,
                   action: () => TeacherListCasesModule(
@@ -99,7 +99,7 @@ class DrawersWidget extends StatelessWidget {
                   action: () => TeacherReportModule(
                         showAppBar: false,
                       ),
-                  title: "Relatorios"),
+                  title: "Relatórios"),
               _getTile(
                   icon: Icons.local_hospital,
                   action: () => TeacherPerfilModule(

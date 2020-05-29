@@ -8,9 +8,7 @@ class TeacherListCasesPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
   const TeacherListCasesPage(
-      {Key key,
-      this.title = "Lista de Casos do Professor",
-      this.showAppBar = true})
+      {Key key, this.title = "Lista de Casos", this.showAppBar = true})
       : super(key: key);
 
   @override
@@ -24,7 +22,9 @@ class _TeacherListCasesPageState
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
+              backgroundColor: Colors.redAccent,
               title: Text(widget.title),
+              centerTitle: true,
             )
           : null,
       body: Container(
