@@ -4,7 +4,7 @@ Widget circularButton({String text, Function func}) {
   return RaisedButton(
     color: Colors.red,
     shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(18.0),
+        borderRadius: BorderRadius.circular(5.0),
         side: BorderSide(color: Colors.red)),
     child: Text(
       text,

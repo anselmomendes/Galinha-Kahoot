@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_anamnese/cases_anamnese_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_avaliacao/cases_avaliacao_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_exames/cases_exames_module.dart';
@@ -8,12 +11,14 @@ import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relat
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
 
 class CasesHomePage extends StatefulWidget {
-  const CasesHomePage({Key key}) : super(key: key);
+  final CasesModel model;
+  CasesHomePage({Key key, @required this.model}) : super(key: key);
   @override
   _CasesHomePageState createState() => _CasesHomePageState();
 }
 
-class _CasesHomePageState extends State<CasesHomePage> {
+class _CasesHomePageState
+    extends ModularState<CasesHomePage, CasesHomeController> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[

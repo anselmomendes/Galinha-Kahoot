@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
 import 'cases_anamnese_controller.dart';
 
 class CasesAnamnesePage extends StatefulWidget {
+  final CasesModel model;
   final String title;
-  const CasesAnamnesePage({Key key, this.title = "CasesAnamnese"})
+  const CasesAnamnesePage({Key key, this.title = "CasesAnamnese", this.model})
       : super(key: key);
 
   @override
@@ -16,8 +18,21 @@ class CasesAnamnesePage extends StatefulWidget {
 
 class _CasesAnamnesePageState
     extends ModularState<CasesAnamnesePage, CasesAnamneseController> {
+  final _topicOne = TextEditingController();
+  final _textOne = TextEditingController();
+  final _imageUrlOne = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    return Observer(builder: (_) {
+      if (controller.editMode) {
+        return modoEdicao(widget.model);
+      } else
+        return modoVisualizacao();
+    });
+  }
+
+  Scaffold modoVisualizacao() {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
@@ -25,286 +40,163 @@ class _CasesAnamnesePageState
         title: Text(widget.title),
         centerTitle: true,
       ),
+      floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.red,
+          child: Icon(Icons.edit),
+          onPressed: () {
+            controller.editMode = true;
+          }),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+        child: Column(
+          children: <Widget>[
+            Container(
+              child: Image.network(
+                widget.model.imageUrlOne, //widget.casesModel.imageUrlOne,
+                height: 300,
+                width: 300,
+              ),
+            ),
+            SizedBox(height: 50),
+            Container(
+              height: 50,
+              child: Text(
+                widget.model.topicOne, //widget.casesModel.textOne,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            Container(
+              height: 300,
+              child: Text(
+                widget.model.textOne, //widget.casesModel.textOne,
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Scaffold modoEdicao(CasesModel model) {
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0.1,
+        backgroundColor: Colors.red,
+        title: Text('Edição - ${widget.title}'),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
         child: ListView(
           children: <Widget>[
-            Observer(
-              builder: (_) {
-                return Container(
-                  child: Image.network(
-                    controller.store.casesModel
-                        .imageUrlOne, //widget.casesModel.imageUrlOne,
-                    height: 300,
-                    width: 300,
-                  ),
-                );
-              },
+            SizedBox(height: 5),
+            Text(
+              'Título',
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(height: 50),
-            Observer(builder: (_) {
-              return Container(
-                height: 50,
-                child: Text(
-                  controller
-                      .store.casesModel.topicOne, //widget.casesModel.textOne,
-                  style: TextStyle(fontSize: 18),
+            SizedBox(height: 5),
+            TextFormField(
+              controller: _topicOne,
+              maxLength: 40,
+              //initialValue: 'a',
+              decoration: InputDecoration(
+                labelText: 'Digite um título para o caso',
+                hintText: 'Digite o título',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
                 ),
-              );
-            }),
-            Observer(builder: (_) {
-              return Container(
-                height: 300,
-                child: Text(
-                  controller
-                      .store.casesModel.textOne, //widget.casesModel.textOne,
-                  style: TextStyle(fontSize: 18),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 2.0,
+                  ),
                 ),
-              );
-            }),
-            Padding(
-              padding: const EdgeInsets.only(left: 30, right: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  circularButton(text: 'Voltar', func: () {}),
-                  circularButton(text: 'Avançar', func: () {}),
-                ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  /*
-  @override
-  void initState() {
-//    lessons = getLessons();
-    super.initState();
-  }
-
-  // Future<bool> _onBackPressed(){
-  //   return showDialog(
-  //     context: context,
-  //     builder: (context) => AlertDialog(
-  //       title: Text("Sair do aplicativo?"),
-  //       actions: <Widget>[
-  //         FlatButton(
-  //           child: Text("Não", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-  //           onPressed: () => Navigator.pop(context,false),
-  //         ),
-
-  //          FlatButton(
-  //           child: Text("Sim", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
-  //           onPressed: ()=> exit(0),
-  //                    )
-  //       ],
-  //     )
-  //   );
-  // }
-  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
-
-  @override
-  Widget build(BuildContext context) {
-    final makebody = SafeArea(
-            child: SingleChildScrollView(
-      child: Container(
-        padding: EdgeInsets.all(5.0),
-        child: Column(
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Divider(
-                  height: 25,
-                ),
-                Container(
-                  padding: EdgeInsets.fromLTRB(15, 15, 15, 10),
-                  height: 200,
-                  decoration: new BoxDecoration(
-                    image: new DecorationImage(
-                      image: new AssetImage("assets/bits.png"),
-                      fit: BoxFit.contain,
-                    ),
-                  ),
-                ),
-              ],
+            SizedBox(height: 5),
+            Text(
+              'Descrição',
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
             ),
-            Container(
-                padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
-                child: Column(children: <Widget>[
-                  Text(
-                    "Portadora de asma, fazia uso de sulfato de salbutamol nas crises, sendo a última há aproximadamente seis meses antes da admissão. Negava febre e perdas vaginais. Havia ainda na ocasião relato de oligúria.",
-                    style: TextStyle(fontSize: 18),
-                    textAlign: TextAlign.justify,
+            SizedBox(height: 5),
+            TextFormField(
+              controller: _textOne,
+              maxLength: 1000,
+              maxLines: 5,
+              //initialValue: widget.model.topicOne,
+              decoration: InputDecoration(
+                labelText: 'Digite um conteudo para o caso',
+                hintText: 'Descreva o caso',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 1.0,
                   ),
-                ])),
-          ],
-        ),
-      ),
-    )),
-
-        // final makeBody = Container(
-
-        //    child: Column(
-        //      children: <Widget>[
-
-        //        SingleChildScrollView(
-        //          child: SafeArea(
-
-        //           minimum: const EdgeInsets.all(15.0),
-        //           child: Text('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra massa massa ultricies mi quis hendrerit. Pharetra magna ac placerat vestibulum. Placerat duis ultricies lacus sed. Scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Cursus in hac habitasse platea dictumst quisque sagittis purus. \nLorem sed risus ultricies tristique nulla aliquet enim. Tincidunt arcu non sodales neque sodales. Nisi est sit amet facilisis magna etiam tempor. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Semper quis lectus nulla at volutpat. Ornare arcu odio ut sem nulla pharetra diam. In tellus integer feugiat scelerisque varius morbi enim nunc. \n Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra massa massa ultricies mi quis hendrerit. Pharetra magna ac placerat vestibulum. Placerat duis ultricies lacus sed. Scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Lorem sed risus ultricies tristique nulla aliquet enim. Tincidunt arcu non sodales neque sodales. Nisi est sit amet facilisis magna etiam tempor. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Semper quis lectus nulla at volutpat. Ornare arcu odio ut sem nulla pharetra diam. In tellus integer feugiat scelerisque varius morbi enim nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra massa massa ultricies mi quis hendrerit. Pharetra magna ac placerat vestibulum. Placerat duis ultricies lacus sed. Scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Lorem sed risus ultricies tristique nulla aliquet enim. Tincidunt arcu non sodales neque sodales. Nisi est sit amet facilisis magna etiam tempor. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Semper quis lectus nulla at volutpat. Ornare arcu odio ut sem nulla pharetra diam. In tellus integer feugiat scelerisque varius morbi enim nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra massa massa ultricies mi quis hendrerit. Pharetra magna ac placerat vestibulum. Placerat duis ultricies lacus sed. Scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Lorem sed risus ultricies tristique nulla aliquet enim. Tincidunt arcu non sodales neque sodales. Nisi est sit amet facilisis magna etiam tempor. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Semper quis lectus nulla at volutpat. Ornare arcu odio ut sem nulla pharetra diam. In tellus integer feugiat scelerisque varius morbi enim nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra massa massa ultricies mi quis hendrerit. Pharetra magna ac placerat vestibulum. Placerat duis ultricies lacus sed. Scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Lorem sed risus ultricies tristique nulla aliquet enim. Tincidunt arcu non sodales neque sodales. Nisi est sit amet facilisis magna etiam tempor. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Semper quis lectus nulla at volutpat. Ornare arcu odio ut sem nulla pharetra diam. In tellus integer feugiat scelerisque varius morbi enim nunc.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pharetra massa massa ultricies mi quis hendrerit. Pharetra magna ac placerat vestibulum. Placerat duis ultricies lacus sed. Scelerisque viverra mauris in aliquam sem fringilla ut morbi tincidunt. Porttitor lacus luctus accumsan tortor posuere ac ut consequat semper. Odio tempor orci dapibus ultrices in iaculis nunc sed augue. Sed turpis tincidunt id aliquet risus feugiat in ante metus. Cursus in hac habitasse platea dictumst quisque sagittis purus. Lorem sed risus ultricies tristique nulla aliquet enim. Tincidunt arcu non sodales neque sodales. Nisi est sit amet facilisis magna etiam tempor. Enim eu turpis egestas pretium aenean pharetra magna ac placerat. Pharetra magna ac placerat vestibulum lectus mauris ultrices eros. Semper quis lectus nulla at volutpat. Ornare arcu odio ut sem nulla pharetra diam. In tellus integer feugiat scelerisque varius morbi enim nunc.',
-        //           textAlign: TextAlign.justify, ),
-        //         ) ,
-        //        )
-
-        //      ]
-        //    ),
-        //   );
-
-        makeBottom = Container(
-      height: 55.0,
-      child: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        notchMargin: 35,
-        //Cor da parte da bottom tab
-        color: Colors.red,
-
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          mainAxisSize: MainAxisSize.max,
-
-          //AQUI COMEÇAM OS BOTÕES DA BARRA INFERIOR
-          children: <Widget>[
-            //Sintomas clinicos
-            IconButton(
-                icon: Icon(Icons.format_list_numbered, color: Colors.white),
-                onPressed: () {
-                  Navigator.pop(
-                      //Testar push, pull ou pop
-                      context,
-                      MaterialPageRoute(
-                          //builder: (context) => SintomasCasoPage()
-                          //builder: (context) => SubTitle()
-                          ));
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 2.0,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 5),
+            Text(
+              'Imagem',
+              style: TextStyle(fontSize: 18),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 5),
+            TextFormField(
+              maxLength: 50,
+              controller: _imageUrlOne,
+              //initialValue: widget.model.topicOne,
+              decoration: InputDecoration(
+                labelText: 'Digite o link da imagem',
+                hintText: 'Insira o link',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(5.0),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 2.0,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            circularButton(
+                text: 'Salvar',
+                func: () {
+                  widget.model.topicOne = _topicOne.text;
+                  widget.model.textOne = _textOne.text;
+                  widget.model.imageUrlOne = _imageUrlOne.text;
+                  if (widget.model.imageUrlOne == '')
+                    widget.model.imageUrlOne =
+                        'https://livecasthd.com.br/sem_foto.png';
+                  controller.save(widget.model);
+                  controller.editMode = false;
                 }),
-
-            //Anamnese
-            IconButton(
-              icon: Icon(
-                Icons.assignment,
-                color: Colors.white,
-              ),
-              onPressed: () {
-                // Navigator.push(
-                // context,
-                // MaterialPageRoute(
-                //   builder: (context) => AnamneseCasoPage()
-                //   //builder: (context) => SubTitle()
-                //   ));
-              },
-            ),
-
-            //Avaliação fisica
-            IconButton(
-              icon: Icon(Icons.accessibility_new, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        //builder: (context) => AvaliacaoCasoPage()
-                        //builder: (context) => SubTitle()
-                        ));
-              },
-            ),
-
-            //Exames complementares
-            IconButton(
-              icon: Icon(Icons.local_hospital, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        //builder: (context) => ExamesCasoPage()
-                        //builder: (context) => SubTitle()
-                        ));
-              },
-            ),
-
-            //procedimento cirurgico
-            IconButton(
-              icon: Icon(Icons.healing, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        //builder: (context) => ProcedimentoCasoPage()
-                        //builder: (context) => SubTitle()
-                        ));
-              },
-            ),
-
-            //Kahoot
-            IconButton(
-              icon: Icon(Icons.dashboard, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        //builder: (context) => KahootCasoPage()
-                        //builder: (context) => SubTitle()
-                        ));
-              },
-            ),
-
-            //Relatório
-            IconButton(
-              icon: Icon(Icons.subject, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        //builder: (context) => RelatorioCasoPage()
-                        //builder: (context) => SubTitle()
-                        ));
-              },
-            ),
           ],
         ),
       ),
     );
-
-    final topAppBar = AppBar(
-      elevation: 0.1,
-      backgroundColor: Colors.red,
-      title: Text("Anamnese"),
-      centerTitle: true,
-      // actions: <Widget>[
-      //   IconButton(
-      //     icon: Icon(Icons.list),
-      //     onPressed: () {},
-      //   )
-      // ],
-    );
-
-    //Cor do background da parte "vazia"
-
-    return Container(
-        // onWillPop: _onBackPressed,
-        child: Stack(
-      children: <Widget>[
-        Scaffold(
-          //backgroundColor: Colors.white,
-          backgroundColor: Colors.white,
-
-          appBar: topAppBar,
-          body: makebody,
-          key: _scaffoldKey,
-
-          //bottomNavigationBar: makeBottom,
-        )
-      ],
-    ));
-  }*/
+  }
 }

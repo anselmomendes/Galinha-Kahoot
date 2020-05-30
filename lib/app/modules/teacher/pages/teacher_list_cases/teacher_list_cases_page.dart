@@ -73,10 +73,11 @@ class _TeacherListCasesPageState
                               ),
                             ),
                             onTap: () {
-                              controller.store.setModel(model);
+                              //controller.store.setModel(model);
                               Navigator.pushNamed(
                                 context,
                                 '/cases/cases_home',
+                                arguments: model,
                               );
                             },
                             //subtitle: Text(model.right),
@@ -92,10 +93,13 @@ class _TeacherListCasesPageState
                               ),
                               FlatButton(
                                 color: Colors.red,
-                                child: const Text('EDITAR'),
+                                child: const Text('ACESSAR'),
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, '/cases/cases_create');
+                                    context,
+                                    '/cases/cases_home',
+                                    arguments: model,
+                                  );
                                 },
                               ),
                             ],

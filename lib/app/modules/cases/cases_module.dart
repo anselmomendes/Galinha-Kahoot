@@ -1,3 +1,4 @@
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_single/cases_single_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/store/cases_store.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_controller.dart';
@@ -24,7 +25,8 @@ class CasesModule extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/cases_home', child: (_, args) => CasesHomePage()),
+        Router('/cases_home',
+            child: (_, args) => CasesHomePage(model: args.data)),
         Router('/cases_register', child: (_, args) => CasesRegisterPage()),
         Router('/cases_single', child: (_, args) => CasesSinglePage()),
         Router('/cases_edit', child: (_, args) => CasesEditPage()),
