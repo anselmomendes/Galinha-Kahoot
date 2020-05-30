@@ -18,6 +18,7 @@ class _CasesRegisterPageState
     extends ModularState<CasesRegisterPage, CasesRegisterController> {
   final _title = TextEditingController();
   final _description = TextEditingController();
+  /*
   final _topicOne = TextEditingController();
   final _textOne = TextEditingController();
   final _imageUrlOne = TextEditingController();
@@ -39,6 +40,7 @@ class _CasesRegisterPageState
   final _topicSeven = TextEditingController();
   final _textSeven = TextEditingController();
   final _imageUrlSeven = TextEditingController();
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -199,27 +201,48 @@ class _CasesRegisterPageState
                         // campos de imputs igual;
                         model.title = _title.text;
                         model.description = _description.text;
-                        model.topicOne = _topicOne.text;
-                        model.textOne = _textOne.text;
-                        model.imageUrlOne = _imageUrlOne.text;
-                        model.topicTwo = _topicTwo.text;
-                        model.textTwo = _textTwo.text;
-                        model.imageUrlTwo = _imageUrlTwo.text;
-                        model.topicTree = _topicTree.text;
-                        model.textTree = _textTree.text;
-                        model.imageUrlTree = _imageUrlTree.text;
-                        model.topicFour = _topicFour.text;
-                        model.textFour = _textFour.text;
-                        model.imageUrlFour = _imageUrlFour.text;
-                        model.topicFive = _topicFive.text;
-                        model.textFive = _textFive.text;
-                        model.imageUrlFive = _imageUrlFive.text;
-                        model.topicSix = _topicSix.text;
-                        model.textSix = _textSix.text;
-                        model.imageUrlSix = _imageUrlSix.text;
-                        model.topicSeven = _topicSeven.text;
-                        model.textSeven = _textSeven.text;
-                        model.imageUrlSeven = _imageUrlSeven.text;
+                        model.topicOne =
+                            'Digite um título para o tópico'; //_topicOne.text;
+                        model.textOne =
+                            'Digite o conteudo do caso '; //_textOne.text;
+                        model.imageUrlOne =
+                            'https://livecasthd.com.br/sem_foto.png'; //_imageUrlOne.text;
+                        model.topicTwo =
+                            'Digite um título para o tópico'; //_topicTwo.text;
+                        model.textTwo =
+                            'Digite o conteudo do caso '; //_textTwo.text;
+                        model.imageUrlTwo =
+                            'https://livecasthd.com.br/sem_foto.png'; //_imageUrlTwo.text;
+                        model.topicTree =
+                            'Digite um título para o tópico'; //_topicTree.text;
+                        model.textTree =
+                            'Digite o conteudo do caso '; //_textTree.text;
+                        model.imageUrlTree =
+                            'https://livecasthd.com.br/sem_foto.png'; //_imageUrlTree.text;
+                        model.topicFour =
+                            'Digite um título para o tópico'; //_topicFour.text;
+                        model.textFour =
+                            'Digite o conteudo do caso '; //_textFour.text;
+                        model.imageUrlFour =
+                            'https://livecasthd.com.br/sem_foto.png'; //_imageUrlFour.text;
+                        model.topicFive =
+                            'Digite um título para o tópico'; //_topicFive.text;
+                        model.textFive =
+                            'Digite o conteudo do caso '; //_textFive.text;
+                        model.imageUrlFive =
+                            'https://livecasthd.com.br/sem_foto.png'; //_imageUrlFive.text;
+                        model.topicSix =
+                            'Digite um título para o tópico'; //_topicSix.text;
+                        model.textSix =
+                            'Digite o conteudo do caso '; //_textSix.text;
+                        model.imageUrlSix =
+                            'https://livecasthd.com.br/sem_foto.png'; //_imageUrlSix.text;
+                        model.topicSeven =
+                            'Digite um título para o tópico'; //_topicSeven.text;
+                        model.textSeven =
+                            'Digite o conteudo do caso '; //_textSeven.text;
+                        model.imageUrlSeven =
+                            'https://livecasthd.com.br/sem_foto.png'; //_imageUrlSeven.text;
 
                         controller.save(model);
                         _showAlertDialog(context);
@@ -246,6 +269,7 @@ class _CasesRegisterPageState
       onPressed: () {
         _title.text = '';
         _description.text = '';
+        /*
         _topicOne.text = '';
         _textOne.text = '';
         _imageUrlOne.text = '';
@@ -267,6 +291,7 @@ class _CasesRegisterPageState
         _topicSeven.text = '';
         _textSeven.text = '';
         _imageUrlSeven.text = '';
+        */
 
         Modular.to.pop();
       },
