@@ -87,7 +87,6 @@ class _TeacherListCasesPageState
                                 color: Colors.red,
                                 child: const Text('EXCLUIR'),
                                 onPressed: () {
-                                  controller.delete(model);
                                   _showAlertDialogDelete(model: model);
                                 },
                               ),
@@ -95,7 +94,8 @@ class _TeacherListCasesPageState
                                 color: Colors.red,
                                 child: const Text('EDITAR'),
                                 onPressed: () {
-                                  _showDialog(model: model);
+                                  Navigator.pushNamed(
+                                      context, '/cases/cases_create');
                                 },
                               ),
                             ],
@@ -112,7 +112,7 @@ class _TeacherListCasesPageState
       ),
     );
   }
-
+/*
   _showDialog({CasesModel model}) {
     model ??= CasesModel();
     showDialog(
@@ -180,7 +180,7 @@ class _TeacherListCasesPageState
         );
       },
     );
-  }
+  }*/
 
   void _showAlertDialogDelete({CasesModel model}) {
     model ??= CasesModel();
@@ -188,8 +188,6 @@ class _TeacherListCasesPageState
     Widget cancelButton = FlatButton(
       child: Text("Cancelar"),
       onPressed: () {
-        // _casesID.text = '';
-        // _teacherID.text = '';
         Modular.to.pop();
       },
     );

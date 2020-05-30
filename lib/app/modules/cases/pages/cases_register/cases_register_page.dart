@@ -79,6 +79,7 @@ class _CasesRegisterPageState
                         labelText: 'Digite uma descrição',
                         hintText: 'Digite uma descrição',
                         icon: Icon(Icons.description)),
+                    /*
                     //tela1
                     textFormFieldCustom(
                         controller: _topicOne,
@@ -185,6 +186,7 @@ class _CasesRegisterPageState
                         labelText: 'Url da imagem 7',
                         hintText: 'Url da imagem 7',
                         icon: Icon(Icons.description)),
+                        */
                   ],
                 ),
               ),
