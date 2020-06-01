@@ -1,14 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ImageModel {
-	int id;
+  String id;
 	String md5; 
 	String relatedTo;
   String format;
 	DateTime createdAt;
 
 	ImageModel({
-		this.id,
+    this.id,
 		this.md5,
     this.format,
 		this.relatedTo,
@@ -20,7 +20,7 @@ class ImageModel {
   }
 
 	factory ImageModel.fromDocument(DocumentSnapshot doc) => ImageModel(
-		id: doc["id"],
+    id: doc["id"],
 		md5: doc["md5"],
     format: doc["format"],
 		relatedTo: doc["relatedTo"],
@@ -28,7 +28,6 @@ class ImageModel {
 	);
 
 	Map<String, dynamic> toJSON() => {
-		"id": id,
 		"md5": md5,
     "format": format,
 		"relatedTo": relatedTo,
