@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/common/exceptions/NotImplemented.dart';
 import 'package:galinha_karoot/app/modules/common/models/ImageModel.dart';
+import 'package:galinha_karoot/app/modules/common/utils/ImageUploader.dart';
 
 class ImageRepository extends Disposable {
 
@@ -77,8 +79,19 @@ class ImageRepository extends Disposable {
 		return ImageModel.fromDocument(doc);
 	}	
 
-	Future<StorageUploadTask> create(ImageModel image){
-		throw NotImplemented();
+	Future<DocumentReference> create(File file, CasesModel _case) async {
+		String md5hash = ImageUploader.getFileHash(file);
+		String format = ImageUploader.getImageFormat(file);
+		var image = ImageModel(md5: md5hash, 
+				   		format: format, 
+				   		relatedTo: _case.idCases,
+				   		createdAt: DateTime.now()
+		);
+
+		var storageRef = await getFileRef(image);
+		return storageRef.putFile(file).onComplete.then((value){
+			return collection.add(image.toJSON()); // Creating meta document when file upload is completed...
+		});
 	}
 
 	Future delete(ImageModel model){
