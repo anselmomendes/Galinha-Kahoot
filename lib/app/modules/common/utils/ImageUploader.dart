@@ -31,11 +31,11 @@ class ImageUploader {
 		return (retrieveImageDocument(imgMd5) != null);
 	}
 
-	String getFileHash(File imgFile){				
+	static String getFileHash(File imgFile){				
 		return md5.convert(imgFile.readAsBytesSync()).toString();		
 	}
 
-	String getImageFormat(File imgFile){
+	static String getImageFormat(File imgFile){
 		var format = imgFile.path.split('.')[-1];
 		if (acceptedImageFormats.indexOf(format) != -1)
 			return format;
