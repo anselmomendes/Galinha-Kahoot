@@ -26,8 +26,10 @@ dependencies:
   flutter_modular: ^1.1.1
   cloud_firestore: ^0.13.4+2
   firebase_core: ^0.4.4+3
+  firebase_storage: any
   firebase_auth: any
   intl: ^0.16.1
+  crypto: 2.1.4
   flutter_duration_picker: "^1.0.0"
   flutter:
     sdk: flutter
