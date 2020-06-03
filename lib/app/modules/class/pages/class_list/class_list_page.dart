@@ -22,6 +22,7 @@ class _ClassListPageState
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
+              centerTitle: true,
               backgroundColor: Colors.redAccent,
               title: Text(widget.title),
             )
@@ -89,7 +90,7 @@ class _ClassListPageState
                           ButtonBar(
                             children: <Widget>[
                               FlatButton(
-                                color: Colors.red,
+                                color: Colors.redAccent,
                                 child: const Text('EXCLUIR'),
                                 onPressed: () {
                                   // controller.delete(model);
@@ -97,7 +98,7 @@ class _ClassListPageState
                                 },
                               ),
                               FlatButton(
-                                color: Colors.red,
+                                color: Colors.redAccent,
                                 child: const Text('EDITAR'),
                                 onPressed: () {
                                   // _showDialog(model: model);

@@ -48,7 +48,7 @@ class _CasesRegisterPageState
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
-        title: Text("Cadastro de Novo Caso"),
+        title: Text("Cadastrar Caso"),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -222,7 +222,7 @@ class _CasesRegisterPageState
                         controller.save(model);
                         _showAlertDialog(context);
                       },
-                      color: appColor,
+                      color: appContrastColor,
                       child: Text('Registrar-se',
                           style: TextStyle(color: Colors.white))),
                 ],

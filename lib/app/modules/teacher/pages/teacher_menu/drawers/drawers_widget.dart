@@ -62,11 +62,11 @@ class DrawersWidget extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Olá',
+                              'Olá professor!',
                               style: TextStyle(
                                   fontSize: 18.0, fontWeight: FontWeight.bold),
                             ),
-                            GestureDetector(
+                            /* GestureDetector(
                               child: Text(
                                 'Entre ou cadastre-se >',
                                 style: TextStyle(
@@ -75,7 +75,7 @@ class DrawersWidget extends StatelessWidget {
                                     fontWeight: FontWeight.bold),
                               ),
                               onTap: () {},
-                            ),
+                            ), */
                           ],
                         )),
                   ],
@@ -89,25 +89,25 @@ class DrawersWidget extends StatelessWidget {
                       ),
                   title: "Início"),
               _getTile(
-                  icon: Icons.local_hospital,
-                  action: () => TeacherListCasesModule(
-                        showAppBar: false,
-                      ),
-                  title: "Acessar Casos"),
-              _getTile(
-                  icon: Icons.local_hospital,
-                  action: () => TeacherReportModule(
-                        showAppBar: false,
-                      ),
-                  title: "Relatórios"),
-              _getTile(
-                  icon: Icons.local_hospital,
+                  icon: Icons.person,
                   action: () => TeacherPerfilModule(
                         showAppBar: false,
                       ),
                   title: "Meu Perfil"),
               _getTile(
                   icon: Icons.local_hospital,
+                  action: () => TeacherListCasesModule(
+                        showAppBar: false,
+                      ),
+                  title: "Acessar Casos"),
+              _getTile(
+                  icon: Icons.description,
+                  action: () => TeacherReportModule(
+                        showAppBar: false,
+                      ),
+                  title: "Relatórios"),
+              _getTile(
+                  icon: Icons.info,
                   action: () => TeacherAboutModule(
                         showAppBar: false,
                       ),

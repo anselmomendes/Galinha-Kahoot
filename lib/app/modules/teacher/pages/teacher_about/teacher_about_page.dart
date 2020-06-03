@@ -39,12 +39,13 @@ class _TeacherAboutPageState extends State<TeacherAboutPage> {
                     "assets/bits.png",
                     height: 150.0,
                   ),
-                  /* Text(
-                    "\nPeensA",
+                  SizedBox(height: 15.0),
+                  Text(
+                    "Problematização Estratégica de Ensino em Saúde Aplicada",
                     style:
                         TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
                     textAlign: TextAlign.center,
-                  ), */
+                  ),
                   Divider(height: 25.0),
                   Text(
                     "Aplicativo para Mestrado\n",
@@ -53,12 +54,14 @@ class _TeacherAboutPageState extends State<TeacherAboutPage> {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    "Aplicativo de compartilhamento de conteúdos sobre casos médicos com questinários online.",
+                    "Aplicativo de compartilhamento de conteúdos sobre casos médicos com questionários online.",
                     style: TextStyle(fontSize: 16.0),
                     textAlign: TextAlign.justify,
                   ),
                   // Divider(height: 30.0),
-                  SizedBox(height: screenWidth*0.4,),
+                  SizedBox(
+                    height: screenWidth * 0.35,
+                  ),
                   Text(
                     'Política de Privacidade:',
                     textAlign: TextAlign.left,

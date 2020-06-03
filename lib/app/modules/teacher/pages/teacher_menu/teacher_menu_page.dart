@@ -37,14 +37,22 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                   //contentPadding: EdgeInsets.only(left: 30),
                   leading: Icon(
                     Icons.local_hospital,
+                    size: 35.0,
                   ),
-                  title: Text('Casos'),
-                  subtitle: Text('Acesse ou crie casos médicos.'),
+                  title: Text('Casos',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      )),
+                  subtitle: Text('Acesse ou crie casos médicos.',
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
                 ),
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
-                      color: Colors.red,
+                      color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         // Navigator.pushNamed(context, '/');
@@ -53,7 +61,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       },
                     ),
                     FlatButton(
-                      color: Colors.red,
+                      color: Colors.redAccent,
                       child: const Text('CRIAR'),
                       onPressed: () {
                         Navigator.pushNamed(context, '/cases/cases_register');
@@ -75,22 +83,31 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                 ),
                 const ListTile(
                   //contentPadding: EdgeInsets.only(left: 30),
-                  leading: Icon(Icons.list),
-                  title: Text('Turmas'),
+                  leading: Icon(Icons.list,
+                    size: 35.0,
+                  ),
+                  title: Text('Turmas',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      )),
                   subtitle:
-                      Text('Acesse status de turmas ou crie novas turmas.'),
+                      Text('Acesse status de turmas ou crie novas turmas.',
+                          style: TextStyle(
+                            fontSize: 16,
+                          )),
                 ),
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
-                      color: Colors.red,
+                      color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         Navigator.pushNamed(context, '/class/class_list');
                       },
                     ),
                     FlatButton(
-                      color: Colors.red,
+                      color: Colors.redAccent,
                       child: const Text('CRIAR'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
@@ -113,15 +130,24 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                   height: 15,
                 ),
                 const ListTile(
-                  leading: Icon(Icons.description),
-                  title: Text('Relatório'),
+                  leading: Icon(Icons.description,
+                    size: 35.0,
+                  ),
+                  title: Text('Relatório',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 18,
+                      )),
                   subtitle:
-                      Text('Acesse os relatórios do Quiz do casos clínicos.'),
+                      Text('Acesse os relatórios do Quiz do casos clínicos.',
+                          style: TextStyle(
+                            fontSize: 16,
+                          )),
                 ),
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(
-                      color: Colors.red,
+                      color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         Navigator.pushNamed(

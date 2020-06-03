@@ -4,6 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_detail/class_detail_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
 
 class ClassDetailPage extends StatefulWidget {
@@ -12,7 +13,7 @@ class ClassDetailPage extends StatefulWidget {
   final String title;
   const ClassDetailPage({
     Key key,
-    this.title = "ClassDetail",
+    this.title = "Detalhe da Turma",
     this.showAppBar = true,
     @required this.classModel,
   }) : super(key: key);
@@ -33,6 +34,7 @@ class _ClassDetailPageState
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
+              centerTitle: true,
               backgroundColor: Colors.redAccent,
               title: Text(widget.title),
             )
@@ -154,7 +156,7 @@ class _ClassDetailPageState
                                   style: text2TextStyle),
                             ],
                           )),
-                          Divider(thickness: 2.0),
+                          /* Divider(thickness: 2.0),
                           SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
@@ -165,15 +167,15 @@ class _ClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${widget.classModel.teacherID}',
+                                  text: '',
                                   style: text2TextStyle),
                             ],
-                          )),
+                          )), */
                           Divider(thickness: 2.0),
                           SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
-                            text: 'Turma criada em: ',
+                            text: 'Data de criação: ',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: headerFontSize,
@@ -188,7 +190,7 @@ class _ClassDetailPageState
                           SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
-                            text: 'Turma criada em: ',
+                            text: 'Última modificação: ',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: headerFontSize,
@@ -210,7 +212,8 @@ class _ClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${widget.classModel.timer} minutos',
+                                  // text: '${widget.classModel.timer} minutos',
+                                  text: selectiontextDetail(widget.classModel.timer),
                                   style: text2TextStyle),
                             ],
                           )),
@@ -218,7 +221,7 @@ class _ClassDetailPageState
                           SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
-                            text: 'Turma será desativada em: ',
+                            text: 'Turma expira em: ',
                             style: TextStyle(
                                 color: Colors.black,
                                 fontSize: headerFontSize,

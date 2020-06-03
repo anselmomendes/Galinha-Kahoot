@@ -7,6 +7,7 @@ import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_edit/class_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
 
 class ClassEditPage extends StatefulWidget {
@@ -15,7 +16,7 @@ class ClassEditPage extends StatefulWidget {
   final String title;
   const ClassEditPage(
       {Key key,
-      this.title = "ClassEdit",
+      this.title = "Editar Turma",
       @required this.classModel,
       this.showAppBar = true})
       : super(key: key);
@@ -53,6 +54,7 @@ class _ClassEditPageState
     checkStatus(statusBool);
     String currentTitleCase = widget.classModel.titleCase;
     currentTime = widget.classModel.timer;
+    // _titleCases = widget.classModel.titleCase;
 
     return Scaffold(
       appBar: widget.showAppBar
@@ -120,13 +122,14 @@ class _ClassEditPageState
                   Text("Selecione o temporizador:", style: headerTextStyle),
                   Text("Temporizador atual: ${currentTime} minutos"),
                   SizedBox(height: 5),
+                  // selectionText(resultingDuration),
                   selectionText(resultingDuration),
                   SizedBox(height: 5),
                   FlatButton(
                       onPressed: () async {
                         resultingDuration = await showDurationPicker(
                           context: context,
-                          initialTime: new Duration(minutes: currentTime),
+                          initialTime: new Duration(minutes: 30),
                         );
 
                         if (resultingDuration != null) {
@@ -192,13 +195,13 @@ class _ClassEditPageState
                                       RadioListTile(
                                         value: model,
                                         groupValue: selectedCase,
-                                        title: Text(model.topicOne),
+                                        title: Text(model.title),
                                         onChanged: (currentCase) {
                                           print(index);
                                           //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
                                           _casesID = model.idCases;
-                                          _titleCases = model.topicOne;
+                                          _titleCases = model.title;
                                         },
                                         selected: selectedCase == model,
                                         activeColor: Colors.red,
@@ -278,7 +281,7 @@ class _ClassEditPageState
     }
   }
 
-  // Condicional para exibição do temporizado padrão ou o selecionado
+/*   // Condicional para exibição do temporizado padrão ou o selecionado
   Widget selectionText(Duration resultingDuration) {
     Duration v = Duration(minutes: 7200);
 
@@ -287,7 +290,7 @@ class _ClassEditPageState
           "Por padrão, a turma será desativada em ${resultingDuration.inDays} dias.");
     }
     return Text("Turma será desativada em ${resultingDuration.inMinutes} min.");
-  }
+  } */
 
   void _showAlertDialog(BuildContext context) {
     // configura o button

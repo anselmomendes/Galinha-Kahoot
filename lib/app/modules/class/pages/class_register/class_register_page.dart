@@ -8,6 +8,7 @@ import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_register/class_register_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
 
 class ClassRegisterPage extends StatefulWidget {
@@ -121,6 +122,7 @@ class _ClassRegisterPageState
                   // Divider(height: 20),
                   Text("Selecione o temporizador:", style: headerTextStyle),
                   SizedBox(height: 5),
+                  // selectionText(resultingDuration),
                   selectionText(resultingDuration),
                   SizedBox(height: 5),
                   FlatButton(
@@ -151,7 +153,7 @@ class _ClassRegisterPageState
                         });
                         // print(resultingDuration);
                       },
-                      color: appColor,
+                      color: appContrastColor,
                       child: Text(
                         "Selecionar",
                         style: TextStyle(color: Colors.white),
@@ -199,15 +201,16 @@ class _ClassRegisterPageState
                                       RadioListTile(
                                         value: model,
                                         groupValue: selectedCase,
-                                        title: Text(model.topicOne),
+                                        title: Text(model.title),
                                         onChanged: (currentCase) {
                                           print(index);
                                           //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
                                           _casesID = model.reference.documentID;
+                                          _titleCases = model.title;
                                         },
                                         selected: selectedCase == model,
-                                        activeColor: Colors.red,
+                                        activeColor: Colors.redAccent,
                                       )
                                     ],
                                   );
@@ -282,7 +285,7 @@ class _ClassRegisterPageState
                               controller.save(model);
                               _showAlertDialog(context);
                             },
-                            color: appColor,
+                            color: appContrastColor,
                             child: Text('Salvar',
                                 style: TextStyle(color: Colors.white)));
                       })
@@ -333,7 +336,7 @@ class _ClassRegisterPageState
     );
   }
 
-  // Condicional para exibição do temporizado padrão ou o selecionado
+/*   // Condicional para exibição do temporizador padrão ou o selecionado
   Widget selectionText(Duration resultingDuration) {
     Duration v = Duration(minutes: 7200);
 
@@ -342,5 +345,5 @@ class _ClassRegisterPageState
           "Por padrão, a turma será desativada em ${resultingDuration.inDays} dias.");
     }
     return Text("Turma será desativada em ${resultingDuration.inMinutes} min.");
-  }
+  } */
 }
