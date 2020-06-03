@@ -73,10 +73,11 @@ class _TeacherListCasesPageState
                               ),
                             ),
                             onTap: () {
-                              controller.store.setModel(model);
+                              //controller.store.setModel(model);
                               Navigator.pushNamed(
                                 context,
                                 '/cases/cases_home',
+                                arguments: model,
                               );
                             },
                             //subtitle: Text(model.right),
@@ -87,15 +88,18 @@ class _TeacherListCasesPageState
                                 color: Colors.redAccent,
                                 child: const Text('EXCLUIR'),
                                 onPressed: () {
-                                  controller.delete(model);
                                   _showAlertDialogDelete(model: model);
                                 },
                               ),
                               FlatButton(
                                 color: Colors.redAccent,
-                                child: const Text('EDITAR'),
+                                child: const Text('ACESSAR'),
                                 onPressed: () {
-                                  _showDialog(model: model);
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/cases/cases_home',
+                                    arguments: model,
+                                  );
                                 },
                               ),
                             ],
@@ -112,7 +116,7 @@ class _TeacherListCasesPageState
       ),
     );
   }
-
+/*
   _showDialog({CasesModel model}) {
     model ??= CasesModel();
     showDialog(
@@ -180,7 +184,7 @@ class _TeacherListCasesPageState
         );
       },
     );
-  }
+  }*/
 
   void _showAlertDialogDelete({CasesModel model}) {
     model ??= CasesModel();
@@ -188,8 +192,6 @@ class _TeacherListCasesPageState
     Widget cancelButton = FlatButton(
       child: Text("Cancelar"),
       onPressed: () {
-        // _casesID.text = '';
-        // _teacherID.text = '';
         Modular.to.pop();
       },
     );
