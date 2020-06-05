@@ -3,12 +3,13 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_controller.dart';
+import 'package:galinha_karoot/app/modules/common/styles.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class CasesRelatorioPage extends StatefulWidget {
   final String title;
   final CasesModel model;
-  const CasesRelatorioPage({Key key, this.title = "CasesRelatorio", this.model})
+  const CasesRelatorioPage({Key key, this.title = "Relatório", this.model})
       : super(key: key);
 
   @override
@@ -17,9 +18,9 @@ class CasesRelatorioPage extends StatefulWidget {
 
 class _CasesRelatorioPageState
     extends ModularState<CasesRelatorioPage, CasesRelatorioController> {
-  final _topicTwo = TextEditingController();
-  final _textTwo = TextEditingController();
-  final _imageUrlTwo = TextEditingController();
+  final _topicSix = TextEditingController();
+  final _textSix = TextEditingController();
+  final _imageUrlSix = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,12 +36,12 @@ class _CasesRelatorioPageState
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
-        backgroundColor: Colors.red,
+        backgroundColor: appContrastColor,
         title: Text(widget.title),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.red,
+          backgroundColor: appContrastColor,
           child: Icon(Icons.edit),
           onPressed: () {
             controller.editMode = true;
@@ -51,7 +52,7 @@ class _CasesRelatorioPageState
           children: <Widget>[
             Container(
               child: Image.network(
-                widget.model.imageUrlTwo, //widget.casesModel.imageUrlTwo,
+                widget.model.imageUrlSix, //widget.casesModel.imageUrlTwo,
                 height: 300,
                 width: 300,
               ),
@@ -60,14 +61,14 @@ class _CasesRelatorioPageState
             Container(
               height: 50,
               child: Text(
-                widget.model.topicTwo, //widget.casesModel.textTwo,
+                widget.model.topicSix, //widget.casesModel.textTwo,
                 style: TextStyle(fontSize: 18),
               ),
             ),
             Container(
               height: 300,
               child: Text(
-                widget.model.textTwo, //widget.casesModel.textTwo,
+                widget.model.textSix, //widget.casesModel.textTwo,
                 style: TextStyle(fontSize: 18),
               ),
             ),
@@ -78,10 +79,16 @@ class _CasesRelatorioPageState
   }
 
   Scaffold modoEdicao(CasesModel model) {
+
+    // Iniciado os campos com os texto do db
+    _topicSix.text = widget.model.topicSix;
+    _textSix.text = widget.model.textSix;
+    _imageUrlSix.text = widget.model.imageUrlSix;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
-        backgroundColor: Colors.red,
+        backgroundColor: appContrastColor,
         title: Text('Edição - ${widget.title}'),
         centerTitle: true,
       ),
@@ -97,7 +104,7 @@ class _CasesRelatorioPageState
             ),
             SizedBox(height: 5),
             TextFormField(
-              controller: _topicTwo,
+              controller: _topicSix,
               maxLength: 40,
               //initialValue: 'a',
               decoration: InputDecoration(
@@ -127,7 +134,7 @@ class _CasesRelatorioPageState
             ),
             SizedBox(height: 5),
             TextFormField(
-              controller: _textTwo,
+              controller: _textSix,
               maxLength: 1000,
               maxLines: 5,
               //initialValue: widget.model.topicTwo,
@@ -159,7 +166,7 @@ class _CasesRelatorioPageState
             SizedBox(height: 5),
             TextFormField(
               maxLength: 50,
-              controller: _imageUrlTwo,
+              controller: _imageUrlSix,
               //initialValue: widget.model.topicTwo,
               decoration: InputDecoration(
                 labelText: 'Digite o link da imagem',
@@ -184,9 +191,9 @@ class _CasesRelatorioPageState
             circularButton(
                 text: 'Salvar',
                 func: () {
-                  widget.model.topicTwo = _topicTwo.text;
-                  widget.model.textTwo = _textTwo.text;
-                  widget.model.imageUrlTwo = _imageUrlTwo.text;
+                  widget.model.topicSix = _topicSix.text;
+                  widget.model.textSix = _textSix.text;
+                  widget.model.imageUrlSix = _imageUrlSix.text;
                   if (widget.model.imageUrlSix == '')
                     widget.model.imageUrlSix =
                         'https://livecasthd.com.br/sem_foto.png';

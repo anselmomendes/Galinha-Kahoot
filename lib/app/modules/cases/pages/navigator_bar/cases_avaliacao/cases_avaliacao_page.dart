@@ -3,12 +3,13 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_avaliacao/cases_avaliacao_controller.dart';
+import 'package:galinha_karoot/app/modules/common/styles.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class CasesAvaliacaoPage extends StatefulWidget {
   final String title;
   final CasesModel model;
-  const CasesAvaliacaoPage({Key key, this.title = "CasesAvaliacao", this.model})
+  const CasesAvaliacaoPage({Key key, this.title = "Avaliação Física", this.model})
       : super(key: key);
 
   @override
@@ -35,12 +36,12 @@ class _CasesAvaliacaoPageState
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
-        backgroundColor: Colors.red,
+        backgroundColor: appContrastColor,
         title: Text(widget.title),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.red,
+          backgroundColor: appContrastColor,
           child: Icon(Icons.edit),
           onPressed: () {
             controller.editMode = true;
@@ -78,10 +79,16 @@ class _CasesAvaliacaoPageState
   }
 
   Scaffold modoEdicao(CasesModel model) {
+
+    // Iniciado os campos com os texto do db
+    _topicTwo.text = widget.model.topicTwo;
+    _textTwo.text = widget.model.textTwo;
+    _imageUrlTwo.text = widget.model.imageUrlTwo;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
-        backgroundColor: Colors.red,
+        backgroundColor: appContrastColor,
         title: Text('Edição - ${widget.title}'),
         centerTitle: true,
       ),

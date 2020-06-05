@@ -3,13 +3,14 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_procedimento/cases_procedimento_controller.dart';
+import 'package:galinha_karoot/app/modules/common/styles.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class CasesProcedimentoPage extends StatefulWidget {
   final String title;
   final CasesModel model;
   const CasesProcedimentoPage(
-      {Key key, this.title = "CasesProcedimento", this.model})
+      {Key key, this.title = "Informações Cirúrgicas", this.model})
       : super(key: key);
 
   @override
@@ -18,9 +19,9 @@ class CasesProcedimentoPage extends StatefulWidget {
 
 class _CasesProcedimentoPageState
     extends ModularState<CasesProcedimentoPage, CasesProcedimentoController> {
-  final _topicFive = TextEditingController();
-  final _textFive = TextEditingController();
-  final _imageUrlFive = TextEditingController();
+  final _topicTree = TextEditingController();
+  final _textTree = TextEditingController();
+  final _imageUrlTree = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,12 +37,12 @@ class _CasesProcedimentoPageState
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
-        backgroundColor: Colors.red,
+        backgroundColor: appContrastColor,
         title: Text(widget.title),
         centerTitle: true,
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.red,
+          backgroundColor: appContrastColor,
           child: Icon(Icons.edit),
           onPressed: () {
             controller.editMode = true;
@@ -52,7 +53,7 @@ class _CasesProcedimentoPageState
           children: <Widget>[
             Container(
               child: Image.network(
-                widget.model.imageUrlFive, //widget.casesModel.imageUrlFive,
+                widget.model.imageUrlTree, //widget.casesModel.imageUrlFive,
                 height: 300,
                 width: 300,
               ),
@@ -61,14 +62,14 @@ class _CasesProcedimentoPageState
             Container(
               height: 50,
               child: Text(
-                widget.model.topicFive, //widget.casesModel.textFive,
+                widget.model.topicTree, //widget.casesModel.textFive,
                 style: TextStyle(fontSize: 18),
               ),
             ),
             Container(
               height: 300,
               child: Text(
-                widget.model.textFive, //widget.casesModel.textFive,
+                widget.model.textTree, //widget.casesModel.textFive,
                 style: TextStyle(fontSize: 18),
               ),
             ),
@@ -79,10 +80,16 @@ class _CasesProcedimentoPageState
   }
 
   Scaffold modoEdicao(CasesModel model) {
+
+    // Iniciado os campos com os texto do db
+    _topicTree.text = widget.model.topicTree;
+    _textTree.text = widget.model.textTree;
+    _imageUrlTree.text = widget.model.imageUrlTree;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
-        backgroundColor: Colors.red,
+        backgroundColor: appContrastColor,
         title: Text('Edição - ${widget.title}'),
         centerTitle: true,
       ),
@@ -98,7 +105,7 @@ class _CasesProcedimentoPageState
             ),
             SizedBox(height: 5),
             TextFormField(
-              controller: _topicFive,
+              controller: _topicTree,
               maxLength: 40,
               //initialValue: 'a',
               decoration: InputDecoration(
@@ -128,7 +135,7 @@ class _CasesProcedimentoPageState
             ),
             SizedBox(height: 5),
             TextFormField(
-              controller: _textFive,
+              controller: _textTree,
               maxLength: 1000,
               maxLines: 5,
               //initialValue: widget.model.topicFive,
@@ -160,7 +167,7 @@ class _CasesProcedimentoPageState
             SizedBox(height: 5),
             TextFormField(
               maxLength: 50,
-              controller: _imageUrlFive,
+              controller: _imageUrlTree,
               //initialValue: widget.model.topicFive,
               decoration: InputDecoration(
                 labelText: 'Digite o link da imagem',
@@ -185,11 +192,11 @@ class _CasesProcedimentoPageState
             circularButton(
                 text: 'Salvar',
                 func: () {
-                  widget.model.topicFive = _topicFive.text;
-                  widget.model.textFive = _textFive.text;
-                  widget.model.imageUrlFive = _imageUrlFive.text;
-                  if (widget.model.imageUrlFive == '')
-                    widget.model.imageUrlFive =
+                  widget.model.topicTree = _topicTree.text;
+                  widget.model.textTree = _textTree.text;
+                  widget.model.imageUrlTree = _imageUrlTree.text;
+                  if (widget.model.imageUrlTree == '')
+                    widget.model.imageUrlTree =
                         'https://livecasthd.com.br/sem_foto.png';
                   controller.save(widget.model);
                   controller.editMode = false;

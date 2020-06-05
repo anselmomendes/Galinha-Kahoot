@@ -9,6 +9,7 @@ import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_kahoo
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_procedimento/cases_procedimento_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
+import 'package:galinha_karoot/app/modules/common/styles.dart';
 
 class CasesHomePage extends StatefulWidget {
   final CasesModel model;
@@ -22,13 +23,13 @@ class _CasesHomePageState
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    CasesAnamneseModule(),
+    // CasesAnamneseModule(),
+    CasesSintomasModule(),
     CasesAvaliacaoModule(),
+    CasesProcedimentoModule(),
     CasesExamesModule(),
     CasesKahootModule(),
-    CasesProcedimentoModule(),
     CasesRelatorioModule(),
-    CasesSintomasModule(),
   ];
 
   void _onItemTapped(int index) {
@@ -46,45 +47,45 @@ class _CasesHomePageState
       bottomNavigationBar: BottomNavigationBar(
         iconSize: 35,
         selectedFontSize: 17,
-        backgroundColor: Colors.red,
-        selectedItemColor: Colors.red,
+        backgroundColor: appContrastColor,
+        selectedItemColor: appContrastColor,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.format_list_numbered,
               color: Colors.white,
             ),
-            backgroundColor: Colors.red,
-            title: Text('S', style: TextStyle(color: Colors.white)),
+            backgroundColor: Colors.redAccent,
+            title: Text('A', style: TextStyle(color: Colors.white)),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment, color: Colors.white),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.redAccent,
             title: Text('A', style: TextStyle(color: Colors.white)),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.accessibility_new, color: Colors.white),
-            backgroundColor: Colors.red,
-            title: Text('Av', style: TextStyle(color: Colors.white)),
+            backgroundColor: Colors.redAccent,
+            title: Text('I', style: TextStyle(color: Colors.white)),
           ),
-          BottomNavigationBarItem(
+          /* BottomNavigationBarItem(
             icon: Icon(Icons.local_hospital, color: Colors.white),
             backgroundColor: Colors.red,
+            title: Text('I', style: TextStyle(color: Colors.white)),
+          ), */
+          BottomNavigationBarItem(
+            icon: Icon(Icons.healing, color: Colors.white),
+            backgroundColor: Colors.redAccent,
             title: Text('E', style: TextStyle(color: Colors.white)),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.healing, color: Colors.white),
-            backgroundColor: Colors.red,
-            title: Text('P', style: TextStyle(color: Colors.white)),
-          ),
-          BottomNavigationBarItem(
             icon: Icon(Icons.dashboard, color: Colors.white),
-            backgroundColor: Colors.red,
-            title: Text('K', style: TextStyle(color: Colors.white)),
+            backgroundColor: Colors.redAccent,
+            title: Text('Q', style: TextStyle(color: Colors.white)),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.subject, color: Colors.white),
-            backgroundColor: Colors.red,
+            backgroundColor: Colors.redAccent,
             title: Text('R', style: TextStyle(color: Colors.white)),
           ),
         ],
