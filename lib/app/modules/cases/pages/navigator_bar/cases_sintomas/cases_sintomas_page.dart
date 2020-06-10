@@ -57,7 +57,7 @@ class _CasesSintomasPageState
                 width: 300,
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 10),
             Container(
               height: 50,
               child: Text(

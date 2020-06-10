@@ -57,7 +57,7 @@ class _CasesKahootPageState
                 width: 300,
               ),
             ),
-            SizedBox(height: 50),
+            SizedBox(height: 10),
             Container(
               height: 50,
               child: Text(
@@ -139,7 +139,7 @@ class _CasesKahootPageState
               maxLines: 5,
               //initialValue: widget.model.topicFour,
               decoration: InputDecoration(
-                labelText: 'Digite um conteudo para o caso',
+                labelText: 'Digite um conteúdo para o caso',
                 hintText: 'Descreva o caso',
                 enabledBorder: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5.0),
