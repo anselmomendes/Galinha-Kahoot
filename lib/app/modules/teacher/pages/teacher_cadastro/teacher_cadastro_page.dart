@@ -118,7 +118,7 @@ class _TeacherCadastroPageState extends State<TeacherCadastroPage> {
           _passwordController.text,
           ));
           widget.auth.sendEmailVerification();
-          widget.auth.createUserMeta(userId, "teacher");
+          widget.auth.createUserMeta("teacher", _universityController.text);
           _showVerifyEmailSentDialog();
       }
       catch (e){
@@ -128,24 +128,24 @@ class _TeacherCadastroPageState extends State<TeacherCadastroPage> {
 
 
    void _showRegistrationError(e) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        // return object of type Dialog
-        return AlertDialog(
-          title: new Text("Houve um erro!"),
-          content: new Text(e),
-          actions: <Widget>[
-            new FlatButton(
-              child: new Text("OK"),
-              onPressed: () {
-                Navigator.pushNamed(context, "/teacher/teacher_registro");              
-              },
-            ),
-          ],
-        );
-      },
-    );
+    // showDialog(
+    //   context: context,
+    //   builder: (BuildContext context) {
+    //     // return object of type Dialog
+    //     return AlertDialog(
+    //       title: new Text("Houve um erro!"),
+    //       content: new Text(e),
+    //       actions: <Widget>[
+    //         new FlatButton(
+    //           child: new Text("OK"),
+    //           onPressed: () {
+    //             Navigator.pushNamed(context, "/teacher/teacher_registro");              
+    //           },
+    //         ),
+    //       ],
+    //     );
+    //   },
+    // );
   }  
 
    void _showVerifyEmailSentDialog() {
