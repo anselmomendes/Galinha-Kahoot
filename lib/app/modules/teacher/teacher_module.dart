@@ -21,6 +21,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import 'pages/teacher_register/teacher_register_controller.dart';
 import 'pages/teacher_register/teacher_register_page.dart';
+import 'pages/teacher_select/teacher_select_page.dart';
 
 class TeacherModule extends ChildModule {
   @override
@@ -50,7 +51,8 @@ class TeacherModule extends ChildModule {
             child: (_, args) => TeacherListCasesPage()),
         Router('/teacher_report', child: (_, args) => TeacherReportPage()),
         Router('/teacher_root', child: (_, args) => TeacherRootPage()),
-        Router('/register', child: (_, args) => TeacherRegisterPage())
+        Router('/register', child: (_, args) => TeacherRegisterPage()),
+        Router('/teacher_select', child: (_, args) => TeacherSelectPage())
       ];
 
   static Inject get to => Inject<TeacherModule>.of();

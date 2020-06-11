@@ -64,7 +64,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       color: Colors.redAccent,
                       child: const Text('CRIAR'),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/cases/cases_register');
+                        Navigator.pushNamed(context, '/teacher/teacher_select');
                       },
                     ),
                   ],
@@ -83,7 +83,8 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                 ),
                 const ListTile(
                   //contentPadding: EdgeInsets.only(left: 30),
-                  leading: Icon(Icons.list,
+                  leading: Icon(
+                    Icons.list,
                     size: 35.0,
                   ),
                   title: Text('Turmas',
@@ -111,7 +112,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       child: const Text('CRIAR'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
-                        Navigator.pushNamed(context, '/class/class_register');
+                        Navigator.pushNamed(context, '/teacher_select');
                         //Navigator.pushNamed(context, '/class/class_register/');
                       },
                     ),
@@ -130,7 +131,8 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                   height: 15,
                 ),
                 const ListTile(
-                  leading: Icon(Icons.description,
+                  leading: Icon(
+                    Icons.description,
                     size: 35.0,
                   ),
                   title: Text('Relatório',
