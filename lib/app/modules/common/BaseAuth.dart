@@ -105,23 +105,22 @@ class Auth implements BaseAuth {
 	List metaFields = ["uid", "role", "university"];
 
   Future<bool> createUserMeta(String role, String university) async {
+
 		FirebaseUser currentUser = await getCurrentUser();
 		if (currentUser == null)
 			throw Exception("Access denied: No user currently signed in.");
-		
-		Map registerMeta = {"uid": currentUser, "role": role, "university": university};
-    	Firestore.instance.collection("users")
-        	.where("uid", isEqualTo: currentUser)
+      return Firestore.instance.collection("users")
+        	.where("uid", isEqualTo: currentUser.uid)
         	.getDocuments()
         	.then((docs){
-				if (docs.documents.isEmpty){
-					Firestore.instance.collection("users").add(registerMeta);
-					return true;
-				}
-				return false;
-			});
-		return false;
-    }
+                print(docs);
+                if (docs.documents.isEmpty){
+                  Firestore.instance.collection("users").add({"uid": currentUser.uid, "role": role, "university": university});
+                  return true;
+                }
+				        return false;
+			    });
+  }
 
 	Future<Map> getUserMeta(){
 		Future<FirebaseUser> currentUser = getCurrentUser();		
