@@ -23,7 +23,7 @@ abstract class BaseAuth {
 
   Future<void> sendPasswordResetMail(String email);
 
-  Future<bool> createUserMeta(String role, String university);
+  Future<bool> createUserMeta(String role, String name, String university);
 
   Future<Map> getUserMeta();
 
@@ -102,9 +102,9 @@ class Auth implements BaseAuth {
     return null;
   }
 
-	List metaFields = ["uid", "role", "university"];
+	List metaFields = ["uid", "role", "name", "university"];
 
-  Future<bool> createUserMeta(String role, String university) async {
+  Future<bool> createUserMeta(String role, String name, String university) async {
 
 		FirebaseUser currentUser = await getCurrentUser();
 		if (currentUser == null)
@@ -115,7 +115,7 @@ class Auth implements BaseAuth {
         	.then((docs){
                 print(docs);
                 if (docs.documents.isEmpty){
-                  Firestore.instance.collection("users").add({"uid": currentUser.uid, "role": role, "university": university});
+                  Firestore.instance.collection("users").add({"uid": currentUser.uid, "role": role, "name": name, "university": university});
                   return true;
                 }
 				        return false;

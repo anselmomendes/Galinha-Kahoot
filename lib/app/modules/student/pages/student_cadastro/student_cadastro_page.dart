@@ -126,7 +126,8 @@ class _StudentCadastroPageState extends State<StudentCadastroPage> {
           _passwordController.text,
           ));
           widget.auth.sendEmailVerification();
-          widget.auth.createUserMeta(userId, "teacher");
+          // widget.auth.createUserMeta(userId, "teacher", _nameController.text, _universityController.text);
+          widget.auth.createUserMeta("student", _nameController.text, _universityController.text);
           _showVerifyEmailSentDialog();
       }
       catch (e){
