@@ -115,7 +115,11 @@ class Auth implements BaseAuth {
         	.then((docs){
                 print(docs);
                 if (docs.documents.isEmpty){
-                  Firestore.instance.collection("users").add({"uid": currentUser.uid, "role": role, "name": name, "university": university});
+                  Firestore.instance.collection("users").document(currentUser.uid).setData({
+                    "uid": currentUser.uid, "role": role, "name": name, "university": university
+                  });
+                  
+                  // add({"uid": currentUser.uid, "role": role, "name": name, "university": university});
                   return true;
                 }
 				        return false;
