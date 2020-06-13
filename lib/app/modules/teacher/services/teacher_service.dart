@@ -22,7 +22,7 @@ class TeacherService extends Disposable implements ITeacherServices {
   }
 
   @override
-  Stream<List<TeacherModel>> getAllStream() {
+  Future<Stream<TeacherModel>> getAllStream() async {
     return teacherRepository.getAllStream();
   }
 

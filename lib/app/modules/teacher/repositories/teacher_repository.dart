@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/teacher/models/TeacherModel.dart';
 import 'package:galinha_karoot/app/modules/teacher/repositories/interfaces/teacher_repositories_interfaces.dart';
 
-class TeacherRepository extends Disposable implements ITeacherRepository {
+class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
   final Firestore firestore;
 
   TeacherRepository({@required this.firestore});
@@ -24,19 +25,59 @@ class TeacherRepository extends Disposable implements ITeacherRepository {
     // TODO: implement save
     return null;
   }
-
+  
+  // Buscar user professor
   @override
-  Stream<List<TeacherModel>> getAllStream() {
-    return firestore.collection('Teacher').orderBy('position').snapshots().map(
-        (query) => query.documents
-            .map((doc) => TeacherModel.fromDocument(doc))
-            .toList());
+  Future<TeacherModel> getAllStream() async {
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+
+    /* var a = await firestore
+        .collection('users')
+        .document(firebaseUser.uid)
+        .get()
+        .then((value) {
+      print(value.data);
+    });
+    return a; */
+    var a = await firestore
+        .collection('users')
+        .document(firebaseUser.uid)
+        .get()
+        .then((value) => TeacherModel.fromDocument(value)
+        
+        );
+    return a;
+
   }
+
+/*   @override
+  Future<Stream<List<TeacherModel>>> get getAllStream  async {
+    // return firestore.collection('Teacher').orderBy('position').snapshots().map(
+    //     (query) => query.documents
+    //         .map((doc) => TeacherModel.fromDocument(doc))
+    //         .toList());
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
+    var a = firestore
+        .collection('users')
+        .document(firebaseUser.uid)
+        .get()
+        .then((value) {
+      print(value.data);
+    });
+    return a;
+  } */
 
   @override
   List<TeacherModel> getAll() {
     // TODO: implement getAll
     return null;
+  }
+
+  @override
+  void getData() {
+    firestore.collection("user").getDocuments().then((QuerySnapshot snapshot) {
+      snapshot.documents.forEach((f) => print('${f.data}}'));
+    });
   }
 
   @override
@@ -58,4 +99,6 @@ class TeacherRepository extends Disposable implements ITeacherRepository {
       });
     }
   }
+
+  
 }

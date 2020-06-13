@@ -9,6 +9,23 @@ part of 'teacher_perfil_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TeacherPerfilController on _TeacherPerfilBase, Store {
+  final _$teacherListAtom = Atom(name: '_TeacherPerfilBase.teacherList');
+
+  @override
+  TeacherModel get teacherList {
+    _$teacherListAtom.context.enforceReadPolicy(_$teacherListAtom);
+    _$teacherListAtom.reportObserved();
+    return super.teacherList;
+  }
+
+  @override
+  set teacherList(TeacherModel value) {
+    _$teacherListAtom.context.conditionallyRunInAction(() {
+      super.teacherList = value;
+      _$teacherListAtom.reportChanged();
+    }, _$teacherListAtom, name: '${_$teacherListAtom.name}_set');
+  }
+
   final _$valueAtom = Atom(name: '_TeacherPerfilBase.value');
 
   @override
@@ -26,6 +43,13 @@ mixin _$TeacherPerfilController on _TeacherPerfilBase, Store {
     }, _$valueAtom, name: '${_$valueAtom.name}_set');
   }
 
+  final _$getListAsyncAction = AsyncAction('getList');
+
+  @override
+  Future getList() {
+    return _$getListAsyncAction.run(() => super.getList());
+  }
+
   final _$_TeacherPerfilBaseActionController =
       ActionController(name: '_TeacherPerfilBase');
 
@@ -41,7 +65,8 @@ mixin _$TeacherPerfilController on _TeacherPerfilBase, Store {
 
   @override
   String toString() {
-    final string = 'value: ${value.toString()}';
+    final string =
+        'teacherList: ${teacherList.toString()},value: ${value.toString()}';
     return '{$string}';
   }
 }

@@ -10,18 +10,26 @@ class TeacherModel {
   DocumentReference reference;
   int idClass;
   int idTurma;
-
+  String role;
+  String university;
+  String uid;
+  
   TeacherModel({
     this.id,
     this.name,
     this.sobrenome,
     this.universidade,
-    this.reference,
     this.discMinistradas,
     this.email,
+    this.reference,
     this.idClass,
     this.idTurma,
+    this.role,
+    this.university,
+    this.uid,
   });
+
+
 
   factory TeacherModel.fromDocument(DocumentSnapshot doc) => TeacherModel(
         id: doc["id"],
@@ -33,6 +41,9 @@ class TeacherModel {
         email: doc["email"],
         idClass: doc["idClass"],
         idTurma: doc["idTurma"],
+        role: doc["role"],
+        university: doc["university"],
+        uid: doc["uid"]
       );
 
   Map<String, dynamic> toJson() => {
@@ -45,5 +56,8 @@ class TeacherModel {
         "idClass": idClass,
         "idTurma": idTurma,
         "reference": reference,
+        "role": role,
+        "university": university,
+        "uid": uid
       };
 }
