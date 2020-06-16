@@ -17,7 +17,7 @@ class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
   @override
   Future delete(TeacherModel model) {
     // TODO: implement delete
-    return null;
+    return model.reference.delete();
   }
 
   @override

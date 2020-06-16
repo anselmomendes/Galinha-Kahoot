@@ -23,6 +23,15 @@ abstract class _TeacherPerfilBase with Store {
     teacherList = await teacherRepository.getAllStream();
   }
 
+  @action
+  save(TeacherModel model) {
+    teacherRepository.save(model);
+  }
+
+  delete(TeacherModel model) {
+    teacherRepository.delete(model);
+  }
+
   
   @observable
   int value = 0;
