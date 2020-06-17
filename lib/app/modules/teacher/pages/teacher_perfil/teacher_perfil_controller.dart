@@ -1,4 +1,5 @@
 import 'package:galinha_karoot/app/modules/teacher/models/TeacherModel.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_root/teacher_root_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/repositories/teacher_repository.dart';
 import 'package:mobx/mobx.dart';
 
@@ -9,12 +10,13 @@ class TeacherPerfilController = _TeacherPerfilBase
 
 abstract class _TeacherPerfilBase with Store {
   final TeacherRepository teacherRepository;
+  final TeacherRootController controllerRoot;
 
 
   @observable
   TeacherModel teacherList;
 
-  _TeacherPerfilBase(this.teacherRepository){
+  _TeacherPerfilBase(this.teacherRepository, this.controllerRoot){
     getList();
   }
 
@@ -28,8 +30,10 @@ abstract class _TeacherPerfilBase with Store {
     teacherRepository.save(model);
   }
 
+  @action
   delete(TeacherModel model) {
     teacherRepository.delete(model);
+    print("Teste delete - controller");
   }
 
   

@@ -36,7 +36,7 @@ class TeacherModel {
         name: doc["name"],
         sobrenome: doc["sobrenome"],
         universidade: doc["universidade"],
-        reference: doc["reference"],
+        reference: doc.reference,
         discMinistradas: doc["discMinistradas"],
         email: doc["email"],
         idClass: doc["idClass"],

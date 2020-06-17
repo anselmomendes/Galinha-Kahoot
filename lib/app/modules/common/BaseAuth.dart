@@ -35,7 +35,12 @@ class Auth implements BaseAuth {
 
   Future<String> signIn(String email, String password) async {
     FirebaseUser user = (await _firebaseAuth.signInWithEmailAndPassword(email: email, password: password)).user;
-    return user.uid;
+    try {
+      return user.uid;
+    } catch (e) {
+      print("Erro de signIn: $e");
+      return null;
+    }
   }
 
   Future<String> signUp(String email, String password) async {
@@ -101,6 +106,8 @@ class Auth implements BaseAuth {
     await _firebaseAuth.sendPasswordResetEmail(email: email);
     return null;
   }
+  
+  
 
 	List metaFields = ["uid", "role", "name", "university"];
 

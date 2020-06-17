@@ -54,6 +54,26 @@ mixin _$TeacherPerfilController on _TeacherPerfilBase, Store {
       ActionController(name: '_TeacherPerfilBase');
 
   @override
+  dynamic save(TeacherModel model) {
+    final _$actionInfo = _$_TeacherPerfilBaseActionController.startAction();
+    try {
+      return super.save(model);
+    } finally {
+      _$_TeacherPerfilBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic delete(TeacherModel model) {
+    final _$actionInfo = _$_TeacherPerfilBaseActionController.startAction();
+    try {
+      return super.delete(model);
+    } finally {
+      _$_TeacherPerfilBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void increment() {
     final _$actionInfo = _$_TeacherPerfilBaseActionController.startAction();
     try {
