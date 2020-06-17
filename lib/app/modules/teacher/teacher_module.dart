@@ -1,5 +1,7 @@
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil/teacher_perfil_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_about/teacher_about_controller.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_page.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_root/teacher_root_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_report_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -26,7 +28,9 @@ import 'pages/teacher_select/teacher_select_page.dart';
 class TeacherModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => TeacherPerfilController(i.get<TeacherRepository>(),i.get<TeacherRootController>())),
+        Bind((i) => TeacherPerfilEditController(i.get<TeacherRepository>())),
+        Bind((i) => TeacherPerfilController(
+            i.get<TeacherRepository>(), i.get<TeacherRootController>())),
         Bind((i) => TeacherAboutController()),
         Bind((i) => TeacherRootController()),
         Bind((i) => TeacherReportController(i.get<CasesRepository>())),
@@ -52,7 +56,8 @@ class TeacherModule extends ChildModule {
         Router('/teacher_report', child: (_, args) => TeacherReportPage()),
         Router('/teacher_root', child: (_, args) => TeacherRootPage()),
         Router('/register', child: (_, args) => TeacherRegisterPage()),
-        Router('/teacher_select', child: (_, args) => TeacherSelectPage())
+        Router('/teacher_select', child: (_, args) => TeacherSelectPage()),
+        Router('/teacher_perfil_edit', child: (_, args) => TeacherPerfilEditPage(teacherModel: args.data,))
       ];
 
   static Inject get to => Inject<TeacherModule>.of();

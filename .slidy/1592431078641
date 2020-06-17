@@ -1,0 +1,4 @@
+lib/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_page.dart
+test/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_page_test.dart
+lib/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_controller.dart
+test/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_controller_test.dart

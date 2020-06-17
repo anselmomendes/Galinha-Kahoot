@@ -32,8 +32,8 @@ class _TeacherPerfilPageState
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
 
-    // Coletando informações do cadastro do professor
-    collectUser();
+    // Coletando informações do usuário professor
+    getUserLogged();
 
     return Scaffold(
       appBar: widget.showAppBar
@@ -43,14 +43,16 @@ class _TeacherPerfilPageState
               title: Text(widget.title),
             )
           : null,
-      floatingActionButton: FloatingActionButton(
+      /* floatingActionButton: FloatingActionButton(
           backgroundColor: appContrastColor,
           child: Icon(Icons.edit),
-          onPressed: () {}),
+          onPressed: () {
+            Navigator.pushNamed(context, 'teacher/teacher_perfil_edit',
+                arguments: model);
+          }), */
       body: Container(
         // height: 550,
         child: Observer(builder: (_) {
-          
           if (controller.teacherList == null)
             return Center(
               child: CircularProgressIndicator(),
@@ -64,7 +66,6 @@ class _TeacherPerfilPageState
             );
           else {
             TeacherModel model = controller.teacherList;
-            print(model.name);
 
             return SingleChildScrollView(
               padding: EdgeInsets.only(
@@ -99,8 +100,7 @@ class _TeacherPerfilPageState
                             fontSize: headerFontSize,
                             fontWeight: headerFontWeight),
                         children: <TextSpan>[
-                          TextSpan(
-                              text: '${model.name}', style: text2TextStyle),
+                          TextSpan(text: model.name, style: text2TextStyle),
                         ],
                       )),
                       Divider(thickness: 2.0),
@@ -131,17 +131,29 @@ class _TeacherPerfilPageState
                         ],
                       )),
                       Divider(thickness: 2.0),
-                      SizedBox(height: screenWidth * 0.7),
+                      SizedBox(height: screenWidth * 0.5),
+                      Center(
+                        child: circularButton(
+                            text: 'Editar dados',
+                            func: () {
+                              Navigator.pushNamed(
+                                  context, 'teacher/teacher_perfil_edit',
+                                  arguments: model);
+                            }),
+                      ),
+                      // Divider(thickness: 2.0),
+                      SizedBox(height: 10),
                       Center(
                         child: circularButton(
                             text: 'Alterar senha',
-                            func: () async {
-                              try {
+                            func: () {
+                              _showVerifyEmailSentDialogConfirm();
+                              /* try {
                                 await auth.sendPasswordResetMail(user.email);
-                                _showVerifyEmailSentDialog();
+                                _showVerifyEmailSentDialogConfirm();
                               } catch (e) {
-                                print("Error reset senha: $e");
-                              }
+                                print("Error em alterar senha: $e");
+                              } */
                             }),
                       ),
                       // Divider(thickness: 2.0),
@@ -164,20 +176,54 @@ class _TeacherPerfilPageState
     );
   }
 
-  void collectUser() async {
+  void getUserLogged() async {
     user = await auth.getCurrentUser();
   }
 
   Future<void> deleteUser() async {
     user = await auth.getCurrentUser();
 
-    String _userUidCheck = await auth.signIn(user.email, _passwordController.text);
+    String _userUidCheck =
+        await auth.signIn(user.email, _passwordController.text);
 
     if (_userUidCheck == null) {
       _passCheck = false;
     } else {
       _passCheck = true;
     }
+  }
+
+  void _showVerifyEmailSentDialogConfirm() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Aviso"),
+          content: new Text("Deseja alterar a senha?"),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("Cancelar"),
+              onPressed: () {
+                Modular.to.pop();
+              },
+            ),
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () async {
+                try {
+                  await auth.sendPasswordResetMail(user.email);
+                  // _showVerifyEmailSentDialogConfirm();
+                  _showVerifyEmailSentDialog();
+                } catch (e) {
+                  print("Error em alterar senha: $e");
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _showVerifyEmailSentDialog() {

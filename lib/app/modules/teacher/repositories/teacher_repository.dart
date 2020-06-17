@@ -16,8 +16,6 @@ class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
 
   @override
   Future delete(TeacherModel model) {
-    print("Teste delete - repository");
-
     // TODO: implement delete
     return model.reference.delete();
   }
@@ -25,9 +23,12 @@ class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
   @override
   Future save(TeacherModel model) {
     // TODO: implement save
-    return null;
+    model.reference.updateData({
+      "name": model.name,
+      "university": model.university,
+    });
   }
-  
+
   // Buscar user professor
   @override
   Future<TeacherModel> getAllStream() async {
@@ -45,11 +46,8 @@ class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
         .collection('users')
         .document(firebaseUser.uid)
         .get()
-        .then((value) => TeacherModel.fromDocument(value)
-        
-        );
+        .then((value) => TeacherModel.fromDocument(value));
     return a;
-
   }
 
 /*   @override
@@ -101,6 +99,4 @@ class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
       });
     }
   }
-
-  
 }

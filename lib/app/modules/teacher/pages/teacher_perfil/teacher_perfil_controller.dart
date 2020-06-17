@@ -33,7 +33,6 @@ abstract class _TeacherPerfilBase with Store {
   @action
   delete(TeacherModel model) {
     teacherRepository.delete(model);
-    print("Teste delete - controller");
   }
 
   
