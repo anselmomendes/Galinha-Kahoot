@@ -26,9 +26,7 @@ class _TeacherPerfilPageState
   final TextEditingController _passwordController = TextEditingController();
   final auth = Auth();
   FirebaseUser user;
-  String userEmail;
-  String _userUidCheck;
-  bool _passCheck = true;
+  bool _passCheck = false;
 
   @override
   Widget build(BuildContext context) {
@@ -52,14 +50,7 @@ class _TeacherPerfilPageState
       body: Container(
         // height: 550,
         child: Observer(builder: (_) {
-          /* if (userEmail == null)
-            return Center(
-              child: RaisedButton(
-                onPressed: () => controller.getList(),
-                child: Text('Nenhum usuário registrado'),
-              ),
-            );
-          else  */
+          
           if (controller.teacherList == null)
             return Center(
               child: CircularProgressIndicator(),
@@ -140,17 +131,6 @@ class _TeacherPerfilPageState
                         ],
                       )),
                       Divider(thickness: 2.0),
-                      /* Padding(
-                        padding: EdgeInsets.only(left: screenWidth*0.72),
-                        child: Row(
-                          children: <Widget>[
-                            FloatingActionButton(
-                                backgroundColor: appContrastColor,
-                                child: Icon(Icons.edit),
-                                onPressed: null),
-                          ],
-                        ),
-                      ), */
                       SizedBox(height: screenWidth * 0.7),
                       Center(
                         child: circularButton(
@@ -158,6 +138,7 @@ class _TeacherPerfilPageState
                             func: () async {
                               try {
                                 await auth.sendPasswordResetMail(user.email);
+                                _showVerifyEmailSentDialog();
                               } catch (e) {
                                 print("Error reset senha: $e");
                               }
@@ -169,12 +150,6 @@ class _TeacherPerfilPageState
                         child: circularButton(
                             text: 'Excluir conta',
                             func: () {
-                              // user.delete();
-                              // String senha = '123123';
-                              // auth.signIn(userEmail, senha);
-                              // auth.deleteUser();
-                              // deleteUser();
-                              // controller.delete(model);
                               _showAlertDialogDelete(model: model);
                             }),
                       ),
@@ -191,20 +166,44 @@ class _TeacherPerfilPageState
 
   void collectUser() async {
     user = await auth.getCurrentUser();
-    userEmail = user.email;
   }
 
   Future<void> deleteUser() async {
     user = await auth.getCurrentUser();
 
-    _userUidCheck = await auth.signIn(user.email, _passwordController.text);
-    
-    if (_userUidCheck.length > 0 && _userUidCheck != null) {
-      user.delete();
+    String _userUidCheck = await auth.signIn(user.email, _passwordController.text);
+
+    if (_userUidCheck == null) {
       _passCheck = false;
     } else {
       _passCheck = true;
     }
+  }
+
+  void _showVerifyEmailSentDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        // return object of type Dialog
+        return AlertDialog(
+          title: new Text("Verifique seu email."),
+          content: new Text(
+              "Um link para alterar a senha foi enviado para seu email."),
+          actions: <Widget>[
+            new FlatButton(
+              child: new Text("OK"),
+              onPressed: () {
+                // Navigator.pushNamed(context, Modular.initialRoute);
+                // Modular.to.pop();
+                controller.controllerRoot.logout();
+                Navigator.pushNamedAndRemoveUntil(
+                    context, '/', (Route<dynamic> route) => false);
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 
   void _showAlertDialogDelete({TeacherModel model}) {
@@ -214,8 +213,6 @@ class _TeacherPerfilPageState
     Widget cancelButton = FlatButton(
       child: Text("Cancelar"),
       onPressed: () {
-        // _casesID.text = '';
-        // _teacherID.text = '';
         _passwordController.text = '';
         Modular.to.pop();
       },
@@ -231,8 +228,8 @@ class _TeacherPerfilPageState
         if (_formKey.currentState.validate()) {
           deleteUser();
 
-          if (_passCheck == false) {
-            controller.delete(model);
+          if (_passCheck == true) {
+            // controller.delete(model);
             controller.controllerRoot.logout();
             Navigator.pushNamedAndRemoveUntil(
                 context, '/', (Route<dynamic> route) => false);
@@ -255,15 +252,12 @@ class _TeacherPerfilPageState
             height: screenWidth * 0.3,
             child: Column(
               children: <Widget>[
-                _selectedTextPerfil(),
+                Text("Insira sua senha!"),
                 TextFormField(
                     controller: _passwordController,
                     obscureText: true,
                     decoration: const InputDecoration(labelText: 'Senha'),
                     validator: (String value) {
-                      if (_passCheck == false) {
-                        return "Senha errada!";
-                      }
                       if (value.isEmpty) {
                         return "Por favor, insira uma senha!";
                       } else {
@@ -285,13 +279,5 @@ class _TeacherPerfilPageState
         return alerta;
       },
     );
-  }
-
-  Widget _selectedTextPerfil() {
-    if (_passCheck == false) {
-      return Text("Talvez senha esteja errada!");
-    } else {
-      return Text("Insira sua senha!");
-    }
   }
 }
