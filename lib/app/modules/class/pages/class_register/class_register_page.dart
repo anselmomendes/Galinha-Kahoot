@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -7,6 +8,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_register/class_register_controller.dart';
+import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
@@ -32,7 +34,7 @@ class _ClassRegisterPageState
   // String nomeCidade = "";
   // Variaveis para o status da class
   var _status = ['Ativado', 'Desativado'];
-  var _itemSelecionado = 'Ativado';
+  var _itemSelected = 'Ativado';
 
   Timestamp myTimeStamp;
   DateTime myDateTime;
@@ -54,11 +56,17 @@ class _ClassRegisterPageState
   // Código de acesso da class de 4 dígitos
   int _accessCode = 999 + Random().nextInt(9999 - 999);
 
+  final auth = Auth();
+  FirebaseUser user;
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     ClassModel model = ClassModel();
     CasesModel model2 = CasesModel();
+
+    // Coletando informações do usuário professor
+    getUserLogged();
 
     return Scaffold(
       appBar: AppBar(
@@ -99,13 +107,13 @@ class _ClassRegisterPageState
                         child: Text(dropDownStringItem),
                       );
                     }).toList(),
-                    onChanged: (String novoItemSelecionado) {
-                      _dropDownItemSelected(novoItemSelecionado);
+                    onChanged: (String newItemSelected) {
+                      _dropDownItemSelected(newItemSelected);
                       setState(() {
-                        this._itemSelecionado = novoItemSelecionado;
+                        this._itemSelected = newItemSelected;
                       });
                     },
-                    value: _itemSelecionado,
+                    value: _itemSelected,
                   ),
                   Divider(height: 20),
                   Text("Adicione o nome da turma:", style: headerTextStyle),
@@ -232,7 +240,7 @@ class _ClassRegisterPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
-                              // Novo modelo para capturar data e horário
+                              // Novo modelo para capturar data/horário e temporizador
                               myDateTime = DateTime.now();
                               model.creationDate =
                                   Timestamp.fromDate(myDateTime);
@@ -240,7 +248,31 @@ class _ClassRegisterPageState
                                   myDateTime.add(resultingDuration));
                               model.modifiedDate =
                                   Timestamp.fromDate(myDateTime);
+                              model.timer = resultingDuration.inMinutes;
 
+                              // Salvando nome da turma
+                              model.className = _className.text;
+                              // Salvando código de acesso
+                              model.accessCode = _accessCode;
+                              // Relacionando info de caso com a turma
+                              model.titleCase = _titleCases;
+                              model.casesID = _casesID;
+                              // Relacionando professor com a turma
+                              model.teacherID = user.uid;
+                              
+
+                              // Condicional para transformar o status e salva no model
+                              if (_itemSelected.compareTo('Ativado') == 0) {
+                                model.status = true;
+                              } else {
+                                model.status = false;
+                              }
+                              
+                              controller.save(model);
+                              _showAlertDialog(context);
+
+                              /* == Comentários importantes == */
+                              
                               // Modelo antigo de captura de data e horário
                               // model.creationDate =
                               //     new DateFormat("dd/MM/y hh:mm")
@@ -249,19 +281,14 @@ class _ClassRegisterPageState
                                   .add(resultingDuration)
                                   .toString(); */
                               // model.timer = resultingDuration.toString();
-                              model.timer = resultingDuration.inMinutes;
-                              model.casesID = _casesID;
-                              model.className = _className.text;
-                              model.titleCase = _titleCases;
-
                               // model.className = _className;
 
                               // model.creationDate = creationDate;
                               // model.endTime = re
                               // Para teste
                               /* print("Data de criação; ${creationDate}");
-                                                                        print("Data de fechamento: ${endTime}");
-                                                                        print("Data com temporizador: ${standartTimer}"); */
+                                 print("Data de fechamento: ${endTime}");
+                                 print("Data com temporizador: ${standartTimer}"); */
 
                               // var testTime = DateTime.now();
                               // var testTime2 =
@@ -271,19 +298,6 @@ class _ClassRegisterPageState
                               // var diferenca = testTime2.difference(testTime);
                               // print(diferenca);
                               // print(testTime.isBefore(testTime2));
-
-                              if (_itemSelecionado.compareTo('Ativado') == 0) {
-                                model.status = true;
-                              } else {
-                                model.status = false;
-                              }
-
-                              model.accessCode = _accessCode;
-
-                              print("Código de acesso: ${_accessCode}");
-
-                              controller.save(model);
-                              _showAlertDialog(context);
                             },
                             color: appContrastColor,
                             child: Text('Salvar',
@@ -303,12 +317,20 @@ class _ClassRegisterPageState
     );
   }
 
-  void _dropDownItemSelected(String novoItem) {
+  // Verifica usuário logado
+  void getUserLogged() async {
+    user = await auth.getCurrentUser();
+    print(user.email);
+  }
+
+  // Menu de opções (Ativado ou Desativado)
+  void _dropDownItemSelected(String newItem) {
     setState(() {
-      this._itemSelecionado = novoItem;
+      this._itemSelected = newItem;
     });
   }
 
+  // Aviso que a turma foi criada
   void _showAlertDialog(BuildContext context) {
     // configura o button
     Widget okButton = FlatButton(

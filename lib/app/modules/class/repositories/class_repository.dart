@@ -32,7 +32,7 @@ class ClassRepository extends Disposable {
         'modifiedDate': model.modifiedDate,
         'endTime': model.endTime,
         'timer': model.timer,
-        'right': model.right,
+        'teacherID': model.teacherID,
         'position': total
       });
       print("ID da class: ${model.reference.documentID}");
@@ -52,7 +52,7 @@ class ClassRepository extends Disposable {
         'modifiedDate': model.modifiedDate,
         'endTime': model.endTime,
         'timer': model.timer,
-        'right': model.right,
+        'teacherID': model.teacherID,
         'position': total
       });
     }

@@ -33,7 +33,7 @@ class _ClassEditPageState
 
   // Variaveis para o status da class
   var status = ['Ativado', 'Desativado'];
-  String itemSelecionado = 'Ativado';
+  String itemSelected = 'Ativado';
   String currentStatus;
 
   // Variável para seleção do caso no RadioListTile
@@ -97,15 +97,15 @@ class _ClassEditPageState
                         child: Text(dropDownStringItem),
                       );
                     }).toList(),
-                    onChanged: (String novoItemSelecionado) {
-                      itemSelecionado = novoItemSelecionado;
-                      print(itemSelecionado);
+                    onChanged: (String newItemSelected) {
+                      itemSelected = newItemSelected;
+                      print(itemSelected);
                       setState(() {
-                        itemSelecionado = novoItemSelecionado;
+                        itemSelected = newItemSelected;
                       });
                       // });
                     },
-                    value: itemSelecionado,
+                    value: itemSelected,
                   ),
                   Divider(height: 20),
                   Text("Alterar nome da turma:", style: headerTextStyle),
@@ -225,16 +225,19 @@ class _ClassEditPageState
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
+                              modifiedDate = DateTime.now();
+
                               widget.classModel.timer =
                                   resultingDuration.inMinutes;
                               widget.classModel.className =
                                   widget.classModel.className;
+                              widget.classModel.endTime = Timestamp.fromDate(
+                                  modifiedDate.add(resultingDuration));
 
                               if (selectedCase != null) {
                                 widget.classModel.titleCase = _titleCases;
                               }
-
-                              modifiedDate = DateTime.now();
+                              
                               widget.classModel.modifiedDate =
                                   Timestamp.fromDate(modifiedDate);
 
@@ -248,7 +251,7 @@ class _ClassEditPageState
                               // print(diferenca);
                               // print(testTime.isBefore(testTime2));
 
-                              if (itemSelecionado.compareTo('Ativado') == 0) {
+                              if (itemSelected.compareTo('Ativado') == 0) {
                                 widget.classModel.status = true;
                               } else {
                                 widget.classModel.status = false;

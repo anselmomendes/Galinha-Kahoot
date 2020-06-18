@@ -181,7 +181,7 @@ class _TeacherPerfilPageState
   }
 
   Future<void> deleteUser() async {
-    user = await auth.getCurrentUser();
+    // user = await auth.getCurrentUser();
 
     String _userUidCheck =
         await auth.signIn(user.email, _passwordController.text);
@@ -275,7 +275,8 @@ class _TeacherPerfilPageState
           deleteUser();
 
           if (_passCheck == true) {
-            // controller.delete(model);
+            controller.delete(model);
+            user.delete();
             controller.controllerRoot.logout();
             Navigator.pushNamedAndRemoveUntil(
                 context, '/', (Route<dynamic> route) => false);

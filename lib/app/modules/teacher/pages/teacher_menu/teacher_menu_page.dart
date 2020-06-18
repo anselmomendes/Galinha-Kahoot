@@ -112,8 +112,8 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       child: const Text('CRIAR'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
-                        Navigator.pushNamed(context, '/teacher_select');
-                        //Navigator.pushNamed(context, '/class/class_register/');
+                        // Navigator.pushNamed(context, '/teacher_select');
+                        Navigator.pushNamed(context, '/class/class_register');
                       },
                     ),
                   ],

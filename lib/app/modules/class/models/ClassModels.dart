@@ -13,7 +13,6 @@ class ClassModel {
   Timestamp endTime;
   int timer;
   int position;
-  String right;
   DocumentReference reference;
 
   ClassModel({
@@ -28,7 +27,7 @@ class ClassModel {
     this.endTime,
     this.timer,
     this.position,
-    this.right = '',
+    this.teacherID = '',
     this.reference,
   });
 
@@ -44,7 +43,7 @@ class ClassModel {
         endTime: doc["endTime"],
         timer: doc["timer"],
         position: doc["position"],
-        right: doc["right"],
+        teacherID: doc["teacherID"],
         reference: doc.reference,
       );
 
@@ -60,6 +59,6 @@ class ClassModel {
         "endTime": endTime,
         "timer": timer,
         "position": position,
-        "right": right,
+        "teacherID": teacherID,
       };
 }
