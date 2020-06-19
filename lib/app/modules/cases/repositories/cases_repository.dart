@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
@@ -14,6 +15,7 @@ class CasesRepository extends Disposable implements ICasesRepository {
 
   @override
   Future save(CasesModel model) async {
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
     int total = (await Firestore.instance.collection('Cases').getDocuments())
         .documents
         .length;
@@ -43,7 +45,10 @@ class CasesRepository extends Disposable implements ICasesRepository {
         'position': total
       });
       //print("ID da case: ${model.reference.documentID}");
-      model.reference.updateData({'id': model.reference.documentID});
+      model.reference.updateData({
+        'id': model.reference.documentID,
+        'teacherID': firebaseUser.uid
+        });
     } else {
       model.reference.updateData({
         'title': model.title,

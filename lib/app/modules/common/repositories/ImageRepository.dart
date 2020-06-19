@@ -70,7 +70,7 @@ class ImageRepository extends Disposable {
 	}
 
 	Future<ImageModel> getByRelated(CasesModel _case) async{
-		var doc = await getSingleDocument({"relatedTo": _case.idCases});
+		var doc = await getSingleDocument({"relatedTo": _case.id});
 		return ImageModel.fromDocument(doc);
 	}
 
@@ -84,7 +84,7 @@ class ImageRepository extends Disposable {
 		String format = ImageUploader.getImageFormat(file);
 		var image = ImageModel(md5: md5hash, 
 				   		format: format, 
-				   		relatedTo: _case.idCases,
+				   		relatedTo: _case.id,
 				   		createdAt: DateTime.now()
 		);
 

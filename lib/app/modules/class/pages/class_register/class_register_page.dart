@@ -56,17 +56,14 @@ class _ClassRegisterPageState
   // Código de acesso da class de 4 dígitos
   int _accessCode = 999 + Random().nextInt(9999 - 999);
 
-  final auth = Auth();
-  FirebaseUser user;
-
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     ClassModel model = ClassModel();
     CasesModel model2 = CasesModel();
 
-    // Coletando informações do usuário professor
-    getUserLogged();
+    /* // Coletando informações do usuário professor
+    getUserLogged(); */
 
     return Scaffold(
       appBar: AppBar(
@@ -257,9 +254,6 @@ class _ClassRegisterPageState
                               // Relacionando info de caso com a turma
                               model.titleCase = _titleCases;
                               model.casesID = _casesID;
-                              // Relacionando professor com a turma
-                              model.teacherID = user.uid;
-                              
 
                               // Condicional para transformar o status e salva no model
                               if (_itemSelected.compareTo('Ativado') == 0) {
@@ -315,12 +309,6 @@ class _ClassRegisterPageState
         }),
       ),
     );
-  }
-
-  // Verifica usuário logado
-  void getUserLogged() async {
-    user = await auth.getCurrentUser();
-    print(user.email);
   }
 
   // Menu de opções (Ativado ou Desativado)

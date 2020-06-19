@@ -200,7 +200,7 @@ class _ClassEditPageState
                                           print(index);
                                           //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
-                                          _casesID = model.idCases;
+                                          _casesID = model.id;
                                           _titleCases = model.title;
                                         },
                                         selected: selectedCase == model,

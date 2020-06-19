@@ -3,7 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class CasesModel {
   String title;
   String description;
-  String idCases;
+  String id;
+  String teacherID;
   String topicOne;
   String textOne;
   String imageUrlOne;
@@ -30,7 +31,8 @@ class CasesModel {
   CasesModel(
       {this.title,
       this.description,
-      this.idCases,
+      this.id,
+      this.teacherID,
       this.topicOne,
       this.textOne,
       this.imageUrlOne,
@@ -57,7 +59,8 @@ class CasesModel {
   factory CasesModel.fromDocument(DocumentSnapshot doc) => CasesModel(
         title: doc['title'],
         description: doc['description'],
-        idCases: doc['idCases'],
+        id: doc['id'],
+        teacherID: doc['teacherID'],
         topicOne: doc['topicOne'],
         textOne: doc['textOne'],
         imageUrlOne: doc['imageUrlOne'],

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:dio/dio.dart';
@@ -15,6 +16,7 @@ class ClassRepository extends Disposable {
 
   @override
   Future save(ClassModel model) async {
+    var firebaseUser = await FirebaseAuth.instance.currentUser();
     int total = (await Firestore.instance.collection('Class').getDocuments())
         .documents
         .length;
@@ -27,7 +29,7 @@ class ClassRepository extends Disposable {
         'status': model.status,
         'casesID': model.casesID,
         'titleCase': model.titleCase,
-        'teacherID': model.teacherID,
+        // 'teacherID': model.teacherID,
         'creationDate': model.creationDate,
         'modifiedDate': model.modifiedDate,
         'endTime': model.endTime,
@@ -37,8 +39,9 @@ class ClassRepository extends Disposable {
       });
       print("ID da class: ${model.reference.documentID}");
       model.reference.updateData({
-        'id' : model.reference.documentID
-      });
+        'id': model.reference.documentID, 
+        'teacherID': firebaseUser.uid
+        });
     } else {
       model.reference.updateData({
         // 'id': model.id,
@@ -47,7 +50,7 @@ class ClassRepository extends Disposable {
         'status': model.status,
         'casesID': model.casesID,
         'titleCase': model.titleCase,
-        'teacherID': model.teacherID,
+        // 'teacherID': model.teacherID,
         'creationDate': model.creationDate,
         'modifiedDate': model.modifiedDate,
         'endTime': model.endTime,
