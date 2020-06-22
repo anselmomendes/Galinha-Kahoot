@@ -26,23 +26,24 @@ class _TeacherSelectPageState extends State<TeacherSelectPage> {
             child: Column(
               children: [
                 GestureDetector(
-                  child: Image.asset('assets/img_casos/Layout1.png'),
-                  onTap: () {
-                    print('Test');
-                  },
+                  child: Image.asset('assets/img_casos/0001.jpg'),
+                  onTap: () {},
                 ),
-                SizedBox(
-                  height: 50,
+                SizedBox(height: 50),
+                GestureDetector(
+                  child: Image.asset('assets/img_casos/0002.jpg'),
+                  onTap: () {},
                 ),
-                Image.asset('assets/img_casos/Layout2.png'),
-                SizedBox(
-                  height: 50,
+                SizedBox(height: 50),
+                GestureDetector(
+                  child: Image.asset('assets/img_casos/0003.jpg'),
+                  onTap: () {},
                 ),
-                Image.asset('assets/img_casos/Layout3.png'),
-                SizedBox(
-                  height: 50,
+                SizedBox(height: 50),
+                GestureDetector(
+                  child: Image.asset('assets/img_casos/0004.jpg'),
+                  onTap: () {},
                 ),
-                Image.asset('assets/img_casos/Layout4.png'),
               ],
             ),
           ),

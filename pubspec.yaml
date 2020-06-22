@@ -59,10 +59,10 @@ flutter:
     - assets/bits.png
     - assets/hemograma.png
     - assets/logo_bitsjr.png
-    - assets/img_casos/Layout1.png
-    - assets/img_casos/Layout2.png
-    - assets/img_casos/Layout3.png
-    - assets/img_casos/Layout4.png
+    - assets/img_casos/0001.jpg
+    - assets/img_casos/0002.jpg
+    - assets/img_casos/0003.jpg
+    - assets/img_casos/0004.jpg
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
