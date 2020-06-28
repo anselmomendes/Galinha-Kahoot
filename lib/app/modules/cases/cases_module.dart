@@ -29,7 +29,8 @@ class CasesModule extends ChildModule {
             child: (_, args) => CasesHomePage(model: args.data)),
         Router('/cases_register', child: (_, args) => CasesRegisterPage()),
         Router('/cases_single', child: (_, args) => CasesSinglePage()),
-        Router('/cases_edit', child: (_, args) => CasesEditPage()),
+        Router('/cases_edit', 
+            child: (_, args) => CasesEditPage(modelTest: args.data)),
       ];
 
   static Inject get to => Inject<CasesModule>.of();

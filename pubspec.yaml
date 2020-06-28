@@ -29,8 +29,8 @@ dependencies:
   firebase_storage: any
   firebase_auth: any
   intl: ^0.16.1
-  # crypto: 2.1.4
-  crypto: 2.1.3 # essa versão funcionou no Flutter 1.12.13+hotfix.8
+  crypto: 2.1.4
+  # crypto: 2.1.3 # essa versão funcionou no Flutter 1.12.13+hotfix.8
   flutter_duration_picker: "^1.0.0"
   flutter:
     sdk: flutter
@@ -63,6 +63,10 @@ flutter:
     - assets/img_casos/02.jpg
     - assets/img_casos/03.jpg
     - assets/img_casos/04.jpg
+    - assets/Layout_cases/layout_1.jpg
+    - assets/Layout_cases/layout_2.jpg
+    - assets/Layout_cases/layout_3.jpg
+    - assets/Layout_cases/layout_4.jpg
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
