@@ -9,26 +9,15 @@ part of 'teacher_root_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$TeacherRootController on _TeacherRootBase, Store {
-  final _$selectedPageAtom = Atom(name: '_TeacherRootBase.selectedPage');
-
   @override
-  ModuleCallback get selectedPage {
-    _$selectedPageAtom.context.enforceReadPolicy(_$selectedPageAtom);
-    _$selectedPageAtom.reportObserved();
-    return super.selectedPage;
-  }
-
-  @override
-  set selectedPage(ModuleCallback value) {
-    _$selectedPageAtom.context.conditionallyRunInAction(() {
-      super.selectedPage = value;
-      _$selectedPageAtom.reportChanged();
-    }, _$selectedPageAtom, name: '${_$selectedPageAtom.name}_set');
+  ObservableFuture<dynamic> logout() {
+    final _$future = super.logout();
+    return ObservableFuture<dynamic>(_$future);
   }
 
   @override
   String toString() {
-    final string = 'selectedPage: ${selectedPage.toString()}';
+    final string = '';
     return '{$string}';
   }
 }
