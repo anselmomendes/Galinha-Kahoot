@@ -22,22 +22,22 @@ class _CasesSintomasPageState
   final _topicOne = TextEditingController();
   final _textOne = TextEditingController();
   final _imageUrlOne = TextEditingController();
-  String type;
 
-  Map<String, dynamic> mapTest = {"type": "title", "content": "content"};
+  // Map<String, dynamic> mapTest = {"type": "title", "content": "content"};
   List listTest = [];
 
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
       if (controller.editMode) {
-        return modoEdicao(widget.model);
+        return modeEdition(widget.model);
       } else
-        return modoVisualizacao();
+        return modeVisualisation();
     });
   }
 
-  Scaffold modoVisualizacao() {
+  // Modo visualização do tópico do caso
+  Scaffold modeVisualisation() {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
@@ -83,7 +83,8 @@ class _CasesSintomasPageState
     );
   }
 
-  Scaffold modoEdicao(CasesModel model) {
+  // Modo edição (adicionar ou excluir campos)
+  Scaffold modeEdition(CasesModel model) {
     var screenWidth = MediaQuery.of(context).size.width;
 
     // Iniciado os campos com os texto do db
@@ -258,42 +259,44 @@ class _CasesSintomasPageState
     );
   }
 
+  // Adiciona um campo para texto
   void _addText() {
     Map<String, dynamic> mapTestText = {"type": "title", "content": "content"};
 
     mapTestText['type'] = 'text';
     listTest.add(mapTestText);
-    // controller.editMode = true;
     setState(() {
       listTest;
     });
   }
 
+  // Adiciona um campo para imagem
   void _addImage() {
     Map<String, dynamic> mapTestImage = {"type": "title", "content": "content"};
 
     mapTestImage['type'] = 'image';
     listTest.add(mapTestImage);
-    // controller.editMode = true;
     setState(() {
       listTest;
     });
   }
 
+  // Adiciona um campo para título
   void _addTitle() {
     Map<String, dynamic> mapTestTitle = {"type": "title", "content": "content"};
 
     mapTestTitle['type'] = 'title';
     listTest.add(mapTestTitle);
-    // controller.editMode = true;
     setState(() {
       listTest;
     });
   }
 
+  // Exclui campo (último campo inserido)
   void _delField() {
     setState(() {
       listTest.removeLast();
     });
   }
+
 }
