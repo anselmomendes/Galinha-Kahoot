@@ -20,7 +20,8 @@ import 'package:galinha_karoot/app/modules/teacher/pages/teacher_root/teacher_ro
 import 'package:galinha_karoot/app/modules/teacher/services/teacher_service.dart';
 import 'package:galinha_karoot/app/modules/teacher/repositories/teacher_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
+import 'pages/teacher_about/teacher_about_page.dart';
+import 'pages/teacher_perfil/teacher_perfil_page.dart';
 import 'pages/teacher_register/teacher_register_controller.dart';
 import 'pages/teacher_register/teacher_register_page.dart';
 import 'pages/teacher_select/teacher_select_page.dart';
@@ -34,7 +35,6 @@ class TeacherModule extends ChildModule {
         Bind((i) => TeacherAboutController()),
         Bind((i) => TeacherRootController()),
         Bind((i) => TeacherReportController(i.get<CasesRepository>())),
-
         Bind((i) => TeacherMenuController()),
         Bind((i) => TeacherAreaController()),
         Bind((i) => TeacherCadastroController()),
@@ -50,14 +50,23 @@ class TeacherModule extends ChildModule {
         Router('/teacher_login', child: (_, args) => TeacherLoginPage()),
         Router('/teacher_area', child: (_, args) => TeacherAreaPage()),
         Router('/teacher_cadastro', child: (_, args) => TeacherCadastroPage()),
-        Router('/teacher_menu', child: (_, args) => TeacherMenuPage()),
+        Router('/teacher_menu',
+            child: (_, args) => TeacherMenuPage(showAppBar: true)),
         Router('/teacher_list_cases',
-            child: (_, args) => TeacherListCasesPage()),
-        Router('/teacher_report', child: (_, args) => TeacherReportPage()),
+            child: (_, args) => TeacherListCasesPage(showAppBar: true)),
+        Router('/teacher_report',
+            child: (_, args) => TeacherReportPage(showAppBar: true)),
         Router('/teacher_root', child: (_, args) => TeacherRootPage()),
         Router('/register', child: (_, args) => TeacherRegisterPage()),
         Router('/teacher_select', child: (_, args) => TeacherSelectPage()),
-        Router('/teacher_perfil_edit', child: (_, args) => TeacherPerfilEditPage(teacherModel: args.data,))
+        Router('/teacher_perfil_edit',
+            child: (_, args) => TeacherPerfilEditPage(
+                  teacherModel: args.data,
+                )),
+        Router('/teacher_about',
+            child: (_, args) => TeacherAboutPage(showAppBar: true)),
+        Router('/teacher_perfil',
+            child: (_, args) => TeacherPerfilPage(showAppBar: true)),
       ];
 
   static Inject get to => Inject<TeacherModule>.of();

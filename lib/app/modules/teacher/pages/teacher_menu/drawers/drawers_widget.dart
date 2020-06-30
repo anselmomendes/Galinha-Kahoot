@@ -1,17 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_about/teacher_about_module.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_module.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_menu/teacher_menu_module.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil/teacher_perfil_module.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_report_module.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_root/teacher_root_controller.dart';
 
 class DrawersWidget extends StatelessWidget {
   final controller = Modular.get<TeacherRootController>();
 
   ListTile _getTile(
-      {@required String title, @required Function() action, IconData icon}) {
+      {@required String title, IconData icon, @required String route}) {
     return ListTile(
       leading: icon == null ? null : Icon(icon),
       title: Text(
@@ -19,8 +14,8 @@ class DrawersWidget extends StatelessWidget {
         style: TextStyle(fontSize: 20),
       ),
       onTap: () {
-        controller.changePage = action;
         Modular.to.pop();
+        if (route != null) Modular.to.pushNamed(route);
       },
     );
   }
@@ -82,36 +77,23 @@ class DrawersWidget extends StatelessWidget {
                 ),
               ),
               Divider(),
-              _getTile(
-                  icon: Icons.home,
-                  action: () => TeacherMenuModule(
-                        showAppBar: false,
-                      ),
-                  title: "Início"),
+              _getTile(icon: Icons.home, title: "Início", route: null),
               _getTile(
                   icon: Icons.person,
-                  action: () => TeacherPerfilModule(
-                        showAppBar: false,
-                      ),
-                  title: "Meu Perfil"),
+                  title: "Meu Perfil",
+                  route: '/teacher/teacher_perfil'),
               _getTile(
                   icon: Icons.local_hospital,
-                  action: () => TeacherListCasesModule(
-                        showAppBar: false,
-                      ),
-                  title: "Acessar Casos"),
+                  title: "Acessar Casos",
+                  route: '/teacher/teacher_list_cases'),
               _getTile(
                   icon: Icons.description,
-                  action: () => TeacherReportModule(
-                        showAppBar: false,
-                      ),
-                  title: "Relatórios"),
+                  title: "Relatórios",
+                  route: '/teacher/teacher_report'),
               _getTile(
                   icon: Icons.info,
-                  action: () => TeacherAboutModule(
-                        showAppBar: false,
-                      ),
-                  title: "Sobre"),
+                  title: "Sobre",
+                  route: '/teacher/teacher_about'),
               ListTile(
                 leading: Icon(Icons.exit_to_app),
                 title: Text(

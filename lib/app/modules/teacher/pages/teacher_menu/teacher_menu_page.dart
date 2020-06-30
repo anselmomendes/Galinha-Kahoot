@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class TeacherMenuPage extends StatefulWidget {
   final bool showAppBar;
@@ -56,15 +57,14 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         // Navigator.pushNamed(context, '/');
-                        Navigator.pushNamed(
-                            context, '/teacher/teacher_list_cases');
+                        Modular.to.pushNamed('/teacher/teacher_list_cases');
                       },
                     ),
                     FlatButton(
                       color: Colors.redAccent,
                       child: const Text('CRIAR'),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/teacher/teacher_select');
+                        Modular.to.pushNamed('/teacher/teacher_select');
                       },
                     ),
                   ],
@@ -104,7 +104,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/class/class_list');
+                        Modular.to.pushNamed('/class/class_list');
                       },
                     ),
                     FlatButton(
@@ -113,7 +113,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
                         // Navigator.pushNamed(context, '/teacher_select');
-                        Navigator.pushNamed(context, '/class/class_register');
+                        Modular.to.pushNamed('/class/class_register');
                       },
                     ),
                   ],
@@ -152,10 +152,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
-                        Navigator.pushNamed(
-                            //context, '/teacher/teacher_list_cases');
-                            context,
-                            '/teacher/teacher_report');
+                        Modular.to.pushNamed('/teacher/teacher_report');
                       },
                     ),
                   ],
