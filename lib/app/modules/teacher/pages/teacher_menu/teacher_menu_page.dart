@@ -152,7 +152,8 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
-                        Modular.to.pushNamed('/teacher/teacher_report');
+                        // Modular.to.pushNamed('/teacher/teacher_report');
+                        Modular.to.pushNamed('/teacher/teacher_report_select');
                       },
                     ),
                   ],
