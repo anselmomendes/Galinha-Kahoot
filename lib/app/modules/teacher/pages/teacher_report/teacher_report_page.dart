@@ -23,6 +23,7 @@ class _TeacherReportPageState
 
   @override
   Widget build(BuildContext context) {
+    /*
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
@@ -133,6 +134,6 @@ class _TeacherReportPageState
           ),
         ],
       ),
-    );
+    );*/
   }
 }

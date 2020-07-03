@@ -1,3 +1,5 @@
+import 'package:galinha_karoot/app/modules/cases/view_model/cases_viewmodel.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil/teacher_perfil_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_about/teacher_about_controller.dart';
@@ -41,8 +43,11 @@ class TeacherModule extends ChildModule {
         Bind((i) => TeacherLoginController()),
         Bind((i) => TeacherService()),
         Bind((i) => TeacherRegisterController()),
-        Bind((i) => TeacherRepository(
-            firestore: Firestore.instance)), //firestore: Firestore.instance)),
+        Bind((i) => TeacherRepository(firestore: Firestore.instance)),
+        Bind((i) => TeacherListCasesController(
+            casesViewModel: i.get<CasesViewModel>())),
+
+        //firestore: Firestore.instance)),
       ];
 
   @override
