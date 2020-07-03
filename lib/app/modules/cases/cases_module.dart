@@ -1,3 +1,6 @@
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/repositories/quiz_repository.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_single/cases_single_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/store/cases_store.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_controller.dart';
@@ -16,6 +19,9 @@ import 'pages/cases_edit/cases_edit_page.dart';
 class CasesModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        // Bind((i) => CasesQuizController()),
+        // Bind((i) => CasesQuizController()),
+        Bind((i) => QuizRepository()),
         Bind((i) => CasesHomeController(i.get<CasesViewModel>())),
         Bind((i) => CasesRegisterController(i.get<CasesRepository>())),
         Bind((i) => CasesService()),

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class QuestionModel {
+class QuizModel {
   int casesID;
   String type;
   String question;
@@ -13,7 +13,7 @@ class QuestionModel {
   String right;
   DocumentReference reference;
 
-  QuestionModel({
+  QuizModel({
     this.casesID,
     this.type,
     this.question = '',
@@ -27,7 +27,7 @@ class QuestionModel {
     this.reference,
   });
 
-  factory QuestionModel.fromDocument(DocumentSnapshot doc) => QuestionModel(
+  factory QuizModel.fromDocument(DocumentSnapshot doc) => QuizModel(
         casesID: doc["casesID"],
         type: doc['type'],
         question: doc["question"],
