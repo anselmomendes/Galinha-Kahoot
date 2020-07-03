@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_edit/cases_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class CasesEditPage extends StatefulWidget {
   final String title;
-  final Map modelTest;
-  const CasesEditPage({Key key, this.title = "CasesEdit", this.modelTest})
+  final ComponentModel model;
+  const CasesEditPage({Key key, this.title = "CasesEdit", this.model})
       : super(key: key);
 
   @override
@@ -16,44 +17,33 @@ class CasesEditPage extends StatefulWidget {
 
 class _CasesEditPageState
     extends ModularState<CasesEditPage, CasesEditController> {
-  final _topicFour = TextEditingController();
-  final _textFour = TextEditingController();
-  final _imageUrlFour = TextEditingController();
+  TextEditingController initalValue = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-
-    // Iniciado os campos com os texto do db
-    // _topicFour.text = widget.model.topicFour;
-    // _textFour.text = widget.model.textFour;
-    // _imageUrlFour.text = widget.model.imageUrlFour;
 
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
         backgroundColor: appContrastColor,
         title: Text('Editar Campos'),
-        // title: Text('Edição - ${widget.title}'),
         centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
         child: ListView(
           children: <Widget>[
-            Container(height: screenWidth*1.4, child: _selectField()),
+            Container(height: screenWidth * 1.2, child: _selectField()),
             // SizedBox(height: 20),
             circularButton(
                 text: 'Salvar',
-                func: () {
-                  // widget.model.topicFour = _topicFour.text;
-                  // widget.model.textFour = _textFour.text;
-                  // widget.model.imageUrlFour = _imageUrlFour.text;
-                  // if (widget.model.imageUrlFour == '')
-                  //   widget.model.imageUrlFour =
-                  //       'https://livecasthd.com.br/sem_foto.png';
-                  // controller.save(widget.model);
-                  // controller.editMode = false;
+                func: () async {
+                  if (await controller.casesViewModel
+                      .updateWidget(widget.model)) {
+                    _showAlertDialog(context, 'Componente Registrado',
+                        'O componente do caso foi registrado com sucesso!');
+                  }
                 }),
           ],
         ),
@@ -62,18 +52,16 @@ class _CasesEditPageState
   }
 
   Widget _selectField() {
-    if (widget.modelTest["type"].toString().compareTo("title") == 0) {
-      return _fieldTitle();
-    } else if (widget.modelTest["type"] == "text") {
+    if (widget.model.type.compareTo("topic") == 0) {
+      return _fieldTopic();
+    } else if (widget.model.type.compareTo("text") == 0) {
       return _fieldText();
-    } else if (widget.modelTest["type"] == "image") {
+    } else if (widget.model.type.compareTo("image") == 0) {
       return _fieldImage();
     }
-    // print("Não é text ou image");
-    return Text("Não é text ou image");
   }
 
-  Widget _fieldTitle() {
+  Widget _fieldTopic() {
     return Column(
       children: <Widget>[
         SizedBox(height: 5),
@@ -84,9 +72,9 @@ class _CasesEditPageState
         ),
         SizedBox(height: 5),
         TextFormField(
-          controller: _topicFour,
+          controller: initalValue,
           maxLength: 40,
-          //initialValue: 'a',
+          //initialValue: _textFour.text,
           decoration: InputDecoration(
             labelText: 'Digite um título para o caso',
             hintText: 'Digite o título',
@@ -121,7 +109,7 @@ class _CasesEditPageState
         ),
         SizedBox(height: 5),
         TextFormField(
-          controller: _textFour,
+          controller: initalValue,
           maxLength: 1000,
           maxLines: 5,
           //initialValue: widget.model.topicTree,
@@ -160,8 +148,8 @@ class _CasesEditPageState
         SizedBox(height: 5),
         TextFormField(
           maxLength: 50,
-          controller: _imageUrlFour,
-          //initialValue: widget.model.topicTree,
+          controller: initalValue,
+          // initialValue: controller.casesViewModel.casesPage.data[0].toString(),
           decoration: InputDecoration(
             labelText: 'Digite o link da imagem',
             hintText: 'Insira o link',
@@ -182,6 +170,31 @@ class _CasesEditPageState
           ),
         ),
       ],
+    );
+  }
+
+  void _showAlertDialog(BuildContext context, String titulo, String mensagem) {
+    // configura o button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () {
+        Modular.to.pop();
+      },
+    );
+    // configura o  AlertDialog
+    AlertDialog alerta = AlertDialog(
+      title: Text(titulo),
+      content: Text(mensagem),
+      actions: [
+        okButton,
+      ],
+    );
+    // exibe o dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
     );
   }
 }

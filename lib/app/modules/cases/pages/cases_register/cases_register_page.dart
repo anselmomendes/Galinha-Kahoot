@@ -198,6 +198,7 @@ class _CasesRegisterPageState
                 children: <Widget>[
                   FlatButton(
                       onPressed: () {
+                        /*
                         // campos de imputs igual;
                         model.title = _title.text;
                         model.description = _description.text;
@@ -243,7 +244,7 @@ class _CasesRegisterPageState
                             'Digite o conteudo do caso '; //_textSeven.text;
                         model.imageUrlSeven =
                             'https://livecasthd.com.br/sem_foto.png'; //_imageUrlSeven.text;
-
+*/
                         controller.save(model);
                         _showAlertDialog(context);
                       },
