@@ -11,6 +11,7 @@ import 'package:galinha_karoot/app/modules/welcome/welcome_module.dart';
 import 'modules/cases/repositories/cases_repository.dart';
 import 'modules/cases/repositories/question_repository.dart';
 import 'modules/cases/store/cases_store.dart';
+import 'modules/cases/view_model/cases_viewmodel.dart';
 import 'modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 
 class AppModule extends MainModule {
@@ -20,7 +21,7 @@ class AppModule extends MainModule {
         Bind((i) => CasesRepository(firestore: Firestore.instance)),
         Bind((i) => QuestionRepository(firestore: Firestore.instance)),
         Bind((i) => CasesStore()),
-        Bind((i) => TeacherListCasesController(i.get<CasesRepository>())),
+        Bind((i) => CasesViewModel(casesRepository: i.get<CasesRepository>())),
       ];
 
   @override
