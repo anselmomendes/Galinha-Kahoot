@@ -30,19 +30,19 @@ class _TeacherListCasesPageState
       body: Container(
         child: Observer(
           builder: (_) {
-            if (controller.casesList.data == null)
+            if (controller.casesViewModel.casesList.data == null)
               return Center(
                 child: CircularProgressIndicator(),
               );
-            else if (controller.casesList.hasError)
+            else if (controller.casesViewModel.casesList.hasError)
               return Center(
                 child: RaisedButton(
-                  onPressed: () => controller.getList(),
+                  onPressed: () => controller.casesViewModel.getList(),
                   child: Text('Error'),
                 ),
               );
             else {
-              List<CasesModel> list = controller.casesList.data;
+              List<CasesModel> list = controller.casesViewModel.casesList.data;
 
               return ListView.builder(
                 itemCount: list.length,
@@ -73,7 +73,6 @@ class _TeacherListCasesPageState
                               ),
                             ),
                             onTap: () {
-                              //controller.store.setModel(model);
                               Navigator.pushNamed(
                                 context,
                                 '/cases/cases_home',
@@ -201,7 +200,7 @@ class _TeacherListCasesPageState
       onPressed: () {
         // _casesID.text = '';
         // _teacherID.text = '';
-        controller.delete(model);
+        controller.casesViewModel.delete(model);
         Modular.to.pop();
       },
     );

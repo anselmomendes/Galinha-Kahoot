@@ -1,87 +1,41 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uuid/uuid.dart';
 
 class CasesModel {
-  String title;
-  String description;
   String id;
-  String teacherID;
-  String topicOne;
-  String textOne;
-  String imageUrlOne;
-  String topicTwo;
-  String textTwo;
-  String imageUrlTwo;
-  String topicTree;
-  String textTree;
-  String imageUrlTree;
-  String topicFour;
-  String textFour;
-  String imageUrlFour;
-  String topicFive;
-  String textFive;
-  String imageUrlFive;
-  String topicSix;
-  String textSix;
-  String imageUrlSix;
-  String topicSeven;
-  String textSeven;
-  String imageUrlSeven;
+  final String title;
+  final String description;
+  final String teacherID;
   DocumentReference reference;
 
-  CasesModel(
-      {this.title,
-      this.description,
-      this.id,
-      this.teacherID,
-      this.topicOne,
-      this.textOne,
-      this.imageUrlOne,
-      this.topicTwo,
-      this.textTwo,
-      this.imageUrlTwo,
-      this.topicTree,
-      this.textTree,
-      this.imageUrlTree,
-      this.topicFour,
-      this.textFour,
-      this.imageUrlFour,
-      this.topicFive,
-      this.textFive,
-      this.imageUrlFive,
-      this.topicSix,
-      this.textSix,
-      this.imageUrlSix,
-      this.reference,
-      this.topicSeven,
-      this.textSeven,
-      this.imageUrlSeven});
+  CasesModel({
+    this.id,
+    this.title,
+    this.description,
+    this.teacherID,
+    this.reference,
+  }) {
+    id = id ?? Uuid().v1();
+  }
 
-  factory CasesModel.fromDocument(DocumentSnapshot doc) => CasesModel(
-        title: doc['title'],
-        description: doc['description'],
-        id: doc['id'],
-        teacherID: doc['teacherID'],
-        topicOne: doc['topicOne'],
-        textOne: doc['textOne'],
-        imageUrlOne: doc['imageUrlOne'],
-        topicTwo: doc['topicTwo'],
-        textTwo: doc['textTwo'],
-        imageUrlTwo: doc['imageUrlTwo'],
-        topicTree: doc['topicTree'],
-        textTree: doc['textTree'],
-        imageUrlTree: doc['imageUrlTree'],
-        topicFour: doc['topicFour'],
-        textFour: doc['textFour'],
-        imageUrlFour: doc['imageUrlFour'],
-        topicFive: doc['topicFive'],
-        textFive: doc['textFive'],
-        imageUrlFive: doc['imageUrlFive'],
-        topicSix: doc['topicSix'],
-        textSix: doc['textSix'],
-        imageUrlSix: doc['imageUrlSix'],
-        topicSeven: doc['topicSeven'],
-        textSeven: doc['textSeven'],
-        imageUrlSeven: doc['imageUrlSeven'],
-        reference: doc.reference,
-      );
+  Map<String, dynamic> toMap() {
+    Map map = Map<String, dynamic>();
+    map['id'] = id;
+    map['title'] = title;
+    map['description'] = description;
+    map['teacherID'] = teacherID;
+    map['reference'] = reference;
+    return map;
+  }
+
+  static CasesModel fromMap(Map<String, dynamic> map) {
+    if (map == null) return null;
+
+    return CasesModel(
+      id: map['id'],
+      title: map['title'],
+      description: map['description'],
+      teacherID: map['teacherID'],
+    );
+  }
 }
