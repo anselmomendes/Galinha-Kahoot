@@ -33,6 +33,7 @@ class _CasesAnamnesePageState
   }
 
   Scaffold modoVisualizacao() {
+    /*
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
@@ -75,10 +76,11 @@ class _CasesAnamnesePageState
           ],
         ),
       ),
-    );
+    );*/
   }
 
   Scaffold modoEdicao(CasesModel model) {
+    /*
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
@@ -197,6 +199,6 @@ class _CasesAnamnesePageState
           ],
         ),
       ),
-    );
+    );*/
   }
 }

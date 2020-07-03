@@ -25,6 +25,7 @@ class _CasesProcedimentoPageState
 
   @override
   Widget build(BuildContext context) {
+    /*
     return Observer(builder: (_) {
       if (controller.editMode) {
         return modoEdicao(widget.model);
@@ -204,6 +205,6 @@ class _CasesProcedimentoPageState
           ],
         ),
       ),
-    );
+    );*/
   }
 }

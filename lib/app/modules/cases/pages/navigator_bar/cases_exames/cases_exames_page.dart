@@ -9,7 +9,8 @@ import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart'
 class CasesExamesPage extends StatefulWidget {
   final String title;
   final CasesModel model;
-  const CasesExamesPage({Key key, this.title = "Exames Complementares", this.model})
+  const CasesExamesPage(
+      {Key key, this.title = "Exames Complementares", this.model})
       : super(key: key);
 
   @override
@@ -24,6 +25,7 @@ class _CasesExamesPageState
 
   @override
   Widget build(BuildContext context) {
+    /*
     return Observer(builder: (_) {
       if (controller.editMode) {
         return modoEdicao(widget.model);
@@ -203,6 +205,6 @@ class _CasesExamesPageState
           ],
         ),
       ),
-    );
+    );*/
   }
 }
