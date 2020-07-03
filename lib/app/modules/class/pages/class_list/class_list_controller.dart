@@ -12,14 +12,22 @@ abstract class _ClassListBase with Store {
 
   @observable
   ObservableStream<List<ClassModel>> classList;
+  @observable
+  ObservableStream<List<ClassModel>> classList2;
 
-  _ClassListBase(this.classRepository){
+  _ClassListBase(this.classRepository) {
+    getListTrue();
     getList();
   }
 
   @action
   getList() {
     classList = classRepository.get().asObservable();
+  }
+
+  @action
+  getListTrue() {
+    classList2 = classRepository.getForTeacher().asObservable();
   }
 
   @action

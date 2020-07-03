@@ -1,11 +1,13 @@
+import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:galinha_karoot/app/modules/cases/view_model/cases_viewmodel.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil/teacher_perfil_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_about/teacher_about_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_perfil_edit/teacher_perfil_edit_page.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report_select/teacher_report_select_controller.dart';
+import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report_select/teacher_report_select_page.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_root/teacher_root_controller.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_report_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_list_cases/teacher_list_cases_page.dart';
@@ -17,7 +19,6 @@ import 'package:galinha_karoot/app/modules/teacher/pages/teacher_cadastro/teache
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_login/teacher_login_controller.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_login/teacher_login_page.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_menu/teacher_menu_page.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_report_page.dart';
 import 'package:galinha_karoot/app/modules/teacher/pages/teacher_root/teacher_root_page.dart';
 import 'package:galinha_karoot/app/modules/teacher/services/teacher_service.dart';
 import 'package:galinha_karoot/app/modules/teacher/repositories/teacher_repository.dart';
@@ -36,7 +37,7 @@ class TeacherModule extends ChildModule {
             i.get<TeacherRepository>(), i.get<TeacherRootController>())),
         Bind((i) => TeacherAboutController()),
         Bind((i) => TeacherRootController()),
-        Bind((i) => TeacherReportController(i.get<CasesRepository>())),
+        Bind((i) => TeacherReportSelectController(i.get<ClassRepository>())),
         Bind((i) => TeacherMenuController()),
         Bind((i) => TeacherAreaController()),
         Bind((i) => TeacherCadastroController()),
@@ -59,8 +60,6 @@ class TeacherModule extends ChildModule {
             child: (_, args) => TeacherMenuPage(showAppBar: true)),
         Router('/teacher_list_cases',
             child: (_, args) => TeacherListCasesPage(showAppBar: true)),
-        Router('/teacher_report',
-            child: (_, args) => TeacherReportPage(showAppBar: true)),
         Router('/teacher_root', child: (_, args) => TeacherRootPage()),
         Router('/register', child: (_, args) => TeacherRegisterPage()),
         Router('/teacher_select', child: (_, args) => TeacherSelectPage()),
@@ -72,6 +71,8 @@ class TeacherModule extends ChildModule {
             child: (_, args) => TeacherAboutPage(showAppBar: true)),
         Router('/teacher_perfil',
             child: (_, args) => TeacherPerfilPage(showAppBar: true)),
+        Router('/teacher_report_select',
+            child: (_, args) => TeacherReportSelectPage(showAppBar: true)),
       ];
 
   static Inject get to => Inject<TeacherModule>.of();

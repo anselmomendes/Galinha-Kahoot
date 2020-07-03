@@ -75,6 +75,15 @@ class ClassRepository extends Disposable {
     return a;
   }
 
+  @override
+  Stream<List<ClassModel>> getForTeacher() {
+    var b = firestore.collection('Class').where('status', isEqualTo: false).orderBy('position').snapshots().map(
+        (query) => query.documents
+            .map((doc) => ClassModel.fromDocument(doc))
+            .toList());
+    return b;
+  }
+
 /*   Future fetchPost(Dio client) async {
     final response =
         await client.get('https://jsonplaceholder.typicode.com/posts/1');

@@ -26,6 +26,23 @@ mixin _$ClassListController on _ClassListBase, Store {
     }, _$classListAtom, name: '${_$classListAtom.name}_set');
   }
 
+  final _$classList2Atom = Atom(name: '_ClassListBase.classList2');
+
+  @override
+  ObservableStream<List<ClassModel>> get classList2 {
+    _$classList2Atom.context.enforceReadPolicy(_$classList2Atom);
+    _$classList2Atom.reportObserved();
+    return super.classList2;
+  }
+
+  @override
+  set classList2(ObservableStream<List<ClassModel>> value) {
+    _$classList2Atom.context.conditionallyRunInAction(() {
+      super.classList2 = value;
+      _$classList2Atom.reportChanged();
+    }, _$classList2Atom, name: '${_$classList2Atom.name}_set');
+  }
+
   final _$_ClassListBaseActionController =
       ActionController(name: '_ClassListBase');
 
@@ -34,6 +51,16 @@ mixin _$ClassListController on _ClassListBase, Store {
     final _$actionInfo = _$_ClassListBaseActionController.startAction();
     try {
       return super.getList();
+    } finally {
+      _$_ClassListBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic getListTrue() {
+    final _$actionInfo = _$_ClassListBaseActionController.startAction();
+    try {
+      return super.getListTrue();
     } finally {
       _$_ClassListBaseActionController.endAction(_$actionInfo);
     }
@@ -61,7 +88,8 @@ mixin _$ClassListController on _ClassListBase, Store {
 
   @override
   String toString() {
-    final string = 'classList: ${classList.toString()}';
+    final string =
+        'classList: ${classList.toString()},classList2: ${classList2.toString()}';
     return '{$string}';
   }
 }

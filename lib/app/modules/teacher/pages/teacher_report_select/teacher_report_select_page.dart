@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_report/teacher_report_controller.dart';
+import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
+import 'teacher_report_select_controller.dart';
 
-class TeacherReportPage extends StatefulWidget {
+class TeacherReportSelectPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
-  const TeacherReportPage(
-      {Key key, this.title = "Relatório", this.showAppBar = true})
+
+  const TeacherReportSelectPage(
+      {Key key, this.title = "Relatório", this.showAppBar})
       : super(key: key);
 
   @override
-  _TeacherReportPageState createState() => _TeacherReportPageState();
+  _TeacherReportSelectPageState createState() =>
+      _TeacherReportSelectPageState();
 }
 
-class _TeacherReportPageState
-    extends ModularState<TeacherReportPage, TeacherReportController> {
-  // Teste anterior
-/*   final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100]; */
+class _TeacherReportSelectPageState extends ModularState<
+    TeacherReportSelectPage, TeacherReportSelectController> {
+  //use 'controller' variable to access controller
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class _TeacherReportPageState
                 children: <Widget>[
                   // Texto fixo na tela
                   SizedBox(height: 25),
-                  Text("Olá professor 'Vegano'! ",
+                  Text("Olá professor! ",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.w600)),
                   SizedBox(height: 5),
@@ -57,11 +57,11 @@ class _TeacherReportPageState
             height: 500,
             child: Observer(
               builder: (_) {
-                if (controller.casesList.data == null)
+                if (controller.classList.data == null)
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                else if (controller.casesList.hasError)
+                else if (controller.classList.hasError)
                   return Center(
                     child: RaisedButton(
                       onPressed: () => controller.getList(),
@@ -69,12 +69,12 @@ class _TeacherReportPageState
                     ),
                   );
                 else {
-                  List<CasesModel> list = controller.casesList.data;
+                  List<ClassModel> list = controller.classList.data;
 
                   return ListView.builder(
                     itemCount: list.length,
                     itemBuilder: (_, index) {
-                      CasesModel model = list[index];
+                      ClassModel model = list[index];
 
                       return Container(
                         height: 100,
@@ -86,36 +86,20 @@ class _TeacherReportPageState
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 ListTile(
-                                  //isThreeLine: true,
-                                  leading: IconButton(
-                                    //color: Colors.brown,
-                                    onPressed: () {
-                                      //controller.save(model);
-                                    },
-                                    icon: Icon(Icons.arrow_forward_ios),
-                                  ),
-                                  /* trailing: IconButton(
-                                  alignment: Alignment.center,
-                                  icon: Icon(Icons.delete),
-                                  color: Colors.red,
-                                  onPressed: () {
-                                    //controller.delete(model);
-                                  },
-                                ), */
+                                  leading: Icon(Icons.arrow_forward_ios),
                                   title: Text(
-                                    'Caso ${model.topicOne}',
+                                    'Turma: ${model.className}',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 18,
                                     ),
                                   ),
                                   subtitle: Text(
-                                    model.textOne,
+                                    'Status: ${model.status}',
                                     style: TextStyle(
                                       fontSize: 16,
                                     ),
                                   ),
-                                  //subtitle: Text(model.right),
                                 ),
                               ],
                             ),
