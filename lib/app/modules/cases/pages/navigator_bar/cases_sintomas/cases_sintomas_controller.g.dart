@@ -26,60 +26,26 @@ mixin _$CasesSintomasController on _CasesSintomasBase, Store {
     }, _$editModeAtom, name: '${_$editModeAtom.name}_set');
   }
 
-  final _$casesListAtom = Atom(name: '_CasesSintomasBase.casesList');
+  final _$listAtom = Atom(name: '_CasesSintomasBase.list');
 
   @override
-  ObservableStream<List<CasesModel>> get casesList {
-    _$casesListAtom.context.enforceReadPolicy(_$casesListAtom);
-    _$casesListAtom.reportObserved();
-    return super.casesList;
+  List<ComponentModel> get list {
+    _$listAtom.context.enforceReadPolicy(_$listAtom);
+    _$listAtom.reportObserved();
+    return super.list;
   }
 
   @override
-  set casesList(ObservableStream<List<CasesModel>> value) {
-    _$casesListAtom.context.conditionallyRunInAction(() {
-      super.casesList = value;
-      _$casesListAtom.reportChanged();
-    }, _$casesListAtom, name: '${_$casesListAtom.name}_set');
-  }
-
-  final _$_CasesSintomasBaseActionController =
-      ActionController(name: '_CasesSintomasBase');
-
-  @override
-  dynamic getList() {
-    final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
-    try {
-      return super.getList();
-    } finally {
-      _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic save(CasesModel model) {
-    final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
-    try {
-      return super.save(model);
-    } finally {
-      _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic delete(CasesModel model) {
-    final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
-    try {
-      return super.delete(model);
-    } finally {
-      _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
-    }
+  set list(List<ComponentModel> value) {
+    _$listAtom.context.conditionallyRunInAction(() {
+      super.list = value;
+      _$listAtom.reportChanged();
+    }, _$listAtom, name: '${_$listAtom.name}_set');
   }
 
   @override
   String toString() {
-    final string =
-        'editMode: ${editMode.toString()},casesList: ${casesList.toString()}';
+    final string = 'editMode: ${editMode.toString()},list: ${list.toString()}';
     return '{$string}';
   }
 }
