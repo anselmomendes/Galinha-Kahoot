@@ -50,8 +50,10 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
   _authCallback(result) async {
     try {
       var user = (await Auth().getCurrentUser());
+      print(user);
       if (user.uid.length > 0 && user.uid != null) {
         var role = await Auth().getUserRole();
+        print(role);
 
         // First check the role of the user
         if (role != null) {
@@ -59,8 +61,10 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
           if (user.isEmailVerified) {
             if (role == "student")
               Navigator.pushNamed(context, '/student/student_menu');
-            else
+            else if (role == "teacher")
               throw Exception("Este usuário já cadastrado como professor!");
+            else
+              throw Exception("Usuário mal cadastrado!");
           } else
             _showVerifyEmailSentDialog(user.email);
         } else {
@@ -70,12 +74,12 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
         throw Exception("Usuário não cadastrado!");
       }
     } catch (e) {
-      _showSignInError(e);
+      _showSignInError(e.toString());
     }
   }
 
-  _authError(PlatformException error) async {
-    _showSignInError(error.message);
+  _authError(error) async {
+    _showSignInError(error);
   }
 
   void _showSignInError(text) {
