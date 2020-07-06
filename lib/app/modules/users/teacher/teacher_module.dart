@@ -46,7 +46,7 @@ class TeacherModule extends ChildModule {
         Bind((i) => TeacherRegisterController()),
         Bind((i) => TeacherRepository(firestore: Firestore.instance)),
         Bind((i) => TeacherListCasesController(
-            casesViewModel: i.get<CasesViewModel>())),
+            casesRepository: i.get<CasesRepository>())),
 
         //firestore: Firestore.instance)),
       ];

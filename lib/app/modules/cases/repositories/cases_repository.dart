@@ -45,18 +45,67 @@ class CasesRepository extends Disposable implements ICasesRepository {
     }
   }
 
-  Stream<List<ComponentModel>> getCasesPage(String idCases, String page) {
+  Stream<List<ComponentModel>> getApresentacao(String idCases) {
     try {
       var list = firestore
-          .collection('CasesPage')
-          .where('idCases', isEqualTo: idCases)
-          .where('page', isEqualTo: page)
+          .collection('apresentacao')
           .orderBy('position')
           .snapshots()
           .map((query) => query.documents
-              .map((doc) => ComponentModel.fromMap(doc.data))
+              .map((doc) => ComponentModel.fromMap(doc))
               .toList());
       return list;
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  Stream<List<ComponentModel>> getAvaliacao(String idCases) {
+    try {
+      var list = firestore.collection('avaliacao');
+      return list
+          //.where('idCases', isEqualTo: idCases)
+          //.where('page', isEqualTo: page)
+          .orderBy('position')
+          .snapshots()
+          .map((query) => query.documents
+              .map((doc) => ComponentModel.fromMap(doc))
+              .toList());
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  Stream<List<ComponentModel>> getInformacao(String idCases) {
+    try {
+      var list = firestore.collection('informacao');
+      return list
+          //.where('idCases', isEqualTo: idCases)
+          //.where('page', isEqualTo: page)
+          .orderBy('position')
+          .snapshots()
+          .map((query) => query.documents
+              .map((doc) => ComponentModel.fromMap(doc))
+              .toList());
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  Stream<List<ComponentModel>> getExames(String idCases) {
+    try {
+      var list = firestore.collection('Exames');
+      return list
+          //.where('idCases', isEqualTo: idCases)
+          //.where('page', isEqualTo: page)
+          .orderBy('position')
+          .snapshots()
+          .map((query) => query.documents
+              .map((doc) => ComponentModel.fromMap(doc))
+              .toList());
     } catch (e) {
       print(e);
       return null;
@@ -78,15 +127,14 @@ class CasesRepository extends Disposable implements ICasesRepository {
 
   Future<bool> createWidget(ComponentModel model) async {
     try {
-      int position =
-          (await Firestore.instance.collection('CasesPage').getDocuments())
+      model.position =
+          (await Firestore.instance.collection('apresentacapo').getDocuments())
               .documents
-              .length;
-
-      model.position = position.toString();
+              .length
+              .toString();
 
       await firestore
-          .collection('CasesPage')
+          .collection('apresentacao')
           .document(model.id)
           .setData(model.toMap());
       return true;
@@ -96,13 +144,16 @@ class CasesRepository extends Disposable implements ICasesRepository {
     }
   }
 
-  Future<bool> deleteWidget(ComponentModel model) async {
+  Future deleteWidget() async {
     try {
-      await firestore.collection('CasesPage').document(model.id).delete();
-      return true;
+      QuerySnapshot a = (await Firestore.instance
+          .collection('apresentacao')
+          .orderBy('position')
+          .getDocuments());
+
+      a.documents[a.documents.length - 1].reference.delete();
     } catch (e) {
       print(e);
-      return false;
     }
   }
 }
