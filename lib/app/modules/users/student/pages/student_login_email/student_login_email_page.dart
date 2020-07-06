@@ -17,7 +17,6 @@ class StudentEmailLoginPage extends StatefulWidget {
 class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
   @override
   Widget build(BuildContext context) {
-    String teste;
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         resizeToAvoidBottomInset: false,
@@ -37,7 +36,6 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
                                   appLogoMediumSize),
                           SizedBox(height: 20),
                           Text(widget.title, style: headerTextStyle),
-                          Text(teste.toString()),
                           EmailPasswordForm(
                               callback: _authCallback, ecallback: _authError),
                           InkWell(
