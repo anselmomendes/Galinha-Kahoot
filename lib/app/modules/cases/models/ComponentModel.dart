@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 class ComponentModel {
@@ -7,6 +8,7 @@ class ComponentModel {
   String type;
   String value;
   String page;
+  DocumentReference reference;
 
   ComponentModel(
       {this.id,
@@ -14,7 +16,8 @@ class ComponentModel {
       this.position,
       this.type,
       this.value,
-      this.page}) {
+      this.page,
+      this.reference}) {
     id = id ?? Uuid().v1();
   }
 
@@ -29,14 +32,12 @@ class ComponentModel {
     return map;
   }
 
-  static ComponentModel fromMap(Map<String, dynamic> map) {
-    return ComponentModel(
+  factory ComponentModel.fromMap(DocumentSnapshot map) => ComponentModel(
       id: map['id'],
       idCases: map['idCases'],
       position: map['position'],
       type: map['type'],
       value: map['value'],
       page: map['page'],
-    );
-  }
+      reference: map.reference);
 }

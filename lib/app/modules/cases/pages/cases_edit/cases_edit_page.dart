@@ -39,11 +39,10 @@ class _CasesEditPageState
             circularButton(
                 text: 'Salvar',
                 func: () async {
-                  if (await controller.casesViewModel
-                      .updateWidget(widget.model)) {
-                    _showAlertDialog(context, 'Componente Registrado',
-                        'O componente do caso foi registrado com sucesso!');
-                  }
+                  //if (await controller.
+                  //updateWidget(widget.model) {
+                  _showAlertDialog(context, 'Componente Registrado',
+                      'O componente do caso foi registrado com sucesso!');
                 }),
           ],
         ),

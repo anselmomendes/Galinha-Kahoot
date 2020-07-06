@@ -29,20 +29,21 @@ class _TeacherListCasesPageState
           : null,
       body: Container(
         child: Observer(
+          name: 'cases',
           builder: (_) {
-            if (controller.casesViewModel.casesList.data == null)
+            if (controller.casesList.data == null)
               return Center(
                 child: CircularProgressIndicator(),
               );
-            else if (controller.casesViewModel.casesList.hasError)
+            else if (controller.casesList.hasError)
               return Center(
                 child: RaisedButton(
-                  onPressed: () => controller.casesViewModel.getList(),
+                  onPressed: () => controller.getList(),
                   child: Text('Error'),
                 ),
               );
             else {
-              List<CasesModel> list = controller.casesViewModel.casesList.data;
+              List<CasesModel> list = controller.casesList.data;
 
               return ListView.builder(
                 itemCount: list.length,
@@ -75,7 +76,7 @@ class _TeacherListCasesPageState
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                '/cases/cases_home',
+                                '/cases/sintomas',
                                 arguments: model,
                               );
                             },
@@ -96,7 +97,7 @@ class _TeacherListCasesPageState
                                 onPressed: () {
                                   Navigator.pushNamed(
                                     context,
-                                    '/cases/cases_home',
+                                    '/cases/sintomas',
                                     arguments: model,
                                   );
                                 },
@@ -200,7 +201,7 @@ class _TeacherListCasesPageState
       onPressed: () {
         // _casesID.text = '';
         // _teacherID.text = '';
-        controller.casesViewModel.delete(model);
+        //controller.delete(model);
         Modular.to.pop();
       },
     );

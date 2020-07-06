@@ -9,6 +9,7 @@ import 'package:galinha_karoot/app/app_widget.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:galinha_karoot/app/modules/welcome/welcome_module.dart';
+import 'modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
 import 'modules/cases/repositories/cases_repository.dart';
 import 'modules/cases/repositories/question_repository.dart';
 import 'modules/cases/store/cases_store.dart';
@@ -22,10 +23,8 @@ class AppModule extends MainModule {
         Bind((i) => CasesRepository(firestore: Firestore.instance)),
         Bind((i) => QuestionRepository(firestore: Firestore.instance)),
         Bind((i) => CasesStore()),
-        Bind((i) => TeacherListCasesController(
-            casesViewModel: i.get<CasesViewModel>())),
         Bind((i) => ClassRepository(firestore: Firestore.instance)),
-        Bind((i) => CasesViewModel(casesRepository: i.get<CasesRepository>())),
+        //Bind((i) => CasesViewModel(casesRepository: i.get<CasesRepository>())),
       ];
 
   @override
