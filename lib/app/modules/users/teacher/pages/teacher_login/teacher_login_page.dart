@@ -67,7 +67,7 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
         throw Exception("Usuário não cadastrado!");
       }
     } catch (e) {
-      _showSignInError(e);
+      _showSignInError(e.toString());
     }
   }
 
