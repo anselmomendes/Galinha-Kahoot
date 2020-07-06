@@ -110,7 +110,7 @@ class Auth implements BaseAuth {
     return null;
   }
 
-  List metaFields = ["uid", "role", "name", "university"];
+  List metaFields = ["uid", "role", "name", "university", "profile_pic"];
 
   Future<bool> createUserMeta(
       String role, String name, String university) async {
@@ -131,7 +131,8 @@ class Auth implements BaseAuth {
           "uid": currentUser.uid,
           "role": role,
           "name": name,
-          "university": university
+          "university": university,
+          "profile_pic": ""
         });
 
         // add({"uid": currentUser.uid, "role": role, "name": name, "university": university});
