@@ -15,12 +15,12 @@ abstract class _WelcomeBase with Store {
   String name = '';
 
   autoLogIn() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String userId = prefs.getString('username');
+    // final SharedPreferences prefs = await SharedPreferences.getInstance();
+    // final String userId = prefs.getString('username');
 
-    if (userId != null) {
-      return true;
-    }
+    // if (userId != null) {
+    //   return true;
+    // }
     return false;
   }
 

@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/cases_module.dart';
 import 'package:galinha_karoot/app/modules/class/class_module.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
-import 'package:galinha_karoot/app/modules/student/student_module.dart';
-import 'package:galinha_karoot/app/modules/teacher/teacher_module.dart';
+import 'package:galinha_karoot/app/modules/users/student/student_module.dart';
+import 'package:galinha_karoot/app/modules/users/teacher/teacher_module.dart';
 import 'package:galinha_karoot/app/app_controller.dart';
 import 'package:galinha_karoot/app/app_widget.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,7 +13,7 @@ import 'modules/cases/repositories/cases_repository.dart';
 import 'modules/cases/repositories/question_repository.dart';
 import 'modules/cases/store/cases_store.dart';
 import 'modules/cases/view_model/cases_viewmodel.dart';
-import 'modules/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
+import 'modules/users/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 
 class AppModule extends MainModule {
   @override
