@@ -1,5 +1,5 @@
+import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
-import 'package:galinha_karoot/app/modules/cases/view_model/cases_viewmodel.dart';
 import 'pages/teacher_list_cases/teacher_list_cases_controller.dart';
 import 'pages/teacher_perfil_edit/teacher_perfil_edit_controller.dart';
 import 'pages/teacher_perfil/teacher_perfil_controller.dart';
