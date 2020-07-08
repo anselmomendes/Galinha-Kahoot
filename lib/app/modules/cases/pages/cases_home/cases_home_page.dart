@@ -6,6 +6,7 @@ import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_avali
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_exames/cases_exames_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_kahoot/cases_kahoot_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_procedimento/cases_procedimento_module.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
 
@@ -16,6 +17,7 @@ class CasesHomePage extends StatefulWidget {
   _CasesHomePageState createState() => _CasesHomePageState();
 }
 
+
 class _CasesHomePageState
     extends ModularState<CasesHomePage, CasesHomeController> {
   final List<Widget> _widgetOptions = <Widget>[
@@ -24,7 +26,8 @@ class _CasesHomePageState
     CasesAvaliacaoModule(),
     CasesProcedimentoModule(),
     CasesExamesModule(),
-    CasesKahootModule(),
+    // CasesKahootModule(),
+    CasesQuizModule(),
     CasesRelatorioModule(),
   ];
 
@@ -47,10 +50,7 @@ class _CasesHomePageState
             },
             items: [
               BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.format_list_numbered,
-                  color: Colors.white,
-                ),
+                icon: Icon(Icons.format_list_numbered, color: Colors.white),
                 backgroundColor: Colors.redAccent,
                 title: Text('A', style: TextStyle(color: Colors.white)),
               ),

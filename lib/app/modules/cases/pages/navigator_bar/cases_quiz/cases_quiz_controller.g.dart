@@ -47,11 +47,11 @@ mixin _$CasesQuizController on _CasesQuizControllerBase, Store {
       ActionController(name: '_CasesQuizControllerBase');
 
   @override
-  dynamic getList() {
+  dynamic getList(String casesID) {
     final _$actionInfo =
         _$_CasesQuizControllerBaseActionController.startAction();
     try {
-      return super.getList();
+      return super.getList(casesID);
     } finally {
       _$_CasesQuizControllerBaseActionController.endAction(_$actionInfo);
     }

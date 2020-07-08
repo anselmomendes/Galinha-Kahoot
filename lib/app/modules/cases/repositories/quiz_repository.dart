@@ -29,10 +29,8 @@ class QuizRepository extends Disposable {
         'right': model.right,
         'position': total
       });
-      model.reference.updateData({
-        'id': model.reference.documentID,
-        'teacherID': firebaseUser.uid
-        });
+      model.reference.updateData(
+          {'id': model.reference.documentID, 'teacherID': firebaseUser.uid});
     } else {
       model.reference.updateData({
         'casesID': model.casesID,
@@ -56,13 +54,23 @@ class QuizRepository extends Disposable {
 
   @override
   Stream<List<QuizModel>> get() {
-    var a = firestore.collection('Cases').orderBy('position').snapshots().map(
-        (query) => query.documents
-          .map((doc) => QuizModel.fromDocument(doc))
-            .toList());
+    var a = firestore.collection('Quiz').orderBy('position').snapshots().map(
+        (query) =>
+            query.documents.map((doc) => QuizModel.fromDocument(doc)).toList());
     return a;
   }
 
+  @override
+  Stream<List<QuizModel>> getQuiz(String casesID) {
+    var a = firestore
+        .collection('Quiz')
+        .where('casesID', isEqualTo: '$casesID')
+        .orderBy('position')
+        .snapshots()
+        .map((query) =>
+            query.documents.map((doc) => QuizModel.fromDocument(doc)).toList());
+    return a;
+  }
 
   //dispose will be called automatically
   @override

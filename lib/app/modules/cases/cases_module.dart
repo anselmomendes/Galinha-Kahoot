@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/quiz_repository.dart';
@@ -21,12 +22,13 @@ class CasesModule extends ChildModule {
   List<Bind> get binds => [
         // Bind((i) => CasesQuizController()),
         // Bind((i) => CasesQuizController()),
-        Bind((i) => QuizRepository()),
+        // Bind((i) => QuizRepository()),
         Bind((i) => CasesHomeController(i.get<CasesViewModel>())),
         Bind((i) => CasesRegisterController(i.get<CasesRepository>())),
         Bind((i) => CasesService()),
         Bind((i) => CasesSingleController(i.get<CasesStore>())),
         Bind((i) => CasesEditController(i.get<CasesViewModel>())),
+        Bind((i) => QuizRepository(firestore: Firestore.instance)),
       ];
 
   @override
