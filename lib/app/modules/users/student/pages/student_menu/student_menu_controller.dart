@@ -1,16 +1,19 @@
+import 'package:galinha_karoot/app/modules/class/models/StudentClassMeta.dart';
+import 'package:galinha_karoot/app/modules/users/student/repositories/student_repository.dart';
 import 'package:mobx/mobx.dart';
 
-part 'student_menu_controller.g.dart';
+class StudentMenuController with Store { 
 
-class StudentMenuController = _StudentMenuControllerBase
-    with _$StudentMenuController;
+  StudentRepository repo = StudentRepository();
 
-abstract class _StudentMenuControllerBase with Store {
   @observable
-  int value = 0;
+  List<StudentClassMeta> classes = new List<StudentClassMeta>();
 
   @action
-  void increment() {
-    value++;
+  void getClasses() async{
+      if (this.repo != null){
+        classes = await this.repo.getClasses();
+      }
   }
+
 }
