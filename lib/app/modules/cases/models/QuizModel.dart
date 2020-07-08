@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class QuizModel {
-  int casesID;
+  String casesID;
   String type;
   String question;
   String answers1;
@@ -9,20 +9,20 @@ class QuizModel {
   String answers3;
   String answers4;
   String answers5;
-  int position;
+  String position;
   String right;
   DocumentReference reference;
 
   QuizModel({
-    this.casesID,
-    this.type,
+    this.casesID = '',
+    this.type = '',
     this.question = '',
     this.answers1 = '',
     this.answers2 = '',
     this.answers3 = '',
     this.answers4 = '',
     this.answers5 = '',
-    this.position,
+    this.position = '',
     this.right = '',
     this.reference,
   });

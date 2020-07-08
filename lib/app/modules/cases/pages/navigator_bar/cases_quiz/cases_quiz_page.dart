@@ -17,12 +17,19 @@ class CasesQuizPage extends StatefulWidget {
 }
 
 class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizController> {
-  final _topicOne = TextEditingController();
+  /* final _topicOne = TextEditingController();
   final _textOne = TextEditingController();
-  final _imageUrlOne = TextEditingController();
+  final _imageUrlOne = TextEditingController(); */
 
   // Map<String, dynamic> mapTest = {"type": "title", "content": "content"};
   List listTest = [];
+
+  @override
+  void initState() {
+    controller.getList('5Eg2Dv0erU37JCjQYoRI');
+    // controller.getList(widget.model.id);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +91,9 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
   // Modo edição (adicionar ou excluir campos)
   Scaffold modeEdition(CasesModel model) {
     var screenWidth = MediaQuery.of(context).size.width;
+    
+    controller.getList('5Eg2Dv0erU37JCjQYoRI');
+    // controller.getList(widget.model.id);
 
     /* // Iniciado os campos com os texto do db
     _topicOne.text = widget.model.topicOne;
@@ -114,7 +124,8 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                 else if (controller.quizList.hasError)
                   return Center(
                     child: RaisedButton(
-                      onPressed: () => controller.getList(),
+                      onPressed: () => controller.getList(widget.model.id),
+                      // onPressed: () => controller.getList(),
                       child: Text('Error'),
                     ),
                   );
@@ -126,7 +137,6 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                   // print(listTest);
 
                   return ListView.builder(
-                    // itemCount: list.length,
                     itemCount: list.length,
                     itemBuilder: (_, index) {
                       // CasesModel model = list[index];
@@ -148,6 +158,7 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                                       // 'Caso ${model.topicOne}',
                                       // '${model['type']}',
                                       'Question: ${model.question}',
+                                      // 'teste',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18,
@@ -191,7 +202,7 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                         child: circularButton(
                             text: 'Imagem',
                             func: () {
-                              // _addImage();
+                              _addImage();
                               /* Navigator.pushNamed(
                               context, 'teacher/teacher_perfil_edit',
                               arguments: model); */
@@ -234,6 +245,7 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                   Divider(),
                   Padding(
                     padding: EdgeInsets.only(left: screenWidth * 0.05),
+                    // padding: EdgeInsets.all(screenWidth * 0.05),
                     child: Column(
                       children: <Widget>[
                         Text(
@@ -275,12 +287,12 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
 
   // Adiciona um campo para imagem
   void _addImage() {
-    Map<String, dynamic> mapTestImage = {"type": "title", "content": "content"};
+    /* Map<String, dynamic> mapTestImage = {"type": "title", "content": "content"};
 
     mapTestImage['type'] = 'image';
-    listTest.add(mapTestImage);
+    listTest.add(mapTestImage); */
     setState(() {
-      listTest;
+      // listTest;
     });
   }
 
