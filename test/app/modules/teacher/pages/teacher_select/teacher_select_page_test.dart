@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_modular/flutter_modular_test.dart';
 
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_select/teacher_select_page.dart';
+import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_select/teacher_select_page.dart';
 
 main() {
   testWidgets('TeacherSelectPage has title', (WidgetTester tester) async {

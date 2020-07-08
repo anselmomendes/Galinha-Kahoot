@@ -164,16 +164,14 @@ class Auth implements BaseAuth {
   }
 
   Future<String> getUserRole() async {
-    await getCurrentUser().then((user) {
-      Firestore.instance
-          .collection("users")
-          .where("uid", isEqualTo: user.uid)
-          .getDocuments()
-          .then((docs) {
-        if (docs.documents[0].exists) return docs.documents[0].data['role'];
-        if (docs.documents.isEmpty) return false;
-      });
-    });
-    return null;
+    var user = await getCurrentUser();
+    var role = await Firestore.instance.collection("users")
+              .where("uid", isEqualTo: user.uid)
+              .getDocuments().then((docs) {  
+                  if (docs.documents[0].exists)
+                    return ((docs.documents.isNotEmpty) ? 
+                      docs.documents[0].data['role'] : false);
+              });
+    return role;
   }
 }

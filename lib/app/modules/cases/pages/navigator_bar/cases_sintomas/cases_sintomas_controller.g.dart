@@ -9,6 +9,23 @@ part of 'cases_sintomas_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$CasesSintomasController on _CasesSintomasBase, Store {
+  final _$casesPageAtom = Atom(name: '_CasesSintomasBase.casesPage');
+
+  @override
+  ObservableStream<List<ComponentModel>> get casesPage {
+    _$casesPageAtom.context.enforceReadPolicy(_$casesPageAtom);
+    _$casesPageAtom.reportObserved();
+    return super.casesPage;
+  }
+
+  @override
+  set casesPage(ObservableStream<List<ComponentModel>> value) {
+    _$casesPageAtom.context.conditionallyRunInAction(() {
+      super.casesPage = value;
+      _$casesPageAtom.reportChanged();
+    }, _$casesPageAtom, name: '${_$casesPageAtom.name}_set');
+  }
+
   final _$editModeAtom = Atom(name: '_CasesSintomasBase.editMode');
 
   @override
@@ -26,26 +43,43 @@ mixin _$CasesSintomasController on _CasesSintomasBase, Store {
     }, _$editModeAtom, name: '${_$editModeAtom.name}_set');
   }
 
-  final _$listAtom = Atom(name: '_CasesSintomasBase.list');
+  final _$_CasesSintomasBaseActionController =
+      ActionController(name: '_CasesSintomasBase');
 
   @override
-  List<ComponentModel> get list {
-    _$listAtom.context.enforceReadPolicy(_$listAtom);
-    _$listAtom.reportObserved();
-    return super.list;
+  dynamic getApresentacao(String idCases) {
+    final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
+    try {
+      return super.getApresentacao(idCases);
+    } finally {
+      _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
-  set list(List<ComponentModel> value) {
-    _$listAtom.context.conditionallyRunInAction(() {
-      super.list = value;
-      _$listAtom.reportChanged();
-    }, _$listAtom, name: '${_$listAtom.name}_set');
+  dynamic delete() {
+    final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
+    try {
+      return super.delete();
+    } finally {
+      _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic create(ComponentModel model) {
+    final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
+    try {
+      return super.create(model);
+    } finally {
+      _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
+    }
   }
 
   @override
   String toString() {
-    final string = 'editMode: ${editMode.toString()},list: ${list.toString()}';
+    final string =
+        'casesPage: ${casesPage.toString()},editMode: ${editMode.toString()}';
     return '{$string}';
   }
 }
