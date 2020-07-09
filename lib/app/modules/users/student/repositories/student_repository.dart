@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:dio/dio.dart';
 import 'package:galinha_karoot/app/modules/class/models/StudentClassMeta.dart';
 import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 
@@ -28,28 +27,29 @@ class StudentRepository extends Disposable {
       }
   }
 
-	Future<List<StudentClassMeta>> getClasses() async{
+  Future<List<StudentClassMeta>> getClasses() async{
     print("Fetching classes...");
-		var userRef = await getCurrentUserReference();	
-		List<DocumentSnapshot> metaList = new List<DocumentSnapshot>();
-		List<StudentClassMeta> classList = new List<StudentClassMeta>();
+    var userRef = await getCurrentUserReference();	
+    List<DocumentSnapshot> metaList = new List<DocumentSnapshot>();
+    List<StudentClassMeta> classList = new List<StudentClassMeta>();
 
-		await firestore.collection('users.classes')
-			.where('user', isEqualTo: userRef)
-			.getDocuments().then((docs){
-				metaList.addAll(docs.documents);
+    await firestore.collection('users.classes')
+      .where('user', isEqualTo: userRef)
+      .getDocuments().then((docs){
+        metaList.addAll(docs.documents);
     });
 
     for(int i=0; i < metaList.length; i++){
         DocumentSnapshot element = metaList[i];
         DocumentReference classRef = element.data['class'];
         DocumentSnapshot aclass = await firestore.collection('classes')
-                                       .document(classRef.documentID).get();
+                                        .document(classRef.documentID).get();
         classList.add(StudentClassMeta.fromDocument(aclass));        
     }
     print("Done fetching classes...");
-		return classList;
+    return classList;
   }
+
 
   @override
   void dispose() {
