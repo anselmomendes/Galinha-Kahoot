@@ -11,9 +11,8 @@ class StudentMenuController with Store {
 
   @action
   void getClasses() async{
-      if (this.repo != null){
-        classes = await this.repo.getClasses();
-      }
+      if (this.repo != null)
+        await this.repo.getClasses().then((value) => classes = value);      
   }
 
 }
