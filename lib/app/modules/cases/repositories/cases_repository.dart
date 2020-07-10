@@ -8,10 +8,11 @@ import 'package:galinha_karoot/app/modules/cases/repositories/interfaces/cases_r
 class CasesRepository extends Disposable implements ICasesRepository {
   final Firestore firestore;
 
-  CasesRepository({@required this.firestore});
+  CollectionReference apresentacao;
 
-  CollectionReference cases;
-  CollectionReference subCollection;
+  CasesRepository({@required this.firestore}) {
+    apresentacao = Firestore.instance.collection("apresentacao");
+  }
 
   @override
   void dispose() {}
@@ -21,6 +22,7 @@ class CasesRepository extends Disposable implements ICasesRepository {
     return model.reference.delete();
   }
 
+/*
   @override
   Future save(CasesModel model) async {
     try {
@@ -32,20 +34,22 @@ class CasesRepository extends Disposable implements ICasesRepository {
       print(e);
     }
   }
-
+*/
   @override
   Stream<List<CasesModel>> get() {
     try {
-      cases = firestore.collection('Cases');
-      return cases.orderBy('position').snapshots().map((query) =>
-          query.documents.map((doc) => CasesModel.fromMap(doc.data)).toList());
+      return firestore.collection('Cases').orderBy('position').snapshots().map(
+          (query) => query.documents
+              .map((doc) => CasesModel.fromMap(doc.data))
+              .toList());
     } catch (e) {
       print(e);
       return null;
     }
   }
 
-  Stream<List<ComponentModel>> getApresentacao(String idCases) {
+/*
+Stream<List<ComponentModel>> getApresentacao(String idCases) {
     try {
       var list = firestore
           .collection('apresentacao')
@@ -59,8 +63,8 @@ class CasesRepository extends Disposable implements ICasesRepository {
       print(e);
       return null;
     }
-  }
-
+}
+*/
   Stream<List<ComponentModel>> getAvaliacao(String idCases) {
     try {
       var list = firestore.collection('avaliacao');
@@ -115,7 +119,7 @@ class CasesRepository extends Disposable implements ICasesRepository {
   Future<bool> updateWidget(ComponentModel model) async {
     try {
       await firestore
-          .collection('CasesPage')
+          .collection('apresentacao')
           .document(model.id)
           .updateData(model.toMap());
       return true;
@@ -128,7 +132,7 @@ class CasesRepository extends Disposable implements ICasesRepository {
   Future<bool> createWidget(ComponentModel model) async {
     try {
       model.position =
-          (await Firestore.instance.collection('apresentacapo').getDocuments())
+          (await Firestore.instance.collection('apresentacao').getDocuments())
               .documents
               .length
               .toString();
@@ -155,5 +159,25 @@ class CasesRepository extends Disposable implements ICasesRepository {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<List<ComponentModel>> getDocuments(String idCases) async {
+    try {
+      var page = await apresentacao.orderBy('position').getDocuments();
+
+      var aux =
+          page.documents.map((item) => ComponentModel.fromMap(item)).toList();
+      var aux2 = aux.where((element) => element.idCases == idCases).toList();
+      return aux2;
+    } catch (e) {
+      print(e);
+      return null;
+    }
+  }
+
+  @override
+  Future save(CasesModel model) {
+    // TODO: implement save
+    throw UnimplementedError();
   }
 }
