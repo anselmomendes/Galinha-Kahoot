@@ -26,6 +26,23 @@ mixin _$CasesSintomasController on _CasesSintomasBase, Store {
     }, _$casesPageAtom, name: '${_$casesPageAtom.name}_set');
   }
 
+  final _$casesAtom = Atom(name: '_CasesSintomasBase.cases');
+
+  @override
+  List<ComponentModel> get cases {
+    _$casesAtom.context.enforceReadPolicy(_$casesAtom);
+    _$casesAtom.reportObserved();
+    return super.cases;
+  }
+
+  @override
+  set cases(List<ComponentModel> value) {
+    _$casesAtom.context.conditionallyRunInAction(() {
+      super.cases = value;
+      _$casesAtom.reportChanged();
+    }, _$casesAtom, name: '${_$casesAtom.name}_set');
+  }
+
   final _$editModeAtom = Atom(name: '_CasesSintomasBase.editMode');
 
   @override
@@ -43,18 +60,16 @@ mixin _$CasesSintomasController on _CasesSintomasBase, Store {
     }, _$editModeAtom, name: '${_$editModeAtom.name}_set');
   }
 
-  final _$_CasesSintomasBaseActionController =
-      ActionController(name: '_CasesSintomasBase');
+  final _$getApresentacaoAsyncAction = AsyncAction('getApresentacao');
 
   @override
-  dynamic getApresentacao(String idCases) {
-    final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
-    try {
-      return super.getApresentacao(idCases);
-    } finally {
-      _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
-    }
+  Future getApresentacao(String casesID) {
+    return _$getApresentacaoAsyncAction
+        .run(() => super.getApresentacao(casesID));
   }
+
+  final _$_CasesSintomasBaseActionController =
+      ActionController(name: '_CasesSintomasBase');
 
   @override
   dynamic delete() {
@@ -79,7 +94,7 @@ mixin _$CasesSintomasController on _CasesSintomasBase, Store {
   @override
   String toString() {
     final string =
-        'casesPage: ${casesPage.toString()},editMode: ${editMode.toString()}';
+        'casesPage: ${casesPage.toString()},cases: ${cases.toString()},editMode: ${editMode.toString()}';
     return '{$string}';
   }
 }

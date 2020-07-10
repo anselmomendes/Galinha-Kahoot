@@ -18,15 +18,16 @@ abstract class _CasesSintomasBase with Store {
   ObservableStream<List<ComponentModel>> casesPage;
 
   @observable
+  List<ComponentModel> cases;
+
+  @observable
   bool editMode = false;
 
-  _CasesSintomasBase({this.casesRepository}) {
-    //getApresentacao('5Eg2Dv0erU37JCjQYoRI', 'apresentacao');
-  }
+  _CasesSintomasBase({this.casesRepository});
 
   @action
-  getApresentacao(String idCases) {
-    casesPage = casesRepository.getApresentacao(idCases).asObservable();
+  getApresentacao(String casesID) async {
+    cases = await casesRepository.getDocuments(casesID);
   }
 
   @action

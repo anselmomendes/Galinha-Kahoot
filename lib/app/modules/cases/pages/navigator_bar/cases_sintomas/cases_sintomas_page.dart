@@ -22,7 +22,7 @@ class _CasesSintomasPageState
     extends ModularState<CasesSintomasPage, CasesSintomasController> {
   @override
   void initState() {
-    controller.getApresentacao(widget.model.id.toString());
+    controller.getApresentacao(widget.model.id);
     super.initState();
   }
 
@@ -44,22 +44,14 @@ class _CasesSintomasPageState
               child: Observer(
                 name: 'componentes',
                 builder: (_) {
-                  if (controller.casesPage == null)
+                  if (controller.cases == null)
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  else if (controller.casesPage.hasError)
-                    return Center(
-                      child: RaisedButton(
-                        onPressed: () async => controller
-                            .getApresentacao(widget.model.id.toString()),
-                        child: Text('Error'),
-                      ),
-                    );
                   else {
-                    List<ComponentModel> list = controller.casesPage.data;
+                    List<ComponentModel> list = controller.cases;
                     return ListView.builder(
-                      itemCount: controller.casesPage.value.length,
+                      itemCount: controller.cases.length,
                       itemBuilder: (_, index) {
                         ComponentModel model = list[index];
 
@@ -109,13 +101,14 @@ class _CasesSintomasPageState
                   padding: EdgeInsets.only(left: screenWidth * 0.05),
                   child: circularButton(
                       text: 'Imagem',
-                      func: () {
+                      func: () async {
                         ComponentModel model = ComponentModel();
                         model.type = 'image';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
                         model.type = 'image';
-                        controller.create(model);
+                        await controller.create(model);
+                        await controller.getApresentacao(widget.model.id);
                       }),
                 ),
                 Expanded(
@@ -126,13 +119,14 @@ class _CasesSintomasPageState
                   padding: const EdgeInsets.all(1.0),
                   child: circularButton(
                       text: 'Texto',
-                      func: () {
+                      func: () async {
                         ComponentModel model = ComponentModel();
                         model.type = 'image';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
                         model.type = 'text';
-                        controller.create(model);
+                        await controller.create(model);
+                        await controller.getApresentacao(widget.model.id);
                       }),
                 ),
                 Expanded(
@@ -143,13 +137,14 @@ class _CasesSintomasPageState
                   padding: EdgeInsets.only(right: screenWidth * 0.05),
                   child: circularButton(
                       text: 'Título',
-                      func: () {
+                      func: () async {
                         ComponentModel model = ComponentModel();
                         model.type = 'image';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
                         model.type = 'topic';
-                        controller.create(model);
+                        await controller.create(model);
+                        await controller.getApresentacao(widget.model.id);
                       }),
                 ),
                 SizedBox(height: 10),
@@ -169,8 +164,9 @@ class _CasesSintomasPageState
                       ),
                       circularButton(
                           text: 'Excluir',
-                          func: () {
-                            controller.delete();
+                          func: () async {
+                            await controller.delete();
+                            await controller.getApresentacao(widget.model.id);
                           }),
                     ],
                   ),
