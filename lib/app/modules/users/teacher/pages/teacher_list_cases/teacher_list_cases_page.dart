@@ -95,9 +95,14 @@ class _TeacherListCasesPageState
                                 color: Colors.redAccent,
                                 child: const Text('ACESSAR'),
                                 onPressed: () {
-                                  Navigator.pushNamed(
+                                  /* Navigator.pushNamed(
                                     context,
                                     '/cases/sintomas',
+                                    arguments: model,
+                                  ); */
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/cases/cases_home',
                                     arguments: model,
                                   );
                                 },

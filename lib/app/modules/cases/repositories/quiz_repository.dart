@@ -61,10 +61,10 @@ class QuizRepository extends Disposable {
   }
 
   @override
-  Stream<List<QuizModel>> getQuiz(String casesID) {
+  Stream<List<QuizModel>> getQuiz(/* String casesID */) {
     var a = firestore
         .collection('Quiz')
-        .where('casesID', isEqualTo: '$casesID')
+        .where('casesID', isEqualTo: '5Eg2Dv0erU37JCjQYoRI')
         .orderBy('position')
         .snapshots()
         .map((query) =>

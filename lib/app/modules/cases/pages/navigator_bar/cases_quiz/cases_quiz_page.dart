@@ -24,12 +24,12 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
   // Map<String, dynamic> mapTest = {"type": "title", "content": "content"};
   List listTest = [];
 
-  @override
+  /* @override
   void initState() {
     controller.getList('5Eg2Dv0erU37JCjQYoRI');
     // controller.getList(widget.model.id);
     super.initState();
-  }
+  } */
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +92,7 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
   Scaffold modeEdition(CasesModel model) {
     var screenWidth = MediaQuery.of(context).size.width;
     
-    controller.getList('5Eg2Dv0erU37JCjQYoRI');
+    // controller.getList('5Eg2Dv0erU37JCjQYoRI');
     // controller.getList(widget.model.id);
 
     /* // Iniciado os campos com os texto do db
@@ -124,8 +124,9 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                 else if (controller.quizList.hasError)
                   return Center(
                     child: RaisedButton(
-                      onPressed: () => controller.getList(widget.model.id),
-                      // onPressed: () => controller.getList(),
+                      // onPressed: () => controller.getList('5Eg2Dv0erU37JCjQYoRI'),
+                      // onPressed: () => controller.getList(widget.model.id),
+                      onPressed: () => controller.getList(),
                       child: Text('Error'),
                     ),
                   );

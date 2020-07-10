@@ -24,7 +24,7 @@ class AppModule extends MainModule {
         Bind((i) => QuestionRepository(firestore: Firestore.instance)),
         Bind((i) => CasesStore()),
         Bind((i) => ClassRepository(firestore: Firestore.instance)),
-        //Bind((i) => CasesViewModel(casesRepository: i.get<CasesRepository>())),
+        Bind((i) => CasesViewModel(casesRepository: i.get<CasesRepository>())),
       ];
 
   @override

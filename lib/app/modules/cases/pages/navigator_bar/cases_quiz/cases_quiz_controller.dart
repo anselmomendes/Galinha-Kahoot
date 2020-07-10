@@ -13,13 +13,13 @@ abstract class _CasesQuizControllerBase with Store {
   ObservableStream<List<QuizModel>> quizList;
 
   _CasesQuizControllerBase(this.quizRepository) {
-    // getList();
+    getList();
   }
 
   @action
-  getList(String casesID) {
-    // quizList = quizRepository.get().asObservable();
-    quizList = quizRepository.getQuiz(casesID).asObservable();
+  getList(/* String casesID */) {
+    quizList = quizRepository.get().asObservable();
+    // quizList = quizRepository.getQuiz(casesID).asObservable();
   }
 
   @observable
