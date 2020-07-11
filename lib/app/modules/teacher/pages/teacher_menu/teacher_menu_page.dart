@@ -67,6 +67,13 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                         Modular.to.pushNamed('/teacher/teacher_select');
                       },
                     ),
+                    FlatButton(
+                        color: Colors.redAccent,
+                      child: const Text(' TestePublic'),
+                      onPressed: () {
+                        Modular.to.pushNamed('/cases/cases_public');
+                      },
+                      ),
                   ],
                 ),
               ],

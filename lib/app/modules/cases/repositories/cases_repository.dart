@@ -63,6 +63,15 @@ class CasesRepository extends Disposable implements ICasesRepository {
     }
   }
 
+ @override
+  Stream<List<CasesModel>> getForTeacher() {
+    var b = firestore.collection('Cases').where('public', isEqualTo: "true").orderBy('position').snapshots().map(
+        (query) => query.documents
+            .map((doc) => CasesModel.fromMap(doc.data))
+            .toList());
+    return b;
+  }
+
   Future<bool> updateWidget(ComponentModel model) async {
     try {
       await firestore
@@ -105,4 +114,6 @@ class CasesRepository extends Disposable implements ICasesRepository {
       return false;
     }
   }
+
+  
 }

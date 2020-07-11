@@ -6,6 +6,7 @@ class CasesModel {
   final String title;
   final String description;
   final String teacherID;
+  final String public;
   DocumentReference reference;
 
   CasesModel({
@@ -14,6 +15,7 @@ class CasesModel {
     this.description,
     this.teacherID,
     this.reference,
+    this.public,
   }) {
     id = id ?? Uuid().v1();
   }
@@ -25,6 +27,7 @@ class CasesModel {
     map['description'] = description;
     map['teacherID'] = teacherID;
     map['reference'] = reference;
+    map['public'] = public;
     return map;
   }
 
@@ -36,6 +39,8 @@ class CasesModel {
       title: map['title'],
       description: map['description'],
       teacherID: map['teacherID'],
+      public: map['public'],
     );
   }
+
 }
