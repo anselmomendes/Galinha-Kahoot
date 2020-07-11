@@ -36,7 +36,7 @@ class _AuthPageState extends State<AuthPage> {
                     Image.asset("images/logo.png", width: MediaQuery.of(context).size.width * appLogoMediumSize),
                     SizedBox(height: 20),
                     Text(widget.title, style: headerTextStyle),
-                    EmailPasswordForm(callback: _authCallback),
+                    EmailPasswordForm(callback: _authCallback, ecallback: _errorCallback),
                     InkWell(child: Text("Não tem uma conta?", style: TextStyle(color: Colors.blue)),
                             onTap: () => _gotoPage(widget.registerPage)
                     )
@@ -50,6 +50,10 @@ class _AuthPageState extends State<AuthPage> {
 
   _authCallback(result){
     print(result);
+  }
+
+  _errorCallback(error){
+    print(error);
   }
 
   _gotoPage(Widget page){

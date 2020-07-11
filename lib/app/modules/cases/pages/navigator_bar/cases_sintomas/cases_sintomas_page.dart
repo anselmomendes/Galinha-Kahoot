@@ -21,14 +21,14 @@ class CasesSintomasPage extends StatefulWidget {
 class _CasesSintomasPageState
     extends ModularState<CasesSintomasPage, CasesSintomasController> {
   @override
+  void initState() {
+    controller.getApresentacao(widget.model.id);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    ComponentModel model = ComponentModel();
-    model.page = 'apresentacao';
-    model.idCases = widget.model.id;
-
     var screenWidth = MediaQuery.of(context).size.width;
-
-    controller.casesViewModel.getApresentacoes(widget.model.id, 'apresentacao');
 
     return Scaffold(
         appBar: AppBar(
@@ -42,60 +42,51 @@ class _CasesSintomasPageState
             Container(
               height: screenWidth * 1.1,
               child: Observer(
+                name: 'componentes',
                 builder: (_) {
-                  if (controller.casesViewModel.casesPage == null)
+                  if (controller.cases == null)
                     return Center(
                       child: CircularProgressIndicator(),
                     );
-                  else if (controller.casesViewModel.casesPage.hasError)
-                    return Center(
-                      child: RaisedButton(
-                        onPressed: () async => controller.casesViewModel
-                            .getApresentacoes(widget.model.id, 'apresentacao'),
-                        child: Text('Error'),
-                      ),
-                    );
+                  else {
+                    List<ComponentModel> list = controller.cases;
+                    return ListView.builder(
+                      itemCount: controller.cases.length,
+                      itemBuilder: (_, index) {
+                        ComponentModel model = list[index];
 
-                  List<ComponentModel> list =
-                      controller.casesViewModel.casesPage.data;
-
-                  model.position = (list.length + 1).toString();
-
-                  return ListView.builder(
-                    itemCount: list.length,
-                    itemBuilder: (_, index) {
-                      ComponentModel model = list[index];
-
-                      return Container(
-                        child: Card(
-                          margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                          elevation: 20,
-                          child: GestureDetector(
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                ListTile(
-                                  title: Center(
-                                    child: Text(
-                                      model.type,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18,
+                        return Container(
+                          child: Card(
+                            margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                            elevation: 20,
+                            child: GestureDetector(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  ListTile(
+                                    title: Center(
+                                      child: Text(
+                                        model.type,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18,
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, '/cases/cases_edit',
+                                    arguments: model);
+                              },
                             ),
-                            onTap: () {
-                              Navigator.pushNamed(context, '/cases/cases_edit',
-                                  arguments: model);
-                            },
                           ),
-                        ),
-                      );
-                    },
-                  );
+                        );
+                      },
+                    );
+                  }
                 },
               ),
             ),
@@ -110,10 +101,14 @@ class _CasesSintomasPageState
                   padding: EdgeInsets.only(left: screenWidth * 0.05),
                   child: circularButton(
                       text: 'Imagem',
-                      func: () {
+                      func: () async {
+                        ComponentModel model = ComponentModel();
                         model.type = 'image';
-                        Navigator.pushNamed(context, '/cases/cases_edit',
-                            arguments: model);
+                        model.idCases = widget.model.id;
+                        model.page = 'apresentacao';
+                        model.type = 'image';
+                        await controller.create(model);
+                        await controller.getApresentacao(widget.model.id);
                       }),
                 ),
                 Expanded(
@@ -124,10 +119,14 @@ class _CasesSintomasPageState
                   padding: const EdgeInsets.all(1.0),
                   child: circularButton(
                       text: 'Texto',
-                      func: () {
+                      func: () async {
+                        ComponentModel model = ComponentModel();
+                        model.type = 'image';
+                        model.idCases = widget.model.id;
+                        model.page = 'apresentacao';
                         model.type = 'text';
-                        Navigator.pushNamed(context, '/cases/cases_edit',
-                            arguments: model);
+                        await controller.create(model);
+                        await controller.getApresentacao(widget.model.id);
                       }),
                 ),
                 Expanded(
@@ -138,9 +137,14 @@ class _CasesSintomasPageState
                   padding: EdgeInsets.only(right: screenWidth * 0.05),
                   child: circularButton(
                       text: 'Título',
-                      func: () {
-                        model.type = 'text';
-                        controller.casesViewModel.createWidget(model);
+                      func: () async {
+                        ComponentModel model = ComponentModel();
+                        model.type = 'image';
+                        model.idCases = widget.model.id;
+                        model.page = 'apresentacao';
+                        model.type = 'topic';
+                        await controller.create(model);
+                        await controller.getApresentacao(widget.model.id);
                       }),
                 ),
                 SizedBox(height: 10),
@@ -161,7 +165,8 @@ class _CasesSintomasPageState
                       circularButton(
                           text: 'Excluir',
                           func: () async {
-                            controller.casesViewModel.deleteWidget();
+                            await controller.delete();
+                            await controller.getApresentacao(widget.model.id);
                           }),
                     ],
                   ),

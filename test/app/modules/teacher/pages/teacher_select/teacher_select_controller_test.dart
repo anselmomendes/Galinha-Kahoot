@@ -2,8 +2,8 @@ import 'package:flutter_modular/flutter_modular_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_select/teacher_select_controller.dart';
-import 'package:galinha_karoot/app/modules/teacher/pages/teacher_select/teacher_select_module.dart';
+import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_select/teacher_select_controller.dart';
+import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_select/teacher_select_module.dart';
 
 void main() {
   initModule(TeacherSelectModule());

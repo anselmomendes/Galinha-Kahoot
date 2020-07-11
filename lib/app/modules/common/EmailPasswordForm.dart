@@ -80,11 +80,11 @@ class _EmailPasswordFormState
     try {
       userId = await widget.auth
           .signIn(_emailController.text, _passwordController.text);
-      if (userId.length > 0 && userId != null) {
+      if (userId != null && userId.length > 0) {
         emitCallback(await widget.auth.getCurrentUser());
       }
     } catch (e) {
-      emitError(e);
+      emitError(e.toString());
     }
   }
 

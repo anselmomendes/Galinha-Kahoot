@@ -17,8 +17,9 @@ abstract class _CasesQuizControllerBase with Store {
   }
 
   @action
-  getList() {
+  getList(/* String casesID */) {
     quizList = quizRepository.get().asObservable();
+    // quizList = quizRepository.getQuiz(casesID).asObservable();
   }
 
   @observable

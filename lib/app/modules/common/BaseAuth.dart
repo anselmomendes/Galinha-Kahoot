@@ -110,7 +110,7 @@ class Auth implements BaseAuth {
     return null;
   }
 
-  List metaFields = ["uid", "role", "name", "university"];
+  List metaFields = ["uid", "role", "name", "university", "profile_pic"];
 
   Future<bool> createUserMeta(
       String role, String name, String university) async {
@@ -131,7 +131,8 @@ class Auth implements BaseAuth {
           "uid": currentUser.uid,
           "role": role,
           "name": name,
-          "university": university
+          "university": university,
+          "profile_pic": ""
         });
 
         // add({"uid": currentUser.uid, "role": role, "name": name, "university": university});
@@ -164,16 +165,14 @@ class Auth implements BaseAuth {
   }
 
   Future<String> getUserRole() async {
-    await getCurrentUser().then((user) {
-      Firestore.instance
-          .collection("users")
-          .where("uid", isEqualTo: user.uid)
-          .getDocuments()
-          .then((docs) {
-        if (docs.documents[0].exists) return docs.documents[0].data['role'];
-        if (docs.documents.isEmpty) return false;
-      });
-    });
-    return null;
+    var user = await getCurrentUser();
+    var role = await Firestore.instance.collection("users")
+              .where("uid", isEqualTo: user.uid)
+              .getDocuments().then((docs) {  
+                  if (docs.documents[0].exists)
+                    return ((docs.documents.isNotEmpty) ? 
+                      docs.documents[0].data['role'] : false);
+              });
+    return role;
   }
 }

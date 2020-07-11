@@ -39,12 +39,14 @@ class _CasesEditPageState
             circularButton(
                 text: 'Salvar',
                 func: () async {
-                  if (await controller.casesViewModel
-                      .updateWidget(widget.model)) {
+                  widget.model.value = initalValue.text.toString();
+                  if (await controller.update(widget.model)) {
                     _showAlertDialog(context, 'Componente Registrado',
                         'O componente do caso foi registrado com sucesso!');
-                  }
-                }),
+                  } else
+                    _showAlertDialog(context, 'Componente não Registrado',
+                        'O componente do caso não foi registrado com sucesso!');
+                })
           ],
         ),
       ),
@@ -58,7 +60,8 @@ class _CasesEditPageState
       return _fieldText();
     } else if (widget.model.type.compareTo("image") == 0) {
       return _fieldImage();
-    }
+    } else
+      return null;
   }
 
   Widget _fieldTopic() {
