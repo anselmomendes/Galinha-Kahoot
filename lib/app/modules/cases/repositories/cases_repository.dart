@@ -72,7 +72,7 @@ class CasesRepository extends Disposable implements ICasesRepository {
     }
   }
 
-  Future deleteWidget(String casesID, String page) async {
+  Future<bool> deleteWidget(String casesID, String page) async {
     try {
       QuerySnapshot a = (await casesPage
           .document(casesID)
@@ -81,6 +81,7 @@ class CasesRepository extends Disposable implements ICasesRepository {
           .getDocuments());
 
       a.documents.last.reference.delete();
+      return true;
     } catch (e) {
       print(e);
       return false;
@@ -105,6 +106,7 @@ class CasesRepository extends Disposable implements ICasesRepository {
       return true;
     } catch (e) {
       print(e);
+      return false;
     }
   }
 
