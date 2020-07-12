@@ -22,7 +22,7 @@ class _CasesSintomasPageState
     extends ModularState<CasesSintomasPage, CasesSintomasController> {
   @override
   void initState() {
-    controller.getApresentacao(widget.model.id);
+    controller.getDocuments(widget.model.id, 'apresentacao');
     super.initState();
   }
 
@@ -108,7 +108,8 @@ class _CasesSintomasPageState
                         model.page = 'apresentacao';
                         model.type = 'image';
                         await controller.create(model);
-                        await controller.getApresentacao(widget.model.id);
+                        await controller.getDocuments(
+                            widget.model.id, 'apresentacao');
                       }),
                 ),
                 Expanded(
@@ -126,7 +127,8 @@ class _CasesSintomasPageState
                         model.page = 'apresentacao';
                         model.type = 'text';
                         await controller.create(model);
-                        await controller.getApresentacao(widget.model.id);
+                        await controller.getDocuments(
+                            widget.model.id, 'apresentacao');
                       }),
                 ),
                 Expanded(
@@ -144,7 +146,8 @@ class _CasesSintomasPageState
                         model.page = 'apresentacao';
                         model.type = 'topic';
                         await controller.create(model);
-                        await controller.getApresentacao(widget.model.id);
+                        await controller.getDocuments(
+                            widget.model.id, 'apresentacao');
                       }),
                 ),
                 SizedBox(height: 10),
@@ -165,8 +168,10 @@ class _CasesSintomasPageState
                       circularButton(
                           text: 'Excluir',
                           func: () async {
-                            await controller.delete();
-                            await controller.getApresentacao(widget.model.id);
+                            await controller.delete(
+                                widget.model.id, 'apresentacao');
+                            await controller.getDocuments(
+                                widget.model.id, 'apresentacao');
                           }),
                     ],
                   ),

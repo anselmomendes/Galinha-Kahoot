@@ -60,22 +60,22 @@ mixin _$CasesSintomasController on _CasesSintomasBase, Store {
     }, _$editModeAtom, name: '${_$editModeAtom.name}_set');
   }
 
-  final _$getApresentacaoAsyncAction = AsyncAction('getApresentacao');
+  final _$getDocumentsAsyncAction = AsyncAction('getDocuments');
 
   @override
-  Future getApresentacao(String casesID) {
-    return _$getApresentacaoAsyncAction
-        .run(() => super.getApresentacao(casesID));
+  Future getDocuments(String casesID, String page) {
+    return _$getDocumentsAsyncAction
+        .run(() => super.getDocuments(casesID, page));
   }
 
   final _$_CasesSintomasBaseActionController =
       ActionController(name: '_CasesSintomasBase');
 
   @override
-  dynamic delete() {
+  dynamic delete(String casesID, String page) {
     final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
     try {
-      return super.delete();
+      return super.delete(casesID, page);
     } finally {
       _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
     }

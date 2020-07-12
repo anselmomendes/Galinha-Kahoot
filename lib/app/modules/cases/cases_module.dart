@@ -1,4 +1,8 @@
+import 'pages/cases_update/cases_update_controller.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'pages/cases_home/cases_home_controller.dart';
+import 'pages/cases_update/cases_update_page.dart';
 import 'pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
 import 'pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
 import 'repositories/quiz_repository.dart';
@@ -21,10 +25,9 @@ import 'pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
 class CasesModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        // Bind((i) => CasesQuizController()),
-        // Bind((i) => CasesQuizController()),
-        // Bind((i) => QuizRepository()),
-        Bind((i) => CasesSintomasController(casesRepository: i.get<CasesRepository>())),
+        Bind((i) => CasesUpdateController(i.get<CasesRepository>())),
+        Bind((i) =>
+            CasesSintomasController(casesRepository: i.get<CasesRepository>())),
         Bind((i) => CasesHomeController(i.get<CasesViewModel>())),
         Bind((i) => CasesRegisterController(i.get<CasesRepository>())),
         Bind((i) => CasesService()),
@@ -39,7 +42,10 @@ class CasesModule extends ChildModule {
             child: (_, args) => CasesHomePage(model: args.data)),
         Router('/sintomas',
             child: (_, args) => CasesSintomasPage(model: args.data)),
-        Router('/cases_register', child: (_, args) => CasesRegisterPage()),
+        Router('/cases_register',
+            child: (_, args) => CasesRegisterPage(/*model: args.data*/)),
+        Router('/cases_update',
+            child: (_, args) => CasesUpdatePage(model: args.data)),
         Router('/cases_single', child: (_, args) => CasesSinglePage()),
         Router('/cases_edit',
             child: (_, args) => CasesEditPage(model: args.data)),

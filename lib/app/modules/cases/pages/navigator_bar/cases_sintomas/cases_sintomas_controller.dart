@@ -1,3 +1,4 @@
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:mobx/mobx.dart';
@@ -26,13 +27,13 @@ abstract class _CasesSintomasBase with Store {
   _CasesSintomasBase({this.casesRepository});
 
   @action
-  getApresentacao(String casesID) async {
-    cases = await casesRepository.getDocuments(casesID);
+  getDocuments(String casesID, String page) async {
+    cases = await casesRepository.getDocuments(casesID, page);
   }
 
   @action
-  delete() {
-    return casesRepository.deleteWidget();
+  delete(String casesID, String page) {
+    return casesRepository.deleteWidget(casesID, page);
   }
 
   @action
