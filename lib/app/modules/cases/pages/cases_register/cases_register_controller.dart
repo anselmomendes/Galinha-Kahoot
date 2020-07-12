@@ -13,17 +13,10 @@ abstract class _CasesRegisterBase with Store {
   @observable
   ObservableStream<List<CasesModel>> casesList;
 
-  _CasesRegisterBase(CasesRepository this.casesRepository) {
-    getList();
-  }
+  _CasesRegisterBase(this.casesRepository);
 
   @action
-  getList() {
-    casesList = casesRepository.get().asObservable();
-  }
-
-  @action
-  save(CasesModel model) {
-    casesRepository.save(model);
+  Future<bool> save(CasesModel model) {
+    return casesRepository.createCases(model);
   }
 }

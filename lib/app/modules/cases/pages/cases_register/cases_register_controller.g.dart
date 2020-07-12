@@ -30,17 +30,7 @@ mixin _$CasesRegisterController on _CasesRegisterBase, Store {
       ActionController(name: '_CasesRegisterBase');
 
   @override
-  dynamic getList() {
-    final _$actionInfo = _$_CasesRegisterBaseActionController.startAction();
-    try {
-      return super.getList();
-    } finally {
-      _$_CasesRegisterBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic save(CasesModel model) {
+  Future<bool> save(CasesModel model) {
     final _$actionInfo = _$_CasesRegisterBaseActionController.startAction();
     try {
       return super.save(model);

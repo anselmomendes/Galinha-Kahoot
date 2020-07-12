@@ -3,17 +3,19 @@ import 'package:uuid/uuid.dart';
 
 class CasesModel {
   String id;
-  final String title;
-  final String description;
-  final String teacherID;
+  String title = '';
+  String description = '';
+  String teacherID;
+  String position;
   DocumentReference reference;
 
   CasesModel({
+    this.position,
     this.id,
     this.title,
     this.description,
     this.teacherID,
-    this.reference,
+    reference,
   }) {
     id = id ?? Uuid().v1();
   }
@@ -25,10 +27,11 @@ class CasesModel {
     map['description'] = description;
     map['teacherID'] = teacherID;
     map['reference'] = reference;
+    map['position'] = position;
     return map;
   }
 
-  static CasesModel fromMap(Map<String, dynamic> map) {
+  static CasesModel fromMap(DocumentSnapshot map) {
     if (map == null) return null;
 
     return CasesModel(
@@ -36,6 +39,8 @@ class CasesModel {
       title: map['title'],
       description: map['description'],
       teacherID: map['teacherID'],
+      position: map['position'],
+      reference: map.reference,
     );
   }
 }
