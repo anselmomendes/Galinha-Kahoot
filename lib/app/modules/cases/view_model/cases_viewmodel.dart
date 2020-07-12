@@ -15,7 +15,7 @@ class CasesViewModel {
   }*/
 
   save(CasesModel model) {
-    casesRepository.save(model);
+    //casesRepository.save(model);
   }
 
   delete(CasesModel model) {

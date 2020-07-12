@@ -42,6 +42,17 @@ mixin _$TeacherListCasesController on _TeacherListCasesControllerBase, Store {
   }
 
   @override
+  Future<bool> delete(CasesModel model) {
+    final _$actionInfo =
+        _$_TeacherListCasesControllerBaseActionController.startAction();
+    try {
+      return super.delete(model);
+    } finally {
+      _$_TeacherListCasesControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string = 'casesList: ${casesList.toString()}';
     return '{$string}';

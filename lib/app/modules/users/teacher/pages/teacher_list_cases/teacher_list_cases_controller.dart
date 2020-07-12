@@ -23,4 +23,9 @@ abstract class _TeacherListCasesControllerBase with Store {
   getList() {
     casesList = casesRepository.get().asObservable();
   }
+
+  @action
+  Future<bool> delete(CasesModel model) {
+    return casesRepository.delete(model);
+  }
 }

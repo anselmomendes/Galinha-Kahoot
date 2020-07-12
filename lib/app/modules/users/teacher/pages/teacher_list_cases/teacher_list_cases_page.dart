@@ -68,7 +68,8 @@ class _TeacherListCasesPageState
                             ),
                             subtitle: //Text(model.title),
                                 Text(
-                              model.description, //model.textOne,
+                              model
+                                  .description, //model.description, //model.textOne,
                               style: TextStyle(
                                 fontSize: 16,
                               ),
@@ -89,6 +90,17 @@ class _TeacherListCasesPageState
                                 child: const Text('EXCLUIR'),
                                 onPressed: () {
                                   _showAlertDialogDelete(model: model);
+                                },
+                              ),
+                              FlatButton(
+                                color: Colors.redAccent,
+                                child: const Text('EDITAR'),
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/cases/cases_update',
+                                    arguments: model,
+                                  );
                                 },
                               ),
                               FlatButton(
@@ -121,75 +133,6 @@ class _TeacherListCasesPageState
       ),
     );
   }
-/*
-  _showDialog({CasesModel model}) {
-    model ??= CasesModel();
-    showDialog(
-      context: context,
-      builder: (_) {
-        return SingleChildScrollView(
-          child: AlertDialog(
-            title: Text(
-              model.reference == null ? 'Adicionar Caso' : 'Alterar Caso',
-              style: TextStyle(
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
-              ),
-            ),
-            content: Column(
-              children: <Widget>[
-                TextFormField(
-                  maxLength: 20,
-                  initialValue: model.topicOne,
-                  onChanged: (v) => model.topicOne = v,
-                  decoration: InputDecoration(
-                    labelText: 'Digite uma resposta',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  maxLength: 20,
-                  initialValue: model.textOne,
-                  onChanged: (v) => model.textOne = v,
-                  decoration: InputDecoration(
-                    labelText: 'Digite uma resposta',
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                TextFormField(
-                  maxLength: 20,
-                  initialValue: model.imageUrlOne,
-                  onChanged: (v) => model.imageUrlOne = v,
-                  decoration: InputDecoration(
-                    labelText: 'Digite uma resposta',
-                  ),
-                ),
-              ],
-            ),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: () {
-                  Modular.to.pop();
-                },
-                child: Text('Cancelar', style: TextStyle(fontSize: 16)),
-              ),
-              FlatButton(
-                onPressed: () {
-                  controller.save(model);
-                  Modular.to.pop();
-                },
-                child: Text('Adicionar', style: TextStyle(fontSize: 16)),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }*/
 
   void _showAlertDialogDelete({CasesModel model}) {
     model ??= CasesModel();
@@ -203,10 +146,8 @@ class _TeacherListCasesPageState
     // configura o button
     Widget okButton = FlatButton(
       child: Text("OK"),
-      onPressed: () {
-        // _casesID.text = '';
-        // _teacherID.text = '';
-        //controller.delete(model);
+      onPressed: () async {
+        await controller.delete(model);
         Modular.to.pop();
       },
     );
