@@ -23,7 +23,6 @@ class _TeacherReportSelectPageState extends ModularState<
 
   @override
   Widget build(BuildContext context) {
-    /*
     return Scaffold(
       appBar: widget.showAppBar
           ? AppBar(
@@ -118,6 +117,6 @@ class _TeacherReportSelectPageState extends ModularState<
           ),
         ],
       ),
-    );*/
+    );
   }
 }
