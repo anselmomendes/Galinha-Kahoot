@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
@@ -8,108 +9,111 @@ import 'package:galinha_karoot/app/modules/cases/repositories/interfaces/cases_r
 class CasesRepository extends Disposable implements ICasesRepository {
   final Firestore firestore;
 
-  CollectionReference apresentacao;
+  CollectionReference casesPage;
 
   CasesRepository({@required this.firestore}) {
-    apresentacao = Firestore.instance.collection("apresentacao");
+    casesPage = Firestore.instance.collection("Cases");
   }
 
   @override
   void dispose() {}
 
   @override
-  Future delete(CasesModel model) {
-    return model.reference.delete();
-  }
-
-/*
-  @override
-  Future save(CasesModel model) async {
+  Future<bool> delete(CasesModel model) async {
     try {
-      if (model.id == null) {
-        cases.document(model.id.toString()).setData(model.toMap());
-      } else
-        cases.document(model.id.toString()).updateData(model.toMap());
+      await casesPage.document(model.id).delete();
+      return true;
     } catch (e) {
       print(e);
+      return false;
     }
   }
-*/
+
+  Future<bool> update(CasesModel model) async {
+    try {
+      await casesPage.document(model.id).updateData(model.toMap());
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
   @override
   Stream<List<CasesModel>> get() {
     try {
       return firestore.collection('Cases').orderBy('position').snapshots().map(
-          (query) => query.documents
-              .map((doc) => CasesModel.fromMap(doc.data))
-              .toList());
+          (query) =>
+              query.documents.map((doc) => CasesModel.fromMap(doc)).toList());
     } catch (e) {
       print(e);
       return null;
     }
   }
 
-/*
-Stream<List<ComponentModel>> getApresentacao(String idCases) {
+  Future<bool> createWidget(ComponentModel model) async {
     try {
-      var list = firestore
-          .collection('apresentacao')
-          .orderBy('position')
-          .snapshots()
-          .map((query) => query.documents
-              .map((doc) => ComponentModel.fromMap(doc))
-              .toList());
-      return list;
+      model.position = (await casesPage
+              .document(model.idCases)
+              .collection(model.page)
+              .getDocuments())
+          .documents
+          .length
+          .toString();
+
+      casesPage
+          .document(model.idCases)
+          .collection(model.page)
+          .document(model.id)
+          .setData(model.toMap());
+      return true;
     } catch (e) {
       print(e);
-      return null;
-    }
-}
-*/
-  Stream<List<ComponentModel>> getAvaliacao(String idCases) {
-    try {
-      var list = firestore.collection('avaliacao');
-      return list
-          //.where('idCases', isEqualTo: idCases)
-          //.where('page', isEqualTo: page)
-          .orderBy('position')
-          .snapshots()
-          .map((query) => query.documents
-              .map((doc) => ComponentModel.fromMap(doc))
-              .toList());
-    } catch (e) {
-      print(e);
-      return null;
+      return false;
     }
   }
 
-  Stream<List<ComponentModel>> getInformacao(String idCases) {
+  Future deleteWidget(String casesID, String page) async {
     try {
-      var list = firestore.collection('informacao');
-      return list
-          //.where('idCases', isEqualTo: idCases)
-          //.where('page', isEqualTo: page)
+      QuerySnapshot a = (await casesPage
+          .document(casesID)
+          .collection(page)
           .orderBy('position')
-          .snapshots()
-          .map((query) => query.documents
-              .map((doc) => ComponentModel.fromMap(doc))
-              .toList());
+          .getDocuments());
+
+      a.documents.last.reference.delete();
     } catch (e) {
       print(e);
-      return null;
     }
   }
 
-  Stream<List<ComponentModel>> getExames(String idCases) {
+  Future<bool> createCases(CasesModel model) async {
     try {
-      var list = firestore.collection('Exames');
-      return list
-          //.where('idCases', isEqualTo: idCases)
-          //.where('page', isEqualTo: page)
+      var firebaseUser = await FirebaseAuth.instance.currentUser();
+      model.teacherID = firebaseUser.uid;
+      model.position =
+          (await casesPage.getDocuments()).documents.length.toString();
+
+      await casesPage.document(model.id).setData(model.toMap());
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  Future<List<ComponentModel>> getDocuments(String idCases, String page) async {
+    try {
+      var collection = await casesPage
+          .document(idCases)
+          .collection(page)
           .orderBy('position')
-          .snapshots()
-          .map((query) => query.documents
-              .map((doc) => ComponentModel.fromMap(doc))
-              .toList());
+          .getDocuments();
+
+      return collection.documents
+          .map((item) => ComponentModel.fromMap(item))
+          .where((element) => element.idCases == idCases)
+          .toList();
     } catch (e) {
       print(e);
       return null;
@@ -126,52 +130,6 @@ Stream<List<ComponentModel>> getApresentacao(String idCases) {
     } catch (e) {
       print(e);
       return false;
-    }
-  }
-
-  Future<bool> createWidget(ComponentModel model) async {
-    try {
-      model.position =
-          (await Firestore.instance.collection('apresentacao').getDocuments())
-              .documents
-              .length
-              .toString();
-
-      await firestore
-          .collection('apresentacao')
-          .document(model.id)
-          .setData(model.toMap());
-      return true;
-    } catch (e) {
-      print(e);
-      return false;
-    }
-  }
-
-  Future deleteWidget() async {
-    try {
-      QuerySnapshot a = (await Firestore.instance
-          .collection('apresentacao')
-          .orderBy('position')
-          .getDocuments());
-
-      a.documents[a.documents.length - 1].reference.delete();
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  Future<List<ComponentModel>> getDocuments(String idCases) async {
-    try {
-      var page = await apresentacao.orderBy('position').getDocuments();
-
-      var aux =
-          page.documents.map((item) => ComponentModel.fromMap(item)).toList();
-      var aux2 = aux.where((element) => element.idCases == idCases).toList();
-      return aux2;
-    } catch (e) {
-      print(e);
-      return null;
     }
   }
 
