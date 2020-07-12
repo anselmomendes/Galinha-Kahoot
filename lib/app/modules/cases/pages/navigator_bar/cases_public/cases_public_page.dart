@@ -2,25 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'teacher_list_cases_controller.dart';
 
-class TeacherListCasesPage extends StatefulWidget {
-  final bool showAppBar;
+import 'cases_public_controller.dart';
+
+class CasesPublicPage extends StatefulWidget {
   final String title;
-  const TeacherListCasesPage(
-      {Key key, this.title = "Lista de Casos", this.showAppBar = true})
+  final CasesModel model;
+  final bool showAppBar;
+
+  const CasesPublicPage({Key key, this.title = "CasesPublic", this.model, this.showAppBar = true})
       : super(key: key);
 
   @override
-  _TeacherListCasesPageState createState() => _TeacherListCasesPageState();
+  _CasesPublicPageState createState() => _CasesPublicPageState();
 }
 
-class _TeacherListCasesPageState
-    extends ModularState<TeacherListCasesPage, TeacherListCasesController> {
+class _CasesPublicPageState extends ModularState<CasesPublicPage, CasesPublicController> {
+   final _topicOne = TextEditingController();
+  final _textOne = TextEditingController();
+  final _imageUrlOne = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    
+
     return Scaffold(
-      appBar: widget.showAppBar
+ appBar: widget.showAppBar
           ? AppBar(
               backgroundColor: Colors.redAccent,
               title: Text(widget.title),
@@ -28,21 +34,21 @@ class _TeacherListCasesPageState
             )
           : null,
       body: Container(
-        child: Observer(
-          name: 'cases',
+         child: Observer(
           builder: (_) {
             if (controller.casesList.data == null)
               return Center(
                 child: CircularProgressIndicator(),
               );
-            else if (controller.casesList.hasError)
+            else if (controller.casesList.hasError) 
               return Center(
                 child: RaisedButton(
-                  onPressed: () => controller.getList(),
+                  onPressed: () => controller.getList(), 
                   child: Text('Error'),
+                 
                 ),
               );
-            else {
+                else {
               List<CasesModel> list = controller.casesList.data;
 
               return ListView.builder(
@@ -68,8 +74,7 @@ class _TeacherListCasesPageState
                             ),
                             subtitle: //Text(model.title),
                                 Text(
-                              model
-                                  .description, //model.description, //model.textOne,
+                              model.description, //model.textOne,
                               style: TextStyle(
                                 fontSize: 16,
                               ),
@@ -77,7 +82,7 @@ class _TeacherListCasesPageState
                             onTap: () {
                               Navigator.pushNamed(
                                 context,
-                                '/cases/sintomas',
+                                '/cases/cases_home',
                                 arguments: model,
                               );
                             },
@@ -87,36 +92,13 @@ class _TeacherListCasesPageState
                             children: <Widget>[
                               FlatButton(
                                 color: Colors.redAccent,
-                                child: const Text('EXCLUIR'),
-                                onPressed: () {
-                                  _showAlertDialogDelete(model: model);
-                                },
-                              ),
-                              FlatButton(
-                                color: Colors.redAccent,
-                                child: const Text('EDITAR'),
-                                onPressed: () {
-                                  Navigator.pushNamed(
-                                    context,
-                                    '/cases/cases_update',
-                                    arguments: model,
-                                  );
-                                },
-                              ),
-                              FlatButton(
-                                color: Colors.redAccent,
                                 child: const Text('ACESSAR'),
                                 onPressed: () {
-                                  /* Navigator.pushNamed(
-                                    context,
-                                    '/cases/sintomas',
-                                    arguments: model,
-                                  ); */
                                   Navigator.pushNamed(
                                     context,
                                     '/cases/cases_home',
                                     arguments: model,
-                                  );
+                                   );
                                 },
                               ),
                             ],
@@ -127,45 +109,10 @@ class _TeacherListCasesPageState
                   );
                 },
               );
-            }
+              }
           },
         ),
       ),
-    );  
-  }
-
-  void _showAlertDialogDelete({CasesModel model}) {
-    model ??= CasesModel();
-
-    Widget cancelButton = FlatButton(
-      child: Text("Cancelar"),
-      onPressed: () {
-        Modular.to.pop();
-      },
-    );
-    // configura o button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () async {
-        await controller.delete(model);
-        Modular.to.pop();
-      },
-    );
-    // configura o  AlertDialog
-    AlertDialog alerta = AlertDialog(
-      title: Text("Aviso"),
-      content: Text("Deseja excluir o caso?"),
-      actions: [
-        cancelButton,
-        okButton,
-      ],
-    );
-    // exibe o dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alerta;
-      },
     );
   }
 }

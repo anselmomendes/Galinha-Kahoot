@@ -1,5 +1,9 @@
-import 'pages/cases_update/cases_update_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_public/cases_public_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_public/cases_public_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'pages/cases_update/cases_update_controller.dart';
 
 import 'pages/cases_home/cases_home_controller.dart';
 import 'pages/cases_update/cases_update_page.dart';
@@ -15,6 +19,7 @@ import 'pages/cases_register/cases_register_page.dart';
 import 'pages/cases_single/cases_single_page.dart';
 import 'services/cases_service.dart';
 import 'repositories/cases_repository.dart';
+//>>>>>>> 9092e352c56c881e239a5f9240003e32bf7c89e5
 import 'package:flutter_modular/flutter_modular.dart';
 import 'view_model/cases_viewmodel.dart';
 import 'store/cases_store.dart';
@@ -28,6 +33,7 @@ class CasesModule extends ChildModule {
         Bind((i) => CasesUpdateController(i.get<CasesRepository>())),
         Bind((i) =>
             CasesSintomasController(casesRepository: i.get<CasesRepository>())),
+        Bind((i) => CasesPublicController(i.get<CasesRepository>())),
         Bind((i) => CasesHomeController(i.get<CasesViewModel>())),
         Bind((i) => CasesRegisterController(i.get<CasesRepository>())),
         Bind((i) => CasesService()),
@@ -49,6 +55,7 @@ class CasesModule extends ChildModule {
         Router('/cases_single', child: (_, args) => CasesSinglePage()),
         Router('/cases_edit',
             child: (_, args) => CasesEditPage(model: args.data)),
+        Router('/cases_public', child: (_, args) => CasesPublicPage()),
       ];
 
   static Inject get to => Inject<CasesModule>.of();

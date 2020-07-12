@@ -15,7 +15,8 @@ class CasesModel {
     this.title,
     this.description,
     this.teacherID,
-    reference,
+    this.reference,
+    this.public,
   }) {
     id = id ?? Uuid().v1();
   }
@@ -28,6 +29,7 @@ class CasesModel {
     map['teacherID'] = teacherID;
     map['reference'] = reference;
     map['position'] = position;
+    map['public'] = public;
     return map;
   }
 
@@ -41,6 +43,8 @@ class CasesModel {
       teacherID: map['teacherID'],
       position: map['position'],
       reference: map.reference,
+      public: map['public'],
     );
   }
+
 }
