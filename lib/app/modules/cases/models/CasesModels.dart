@@ -7,6 +7,7 @@ class CasesModel {
   String description = '';
   String teacherID;
   String position;
+  String public;
   DocumentReference reference;
 
   CasesModel({
@@ -46,5 +47,4 @@ class CasesModel {
       public: map['public'],
     );
   }
-
 }

@@ -131,7 +131,7 @@ class _TeacherListCasesPageState
           },
         ),
       ),
-    );  
+    );
   }
 
   void _showAlertDialogDelete({CasesModel model}) {
