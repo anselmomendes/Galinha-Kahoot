@@ -72,7 +72,7 @@ class _TeacherListCasesPageState
                    icon: Icon(Icons.settings),                   
                    color: Colors.blueGrey,
                      onPressed: () {  Modular.to.pushNamed( 
-                                '/cases/config',
+                                '/cases/cases_config',
                                 arguments: model,);},
                    ),
                             subtitle: //Text(model.title),

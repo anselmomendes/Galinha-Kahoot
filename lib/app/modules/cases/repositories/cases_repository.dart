@@ -92,11 +92,11 @@ class CasesRepository extends Disposable implements ICasesRepository {
   Stream<List<CasesModel>> getForTeacher() {
     var b = firestore
         .collection('Cases')
-        .where('public', isEqualTo: "true")
+        /* .where('public', isEqualTo: "true") */
         .orderBy('position')
         .snapshots()
         .map((query) =>
-            query.documents.map((doc) => CasesModel.fromMap(doc)).toList());
+            query.documents.map((doc) => CasesModel.fromMap(doc)).where((element) => element.public == 'true').toList());
     return b;
   }
 
@@ -147,5 +147,9 @@ class CasesRepository extends Disposable implements ICasesRepository {
   Future save(CasesModel model) {
     // TODO: implement save
     throw UnimplementedError();
+  }
+
+  Future updateCases(CasesModel model) {
+    model.reference.updateData(model.toMap());
   }
 }

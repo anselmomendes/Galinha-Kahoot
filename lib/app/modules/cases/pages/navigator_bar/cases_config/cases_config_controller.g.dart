@@ -40,6 +40,16 @@ mixin _$CasesConfigController on _CasesConfigBase, Store {
   }
 
   @override
+  dynamic update(CasesModel model) {
+    final _$actionInfo = _$_CasesConfigBaseActionController.startAction();
+    try {
+      return super.update(model);
+    } finally {
+      _$_CasesConfigBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     final string = 'casesList: ${casesList.toString()}';
     return '{$string}';

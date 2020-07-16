@@ -8,17 +8,22 @@ class CasesConfigController = _CasesConfigBase with _$CasesConfigController;
 
 abstract class _CasesConfigBase with Store {
   final CasesRepository casesRepository;
-  
+
   @observable
-ObservableStream<List<CasesModel>> casesList;
+  ObservableStream<List<CasesModel>> casesList;
 
-  _CasesConfigBase(this.casesRepository){
+  _CasesConfigBase(this.casesRepository) {
     getList();
-   }
+  }
 
-    @action 
-      getList() {   
-        casesList = casesRepository.get().asObservable();
-    }
+  @action
+  getList() {
+    casesList = casesRepository.get().asObservable();
+  }
+
+  @action
+  update(CasesModel model) {
+    casesRepository.updateCases(model);
+  }
 
 }
