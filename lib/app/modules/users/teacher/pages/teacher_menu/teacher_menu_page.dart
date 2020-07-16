@@ -34,7 +34,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 //const SizedBox(height: 15,),
-                const ListTile(
+                 ListTile(
                   //contentPadding: EdgeInsets.only(left: 30),
                   leading: Icon(
                     Icons.local_hospital,
@@ -49,7 +49,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                       style: TextStyle(
                         fontSize: 16,
                       )),
-                ),
+                 ),
                 ButtonBar(
                   children: <Widget>[
                     FlatButton(

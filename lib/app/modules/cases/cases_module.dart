@@ -1,3 +1,5 @@
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_config/cases_config_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_config/cases_config_page.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_public/cases_public_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_public/cases_public_page.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
@@ -30,6 +32,7 @@ import 'pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
 class CasesModule extends ChildModule {
   @override
   List<Bind> get binds => [
+        Bind((i) => CasesConfigController(i.get<CasesRepository>())),
         Bind((i) => CasesUpdateController(i.get<CasesRepository>())),
         Bind((i) =>
             CasesSintomasController(casesRepository: i.get<CasesRepository>())),
@@ -56,6 +59,7 @@ class CasesModule extends ChildModule {
         Router('/cases_edit',
             child: (_, args) => CasesEditPage(model: args.data)),
         Router('/cases_public', child: (_, args) => CasesPublicPage()),
+        Router('/cases_config', child: (_, args) => CasesConfigPage(model: args.data)),
       ];
 
   static Inject get to => Inject<CasesModule>.of();

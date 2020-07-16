@@ -21,7 +21,6 @@ ObservableStream<List<CasesModel>> casesList;
     casesList = casesRepository.getForTeacher().asObservable();
     }
 
-
 @observable
   int value = 0;
  

@@ -58,6 +58,8 @@ class _TeacherListCasesPageState
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
+                        
+                             
                           ListTile(
                             title: Text(
                               model.title, //model.topicOne,
@@ -66,6 +68,13 @@ class _TeacherListCasesPageState
                                 fontSize: 18,
                               ),
                             ),
+                              trailing: IconButton( 
+                   icon: Icon(Icons.settings),                   
+                   color: Colors.blueGrey,
+                     onPressed: () {  Modular.to.pushNamed( 
+                                '/cases/config',
+                                arguments: model,);},
+                   ),
                             subtitle: //Text(model.title),
                                 Text(
                               model
@@ -80,11 +89,13 @@ class _TeacherListCasesPageState
                                 '/cases/sintomas',
                                 arguments: model,
                               );
+                              
                             },
                             //subtitle: Text(model.right),
                           ),
                           ButtonBar(
                             children: <Widget>[
+
                               FlatButton(
                                 color: Colors.redAccent,
                                 child: const Text('EXCLUIR'),
