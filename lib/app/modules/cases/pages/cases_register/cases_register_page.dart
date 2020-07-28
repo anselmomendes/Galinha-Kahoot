@@ -53,8 +53,8 @@ class _CasesRegisterPageState
                     //title
                     textFormFieldCustom(
                         controller: _title,
-                        labelText: 'Digite um title',
-                        hintText: 'Digite um title',
+                        labelText: 'Digite um título',
+                        hintText: 'Digite um título',
                         icon: Icon(Icons.description)),
                     //description
                     textFormFieldCustom(

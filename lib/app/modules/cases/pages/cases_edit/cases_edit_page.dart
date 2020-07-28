@@ -54,11 +54,11 @@ class _CasesEditPageState
   }
 
   Widget _selectField() {
-    if (widget.model.type.compareTo("topic") == 0) {
+    if (widget.model.type.compareTo("Título") == 0) {
       return _fieldTopic();
-    } else if (widget.model.type.compareTo("text") == 0) {
+    } else if (widget.model.type.compareTo("Texto") == 0) {
       return _fieldText();
-    } else if (widget.model.type.compareTo("image") == 0) {
+    } else if (widget.model.type.compareTo("Imagem") == 0) {
       return _fieldImage();
     } else
       return null;

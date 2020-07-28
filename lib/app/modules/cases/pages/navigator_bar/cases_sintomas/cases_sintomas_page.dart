@@ -103,10 +103,10 @@ class _CasesSintomasPageState
                       text: 'Imagem',
                       func: () async {
                         ComponentModel model = ComponentModel();
-                        model.type = 'image';
+                        model.type = 'Imagem';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
-                        model.type = 'image';
+                        // model.type = 'image';
                         await controller.create(model);
                         await controller.getDocuments(
                             widget.model.id, 'apresentacao');
@@ -122,10 +122,10 @@ class _CasesSintomasPageState
                       text: 'Texto',
                       func: () async {
                         ComponentModel model = ComponentModel();
-                        model.type = 'image';
+                        model.type = 'Texto';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
-                        model.type = 'text';
+                        // model.type = 'text';
                         await controller.create(model);
                         await controller.getDocuments(
                             widget.model.id, 'apresentacao');
@@ -141,10 +141,10 @@ class _CasesSintomasPageState
                       text: 'Título',
                       func: () async {
                         ComponentModel model = ComponentModel();
-                        model.type = 'image';
+                        model.type = 'Título';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
-                        model.type = 'topic';
+                        // model.type = 'topic';
                         await controller.create(model);
                         await controller.getDocuments(
                             widget.model.id, 'apresentacao');
