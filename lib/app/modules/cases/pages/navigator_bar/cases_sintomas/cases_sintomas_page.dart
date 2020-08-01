@@ -20,9 +20,12 @@ class CasesSintomasPage extends StatefulWidget {
 
 class _CasesSintomasPageState
     extends ModularState<CasesSintomasPage, CasesSintomasController> {
+  bool editMode;
+
   @override
   void initState() {
     controller.getDocuments(widget.model.id, 'apresentacao');
+    editMode = false;
     super.initState();
   }
 
@@ -30,6 +33,123 @@ class _CasesSintomasPageState
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
 
+    return Observer(builder: (_) {
+      if (editMode == true) {
+        return modeEdition(widget.model, screenWidth);
+      } else {
+        return modeVisualization(screenWidth);
+      }
+    });
+  }
+
+  // Modo visualização do tópico do caso
+  Scaffold modeVisualization(var screenWidth) {
+    return Scaffold(
+        appBar: AppBar(
+          elevation: 0.1,
+          backgroundColor: appContrastColor,
+          title: Text(widget.title),
+          centerTitle: true,
+        ),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: appContrastColor,
+            child: Icon(Icons.edit),
+            onPressed: () {
+              setState(() {
+                editMode = true;
+              });
+            }),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+          child: Column(
+          children: <Widget>[
+            Container(
+              height: screenWidth * 1.4,
+              child: Observer(
+                name: 'componentes',
+                builder: (_) {
+                  if (controller.cases == null)
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  else {
+                    List<ComponentModel> list = controller.cases;
+                    return ListView.builder(
+                      itemCount: controller.cases.length,
+                      itemBuilder: (_, index) {
+                        ComponentModel model = list[index];
+
+                        if (model.type.compareTo("Título") == 0) {
+                          return Container(
+                            height: 50,
+                            child: Text(
+                              model.value, textAlign: TextAlign.center,
+                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,)
+                            ),
+                          );
+                        } if (model.type.compareTo("Texto") == 0) {
+                          return Container(
+                            height: 50,
+                            child: Text(
+                              model.value, textAlign: TextAlign.justify,
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          );
+                        } else if (model.type.compareTo("Imagem") == 0) {
+                          return Container(
+                            // height: 50,
+                            child: Image.network(
+                              model.value,
+                              fit: BoxFit.contain,
+                              height: 300,
+                              width: 300,
+                            ),
+                          );
+                        }
+
+                        /* return Container(
+                          child: Card(
+                            margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                            elevation: 20,
+                            child: GestureDetector(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  ListTile(
+                                    title: Center(
+                                      child: Text(
+                                        model.type,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, '/cases/cases_edit',
+                                    arguments: model);
+                              },
+                            ),
+                          ),
+                        ); */
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
+          ],
+        ),
+        )
+        );
+  }
+
+  // Modo edição (adicionar ou excluir campos)
+  Scaffold modeEdition(CasesModel model, var screenWidth) {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.1,
@@ -106,6 +226,7 @@ class _CasesSintomasPageState
                         model.type = 'Imagem';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
+                        model.value = 'https://livecasthd.com.br/sem_foto.png';
                         // model.type = 'image';
                         await controller.create(model);
                         await controller.getDocuments(
@@ -125,6 +246,7 @@ class _CasesSintomasPageState
                         model.type = 'Texto';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
+                        model.value = 'Digite o conteúdo para o tópico deste caso.';
                         // model.type = 'text';
                         await controller.create(model);
                         await controller.getDocuments(
@@ -144,6 +266,7 @@ class _CasesSintomasPageState
                         model.type = 'Título';
                         model.idCases = widget.model.id;
                         model.page = 'apresentacao';
+                        model.value = 'Digite um título para o conteúdo';
                         // model.type = 'topic';
                         await controller.create(model);
                         await controller.getDocuments(
@@ -181,4 +304,52 @@ class _CasesSintomasPageState
           ],
         ));
   }
+
+/*   Widget _selectField() {
+    if (widget.model.type.compareTo("Título") == 0) {
+      return _fieldTopic();
+    } else if (widget.model.type.compareTo("Texto") == 0) {
+      return _fieldText();
+    } else if (widget.model.type.compareTo("Imagem") == 0) {
+      return _fieldImage();
+    } else
+      return null;
+  } */
+
+/*   Widget _fieldTopic() {
+    return Column(
+      children: <Widget>[
+        SizedBox(height: 5),
+        Text(
+          'Título',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 5),
+        TextFormField(
+          controller: initalValue,
+          maxLength: 40,
+          //initialValue: _textFour.text,
+          decoration: InputDecoration(
+            labelText: 'Digite um título para o caso',
+            hintText: 'Digite o título',
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 2.0,
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  } */
 }
