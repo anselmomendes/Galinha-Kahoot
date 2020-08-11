@@ -9,9 +9,10 @@ import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart'
 
 class CasesSintomasPage extends StatefulWidget {
   final String title;
+  final String page;
   final CasesModel model;
   const CasesSintomasPage(
-      {Key key, this.title = "Apresentação do Caso", this.model})
+      {Key key, this.title, this.model, this.page})
       : super(key: key);
 
   @override
@@ -24,7 +25,7 @@ class _CasesSintomasPageState
 
   @override
   void initState() {
-    controller.getDocuments(widget.model.id, 'apresentacao');
+    controller.getDocuments(widget.model.id, widget.page);
     editMode = false;
     super.initState();
   }
@@ -225,12 +226,12 @@ class _CasesSintomasPageState
                         ComponentModel model = ComponentModel();
                         model.type = 'Imagem';
                         model.idCases = widget.model.id;
-                        model.page = 'apresentacao';
+                        model.page = widget.page;
                         model.value = 'https://livecasthd.com.br/sem_foto.png';
                         // model.type = 'image';
                         await controller.create(model);
                         await controller.getDocuments(
-                            widget.model.id, 'apresentacao');
+                            widget.model.id, widget.page);
                       }),
                 ),
                 Expanded(
@@ -245,12 +246,12 @@ class _CasesSintomasPageState
                         ComponentModel model = ComponentModel();
                         model.type = 'Texto';
                         model.idCases = widget.model.id;
-                        model.page = 'apresentacao';
+                        model.page = widget.page;
                         model.value = 'Digite o conteúdo para o tópico deste caso.';
                         // model.type = 'text';
                         await controller.create(model);
                         await controller.getDocuments(
-                            widget.model.id, 'apresentacao');
+                            widget.model.id, widget.page);
                       }),
                 ),
                 Expanded(
@@ -265,12 +266,12 @@ class _CasesSintomasPageState
                         ComponentModel model = ComponentModel();
                         model.type = 'Título';
                         model.idCases = widget.model.id;
-                        model.page = 'apresentacao';
+                        model.page = widget.page;
                         model.value = 'Digite um título para o conteúdo';
                         // model.type = 'topic';
                         await controller.create(model);
                         await controller.getDocuments(
-                            widget.model.id, 'apresentacao');
+                            widget.model.id, widget.page);
                       }),
                 ),
                 SizedBox(height: 10),
@@ -292,9 +293,9 @@ class _CasesSintomasPageState
                           text: 'Excluir',
                           func: () async {
                             await controller.delete(
-                                widget.model.id, 'apresentacao');
+                                widget.model.id, widget.page);
                             await controller.getDocuments(
-                                widget.model.id, 'apresentacao');
+                                widget.model.id, widget.page);
                           }),
                     ],
                   ),

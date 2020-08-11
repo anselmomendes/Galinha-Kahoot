@@ -6,16 +6,18 @@ import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sinto
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 
 class CasesSintomasModule extends ModuleWidget {
+  String title;
+  String page;
   final CasesModel model;
 
-  CasesSintomasModule({this.model});
+  CasesSintomasModule({this.model, this.title, this.page});
   @override
   List<Bind> get binds => [];
 
   static Inject get to => Inject<CasesSintomasModule>.of();
 
   @override
-  Widget get view => CasesSintomasPage(
+  Widget get view => CasesSintomasPage(title: title, page: page,
         model: Modular.args.data,
       );
 }

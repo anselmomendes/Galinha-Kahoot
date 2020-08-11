@@ -22,10 +22,18 @@ class _CasesHomePageState
     extends ModularState<CasesHomePage, CasesHomeController> {
   final List<Widget> _widgetOptions = <Widget>[
     // CasesAnamneseModule(),
-    CasesSintomasModule(),
-    CasesAvaliacaoModule(),
-    CasesProcedimentoModule(),
-    CasesExamesModule(),
+    // Novo modo
+    CasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao'),
+    CasesSintomasModule(title: "Avaliação", page: 'avaliacao'),
+    CasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos'),
+    CasesSintomasModule(title: "Exames", page: 'exames'),
+    // CasesSintomasModule(title: "Quiz", page: 'quiz'),
+
+    // Modo antigo
+    // CasesSintomasModule(),
+    // CasesAvaliacaoModule(),
+    // CasesProcedimentoModule(),
+    // CasesExamesModule(),
     // CasesKahootModule(),
     CasesQuizModule(),
     CasesRelatorioModule(),
