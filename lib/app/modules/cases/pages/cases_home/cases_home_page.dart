@@ -35,7 +35,7 @@ class _CasesHomePageState
     // CasesProcedimentoModule(),
     // CasesExamesModule(),
     // CasesKahootModule(),
-    CasesQuizModule(),
+    CasesQuizModule(title: "Quiz", page: 'quiz'),
     CasesRelatorioModule(),
   ];
 
