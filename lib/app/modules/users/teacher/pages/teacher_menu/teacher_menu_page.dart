@@ -28,6 +28,9 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
           child: ListView(
         children: <Widget>[
           Card(
+             shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+    ),
             margin: EdgeInsets.all(15),
             elevation: 20,
             child: Column(
@@ -38,6 +41,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                   //contentPadding: EdgeInsets.only(left: 30),
                   leading: Icon(
                     Icons.local_hospital,
+                    color: Colors.blueGrey,
                     size: 35.0,
                   ),
                   title: Text('Casos',
@@ -67,19 +71,16 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                         Modular.to.pushNamed('/cases/cases_register');
                       },
                     ),
-                    FlatButton(
-                        color: Colors.redAccent,
-                      child: const Text(' TestePublic'),
-                      onPressed: () {
-                        Modular.to.pushNamed('/cases/cases_public');
-                      },
-                      ),
+            
                   ],
                 ),
               ],
             ),
           ),
           Card(
+             shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+    ),
             margin: EdgeInsets.all(15),
             elevation: 20,
             child: Column(
@@ -92,6 +93,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                   //contentPadding: EdgeInsets.only(left: 30),
                   leading: Icon(
                     Icons.list,
+                    color: Colors.blueGrey,
                     size: 35.0,
                   ),
                   title: Text('Turmas',
@@ -129,6 +131,9 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
             ),
           ),
           Card(
+             shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+    ),
             margin: EdgeInsets.all(15),
             elevation: 20,
             child: Column(
@@ -140,6 +145,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                 const ListTile(
                   leading: Icon(
                     Icons.description,
+                    color: Colors.blueGrey,
                     size: 35.0,
                   ),
                   title: Text('Relatório',

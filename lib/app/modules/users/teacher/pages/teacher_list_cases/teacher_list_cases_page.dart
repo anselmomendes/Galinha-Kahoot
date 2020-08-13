@@ -53,6 +53,9 @@ class _TeacherListCasesPageState
                   return Container(
                     height: 150,
                     child: Card(
+                       shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15.0),
+    ),
                       margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
                       elevation: 20,
                       child: Column(
@@ -118,7 +121,7 @@ class _TeacherListCasesPageState
                                   );
                                 },
                               ),
-                              FlatButton(
+                            /*  FlatButton(
                                 color: Colors.redAccent,
                                 child: const Text('ACESSAR'),
                                 onPressed: () {
@@ -133,7 +136,7 @@ class _TeacherListCasesPageState
                                     arguments: model,
                                   );
                                 },
-                              ),
+                              ), */
                             ],
                           ),
                         ],

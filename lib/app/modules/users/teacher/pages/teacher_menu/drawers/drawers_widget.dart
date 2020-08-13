@@ -79,6 +79,7 @@ class DrawersWidget extends StatelessWidget {
               Divider(),
               _getTile(icon: Icons.home, title: "Início", route: null),
               _getTile(
+
                   icon: Icons.person,
                   title: "Meu Perfil",
                   route: '/teacher/teacher_perfil'),
@@ -94,6 +95,10 @@ class DrawersWidget extends StatelessWidget {
                   icon: Icons.info,
                   title: "Sobre",
                   route: '/teacher/teacher_about'),
+                   _getTile(
+                  icon: Icons.public,
+                  title: "Casos Públicos",
+                  route: '/cases/cases_public'),
               ListTile(
                 leading: Icon(Icons.exit_to_app),
                 title: Text(
