@@ -17,7 +17,14 @@ class CasesEditPage extends StatefulWidget {
 
 class _CasesEditPageState
     extends ModularState<CasesEditPage, CasesEditController> {
-  TextEditingController initalValue = TextEditingController();
+  TextEditingController _initalValue = TextEditingController();
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +46,7 @@ class _CasesEditPageState
             circularButton(
                 text: 'Salvar',
                 func: () async {
-                  widget.model.value = initalValue.text.toString();
+                  // widget.model.value = _initalValue.text.toString();
                   if (await controller.update(widget.model)) {
                     _showAlertDialog(context, 'Componente Registrado',
                         'O componente do caso foi registrado com sucesso!');
@@ -75,12 +82,14 @@ class _CasesEditPageState
         ),
         SizedBox(height: 5),
         TextFormField(
-          controller: initalValue,
+          // controller: _initalValue,
           maxLength: 40,
           //initialValue: _textFour.text,
+          initialValue: widget.model.value,
+          onChanged: (v) => widget.model.value = v,
           decoration: InputDecoration(
             labelText: 'Digite um título para o caso',
-            hintText: 'Digite o título',
+            // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
               borderSide: BorderSide(
@@ -112,13 +121,15 @@ class _CasesEditPageState
         ),
         SizedBox(height: 5),
         TextFormField(
-          controller: initalValue,
+          // controller: _initalValue,
           maxLength: 1000,
           maxLines: 5,
           //initialValue: widget.model.topicTree,
+          initialValue: widget.model.value,
+          onChanged: (v) => widget.model.value = v,
           decoration: InputDecoration(
             labelText: 'Digite um conteúdo para o caso',
-            hintText: 'Descreva o caso',
+            // hintText: 'Descreva o caso',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
               borderSide: BorderSide(
@@ -151,11 +162,13 @@ class _CasesEditPageState
         SizedBox(height: 5),
         TextFormField(
           maxLength: 50,
-          controller: initalValue,
+          // controller: _initalValue,
           // initialValue: controller.casesViewModel.casesPage.data[0].toString(),
+          initialValue: widget.model.value,
+          onChanged: (v) => widget.model.value = v,
           decoration: InputDecoration(
             labelText: 'Digite o link da imagem',
-            hintText: 'Insira o link',
+            // hintText: 'Insira o link',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
               borderSide: BorderSide(

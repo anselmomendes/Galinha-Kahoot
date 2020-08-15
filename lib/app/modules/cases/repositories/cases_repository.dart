@@ -102,7 +102,8 @@ class CasesRepository extends Disposable implements ICasesRepository {
 
   Future<bool> updateWidget(ComponentModel model) async {
     try {
-      await casesPage.document(model.id).updateData(model.toMap());
+      // await casesPage.document(model.id).updateData(model.toMap());
+      await casesPage.document(model.idCases).collection(model.page).document(model.id).updateData(model.toMap());
       return true;
     } catch (e) {
       print(e);

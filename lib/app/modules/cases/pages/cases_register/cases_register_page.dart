@@ -73,6 +73,7 @@ class _CasesRegisterPageState
                       onPressed: () {
                         model.title = _title.text;
                         model.description = _description.text;
+                        model.public = 'false';
                         controller.save(model);
                         _showAlertDialog(context);
                       },
