@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,13 +14,15 @@ class CasesQuizPage extends StatefulWidget {
   final String title;
   final String page;
   final CasesModel model;
-  const CasesQuizPage({Key key, this.title, this.model, this.page}) : super(key: key);
+  const CasesQuizPage({Key key, this.title, this.model, this.page})
+      : super(key: key);
 
   @override
   _CasesQuizPageState createState() => _CasesQuizPageState();
 }
 
-class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizController> {
+class _CasesQuizPageState
+    extends ModularState<CasesQuizPage, CasesQuizController> {
   bool editMode;
 
   @override
@@ -61,52 +65,68 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
         body: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
           child: Column(
-          children: <Widget>[
-            Container(
-              height: screenWidth * 1.4,
-              child: Observer(
-                name: 'componentes',
-                builder: (_) {
-                  if (controller.cases == null)
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  else {
-                    List<ComponentModel> list = controller.cases;
-                    return ListView.builder(
-                      itemCount: controller.cases.length,
-                      itemBuilder: (_, index) {
-                        ComponentModel model = list[index];
+            children: <Widget>[
+              Container(
+                height: screenWidth * 1.4,
+                child: Observer(
+                  name: 'componentes',
+                  builder: (_) {
+                    if (controller.quiz == null)
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    else {
+                      List<QuizModel> list = controller.quiz;
+                      return ListView.builder(
+                        itemCount: controller.quiz.length,
+                        itemBuilder: (_, index) {
+                          QuizModel model = list[index];
 
-                        if (model.type.compareTo("Título") == 0) {
-                          return Container(
-                            height: 50,
-                            child: Text(
-                              model.value, textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,)
-                            ),
-                          );
-                        } if (model.type.compareTo("Texto") == 0) {
-                          return Container(
-                            height: 50,
-                            child: Text(
-                              model.value, textAlign: TextAlign.justify,
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          );
-                        } else if (model.type.compareTo("Imagem") == 0) {
-                          return Container(
-                            // height: 50,
-                            child: Image.network(
-                              model.value,
-                              fit: BoxFit.contain,
-                              height: 300,
-                              width: 300,
-                            ),
-                          );
-                        }
+                          if (model.type.compareTo("type1") == 0) {
+                            return Container(
+                              height: 60,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                      'Questão ${index + 1} - Múltipla escolha',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  Text(model.question,
+                                      textAlign: TextAlign.justify,
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        // fontWeight: FontWeight.bold,
+                                      )),
+                                ],
+                              ),
+                            );
+                          } else if (model.type.compareTo("type2") == 0) {
+                            return Container(
+                              height: 60,
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                      'Questão ${index + 1} - Verdadeiro ou falso',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.bold,
+                                      )),
+                                  Text(
+                                    model.question,
+                                    textAlign: TextAlign.justify,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                        // fontWeight: FontWeight.bold,
+                                      ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          }
 
-                        /* return Container(
+                          /* return Container(
                           child: Card(
                             margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
                             elevation: 20,
@@ -135,16 +155,15 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                             ),
                           ),
                         ); */
-                      },
-                    );
-                  }
-                },
+                        },
+                      );
+                    }
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
-        )
-        );
+            ],
+          ),
+        ));
   }
 
   // Modo edição (adicionar ou excluir campos)
@@ -163,16 +182,16 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
               child: Observer(
                 name: 'componentes',
                 builder: (_) {
-                  if (controller.cases == null)
+                  if (controller.quiz == null)
                     return Center(
                       child: CircularProgressIndicator(),
                     );
                   else {
-                    List<ComponentModel> list = controller.cases;
+                    List<QuizModel> list = controller.quiz;
                     return ListView.builder(
-                      itemCount: controller.cases.length,
+                      itemCount: controller.quiz.length,
                       itemBuilder: (_, index) {
-                        ComponentModel model = list[index];
+                        QuizModel model = list[index];
 
                         return Container(
                           child: Card(
@@ -185,7 +204,8 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                                   ListTile(
                                     title: Center(
                                       child: Text(
-                                        model.type,
+                                        // model.type,
+                                        "Questão ${index + 1}",
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 18,
@@ -196,9 +216,10 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                                 ],
                               ),
                               onTap: () {
-                                Navigator.pushNamed(
+                                /* Navigator.pushNamed(
                                     context, '/cases/cases_edit',
-                                    arguments: model);
+                                    arguments: model); */
+                                print("Acessando quiz_edit (teste)");
                               },
                             ),
                           ),
@@ -217,16 +238,23 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
             Row(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(left: screenWidth * 0.05),
+                  padding: EdgeInsets.only(left: screenWidth * 0.1),
                   child: circularButton(
-                      text: 'Imagem',
+                      text: 'Múltiplas \nescolha',
                       func: () async {
-                        ComponentModel model = ComponentModel();
-                        model.type = 'Imagem';
+                        QuizModel model = QuizModel();
+                        // type1 representa as questões de múltiplas escolhas
+                        model.type = 'type1';
                         model.idCases = widget.model.id;
                         model.page = widget.page;
-                        model.value = 'https://livecasthd.com.br/sem_foto.png';
-                        // model.type = 'image';
+                        model.question = 'Digite o comando da questão.';
+                        model.answers1 = 'Alternativa 1';
+                        model.answers2 = 'Alternativa 2';
+                        model.answers3 = 'Alternativa 3';
+                        model.answers4 = 'Alternativa 4';
+                        model.answers5 = 'Alternativa 5';
+                        model.right = 'answers1';
+                        // model.value = 'https://livecasthd.com.br/sem_foto.png';
                         await controller.create(model);
                         await controller.getDocuments(
                             widget.model.id, widget.page);
@@ -237,40 +265,28 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                   child: Container(),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: circularButton(
-                      text: 'Texto',
-                      func: () async {
-                        ComponentModel model = ComponentModel();
-                        model.type = 'Texto';
-                        model.idCases = widget.model.id;
-                        model.page = widget.page;
-                        model.value = 'Digite o conteúdo para o tópico deste caso.';
-                        // model.type = 'text';
-                        await controller.create(model);
-                        await controller.getDocuments(
-                            widget.model.id, widget.page);
-                      }),
-                ),
-                Expanded(
-                  flex: 2,
-                  child: Container(),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: screenWidth * 0.05),
-                  child: circularButton(
-                      text: 'Título',
-                      func: () async {
-                        ComponentModel model = ComponentModel();
-                        model.type = 'Título';
-                        model.idCases = widget.model.id;
-                        model.page = widget.page;
-                        model.value = 'Digite um título para o conteúdo';
-                        // model.type = 'topic';
-                        await controller.create(model);
-                        await controller.getDocuments(
-                            widget.model.id, widget.page);
-                      }),
+                  // padding: const EdgeInsets.all(1.0),
+                  padding: EdgeInsets.only(right: screenWidth * 0.1),
+                  child: Row(
+                    children: <Widget>[
+                      circularButton(
+                          text: 'Verdadeiro \nou falso',
+                          func: () async {
+                            QuizModel model = QuizModel();
+                            // type2 representa as questões do tipo verdadeiro ou falso
+                            model.type = 'type2';
+                            model.idCases = widget.model.id;
+                            model.page = widget.page;
+                            model.question = 'Digite o comando da questão.';
+                            model.answers1 = 'Verdadeira';
+                            model.answers2 = 'Falsa';
+                            model.right = 'Verdadeira';
+                            await controller.create(model);
+                            await controller.getDocuments(
+                                widget.model.id, widget.page);
+                          }),
+                    ],
+                  ),
                 ),
                 SizedBox(height: 10),
               ],
@@ -282,7 +298,7 @@ class _CasesQuizPageState extends ModularState<CasesQuizPage, CasesQuizControlle
                   child: Column(
                     children: <Widget>[
                       Text(
-                        'Último Campo',
+                        'Última Questão',
                         style: TextStyle(fontWeight: FontWeight.bold),
                         // style: TextStyle(fontSize: 18),
                         textAlign: TextAlign.center,

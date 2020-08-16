@@ -36,7 +36,7 @@ class CasesModule extends ChildModule {
         Bind((i) => CasesUpdateController(i.get<CasesRepository>())),
         Bind((i) =>
             CasesSintomasController(casesRepository: i.get<CasesRepository>())),
-        Bind((i) => CasesQuizController(i.get<CasesRepository>())),
+        Bind((i) => CasesQuizController(casesRepository: i.get<CasesRepository>(), quizRepository: i.get<QuizRepository>())),
         Bind((i) => CasesPublicController(i.get<CasesRepository>())),
         Bind((i) => CasesHomeController(i.get<CasesViewModel>())),
         Bind((i) => CasesRegisterController(i.get<CasesRepository>())),

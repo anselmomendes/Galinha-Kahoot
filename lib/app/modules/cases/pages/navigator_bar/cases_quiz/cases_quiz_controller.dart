@@ -9,21 +9,25 @@ part 'cases_quiz_controller.g.dart';
 class CasesQuizController = _CasesQuizControllerBase with _$CasesQuizController;
 
 abstract class _CasesQuizControllerBase with Store {
+  final QuizRepository quizRepository;
   final CasesRepository casesRepository;
 
-  _CasesQuizControllerBase(this.casesRepository);
-  // final QuizRepository quizRepository;
+  // Construtor (se modificar aqui, tem deve modificar 'cases_module')
+  _CasesQuizControllerBase({this.casesRepository, this.quizRepository});
 
   void dispose() {
     casesRepository.dispose();
-    // quizRepository.dispose();
+    quizRepository.dispose();
   }
 
-  // @observable
-  // ObservableStream<List<QuizModel>> quizList;
+  @observable
+  ObservableStream<List<QuizModel>> quizList;
   
   @observable
   ObservableStream<List<ComponentModel>> casesPage;
+
+  @observable
+  List<QuizModel> quiz;
 
   @observable
   List<ComponentModel> cases;
@@ -32,25 +36,37 @@ abstract class _CasesQuizControllerBase with Store {
   bool editMode = false;
 
 
-  /* _CasesQuizControllerBase(this.quizRepository, this.casesRepository) {
-    // getList();
-  } */
-  // _CasesQuizControllerBase({/* this.quizRepository,  */this.casesRepository});
-  // _CasesQuizControllerBase({this.casesRepository});
-
-  @action
+  /* @action
   getDocuments(String casesID, String page) async {
     cases = await casesRepository.getDocuments(casesID, page);
+  } */
+
+  // Chama a função para puxar as questões do caso
+  @action
+  getDocuments(String casesID, String page) async {
+    quiz = await quizRepository.getDocuments(casesID, page);
   }
 
-  @action
+  /* @action
   delete(String casesID, String page) {
     return casesRepository.deleteWidget(casesID, page);
-  }
+  } */
 
+  // Deleta a questão
   @action
+  delete(String casesID, String page) {
+    return quizRepository.deleteWidget(casesID, page);
+  }
+  
+  /* @action
   create(ComponentModel model) {
     return casesRepository.createWidget(model);
+  } */
+
+  // Cria uma questão
+  @action
+  create(QuizModel model) {
+    return quizRepository.createWidget(model);
   }
 
   /* @action

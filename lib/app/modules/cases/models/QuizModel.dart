@@ -1,43 +1,76 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:uuid/uuid.dart';
 
 class QuizModel {
-  String casesID;
+  String id;
+  String idCases;
+  String position;
   String type;
+  String page;
   String question;
   String answers1;
   String answers2;
   String answers3;
   String answers4;
   String answers5;
-  String position;
   String right;
+  int time;
+  String commentary;
   DocumentReference reference;
 
   QuizModel({
-    this.casesID = '',
-    this.type = '',
-    this.question = '',
-    this.answers1 = '',
-    this.answers2 = '',
-    this.answers3 = '',
-    this.answers4 = '',
-    this.answers5 = '',
-    this.position = '',
-    this.right = '',
+    this.id,
+    this.idCases,
+    this.position,
+    this.type,
+    this.page,
+    this.question,
+    this.answers1,
+    this.answers2,
+    this.answers3,
+    this.answers4,
+    this.answers5,
+    this.right,
+    this.time,
+    this.commentary,
     this.reference,
-  });
+  }) {
+    id = id ?? Uuid().v1();
+  }
 
-  factory QuizModel.fromDocument(DocumentSnapshot doc) => QuizModel(
-        casesID: doc["casesID"],
-        type: doc['type'],
-        question: doc["question"],
-        answers1: doc["answers1"],
-        answers2: doc["answers2"],
-        answers3: doc["answers3"],
-        answers4: doc["answers4"],
-        answers5: doc["answers5"],
-        position: doc["position"],
-        right: doc["right"],
-        reference: doc.reference,
-      );
+  Map<String, dynamic> toMap() {
+    Map map = Map<String, dynamic>();
+    map['id'] = id;
+    map['idCases'] = idCases;
+    map['position'] = position;
+    map['type'] = type;
+    map['page'] = page;
+    map['question'] = question;
+    map['answers1'] = answers1;
+    map['answers2'] = answers2;
+    map['answers3'] = answers3;
+    map['answers4'] = answers4;
+    map['answers5'] = answers5;
+    map['right'] = right;
+    map['time'] = time;
+    map['commentary'] = commentary;
+    return map;
+  }
+
+  factory QuizModel.fromMap(DocumentSnapshot map) => QuizModel(
+      id: map['id'],
+      idCases: map['idCases'],
+      position: map['position'],
+      type: map['type'],
+      page: map['page'],
+      question: map['question'],
+      answers1: map['answers1'],
+      answers2: map['answers2'],
+      answers3: map['answers3'],
+      answers4: map['answers4'],
+      answers5: map['answers5'],
+      right: map['right'],
+      time: map["time"],
+      commentary: map["commentary"],
+      reference: map.reference);
 }
