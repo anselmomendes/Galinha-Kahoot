@@ -118,8 +118,8 @@ class _CasesQuizPageState
                                     textAlign: TextAlign.justify,
                                     style: TextStyle(
                                       fontSize: 18,
-                                        // fontWeight: FontWeight.bold,
-                                      ),
+                                      // fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -178,7 +178,7 @@ class _CasesQuizPageState
         body: Column(
           children: [
             Container(
-              height: screenWidth * 1.1,
+              height: screenWidth * 1.15,
               child: Observer(
                 name: 'componentes',
                 builder: (_) {
@@ -202,16 +202,7 @@ class _CasesQuizPageState
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   ListTile(
-                                    title: Center(
-                                      child: Text(
-                                        // model.type,
-                                        "Questão ${index + 1}",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
+                                    title: _selectQuestionType(model, index),
                                   ),
                                 ],
                               ),
@@ -240,7 +231,8 @@ class _CasesQuizPageState
                 Padding(
                   padding: EdgeInsets.only(left: screenWidth * 0.1),
                   child: circularButton(
-                      text: 'Múltiplas \nescolha',
+                      text: 'Múltipla \nEscolha',
+                      sizeFont: 12,
                       func: () async {
                         QuizModel model = QuizModel();
                         // type1 representa as questões de múltiplas escolhas
@@ -265,12 +257,12 @@ class _CasesQuizPageState
                   child: Container(),
                 ),
                 Padding(
-                  // padding: const EdgeInsets.all(1.0),
                   padding: EdgeInsets.only(right: screenWidth * 0.1),
                   child: Row(
                     children: <Widget>[
                       circularButton(
-                          text: 'Verdadeiro \nou falso',
+                          text: 'Verdadeiro \nou Falso',
+                          sizeFont: 12,
                           func: () async {
                             QuizModel model = QuizModel();
                             // type2 representa as questões do tipo verdadeiro ou falso
@@ -294,7 +286,7 @@ class _CasesQuizPageState
             Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: screenWidth * 0.05),
+                  padding: EdgeInsets.zero,
                   child: Column(
                     children: <Widget>[
                       Text(
@@ -305,6 +297,7 @@ class _CasesQuizPageState
                       ),
                       circularButton(
                           text: 'Excluir',
+                          sizeFont: 18,
                           func: () async {
                             await controller.delete(
                                 widget.model.id, widget.page);
@@ -318,6 +311,35 @@ class _CasesQuizPageState
             ),
           ],
         ));
+  }
+
+  // Exibir as questões por tipo
+  Widget _selectQuestionType(QuizModel model, int index) {
+    // type1 representa as questões de múltiplas escolhas
+    if (model.type.compareTo('type1') == 0) {
+      return Text(
+        // model.type,
+        "Questão ${index + 1} | Múltipla Escolha",
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+        ),
+      );
+    }
+    // type2 representa as questões do tipo verdadeiro ou falso
+    else if (model.type.compareTo('type2') == 0) {
+      return Text(
+        // model.type,
+        "Questão ${index + 1} | Verdadeiro ou Falso",
+        textAlign: TextAlign.start,
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+        ),
+      );
+    }
+    return null;
   }
 
 /*   Widget _selectField() {

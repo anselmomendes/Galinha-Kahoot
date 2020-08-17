@@ -161,7 +161,7 @@ class _CasesSintomasPageState
         body: Column(
           children: [
             Container(
-              height: screenWidth * 1.1,
+              height: screenWidth * 1.15,
               child: Observer(
                 name: 'componentes',
                 builder: (_) {
@@ -280,7 +280,7 @@ class _CasesSintomasPageState
             Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: screenWidth * 0.05),
+                  padding: EdgeInsets.zero,
                   child: Column(
                     children: <Widget>[
                       Text(
