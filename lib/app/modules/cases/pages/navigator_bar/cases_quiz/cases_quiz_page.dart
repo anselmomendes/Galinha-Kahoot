@@ -207,10 +207,9 @@ class _CasesQuizPageState
                                 ],
                               ),
                               onTap: () {
-                                /* Navigator.pushNamed(
-                                    context, '/cases/cases_edit',
-                                    arguments: model); */
-                                print("Acessando quiz_edit (teste)");
+                                Navigator.pushNamed(
+                                    context, '/cases/cases_quiz_edit',
+                                    arguments: model);
                               },
                             ),
                           ),
