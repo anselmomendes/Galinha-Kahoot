@@ -8,7 +8,7 @@ import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart'
 class CasesEditPage extends StatefulWidget {
   final String title;
   final ComponentModel model;
-  const CasesEditPage({Key key, this.title = "CasesEdit", this.model})
+  const CasesEditPage({Key key, this.title = "Editar Campos", this.model})
       : super(key: key);
 
   @override
@@ -17,14 +17,6 @@ class CasesEditPage extends StatefulWidget {
 
 class _CasesEditPageState
     extends ModularState<CasesEditPage, CasesEditController> {
-  TextEditingController _initalValue = TextEditingController();
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-
-  //   super.initState();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +26,7 @@ class _CasesEditPageState
       appBar: AppBar(
         elevation: 0.1,
         backgroundColor: appContrastColor,
-        title: Text('Editar Campos'),
+        title: Text(widget.title),
         centerTitle: true,
       ),
       body: Padding(
