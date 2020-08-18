@@ -37,11 +37,12 @@ class _CasesQuizPageState
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Observer(builder: (_) {
-      if (editMode == true) {
+      return modeEdition(widget.model, screenWidth);
+      /* if (editMode == true) {
         return modeEdition(widget.model, screenWidth);
       } else {
         return modeVisualization(screenWidth);
-      }
+      } */
     });
   }
 
@@ -231,7 +232,7 @@ class _CasesQuizPageState
                   padding: EdgeInsets.only(left: screenWidth * 0.1),
                   child: circularButton(
                       text: 'Múltipla \nEscolha',
-                      sizeFont: 12,
+                      sizeFont: 14,
                       func: () async {
                         QuizModel model = QuizModel();
                         // type1 representa as questões de múltiplas escolhas
@@ -261,7 +262,7 @@ class _CasesQuizPageState
                     children: <Widget>[
                       circularButton(
                           text: 'Verdadeiro \nou Falso',
-                          sizeFont: 12,
+                          sizeFont: 14,
                           func: () async {
                             QuizModel model = QuizModel();
                             // type2 representa as questões do tipo verdadeiro ou falso
