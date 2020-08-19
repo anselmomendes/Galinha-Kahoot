@@ -19,10 +19,27 @@ class _CasesQuizEditPageState
     extends ModularState<CasesQuizEditPage, CasesQuizEditController> {
   //use 'controller' variable to access controller
 
+  // Seleção do tempo da questão
+  List<bool> isSelectedTimer = List.generate(5, (_) => false);
+  // Seleção da alternativa certa 'type1'
+  List<bool> isSelectedRight1 = List.generate(5, (_) => false);
+  // Seleção da alternativa certa 'type2'
+  List<bool> isSelectedRight2 = List.generate(2, (_) => false);
+
+  // *DEPOIS* tem que colocar pra iniciar com o valor do db
+  @override
+  void initState() {
+    // TODO: implement initState
+    isSelectedTimer[0] = true;
+    isSelectedRight1[0] = true;
+    isSelectedRight2[0] = true;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0.1,
@@ -30,16 +47,17 @@ class _CasesQuizEditPageState
         title: Text(widget.title),
         centerTitle: true,
       ),
+
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+        // padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+        padding: EdgeInsets.fromLTRB(30, 5, 30, 30),
         child: ListView(
           children: <Widget>[
             Container(
-              height: screenWidth * 1.2, 
-              child: SingleChildScrollView(
-                child: _selectField(),
-              )
-              ),
+                height: screenWidth * 1.5,
+                child: SingleChildScrollView(
+                  child: _selectField(),
+                )),
             // SizedBox(height: 20),
             circularButton(
                 text: 'Salvar',
@@ -50,7 +68,7 @@ class _CasesQuizEditPageState
                         'A questão foi registrada com sucesso!');
                   } else
                     _showAlertDialog(context, 'Questão não Registrada',
-                        'A questão não foi registrada com sucesso!');
+                        'A questão não foi registrada!');
                 })
           ],
         ),
@@ -67,11 +85,11 @@ class _CasesQuizEditPageState
       return null;
   }
 
-    // Questão do tipo Múltipla Escolha
-    Widget _questionType1() {
+  // Questão do tipo Múltipla Escolha
+  Widget _questionType1() {
     return Column(
       children: <Widget>[
-        SizedBox(height: 5),
+        SizedBox(height: 10),
         Text(
           'Comando da questão',
           style: TextStyle(fontSize: 18),
@@ -80,12 +98,12 @@ class _CasesQuizEditPageState
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 200,
+          maxLength: 300,
           maxLines: 3,
           initialValue: widget.model.question,
           onChanged: (v) => widget.model.question = v,
           decoration: InputDecoration(
-            labelText: 'Digite o comando da questão',
+            labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -112,12 +130,12 @@ class _CasesQuizEditPageState
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 60,
+          maxLength: 80,
           maxLines: 2,
-          initialValue: widget.model.question,
-          onChanged: (v) => widget.model.question = v,
+          initialValue: widget.model.answers1,
+          onChanged: (v) => widget.model.answers1 = v,
           decoration: InputDecoration(
-            labelText: 'Digite o comando da questão',
+            labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -144,12 +162,12 @@ class _CasesQuizEditPageState
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 60,
+          maxLength: 80,
           maxLines: 2,
-          initialValue: widget.model.question,
-          onChanged: (v) => widget.model.question = v,
+          initialValue: widget.model.answers2,
+          onChanged: (v) => widget.model.answers2 = v,
           decoration: InputDecoration(
-            labelText: 'Digite o comando da questão',
+            labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -176,12 +194,12 @@ class _CasesQuizEditPageState
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 60,
+          maxLength: 80,
           maxLines: 2,
-          initialValue: widget.model.question,
-          onChanged: (v) => widget.model.question = v,
+          initialValue: widget.model.answers3,
+          onChanged: (v) => widget.model.answers3 = v,
           decoration: InputDecoration(
-            labelText: 'Digite o comando da questão',
+            labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -208,12 +226,12 @@ class _CasesQuizEditPageState
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 60,
+          maxLength: 80,
           maxLines: 2,
-          initialValue: widget.model.question,
-          onChanged: (v) => widget.model.question = v,
+          initialValue: widget.model.answers4,
+          onChanged: (v) => widget.model.answers4 = v,
           decoration: InputDecoration(
-            labelText: 'Digite o comando da questão',
+            labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -240,12 +258,12 @@ class _CasesQuizEditPageState
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 60,
+          maxLength: 80,
           maxLines: 2,
-          initialValue: widget.model.question,
-          onChanged: (v) => widget.model.question = v,
+          initialValue: widget.model.answers5,
+          onChanged: (v) => widget.model.answers5 = v,
           decoration: InputDecoration(
-            labelText: 'Digite o comando da questão',
+            labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -263,30 +281,138 @@ class _CasesQuizEditPageState
             ),
           ),
         ),
-      ],
-    );
-  }
-
-  // Questão do tipo Verdadeirou ou Falso
-  Widget _questionType2() {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 5),
+        SizedBox(height: 10),
+        Divider(
+          height: 10,
+          thickness: 1.0,
+        ),
+        SizedBox(height: 10),
         Text(
-          'Descrição',
+          'Selecione a alternativa correta',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 5),
+        ToggleButtons(
+            textStyle: TextStyle(fontSize: 14.0),
+            children: <Widget>[
+              Text('(a)'), // 0
+              Text('(b)'), // 1
+              Text('(c)'), // 2
+              Text('(d)'), // 3
+              Text('(e)'), // 4
+            ],
+            onPressed: (int index) {
+              setState(() {
+                for (int buttonIndex = 0;
+                    buttonIndex < isSelectedRight1.length;
+                    buttonIndex++) {
+                  if (buttonIndex == index) {
+                    isSelectedRight1[buttonIndex] = true;
+                    // Salva no model a resposta correta
+                    widget.model.right = buttonIndex.toString();
+                    print(buttonIndex);
+                  } else {
+                    isSelectedRight1[buttonIndex] = false;
+                  }
+                }
+              });
+            },
+            isSelected: isSelectedRight1),
+        SizedBox(height: 20),
+        Text(
+          'Selecione o tempo da questão',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 5),
+        ToggleButtons(
+            textStyle: TextStyle(fontSize: 14.0),
+            children: <Widget>[
+              Text('10s'),
+              Text('15s'),
+              Text('25s'),
+              Text('30s'),
+              Text('45s'),
+            ],
+            onPressed: (int index) {
+              setState(() {
+                for (int buttonIndex = 0;
+                    buttonIndex < isSelectedTimer.length;
+                    buttonIndex++) {
+                  if (buttonIndex == index) {
+                    isSelectedTimer[buttonIndex] = true;
+                    saveSelectedTimer(buttonIndex);
+                    // print(buttonIndex);
+                  } else {
+                    isSelectedTimer[buttonIndex] = false;
+                  }
+                }
+              });
+            },
+            isSelected: isSelectedTimer),
+        SizedBox(height: 20),
+        Divider(
+          height: 10,
+          thickness: 1.0,
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Comentário da questão',
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 1000,
-          maxLines: 5,
+          maxLength: 300,
+          maxLines: 3,
+          initialValue: widget.model.commentary,
+          onChanged: (v) => widget.model.commentary = v,
+          decoration: InputDecoration(
+            labelText: 'Digite o comentário',
+            // hintText: 'Digite o título',
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 2.0,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5),
+      ],
+    );
+  }
+
+  // Questão do tipo Verdadeiro ou Falso
+  Widget _questionType2() {
+    return Column(
+      children: <Widget>[
+        SizedBox(height: 10),
+        Text(
+          'Comando da questão',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 5),
+        TextFormField(
+          // controller: _initalValue,
+          maxLength: 300,
+          maxLines: 3,
           //initialValue: widget.model.topicTree,
           initialValue: widget.model.question,
           onChanged: (v) => widget.model.question = v,
           decoration: InputDecoration(
-            labelText: 'Digite um conteúdo para o caso',
+            labelText: 'Digite a alternativa',
             // hintText: 'Descreva o caso',
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5.0),
@@ -304,10 +430,115 @@ class _CasesQuizEditPageState
             ),
           ),
         ),
+        SizedBox(height: 10),
+        Divider(
+          height: 10,
+          thickness: 1.0,
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Selecione a resposta (V ou F)',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 5),
+        ToggleButtons(
+            textStyle: TextStyle(fontSize: 14.0),
+            children: <Widget>[
+              Icon(Icons.check), // true
+              Icon(Icons.close)  // false
+            ],
+            onPressed: (int index) {
+              setState(() {
+                for (int buttonIndex = 0;
+                    buttonIndex < isSelectedRight2.length;
+                    buttonIndex++) {
+                  if (buttonIndex == index) {
+                    isSelectedRight2[buttonIndex] = true;
+                    // Salva no model a resposta correta
+                    widget.model.right = 'true';
+                    print(buttonIndex);
+                  } else {
+                    isSelectedRight2[buttonIndex] = false;
+                  }
+                }
+              });
+            },
+            isSelected: isSelectedRight2),
+        SizedBox(height: 20),
+        Text(
+          'Selecione o tempo da questão',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 5),
+        ToggleButtons(
+            textStyle: TextStyle(fontSize: 14.0),
+            children: <Widget>[
+              Text('10s'),
+              Text('15s'),
+              Text('25s'),
+              Text('30s'),
+              Text('45s'),
+            ],
+            onPressed: (int index) {
+              setState(() {
+                for (int buttonIndex = 0;
+                    buttonIndex < isSelectedTimer.length;
+                    buttonIndex++) {
+                  if (buttonIndex == index) {
+                    isSelectedTimer[buttonIndex] = true;
+                    saveSelectedTimer(buttonIndex);
+                    print(buttonIndex);
+                  } else {
+                    isSelectedTimer[buttonIndex] = false;
+                  }
+                }
+              });
+            },
+            isSelected: isSelectedTimer),
+        SizedBox(height: 20),
+        Divider(
+          height: 10,
+          thickness: 1.0,
+        ),
+        SizedBox(height: 10),
+        Text(
+          'Comentário da questão',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 5),
+        TextFormField(
+          // controller: _initalValue,
+          maxLength: 300,
+          maxLines: 3,
+          initialValue: widget.model.commentary,
+          onChanged: (v) => widget.model.commentary = v,
+          decoration: InputDecoration(
+            labelText: 'Digite o comentário',
+            // hintText: 'Digite o título',
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 2.0,
+              ),
+            ),
+          ),
+        ),
+        SizedBox(height: 5),
       ],
     );
   }
-  
+
   void _showAlertDialog(BuildContext context, String titulo, String mensagem) {
     // configura o button
     Widget okButton = FlatButton(
@@ -332,5 +563,20 @@ class _CasesQuizEditPageState
       },
     );
   }
-  
+
+  // Salva no model o valor do temporizador da questão selecionada
+  void saveSelectedTimer(int buttonIndex) {
+    if (buttonIndex == 0) {
+      widget.model.time = 10;
+    } else if (buttonIndex == 1) {
+      widget.model.time = 15;
+    } else if (buttonIndex == 2) {
+      widget.model.time = 25;
+    } else if (buttonIndex == 3) {
+      widget.model.time = 30;
+    } else if (buttonIndex == 4) {
+      widget.model.time = 45;
+    }
+  }
+
 }

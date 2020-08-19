@@ -245,6 +245,7 @@ class _CasesQuizPageState
                         model.answers3 = 'Alternativa 3';
                         model.answers4 = 'Alternativa 4';
                         model.answers5 = 'Alternativa 5';
+                        model.commentary = 'Digite o comentário da questão.';
                         model.right = 'answers1';
                         // model.value = 'https://livecasthd.com.br/sem_foto.png';
                         await controller.create(model);
@@ -270,8 +271,9 @@ class _CasesQuizPageState
                             model.idCases = widget.model.id;
                             model.page = widget.page;
                             model.question = 'Digite o comando da questão.';
-                            model.answers1 = 'Verdadeira';
-                            model.answers2 = 'Falsa';
+                            /* model.answers1 = 'Verdadeira';
+                            model.answers2 = 'Falsa'; */
+                            model.commentary = 'Digite o comentário da questão.';
                             model.right = 'Verdadeira';
                             await controller.create(model);
                             await controller.getDocuments(
