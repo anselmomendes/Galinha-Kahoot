@@ -37,11 +37,12 @@ class _CasesQuizPageState
     var screenWidth = MediaQuery.of(context).size.width;
 
     return Observer(builder: (_) {
-      if (editMode == true) {
+      return modeEdition(widget.model, screenWidth);
+      /* if (editMode == true) {
         return modeEdition(widget.model, screenWidth);
       } else {
         return modeVisualization(screenWidth);
-      }
+      } */
     });
   }
 
@@ -231,7 +232,7 @@ class _CasesQuizPageState
                   padding: EdgeInsets.only(left: screenWidth * 0.1),
                   child: circularButton(
                       text: 'Múltipla \nEscolha',
-                      sizeFont: 12,
+                      sizeFont: 14,
                       func: () async {
                         QuizModel model = QuizModel();
                         // type1 representa as questões de múltiplas escolhas
@@ -244,6 +245,7 @@ class _CasesQuizPageState
                         model.answers3 = 'Alternativa 3';
                         model.answers4 = 'Alternativa 4';
                         model.answers5 = 'Alternativa 5';
+                        model.commentary = 'Digite o comentário da questão.';
                         model.right = 'answers1';
                         // model.value = 'https://livecasthd.com.br/sem_foto.png';
                         await controller.create(model);
@@ -261,7 +263,7 @@ class _CasesQuizPageState
                     children: <Widget>[
                       circularButton(
                           text: 'Verdadeiro \nou Falso',
-                          sizeFont: 12,
+                          sizeFont: 14,
                           func: () async {
                             QuizModel model = QuizModel();
                             // type2 representa as questões do tipo verdadeiro ou falso
@@ -269,8 +271,9 @@ class _CasesQuizPageState
                             model.idCases = widget.model.id;
                             model.page = widget.page;
                             model.question = 'Digite o comando da questão.';
-                            model.answers1 = 'Verdadeira';
-                            model.answers2 = 'Falsa';
+                            /* model.answers1 = 'Verdadeira';
+                            model.answers2 = 'Falsa'; */
+                            model.commentary = 'Digite o comentário da questão.';
                             model.right = 'Verdadeira';
                             await controller.create(model);
                             await controller.getDocuments(
