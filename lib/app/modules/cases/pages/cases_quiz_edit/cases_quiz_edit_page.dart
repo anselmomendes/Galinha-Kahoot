@@ -30,9 +30,9 @@ class _CasesQuizEditPageState
   @override
   void initState() {
     // TODO: implement initState
-    isSelectedTimer[0] = true;
-    isSelectedRight1[0] = true;
-    isSelectedRight2[0] = true;
+    valueInitialTime();
+    valueInitialRight1();
+    valueInitialRight2();
     super.initState();
   }
 
@@ -47,7 +47,6 @@ class _CasesQuizEditPageState
         title: Text(widget.title),
         centerTitle: true,
       ),
-
       body: Padding(
         // padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
         padding: EdgeInsets.fromLTRB(30, 5, 30, 30),
@@ -59,6 +58,7 @@ class _CasesQuizEditPageState
                   child: _selectField(),
                 )),
             // SizedBox(height: 20),
+            // Botão para salvar os dados no banco
             circularButton(
                 text: 'Salvar',
                 func: () async {
@@ -310,8 +310,7 @@ class _CasesQuizEditPageState
                   if (buttonIndex == index) {
                     isSelectedRight1[buttonIndex] = true;
                     // Salva no model a resposta correta
-                    widget.model.right = buttonIndex.toString();
-                    print(buttonIndex);
+                    saveSelectedRight(buttonIndex);
                   } else {
                     isSelectedRight1[buttonIndex] = false;
                   }
@@ -342,8 +341,8 @@ class _CasesQuizEditPageState
                     buttonIndex++) {
                   if (buttonIndex == index) {
                     isSelectedTimer[buttonIndex] = true;
+                    // Salva o valor selecionado do temporizador
                     saveSelectedTimer(buttonIndex);
-                    // print(buttonIndex);
                   } else {
                     isSelectedTimer[buttonIndex] = false;
                   }
@@ -446,7 +445,7 @@ class _CasesQuizEditPageState
             textStyle: TextStyle(fontSize: 14.0),
             children: <Widget>[
               Icon(Icons.check), // true
-              Icon(Icons.close)  // false
+              Icon(Icons.close) // false
             ],
             onPressed: (int index) {
               setState(() {
@@ -457,7 +456,6 @@ class _CasesQuizEditPageState
                     isSelectedRight2[buttonIndex] = true;
                     // Salva no model a resposta correta
                     widget.model.right = 'true';
-                    print(buttonIndex);
                   } else {
                     isSelectedRight2[buttonIndex] = false;
                   }
@@ -488,8 +486,8 @@ class _CasesQuizEditPageState
                     buttonIndex++) {
                   if (buttonIndex == index) {
                     isSelectedTimer[buttonIndex] = true;
+                    // Salva o valor selecionado do temporizador
                     saveSelectedTimer(buttonIndex);
-                    print(buttonIndex);
                   } else {
                     isSelectedTimer[buttonIndex] = false;
                   }
@@ -564,6 +562,21 @@ class _CasesQuizEditPageState
     );
   }
 
+  // Salva no model o valor da questão correta que foi selecionada
+  void saveSelectedRight(int buttonIndex) {
+    if (buttonIndex == 0) {
+      widget.model.right = 'a';
+    } else if (buttonIndex == 1) {
+      widget.model.right = 'b';
+    } else if (buttonIndex == 2) {
+      widget.model.right = 'c';
+    } else if (buttonIndex == 3) {
+      widget.model.right = 'd';
+    } else if (buttonIndex == 4) {
+      widget.model.right = 'e';
+    }
+  }
+
   // Salva no model o valor do temporizador da questão selecionada
   void saveSelectedTimer(int buttonIndex) {
     if (buttonIndex == 0) {
@@ -579,4 +592,42 @@ class _CasesQuizEditPageState
     }
   }
 
+  // Verificando o valor time no db
+  void valueInitialTime() {
+    if (widget.model.time == 10) {
+      isSelectedTimer[0] = true;
+    } else if (widget.model.time == 15) {
+      isSelectedTimer[1] = true;
+    } else if (widget.model.time == 25) {
+      isSelectedTimer[2] = true;
+    } else if (widget.model.time == 30) {
+      isSelectedTimer[3] = true;
+    } else if (widget.model.time == 45) {
+      isSelectedTimer[4] = true;
+    }
+  }
+
+  // Verificando o valor da alternativa correta no db p/ questão de Múltipla Escolha
+  void valueInitialRight1() {
+    if (widget.model.right == 'a') {
+      isSelectedRight1[0] = true;
+    } else if (widget.model.right == 'b') {
+      isSelectedRight1[1] = true;
+    } else if (widget.model.right == 'c') {
+      isSelectedRight1[2] = true;
+    } else if (widget.model.right == 'd') {
+      isSelectedRight1[3] = true;
+    } else if (widget.model.right == 'e') {
+      isSelectedRight1[4] = true;
+    }
+  }
+
+  // Verificando o valor da alternativa correta no db p/ questão Verdadeiro ou Falso
+  void valueInitialRight2() {
+    if (widget.model.right.compareTo('true') == 0) {
+      isSelectedRight2[0] = true;
+    } else if (widget.model.right.compareTo('false') == 0) {
+      isSelectedRight2[1] = true;
+    }
+  }
 }
