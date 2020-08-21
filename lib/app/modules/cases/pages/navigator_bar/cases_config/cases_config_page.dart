@@ -48,111 +48,111 @@ class _CasesConfigPageState
               centerTitle: true,
             )
           : null,
-      body: Container(
+      body: SingleChildScrollView(
         child: Column(
-          children: <Widget>[
-            Observer(builder: (_) {
-              /* if (controller.casesList.data == null)
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              else if (controller.casesList.hasError)
-                return Center(
-                  child: RaisedButton(
-                    onPressed: () => controller.getList(),
-                    child: Text('Error'), 
-                  ),
-                );
-              else {} */
+        children: <Widget>[
+          Observer(builder: (_) {
+            /* if (controller.casesList.data == null)
               return Center(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      left: screenWidth * 0.05, 
-                      right: screenWidth * 0.05
-                      ),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(height: 10),
-                      Text("O caso é público?", style: headerTextStyle),
-                      DropdownButton(
-                        // items: _status.map((String dropDownStringItem) {
-                        items: status.map((String dropDownStringItem) {
-                          return DropdownMenuItem<String>(
-                            value: dropDownStringItem,
-                            child: Text(dropDownStringItem),
-                          );
-                        }).toList(),
-                        onChanged: (String newItemSelected) {
-                          itemSelected = newItemSelected;
-                          print(itemSelected);
-                          setState(() {
-                            itemSelected = newItemSelected;
-                          });
-                          // });
-                        },
-                        value: itemSelected,
-                      ),
-                      Divider(height: 20),
-                      Text("Alterar o título do caso:", style: headerTextStyle),
-                      // Título do caso
-                      TextFormField(
-                        maxLength: 20,
-                        initialValue: widget.model.title,
-                        // initialValue: "k",
-                        onChanged: (v) => widget.model.title = v,
-                        decoration: const InputDecoration(
-                          labelText: 'Título do caso',
-                          prefixIcon: Icon(Icons.title),
-                        ),
-                      ),
-                      Divider(height: 20),
-                      Text("Alterar a descrição do caso:",
-                          style: headerTextStyle),
-                      // Título do caso
-                      TextFormField(
-                        maxLength: 20,
-                        initialValue: widget.model.description,
-                        // initialValue: "k",
-                        onChanged: (v) => widget.model.description = v,
-                        decoration: const InputDecoration(
-                          labelText: 'Descrição do caso',
-                          prefixIcon: Icon(Icons.description),
-                        ),
-                      ),
-                      SizedBox(height: screenWidth * 0.6),
-                      Divider(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Observer(builder: (BuildContext context) {
-                            return FlatButton(
-                                onPressed: () {
-                                  
-                                  if (itemSelected.compareTo('Sim') == 0) {
-                                    widget.model.public = 'true';
-                                  } else {
-                                    widget.model.public = 'false';
-                                  }
-
-                                  controller.update(widget.model);
-                                  _showAlertDialog(context);
-                                },
-                                color: appContrastColor,
-                                child: Text('Atualizar',
-                                    style: TextStyle(color: Colors.white)));
-                          })
-                        ],
-                      ),
-                    ],
-                  ),
+                child: CircularProgressIndicator(),
+              );
+            else if (controller.casesList.hasError)
+              return Center(
+                child: RaisedButton(
+                  onPressed: () => controller.getList(),
+                  child: Text('Error'), 
                 ),
               );
-            }),
-          ],
-        ),
+            else {} */
+            return Center(
+              child: Padding(
+                padding: EdgeInsets.only(
+                    left: screenWidth * 0.05, 
+                    right: screenWidth * 0.05
+                    ),
+                child: Column(
+                  children: <Widget>[
+                    SizedBox(height: 10),
+                    Text("O caso é público?", style: headerTextStyle),
+                    DropdownButton(
+                      // items: _status.map((String dropDownStringItem) {
+                      items: status.map((String dropDownStringItem) {
+                        return DropdownMenuItem<String>(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (String newItemSelected) {
+                        itemSelected = newItemSelected;
+                        print(itemSelected);
+                        setState(() {
+                          itemSelected = newItemSelected;
+                        });
+                        // });
+                      },
+                      value: itemSelected,
+                    ),
+                    Divider(height: 20),
+                    Text("Alterar o título do caso:", style: headerTextStyle),
+                    // Título do caso
+                    TextFormField(
+                      maxLength: 20,
+                      initialValue: widget.model.title,
+                      // initialValue: "k",
+                      onChanged: (v) => widget.model.title = v,
+                      decoration: const InputDecoration(
+                        labelText: 'Título do caso',
+                        prefixIcon: Icon(Icons.title),
+                      ),
+                    ),
+                    Divider(height: 20),
+                    Text("Alterar a descrição do caso:",
+                        style: headerTextStyle),
+                    // Título do caso
+                    TextFormField(
+                      maxLength: 20,
+                      initialValue: widget.model.description,
+                      // initialValue: "k",
+                      onChanged: (v) => widget.model.description = v,
+                      decoration: const InputDecoration(
+                        labelText: 'Descrição do caso',
+                        prefixIcon: Icon(Icons.description),
+                      ),
+                    ),
+                    SizedBox(height: screenWidth * 0.6),
+                    Divider(
+                      height: 10,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Observer(builder: (BuildContext context) {
+                          return FlatButton(
+                              onPressed: () {
+                                
+                                if (itemSelected.compareTo('Sim') == 0) {
+                                  widget.model.public = 'true';
+                                } else {
+                                  widget.model.public = 'false';
+                                }
+
+                                controller.update(widget.model);
+                                _showAlertDialog(context);
+                              },
+                              color: appContrastColor,
+                              child: Text('Atualizar',
+                                  style: TextStyle(color: Colors.white)));
+                        })
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }),
+        ],
       ),
+      )
     );
   }
 
