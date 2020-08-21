@@ -90,12 +90,20 @@ class _CasesQuizEditPageState
     return Column(
       children: <Widget>[
         SizedBox(height: 10),
-        Text(
+        Container(
+           margin: const EdgeInsets.all(10.0),
+    alignment: Alignment.center,
+    width: 200.0,
+    height: 50.0,
+    decoration:  myBoxDecoration(),
+        child: Text(
           'Comando da questão',
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 18, color:  Colors.white,),
           textAlign: TextAlign.center,
+      
         ),
-        SizedBox(height: 5),
+        ),
+        SizedBox(height: 10),
         TextFormField(
           // controller: _initalValue,
           maxLength: 300,
@@ -103,31 +111,47 @@ class _CasesQuizEditPageState
           initialValue: widget.model.question,
           onChanged: (v) => widget.model.question = v,
           decoration: InputDecoration(
-            labelText: 'Digite a alternativa',
+            labelText: 'Digite a questão',
+             fillColor: Colors.redAccent,
+             focusColor: Colors.redAccent,
+             hoverColor: Colors.redAccent,
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.black,    
+                width: 1.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: BorderSide(
-                color: Colors.black,
-                width: 2.0,
-              ),
-            ),
           ),
         ),
-        SizedBox(height: 5),
-        Text(
-          'Alternativa (a)',
-          style: TextStyle(fontSize: 18),
-          textAlign: TextAlign.center,
+          Divider(
+          height: 10,
+          thickness: 1.0,
         ),
-        SizedBox(height: 5),
+        SizedBox(height:  10),
+       
+        /*   CircleAvatar(
+                            backgroundColor: Colors.blueAccent,
+                            radius: 20.0,
+                            child: Text(
+                            "!",
+                              style: TextStyle(
+                                fontSize: 22.0,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),       
+                            */
+
+        SizedBox(height: 20),
         TextFormField(
           // controller: _initalValue,
           maxLength: 80,
@@ -135,17 +159,21 @@ class _CasesQuizEditPageState
           initialValue: widget.model.answers1,
           onChanged: (v) => widget.model.answers1 = v,
           decoration: InputDecoration(
+             icon: Icon(Icons.looks_one,
+             color: Colors.blueAccent,
+             size: 35.0,
+             ),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 2.0,
@@ -154,11 +182,11 @@ class _CasesQuizEditPageState
           ),
         ),
         SizedBox(height: 5),
-        Text(
+       /*Text(
           'Alternativa (b)',
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
-        ),
+        ),*/
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
@@ -167,17 +195,21 @@ class _CasesQuizEditPageState
           initialValue: widget.model.answers2,
           onChanged: (v) => widget.model.answers2 = v,
           decoration: InputDecoration(
+             icon: Icon(Icons.looks_two,
+             color: Colors.blueAccent,
+             size: 35.0,
+             ),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 2.0,
@@ -186,12 +218,14 @@ class _CasesQuizEditPageState
           ),
         ),
         SizedBox(height: 5),
-        Text(
+       /* Text(
           'Alternativa (c)',
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),
+        */
         SizedBox(height: 5),
+
         TextFormField(
           // controller: _initalValue,
           maxLength: 80,
@@ -199,17 +233,21 @@ class _CasesQuizEditPageState
           initialValue: widget.model.answers3,
           onChanged: (v) => widget.model.answers3 = v,
           decoration: InputDecoration(
+             icon: Icon(Icons.looks_3,
+             color: Colors.blueAccent,
+             size: 35.0,
+             ),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 2.0,
@@ -218,11 +256,11 @@ class _CasesQuizEditPageState
           ),
         ),
         SizedBox(height: 5),
-        Text(
+        /*Text(
           'Alternativa (d)',
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
-        ),
+        ),*/
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
@@ -231,17 +269,21 @@ class _CasesQuizEditPageState
           initialValue: widget.model.answers4,
           onChanged: (v) => widget.model.answers4 = v,
           decoration: InputDecoration(
+             icon: Icon(Icons.looks_4,
+             color: Colors.blueAccent,
+             size: 35.0,
+             ),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 2.0,
@@ -250,11 +292,11 @@ class _CasesQuizEditPageState
           ),
         ),
         SizedBox(height: 5),
-        Text(
+        /*Text(
           'Alternativa (e)',
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
-        ),
+        ),*/
         SizedBox(height: 5),
         TextFormField(
           // controller: _initalValue,
@@ -263,17 +305,21 @@ class _CasesQuizEditPageState
           initialValue: widget.model.answers5,
           onChanged: (v) => widget.model.answers5 = v,
           decoration: InputDecoration(
+             icon: Icon(Icons.looks_5,
+             color: Colors.blueAccent,
+             size: 35.0,
+             ),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 2.0,
@@ -287,12 +333,18 @@ class _CasesQuizEditPageState
           thickness: 1.0,
         ),
         SizedBox(height: 10),
-        Text(
+        /*Text(
+          'Selecione a alternativa correta',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ), */
+        SizedBox(height: 5),
+         Text(
           'Selecione a alternativa correta',
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 5),
+        SizedBox(height: 10),
         ToggleButtons(
             textStyle: TextStyle(fontSize: 14.0),
             children: <Widget>[
@@ -324,7 +376,7 @@ class _CasesQuizEditPageState
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),
-        SizedBox(height: 5),
+        SizedBox(height: 10),
         ToggleButtons(
             textStyle: TextStyle(fontSize: 14.0),
             children: <Widget>[
@@ -355,13 +407,20 @@ class _CasesQuizEditPageState
           height: 10,
           thickness: 1.0,
         ),
-        SizedBox(height: 10),
-        Text(
+        Container(
+           margin: const EdgeInsets.all(10.0),
+    alignment: Alignment.center,
+    width: 220.0,
+    height: 50.0,
+    decoration:  myBoxDecoration(),
+        child: Text(
           'Comentário da questão',
-          style: TextStyle(fontSize: 18),
+          style: TextStyle(fontSize: 18, color:  Colors.white,),
           textAlign: TextAlign.center,
+      
         ),
-        SizedBox(height: 5),
+        ),
+        SizedBox(height: 10),
         TextFormField(
           // controller: _initalValue,
           maxLength: 300,
@@ -372,14 +431,14 @@ class _CasesQuizEditPageState
             labelText: 'Digite o comentário',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 2.0,
@@ -389,6 +448,9 @@ class _CasesQuizEditPageState
         ),
         SizedBox(height: 5),
       ],
+                      
+        
+      
     );
   }
 
@@ -414,14 +476,14 @@ class _CasesQuizEditPageState
             labelText: 'Digite a alternativa',
             // hintText: 'Descreva o caso',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 2.0,
@@ -433,6 +495,19 @@ class _CasesQuizEditPageState
         Divider(
           height: 10,
           thickness: 1.0,
+        ),
+        Container(
+           margin: const EdgeInsets.all(10.0),
+    alignment: Alignment.center,
+    width: 200.0,
+    height: 50.0,
+    decoration:  myBoxDecoration(),
+        child: Text(
+          'Comando da questão',
+          style: TextStyle(fontSize: 18, color:  Colors.white,),
+          textAlign: TextAlign.center,
+      
+        ),
         ),
         SizedBox(height: 10),
         Text(
@@ -501,12 +576,8 @@ class _CasesQuizEditPageState
           thickness: 1.0,
         ),
         SizedBox(height: 10),
-        Text(
-          'Comentário da questão',
-          style: TextStyle(fontSize: 18),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 5),
+
+        SizedBox(height: 30),
         TextFormField(
           // controller: _initalValue,
           maxLength: 300,
@@ -517,14 +588,14 @@ class _CasesQuizEditPageState
             labelText: 'Digite o comentário',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 1.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(15.0),
               borderSide: BorderSide(
                 color: Colors.black,
                 width: 2.0,
@@ -630,4 +701,17 @@ class _CasesQuizEditPageState
       isSelectedRight2[1] = true;
     }
   }
+}
+
+BoxDecoration myBoxDecoration() {
+  return BoxDecoration(
+     color: Colors.blueAccent,
+    border: Border.all(
+      width: 3.0,
+       color: Colors.blueAccent,
+    ),
+    borderRadius: BorderRadius.all(
+        Radius.circular(5.0) //         <--- border radius here
+    ),
+  );
 }

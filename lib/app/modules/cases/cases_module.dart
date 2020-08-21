@@ -1,5 +1,6 @@
 import 'package:galinha_karoot/app/modules/cases/pages/cases_quiz_edit/cases_quiz_edit_page.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_page.dart';
+import 'package:galinha_karoot/app/modules/cases/repositories/ImageRepository.dart';
 
 import 'pages/cases_quiz_edit/cases_quiz_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_config/cases_config_controller.dart';
@@ -49,7 +50,9 @@ class CasesModule extends ChildModule {
         Bind((i) => CasesRegisterController(i.get<CasesRepository>())),
         Bind((i) => CasesService()),
         Bind((i) => CasesSingleController(i.get<CasesStore>())),
-        Bind((i) => CasesEditController(i.get<CasesRepository>())),
+        Bind((i) => CasesEditController(
+          casesRepository: i.get<CasesRepository>(),
+          imageRepository: i.get<ImageRepository>())),
         Bind((i) => QuizRepository(firestore: Firestore.instance)),
       ];
 

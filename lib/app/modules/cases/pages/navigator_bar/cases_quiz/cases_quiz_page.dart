@@ -196,7 +196,7 @@ class _CasesQuizPageState
 
                         return Container(
                           child: Card(
-                            margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                            margin: EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 5.0),
                             elevation: 20,
                             child: GestureDetector(
                               child: Column(
