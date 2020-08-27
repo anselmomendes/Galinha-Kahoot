@@ -27,6 +27,6 @@ class CasesQuizModule extends ModuleWidget {
   @override
   // TODO: implement view
   Widget get view => CasesQuizPage(title: title, page: page,
-        model: Modular.args.data,
+        model: model,
       );
 }

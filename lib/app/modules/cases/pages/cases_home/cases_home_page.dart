@@ -44,7 +44,24 @@ class _CasesHomePageState
     return Scaffold(
       body: PageView(
         controller: controller.pageViewController,
-        children: _widgetOptions,
+        children: <Widget>[
+    // CasesAnamneseModule(),
+    // Novo modo
+    CasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao', model: widget.model),
+    CasesSintomasModule(title: "Avaliação", page: 'avaliacao', model: widget.model),
+    CasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos', model: widget.model),
+    CasesSintomasModule(title: "Exames", page: 'exames', model: widget.model),
+    // CasesSintomasModule(title: "Quiz", page: 'quiz'),
+
+    // Modo antigo
+    // CasesSintomasModule(),
+    // CasesAvaliacaoModule(),
+    // CasesProcedimentoModule(),
+    // CasesExamesModule(),
+    // CasesKahootModule(),
+    CasesQuizModule(title: "Quiz", page: 'quiz', model: widget.model),
+    CasesRelatorioModule(),
+  ],
       ),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller.pageViewController,

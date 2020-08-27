@@ -18,6 +18,6 @@ class CasesSintomasModule extends ModuleWidget {
 
   @override
   Widget get view => CasesSintomasPage(title: title, page: page,
-        model: Modular.args.data,
+        model: model,
       );
 }
