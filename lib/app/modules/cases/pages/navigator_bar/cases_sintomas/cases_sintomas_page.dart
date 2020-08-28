@@ -178,7 +178,7 @@ class _CasesSintomasPageState
 
                         return Container(
                           child: Card(
-                            margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                            margin: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
                             elevation: 20,
                             child: GestureDetector(
                               child: Column(
@@ -258,22 +258,7 @@ class _CasesSintomasPageState
                   flex: 2,
                   child: Container(),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(right: screenWidth * 0.05),
-                  child: circularButton(
-                      text: 'Título',
-                      func: () async {
-                        ComponentModel model = ComponentModel();
-                        model.type = 'Título';
-                        model.idCases = widget.model.id;
-                        model.page = widget.page;
-                        model.value = 'Digite um título para o conteúdo';
-                        // model.type = 'topic';
-                        await controller.create(model);
-                        await controller.getDocuments(
-                            widget.model.id, widget.page);
-                      }),
-                ),
+               
                 SizedBox(height: 10),
               ],
             ),

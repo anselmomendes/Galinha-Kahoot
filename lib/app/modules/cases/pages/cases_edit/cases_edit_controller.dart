@@ -9,9 +9,9 @@ class CasesEditController = _CasesEditBase with _$CasesEditController;
 
 abstract class _CasesEditBase with Store {
   final CasesRepository casesRepository;
-  final ImageRepository imageRepository;
+  
 
-  _CasesEditBase({this.casesRepository, this.imageRepository});
+  _CasesEditBase({this.casesRepository});
 
   Future<bool> update(ComponentModel model) {
     return casesRepository.updateWidget(model);
