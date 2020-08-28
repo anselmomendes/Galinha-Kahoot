@@ -204,6 +204,9 @@ class _CasesQuizPageState
                                 children: <Widget>[
                                   ListTile(
                                     title: _selectQuestionType(model, index),
+                                    trailing: Icon(Icons.delete,
+                                    color: Colors.red,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -221,11 +224,21 @@ class _CasesQuizPageState
                 },
               ),
             ),
+             Divider(
+                height: 10.0,
+                indent: 5.0,
+                color: Colors.black,
+                            ),
+                            
+            SizedBox(height: 30.0,),
             Text(
               'Adicionar Questão',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,
+              fontSize: 18,
+              ),
               textAlign: TextAlign.center,
             ),
+            SizedBox(height: 30.0,),
             Row(
               children: <Widget>[
                 Padding(
@@ -259,9 +272,10 @@ class _CasesQuizPageState
                   child: Container(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: screenWidth * 0.1),
+                  padding: EdgeInsets.only(right: screenWidth * 0.1,),
                   child: Row(
                     children: <Widget>[
+                      SizedBox(height: 10.0),
                       circularButton(
                           text: 'Verdadeiro \nou Falso',
                           sizeFont: 14,
@@ -282,19 +296,25 @@ class _CasesQuizPageState
                             await controller.getDocuments(
                                 widget.model.id, widget.page);
                           }),
+                            Divider(
+                height: 10.0,
+                indent: 5.0,
+                color: Colors.black,
+                            ),
                     ],
                   ),
                 ),
                 SizedBox(height: 10),
               ],
             ),
+            SizedBox(height: 10.0),
             Column(
               children: [
                 Padding(
                   padding: EdgeInsets.zero,
                   child: Column(
                     children: <Widget>[
-                      Text(
+                      /*Text(
                         'Última Questão',
                         style: TextStyle(fontWeight: FontWeight.bold),
                         // style: TextStyle(fontSize: 18),
@@ -308,7 +328,7 @@ class _CasesQuizPageState
                                 widget.model.id, widget.page);
                             await controller.getDocuments(
                                 widget.model.id, widget.page);
-                          }),
+                          }),*/
                     ],
                   ),
                 ),

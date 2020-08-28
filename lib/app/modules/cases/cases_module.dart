@@ -52,7 +52,7 @@ class CasesModule extends ChildModule {
         Bind((i) => CasesSingleController(i.get<CasesStore>())),
         Bind((i) => CasesEditController(
           casesRepository: i.get<CasesRepository>(),
-          imageRepository: i.get<ImageRepository>())),
+         )),
         Bind((i) => QuizRepository(firestore: Firestore.instance)),
       ];
 
