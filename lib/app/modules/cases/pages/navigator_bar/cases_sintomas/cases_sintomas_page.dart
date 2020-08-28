@@ -211,16 +211,48 @@ class _CasesSintomasPageState
                 },
               ),
             ),
+            Divider(
+                height: 10.0,
+                indent: 5.0,
+                color: Colors.black,
+                            ),
+                            
+            SizedBox(height: 10.0,),
             Text(
               'Adicionar Campos',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.bold,  fontSize: 18.0,),
               textAlign: TextAlign.center,
+             
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 10.0,),
             ),
             Row(
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(left: screenWidth * 0.05),
-                  child: circularButton(
+                  padding: EdgeInsets.only(right: screenWidth * 0.05),
+                  child: IconButton(icon: Icon(Icons.add_photo_alternate,
+                   color: Colors.blueGrey[500],
+      size: 50.0,
+      semanticLabel: 'Imagem',
+                  ),
+                  tooltip: 'Imagem',
+                   onPressed:() async {
+                        ComponentModel model = ComponentModel();
+                        model.type = 'Imagem';
+                        model.idCases = widget.model.id;
+                        model.page = widget.page;
+                        model.value = 'https://livecasthd.com.br/sem_foto.png';
+                        // model.type = 'image';
+                        await controller.create(model);
+                        await controller.getDocuments(
+                            widget.model.id, widget.page);
+                      }),
+                  
+                  
+                  
+                  
+                  /*circularButton(
                       text: 'Imagem',
                       func: () async {
                         ComponentModel model = ComponentModel();
@@ -232,17 +264,19 @@ class _CasesSintomasPageState
                         await controller.create(model);
                         await controller.getDocuments(
                             widget.model.id, widget.page);
-                      }),
-                ),
+                      }*/),
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Container(),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(1.0),
-                  child: circularButton(
-                      text: 'Texto',
-                      func: () async {
+                padding: EdgeInsets.only(right: screenWidth * 0.05),
+                  child: IconButton(icon: Icon(Icons.note_add,
+                   color: Colors.blueGrey[500],
+      size: 50.0,
+      semanticLabel: 'Texto',),
+       tooltip: 'Texto',
+       onPressed:  () async {
                         ComponentModel model = ComponentModel();
                         model.type = 'Texto';
                         model.idCases = widget.model.id;
@@ -252,20 +286,28 @@ class _CasesSintomasPageState
                         await controller.create(model);
                         await controller.getDocuments(
                             widget.model.id, widget.page);
-                      }),
-                ),
+                      })),
                 Expanded(
-                  flex: 2,
+                  flex: 1,
                   child: Container(),
                 ),
-               
+ 
+                Padding(
+                   padding: EdgeInsets.only(right: screenWidth * 0.05),
+                  child: IconButton(icon: Icon(Icons.playlist_add,
+                   color: Colors.blueGrey[500],
+      size: 50.0,
+      semanticLabel: 'Título',),
+       tooltip: 'Título',
+       onPressed:() {}
+       )),
                 SizedBox(height: 10),
               ],
             ),
-            Column(
+           /*Column(
               children: [
                 Padding(
-                  padding: EdgeInsets.zero,
+                     padding: EdgeInsets.only(top: screenWidth * 0.05),
                   child: Column(
                     children: <Widget>[
                       Text(
@@ -286,7 +328,7 @@ class _CasesSintomasPageState
                   ),
                 ),
               ],
-            ),
+            ),*/
           ],
         ));
   }

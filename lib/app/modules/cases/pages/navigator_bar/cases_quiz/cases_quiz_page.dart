@@ -230,7 +230,7 @@ class _CasesQuizPageState
                 color: Colors.black,
                             ),
                             
-            SizedBox(height: 30.0,),
+            Padding(padding: EdgeInsets.only(bottom: 15.0)),
             Text(
               'Adicionar Questão',
               style: TextStyle(fontWeight: FontWeight.bold,
@@ -238,7 +238,7 @@ class _CasesQuizPageState
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 30.0,),
+            Padding(padding: EdgeInsets.only(bottom: 20.0)),
             Row(
               children: <Widget>[
                 Padding(
