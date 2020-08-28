@@ -206,10 +206,6 @@ class _CasesQuizPageState
                                 children: <Widget>[
                                   ListTile(
                                     title: _selectQuestionType(model, index),
-                                    trailing: Icon(
-                                      Icons.delete,
-                                      color: Colors.red,
-                                    ),
                                   ),
                                 ],
                               ),
@@ -332,25 +328,46 @@ class _CasesQuizPageState
   Widget _selectQuestionType(QuizModel model, int index) {
     // type1 representa as questões de múltiplas escolhas
     if (model.type.compareTo('type1') == 0) {
-      return Text(
-        // model.type,
-        "Questão ${index + 1} | Múltipla Escolha",
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 16,
-        ),
+      return Row(
+        children: <Widget>[
+          Text(
+            // model.type,
+            "Questão ${model.questionNumber} | Múltipla Escolha",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 15,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(),
+          ),
+          SizedBox(
+            width: 35,
+            // height: 40,
+            child: FlatButton(
+              padding: EdgeInsets.all(1),
+              onPressed: () {
+                print('${model.id}');
+              },
+              child: Icon(
+                Icons.delete,
+                color: Colors.redAccent,
+              )),
+          )
+        ],
       );
     }
     // type2 representa as questões do tipo verdadeiro ou falso
     else if (model.type.compareTo('type2') == 0) {
       return Text(
         // model.type,
-        "Questão ${index + 1} | Verdadeiro ou Falso",
+        "Questão ${model.questionNumber} | Verdadeiro ou Falso",
         textAlign: TextAlign.start,
         style: TextStyle(
           fontWeight: FontWeight.w500,
-          fontSize: 16,
+          fontSize: 15,
         ),
       );
     }

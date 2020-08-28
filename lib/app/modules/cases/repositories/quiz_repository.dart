@@ -76,7 +76,8 @@ class QuizRepository extends Disposable {
       var collection = await casesPage
           .document(idCases)
           .collection(page)
-          .orderBy('position')
+          .orderBy('questionNumber')
+          // .orderBy('position')
           .getDocuments();
 
       return collection.documents
