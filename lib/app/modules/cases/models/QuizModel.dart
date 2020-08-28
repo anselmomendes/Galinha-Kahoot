@@ -16,6 +16,7 @@ class QuizModel {
   String right;
   int time;
   String commentary;
+  String questionNumber;
   DocumentReference reference;
 
   QuizModel({
@@ -33,6 +34,7 @@ class QuizModel {
     this.right,
     this.time,
     this.commentary,
+    this.questionNumber,
     this.reference,
   }) {
     id = id ?? Uuid().v1();
@@ -54,6 +56,7 @@ class QuizModel {
     map['right'] = right;
     map['time'] = time;
     map['commentary'] = commentary;
+    map['questionNumber'] = questionNumber;
     return map;
   }
 
@@ -72,5 +75,6 @@ class QuizModel {
       right: map['right'],
       time: map["time"],
       commentary: map["commentary"],
+      questionNumber: map["questionNumber"],
       reference: map.reference);
 }

@@ -24,6 +24,8 @@ class CasesQuizPage extends StatefulWidget {
 class _CasesQuizPageState
     extends ModularState<CasesQuizPage, CasesQuizController> {
   bool editMode;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _numberController = TextEditingController();
 
   @override
   void initState() {
@@ -204,8 +206,9 @@ class _CasesQuizPageState
                                 children: <Widget>[
                                   ListTile(
                                     title: _selectQuestionType(model, index),
-                                    trailing: Icon(Icons.delete,
-                                    color: Colors.red,
+                                    trailing: Icon(
+                                      Icons.delete,
+                                      color: Colors.red,
                                     ),
                                   ),
                                 ],
@@ -224,21 +227,25 @@ class _CasesQuizPageState
                 },
               ),
             ),
-             Divider(
-                height: 10.0,
-                indent: 5.0,
-                color: Colors.black,
-                            ),
-                            
-            SizedBox(height: 30.0,),
+            Divider(
+              height: 10.0,
+              indent: 5.0,
+              color: Colors.black,
+            ),
+            SizedBox(
+              height: 30.0,
+            ),
             Text(
               'Adicionar Questão',
-              style: TextStyle(fontWeight: FontWeight.bold,
-              fontSize: 18,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 30.0,),
+            SizedBox(
+              height: 30.0,
+            ),
             Row(
               children: <Widget>[
                 Padding(
@@ -248,23 +255,12 @@ class _CasesQuizPageState
                       sizeFont: 14,
                       func: () async {
                         QuizModel model = QuizModel();
-                        // type1 representa as questões de múltiplas escolhas
+
+                        // Questão do tipo 1
                         model.type = 'type1';
-                        model.idCases = widget.model.id;
-                        model.page = widget.page;
-                        model.question = 'Digite o comando da questão.';
-                        model.answers1 = 'Alternativa 1';
-                        model.answers2 = 'Alternativa 2';
-                        model.answers3 = 'Alternativa 3';
-                        model.answers4 = 'Alternativa 4';
-                        model.answers5 = 'Alternativa 5';
-                        model.commentary = 'Digite o comentário da questão.';
-                        model.right = 'a';
-                        model.time = 10;
-                        // model.value = 'https://livecasthd.com.br/sem_foto.png';
-                        await controller.create(model);
-                        await controller.getDocuments(
-                            widget.model.id, widget.page);
+
+                        // Método para informar o número da questão (alertDialog)
+                        _showAlertDialogQuestionNumber(model, screenWidth);
                       }),
                 ),
                 Expanded(
@@ -272,7 +268,9 @@ class _CasesQuizPageState
                   child: Container(),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(right: screenWidth * 0.1,),
+                  padding: EdgeInsets.only(
+                    right: screenWidth * 0.1,
+                  ),
                   child: Row(
                     children: <Widget>[
                       SizedBox(height: 10.0),
@@ -281,26 +279,18 @@ class _CasesQuizPageState
                           sizeFont: 14,
                           func: () async {
                             QuizModel model = QuizModel();
-                            // type2 representa as questões do tipo verdadeiro ou falso
+
+                            // Questão do tipo 2
                             model.type = 'type2';
-                            model.idCases = widget.model.id;
-                            model.page = widget.page;
-                            model.question = 'Digite o comando da questão.';
-                            /* model.answers1 = 'Verdadeira';
-                            model.answers2 = 'Falsa'; */
-                            model.commentary =
-                                'Digite o comentário da questão.';
-                            model.right = 'true';
-                            model.time = 10;
-                            await controller.create(model);
-                            await controller.getDocuments(
-                                widget.model.id, widget.page);
+
+                            // Método para informar o número da questão (alertDialog)
+                            _showAlertDialogQuestionNumber(model, screenWidth);
                           }),
-                            Divider(
-                height: 10.0,
-                indent: 5.0,
-                color: Colors.black,
-                            ),
+                      Divider(
+                        height: 10.0,
+                        indent: 5.0,
+                        color: Colors.black,
+                      ),
                     ],
                   ),
                 ),
@@ -365,6 +355,113 @@ class _CasesQuizPageState
       );
     }
     return null;
+  }
+
+  // Solicitando o número da questão
+  void _showAlertDialogQuestionNumber(QuizModel model, var screenWidth) {
+    // model ??= CasesModel();
+
+    // Botão cancelar
+    Widget cancelButton = FlatButton(
+      child: Text("Cancelar"),
+      onPressed: () {
+        model.questionNumber = '';
+        _numberController.text = '';
+        Modular.to.pop();
+      },
+    );
+
+    // Botão 'salvar'
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () async {
+        if (_formKey.currentState.validate()) {
+          // Chamando o método para salvar os campos
+          _saveField(model);
+
+          // Limpando o campo de texto
+          _numberController.text = '';
+
+          Modular.to.pop();
+        }
+      },
+    );
+    // configura o  AlertDialog
+    AlertDialog alerta = AlertDialog(
+      title: Text("Aviso"),
+      content: Form(
+          key: _formKey,
+          child: Container(
+            height: screenWidth * 0.3,
+            child: Column(
+              children: <Widget>[
+                Text("Informe o número da questão:"),
+                TextFormField(
+                    keyboardType: TextInputType.number,
+                    maxLength: 2,
+                    controller: _numberController,
+                    obscureText: false,
+                    decoration:
+                        const InputDecoration(labelText: 'Número da questão'),
+                    validator: (String value) {
+                      if (value.isEmpty) {
+                        return "Por favor, insira um número!";
+                      } else {
+                        return null;
+                      }
+                    }),
+              ],
+            ),
+          )),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+    // exibe o dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
+    );
+  }
+
+  // Método para salvar os campos de acordo com o type de questão
+  void _saveField(QuizModel model) async {
+    if (model.type.compareTo('type1') == 0) {
+      // type1 representa as questões de múltiplas escolhas
+      model.type = 'type1';
+      model.idCases = widget.model.id;
+      model.page = widget.page;
+      model.question = 'Digite o comando da questão.';
+      model.answers1 = 'Alternativa 1';
+      model.answers2 = 'Alternativa 2';
+      model.answers3 = 'Alternativa 3';
+      model.answers4 = 'Alternativa 4';
+      model.answers5 = 'Alternativa 5';
+      model.commentary = 'Digite o comentário da questão.';
+      model.right = 'a';
+      model.time = 10;
+      model.questionNumber = _numberController.text;
+      // model.value = 'https://livecasthd.com.br/sem_foto.png';
+      await controller.create(model);
+      await controller.getDocuments(widget.model.id, widget.page);
+    } else if (model.type.compareTo('type2') == 0) {
+      // type2 representa as questões do tipo verdadeiro ou falso
+      model.type = 'type2';
+      model.idCases = widget.model.id;
+      model.page = widget.page;
+      model.question = 'Digite o comando da questão.';
+      /* model.answers1 = 'Verdadeira';
+                            model.answers2 = 'Falsa'; */
+      model.commentary = 'Digite o comentário da questão.';
+      model.right = 'true';
+      model.time = 10;
+      model.questionNumber = _numberController.text;
+      await controller.create(model);
+      await controller.getDocuments(widget.model.id, widget.page);
+    }
   }
 
 /*   Widget _selectField() {

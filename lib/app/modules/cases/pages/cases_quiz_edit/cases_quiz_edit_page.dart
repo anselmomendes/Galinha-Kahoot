@@ -26,7 +26,7 @@ class _CasesQuizEditPageState
   // Seleção da alternativa certa 'type2'
   List<bool> isSelectedRight2 = List.generate(2, (_) => false);
 
-  // *DEPOIS* tem que colocar pra iniciar com o valor do db
+  // Iniciado as variáveis com o valor do db
   @override
   void initState() {
     // TODO: implement initState
