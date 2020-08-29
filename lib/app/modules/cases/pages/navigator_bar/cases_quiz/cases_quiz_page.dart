@@ -178,146 +178,151 @@ class _CasesQuizPageState
           title: Text(widget.title),
           centerTitle: true,
         ),
-        body: Column(
-          children: [
-            Container(
-              height: screenWidth * 1.15,
-              child: Observer(
-                name: 'componentes',
-                builder: (_) {
-                  if (controller.quiz == null)
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  else {
-                    List<QuizModel> list = controller.quiz;
-                    return ListView.builder(
-                      itemCount: controller.quiz.length,
-                      itemBuilder: (_, index) {
-                        QuizModel model = list[index];
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                height: screenWidth * 1.15,
+                child: Observer(
+                  name: 'componentes',
+                  builder: (_) {
+                    if (controller.quiz == null)
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    else {
+                      List<QuizModel> list = controller.quiz;
+                      return ListView.builder(
+                        itemCount: controller.quiz.length,
+                        itemBuilder: (_, index) {
+                          QuizModel model = list[index];
 
-                        return Container(
-                          child: Card(
-                            margin: EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 5.0),
-                            elevation: 20,
-                            child: GestureDetector(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  ListTile(
-                                    title: _selectQuestionType(model, index),
-                                  ),
-                                ],
+                          return Container(
+                            child: Card(
+                              margin:
+                                  EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 5.0),
+                              elevation: 20,
+                              child: GestureDetector(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    ListTile(
+                                      title: _selectQuestionType(model, index),
+                                    ),
+                                  ],
+                                ),
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, '/cases/cases_quiz_edit',
+                                      arguments: model);
+                                },
                               ),
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, '/cases/cases_quiz_edit',
-                                    arguments: model);
-                              },
                             ),
-                          ),
-                        );
-                      },
-                    );
-                  }
-                },
+                          );
+                        },
+                      );
+                    }
+                  },
+                ),
               ),
-            ),
-             Divider(
+              Divider(
                 height: 10.0,
                 indent: 5.0,
                 color: Colors.black,
-                            ),
-                            
-            Padding(padding: EdgeInsets.only(bottom: 15.0)),
-            Text(
-              'Adicionar Questão',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
               ),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 30.0,),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(left: screenWidth * 0.1),
-                  child: circularButton(
-                      text: 'Múltipla \nEscolha',
-                      sizeFont: 14,
-                      func: () async {
-                        QuizModel model = QuizModel();
-
-                        // Questão do tipo 1
-                        model.type = 'type1';
-
-                        // Método para informar o número da questão (alertDialog)
-                        _showAlertDialogQuestionNumber(model, screenWidth);
-                      }),
+              Padding(padding: EdgeInsets.only(bottom: 15.0)),
+              Text(
+                'Adicionar Questão',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Container(),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    right: screenWidth * 0.1,
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(
+                height: 30.0,
+              ),
+              Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: screenWidth * 0.1),
+                    child: circularButton(
+                        text: 'Múltipla \nEscolha',
+                        sizeFont: 14,
+                        func: () async {
+                          QuizModel model = QuizModel();
+
+                          // Questão do tipo 1
+                          model.type = 'type1';
+
+                          // Método para informar o número da questão (alertDialog)
+                          _showAlertDialogQuestionNumber(model, screenWidth);
+                        }),
                   ),
-                  child: Row(
-                    children: <Widget>[
-                      SizedBox(height: 10.0),
-                      circularButton(
-                          text: 'Verdadeiro \nou Falso',
-                          sizeFont: 14,
-                          func: () async {
-                            QuizModel model = QuizModel();
-
-                            // Questão do tipo 2
-                            model.type = 'type2';
-
-                            // Método para informar o número da questão (alertDialog)
-                            _showAlertDialogQuestionNumber(model, screenWidth);
-                          }),
-                      Divider(
-                        height: 10.0,
-                        indent: 5.0,
-                        color: Colors.black,
-                      ),
-                    ],
+                  Expanded(
+                    flex: 2,
+                    child: Container(),
                   ),
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
-            SizedBox(height: 10.0),
-            Column(
-              children: [
-                Padding(
-                  padding: EdgeInsets.zero,
-                  child: Column(
-                    children: <Widget>[
-                      /*Text(
-                        'Última Questão',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                        // style: TextStyle(fontSize: 18),
-                        textAlign: TextAlign.center,
-                      ),
-                      circularButton(
-                          text: 'Excluir',
-                          sizeFont: 18,
-                          func: () async {
-                            await controller.delete(
-                                widget.model.id, widget.page);
-                            await controller.getDocuments(
-                                widget.model.id, widget.page);
-                          }),*/
-                    ],
+                  Padding(
+                    padding: EdgeInsets.only(
+                      right: screenWidth * 0.1,
+                    ),
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(height: 10.0),
+                        circularButton(
+                            text: 'Verdadeiro \nou Falso',
+                            sizeFont: 14,
+                            func: () async {
+                              QuizModel model = QuizModel();
+
+                              // Questão do tipo 2
+                              model.type = 'type2';
+
+                              // Método para informar o número da questão (alertDialog)
+                              _showAlertDialogQuestionNumber(
+                                  model, screenWidth);
+                            }),
+                        Divider(
+                          height: 10.0,
+                          indent: 5.0,
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  SizedBox(height: 10),
+                ],
+              ),
+              SizedBox(height: 10.0),
+              Column(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.zero,
+                    child: Column(
+                      children: <Widget>[
+                        /*Text(
+                          'Última Questão',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          // style: TextStyle(fontSize: 18),
+                          textAlign: TextAlign.center,
+                        ),
+                        circularButton(
+                            text: 'Excluir',
+                            sizeFont: 18,
+                            func: () async {
+                              await controller.delete(
+                                  widget.model.id, widget.page);
+                              await controller.getDocuments(
+                                  widget.model.id, widget.page);
+                            }),*/
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ));
   }
 
@@ -344,28 +349,57 @@ class _CasesQuizPageState
             width: 35,
             // height: 40,
             child: FlatButton(
-              padding: EdgeInsets.all(1),
-              onPressed: () {
-                print('${model.id}');
-              },
-              child: Icon(
-                Icons.delete,
-                color: Colors.redAccent,
-              )),
+                padding: EdgeInsets.all(1),
+                onPressed: () async {
+                  _showAlertDialogDelete(model);
+                  // print('${model.id}');
+                  /* await controller.delete(
+                      widget.model.id, widget.page, model.id);
+                  await controller.getDocuments(widget.model.id, widget.page); */
+                },
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.redAccent,
+                )),
           )
         ],
       );
     }
     // type2 representa as questões do tipo verdadeiro ou falso
     else if (model.type.compareTo('type2') == 0) {
-      return Text(
-        // model.type,
-        "Questão ${model.questionNumber} | Verdadeiro ou Falso",
-        textAlign: TextAlign.start,
-        style: TextStyle(
-          fontWeight: FontWeight.w500,
-          fontSize: 15,
-        ),
+      return Row(
+        children: <Widget>[
+          Text(
+            // model.type,
+            "Questão ${model.questionNumber} | Verdadeiro ou Falso",
+            textAlign: TextAlign.start,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 15,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(),
+          ),
+          SizedBox(
+            width: 35,
+            // height: 40,
+            child: FlatButton(
+                padding: EdgeInsets.all(1),
+                onPressed: () async {
+                  _showAlertDialogDelete(model);
+                  // print('${model.id}');
+                  /* await controller.delete(
+                      widget.model.id, widget.page, model.id);
+                  await controller.getDocuments(widget.model.id, widget.page); */
+                },
+                child: Icon(
+                  Icons.delete,
+                  color: Colors.redAccent,
+                )),
+          )
+        ],
       );
     }
     return null;
@@ -420,6 +454,8 @@ class _CasesQuizPageState
                     validator: (String value) {
                       if (value.isEmpty) {
                         return "Por favor, insira um número!";
+                      } else if (value.compareTo('0') == 0) {
+                        return "Por favor, insira um número diferente de 0!";
                       } else {
                         return null;
                       }
@@ -476,6 +512,44 @@ class _CasesQuizPageState
       await controller.create(model);
       await controller.getDocuments(widget.model.id, widget.page);
     }
+  }
+
+  // Aviso de confirmação para deletar questão
+  void _showAlertDialogDelete(QuizModel model) {
+    // model ??= CasesModel();
+
+    Widget cancelButton = FlatButton(
+      child: Text("Cancelar"),
+      onPressed: () {
+        Modular.to.pop();
+      },
+    );
+    // configura o button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () async {
+        // await controller.delete(model);
+        await controller.delete(widget.model.id, widget.page, model.id);
+        await controller.getDocuments(widget.model.id, widget.page);
+        Modular.to.pop();
+      },
+    );
+    // configura o  AlertDialog
+    AlertDialog alerta = AlertDialog(
+      title: Text("Aviso"),
+      content: Text("Deseja excluir essa questão?"),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+    // exibe o dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
+    );
   }
 
 /*   Widget _selectField() {

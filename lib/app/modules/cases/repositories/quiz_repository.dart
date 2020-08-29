@@ -42,15 +42,16 @@ class QuizRepository extends Disposable {
   }
 
   // Deleta widget de questões
-  Future<bool> deleteWidget(String casesID, String page) async {
+  Future<bool> deleteWidget(String casesID, String page, String questionID) async {
     try {
-      QuerySnapshot a = (await casesPage
+        await casesPage
           .document(casesID)
-          .collection(page)
-          .orderBy('position')
-          .getDocuments());
+          .collection(page).document(questionID).delete();
 
-      a.documents.last.reference.delete();
+          // .orderBy('position')
+          // .getDocuments()
+
+      // a.documents.last.reference.delete();
       return true;
     } catch (e) {
       print(e);

@@ -106,11 +106,11 @@ mixin _$CasesQuizController on _CasesQuizControllerBase, Store {
       ActionController(name: '_CasesQuizControllerBase');
 
   @override
-  dynamic delete(String casesID, String page) {
+  dynamic delete(String casesID, String page, String questionID) {
     final _$actionInfo =
         _$_CasesQuizControllerBaseActionController.startAction();
     try {
-      return super.delete(casesID, page);
+      return super.delete(casesID, page, questionID);
     } finally {
       _$_CasesQuizControllerBaseActionController.endAction(_$actionInfo);
     }

@@ -54,8 +54,8 @@ abstract class _CasesQuizControllerBase with Store {
 
   // Deleta a questão
   @action
-  delete(String casesID, String page) {
-    return quizRepository.deleteWidget(casesID, page);
+  delete(String casesID, String page, String questionID) {
+    return quizRepository.deleteWidget(casesID, page, questionID);
   }
   
   /* @action
