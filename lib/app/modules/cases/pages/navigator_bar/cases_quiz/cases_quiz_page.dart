@@ -214,7 +214,7 @@ class _CasesQuizPageState
                                 onTap: () {
                                   Navigator.pushNamed(
                                       context, '/cases/cases_quiz_edit',
-                                      arguments: model);
+                                      arguments: model).then((value) async => await controller.getDocuments(model.idCases, model.page));
                                 },
                               ),
                             ),
