@@ -19,7 +19,7 @@ class _CasesQuizEditPageState
     extends ModularState<CasesQuizEditPage, CasesQuizEditController> {
   //use 'controller' variable to access controller
 
-  // Lista de widget de texto representando o temporizado da questão
+  // Lista de widget de texto representando o temporizador da questão
   List<Widget> listTime = <Widget>[
     Text('10s'),
     Text('15s'),
@@ -100,6 +100,69 @@ class _CasesQuizEditPageState
     return Column(
       children: <Widget>[
         SizedBox(height: 10),
+        Container(
+          margin: const EdgeInsets.all(10.0),
+          alignment: Alignment.center,
+          width: 200.0,
+          height: 50.0,
+          decoration: myBoxDecoration(),
+          child: Text(
+            'Número da questão',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(height: 10),
+        TextFormField(
+          // controller: _initalValue,
+          maxLength: 2,
+          maxLines: 1,
+          initialValue: widget.model.questionNumber,
+          onChanged: (v) => widget.model.questionNumber = v,
+          decoration: InputDecoration(
+            icon: CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(2),
+                  child: Text(
+                    '#',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 23.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )),
+            labelText: 'Digite o número da questão',
+            fillColor: Colors.redAccent,
+            focusColor: Colors.redAccent,
+            hoverColor: Colors.redAccent,
+            // hintText: 'Digite o título',
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.0,
+              ),
+            ),
+          ),
+        ),
+        Divider(
+          height: 10,
+          thickness: 1.0,
+        ),
         Container(
           margin: const EdgeInsets.all(10.0),
           alignment: Alignment.center,
@@ -428,7 +491,7 @@ class _CasesQuizEditPageState
                   if (buttonIndex == index) {
                     isSelectedRight1[buttonIndex] = true;
                     // Salva no model a resposta correta
-                    saveSelectedRight(buttonIndex);
+                    saveSelectedRight1(buttonIndex);
                   } else {
                     isSelectedRight1[buttonIndex] = false;
                   }
@@ -525,6 +588,69 @@ class _CasesQuizEditPageState
           height: 50.0,
           decoration: myBoxDecoration(),
           child: Text(
+            'Número da questão',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+        SizedBox(height: 10),
+        TextFormField(
+          // controller: _initalValue,
+          maxLength: 2,
+          maxLines: 1,
+          initialValue: widget.model.questionNumber,
+          onChanged: (v) => widget.model.questionNumber = v,
+          decoration: InputDecoration(
+            icon: CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(2),
+                  child: Text(
+                    '#',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 23.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                )),
+            labelText: 'Digite o número da questão',
+            fillColor: Colors.redAccent,
+            focusColor: Colors.redAccent,
+            hoverColor: Colors.redAccent,
+            // hintText: 'Digite o título',
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(15.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.0,
+              ),
+            ),
+          ),
+        ),
+        Divider(
+          height: 10,
+          thickness: 1.0,
+        ),
+        Container(
+          margin: const EdgeInsets.all(10.0),
+          alignment: Alignment.center,
+          width: 200.0,
+          height: 50.0,
+          decoration: myBoxDecoration(),
+          child: Text(
             'Comando da questão',
             style: TextStyle(
               fontSize: 18,
@@ -586,7 +712,7 @@ class _CasesQuizEditPageState
                   if (buttonIndex == index) {
                     isSelectedRight2[buttonIndex] = true;
                     // Salva no model a resposta correta
-                    widget.model.right = 'true';
+                    saveSelectedRight2(buttonIndex);
                   } else {
                     isSelectedRight2[buttonIndex] = false;
                   }
@@ -698,7 +824,7 @@ class _CasesQuizEditPageState
   }
 
   // Salva no model o valor da questão correta que foi selecionada
-  void saveSelectedRight(int buttonIndex) {
+  void saveSelectedRight1(int buttonIndex) {
     if (buttonIndex == 0) {
       widget.model.right = 'a';
     } else if (buttonIndex == 1) {
@@ -709,6 +835,15 @@ class _CasesQuizEditPageState
       widget.model.right = 'd';
     } else if (buttonIndex == 4) {
       widget.model.right = 'e';
+    }
+  }
+
+  // Salva no model o valor da questão correta que foi selecionada
+  void saveSelectedRight2(int buttonIndex) {
+    if (buttonIndex == 0) {
+      widget.model.right = 'true';
+    } else if (buttonIndex == 1) {
+      widget.model.right = 'false';
     }
   }
 
