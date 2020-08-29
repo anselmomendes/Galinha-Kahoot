@@ -19,8 +19,18 @@ class _CasesQuizEditPageState
     extends ModularState<CasesQuizEditPage, CasesQuizEditController> {
   //use 'controller' variable to access controller
 
+  // Lista de widget de texto representando o temporizado da questão
+  List<Widget> listTime = <Widget>[
+    Text('10s'),
+    Text('15s'),
+    Text('25s'),
+    Text('30s'),
+    Text('45s'),
+    Text('60s'),
+  ];
+
   // Seleção do tempo da questão
-  List<bool> isSelectedTimer = List.generate(5, (_) => false);
+  List<bool> isSelectedTimer = List.generate(6, (_) => false);
   // Seleção da alternativa certa 'type1'
   List<bool> isSelectedRight1 = List.generate(5, (_) => false);
   // Seleção da alternativa certa 'type2'
@@ -175,7 +185,7 @@ class _CasesQuizEditPageState
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                )), 
+                )),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
@@ -208,7 +218,7 @@ class _CasesQuizEditPageState
           initialValue: widget.model.answers2,
           onChanged: (v) => widget.model.answers2 = v,
           decoration: InputDecoration(
-            icon:  CircleAvatar(
+            icon: CircleAvatar(
                 radius: 18.0,
                 backgroundColor: Colors.blueAccent,
                 child: Padding(
@@ -222,7 +232,7 @@ class _CasesQuizEditPageState
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                )), 
+                )),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
@@ -270,7 +280,7 @@ class _CasesQuizEditPageState
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                )), 
+                )),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
@@ -317,7 +327,7 @@ class _CasesQuizEditPageState
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                )), 
+                )),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
@@ -364,7 +374,7 @@ class _CasesQuizEditPageState
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                )), 
+                )),
             labelText: 'Digite a alternativa',
             // hintText: 'Digite o título',
             enabledBorder: OutlineInputBorder(
@@ -435,13 +445,7 @@ class _CasesQuizEditPageState
         SizedBox(height: 10),
         ToggleButtons(
             textStyle: TextStyle(fontSize: 14.0),
-            children: <Widget>[
-              Text('10s'),
-              Text('15s'),
-              Text('25s'),
-              Text('30s'),
-              Text('45s'),
-            ],
+            children: listTime,
             onPressed: (int index) {
               setState(() {
                 for (int buttonIndex = 0;
@@ -514,7 +518,7 @@ class _CasesQuizEditPageState
     return Column(
       children: <Widget>[
         SizedBox(height: 10),
-       Container(
+        Container(
           margin: const EdgeInsets.all(10.0),
           alignment: Alignment.center,
           width: 200.0,
@@ -561,7 +565,6 @@ class _CasesQuizEditPageState
           height: 10,
           thickness: 1.0,
         ),
-        
         SizedBox(height: 10),
         Text(
           'Selecione a resposta (V ou F)',
@@ -600,13 +603,7 @@ class _CasesQuizEditPageState
         SizedBox(height: 5),
         ToggleButtons(
             textStyle: TextStyle(fontSize: 14.0),
-            children: <Widget>[
-              Text('10s'),
-              Text('15s'),
-              Text('25s'),
-              Text('30s'),
-              Text('45s'),
-            ],
+            children: listTime,
             onPressed: (int index) {
               setState(() {
                 for (int buttonIndex = 0;
@@ -727,6 +724,8 @@ class _CasesQuizEditPageState
       widget.model.time = 30;
     } else if (buttonIndex == 4) {
       widget.model.time = 45;
+    } else if (buttonIndex == 5) {
+      widget.model.time = 60;
     }
   }
 
@@ -742,6 +741,8 @@ class _CasesQuizEditPageState
       isSelectedTimer[3] = true;
     } else if (widget.model.time == 45) {
       isSelectedTimer[4] = true;
+    } else if (widget.model.time == 60) {
+      isSelectedTimer[5] = true;
     }
   }
 
