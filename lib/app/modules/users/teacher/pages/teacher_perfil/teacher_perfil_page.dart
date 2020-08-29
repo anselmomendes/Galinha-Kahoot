@@ -131,38 +131,42 @@ class _TeacherPerfilPageState
                       )),
                       Divider(thickness: 2.0),
                       SizedBox(height: screenWidth * 0.5),
-                      Center(
-                        child: circularButton(
-                            text: 'Editar dados',
-                            func: () {
+                      Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                        RaisedButton(
+                        child: Text('Editar Dados'),
+                          onPressed:  () {
                               Navigator.pushNamed(
                                   context, 'teacher/teacher_perfil_edit',
                                   arguments: model);
-                            }),
-                      ),
+                            }
+                            ),
+                      
                       // Divider(thickness: 2.0),
                       SizedBox(height: 10),
-                      Center(
-                        child: circularButton(
-                            text: 'Alterar senha',
-                            func: () {
+                      RaisedButton(
+                        child: Text('Alterar Senha'),
+                          onPressed: () {
                               _showVerifyEmailSentDialogConfirm();
+                            },
+                            ),
+                     
                               /* try {
                                 await auth.sendPasswordResetMail(user.email);
                                 _showVerifyEmailSentDialogConfirm();
                               } catch (e) {
                                 print("Error em alterar senha: $e");
-                              } */
-                            }),
-                      ),
+                              } */             
                       // Divider(thickness: 2.0),
                       SizedBox(height: 10),
-                      Center(
-                        child: circularButton(
-                            text: 'Excluir conta',
-                            func: () {
+                      RaisedButton(
+                        child: Text('Excluir Conta'),
+                          onPressed:  () {
                               _showAlertDialogDelete(model: model);
-                            }),
+                            },
+                            ),
+                        ],
                       ),
                     ],
                   ))

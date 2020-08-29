@@ -15,7 +15,7 @@ Widget circularButton({String text, Function func, double sizeFont}) {
       margin: const EdgeInsets.all(10.0),
           alignment: Alignment.center,
           width: 70.0,
-          height: 40.0,
+          height:30.0,
       child: Text(
         text,
         style: TextStyle(

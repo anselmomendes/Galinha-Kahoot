@@ -223,14 +223,13 @@ class _CasesQuizPageState
                 },
               ),
             ),
-            Divider(
-              height: 10.0,
-              indent: 5.0,
-              color: Colors.black,
-            ),
-            SizedBox(
-              height: 30.0,
-            ),
+             Divider(
+                height: 10.0,
+                indent: 5.0,
+                color: Colors.black,
+                            ),
+                            
+            Padding(padding: EdgeInsets.only(bottom: 15.0)),
             Text(
               'Adicionar Questão',
               style: TextStyle(
@@ -239,9 +238,7 @@ class _CasesQuizPageState
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 30.0,
-            ),
+            SizedBox(height: 30.0,),
             Row(
               children: <Widget>[
                 Padding(
