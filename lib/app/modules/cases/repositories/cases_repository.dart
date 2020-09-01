@@ -72,15 +72,14 @@ class CasesRepository extends Disposable implements ICasesRepository {
     }
   }
 
-  Future<bool> deleteWidget(String casesID, String page) async {
+  Future<bool> deleteWidget(String casesID, String page, String componentID) async {
     try {
-      QuerySnapshot a = (await casesPage
+      await casesPage
           .document(casesID)
           .collection(page)
-          .orderBy('position')
-          .getDocuments());
-
-      a.documents.last.reference.delete();
+          .document(componentID)
+          .delete();
+         
       return true;
     } catch (e) {
       print(e);

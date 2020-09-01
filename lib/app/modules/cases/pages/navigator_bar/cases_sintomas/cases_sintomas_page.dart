@@ -11,8 +11,7 @@ class CasesSintomasPage extends StatefulWidget {
   final String title;
   final String page;
   final CasesModel model;
-  const CasesSintomasPage(
-      {Key key, this.title, this.model, this.page})
+  const CasesSintomasPage({Key key, this.title, this.model, this.page})
       : super(key: key);
 
   @override
@@ -63,52 +62,56 @@ class _CasesSintomasPageState
         body: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
           child: Column(
-          children: <Widget>[
-            Container(
-              height: screenWidth * 1.4,
-              child: Observer(
-                name: 'componentes',
-                builder: (_) {
-                  if (controller.cases == null)
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  else {
-                    List<ComponentModel> list = controller.cases;
-                    return ListView.builder(
-                      itemCount: controller.cases.length,
-                      itemBuilder: (_, index) {
-                        ComponentModel model = list[index];
+            children: <Widget>[
+              Container(
+                height: screenWidth * 1.4,
+                child: Observer(
+                  name: 'componentes',
+                  builder: (_) {
+                    if (controller.cases == null)
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    else {
+                      List<ComponentModel> list = controller.cases;
+                      return ListView.builder(
+                        itemCount: controller.cases.length,
+                        itemBuilder: (_, index) {
+                          ComponentModel model = list[index];
 
-                        if (model.type.compareTo("Título") == 0) {
-                          return Container(
-                            height: 50,
-                            child: Text(
-                              model.value, textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold,)
-                            ),
-                          );
-                        } if (model.type.compareTo("Texto") == 0) {
-                          return Container(
-                            height: 50,
-                            child: Text(
-                              model.value, textAlign: TextAlign.justify,
-                              style: TextStyle(fontSize: 18),
-                            ),
-                          );
-                        } else if (model.type.compareTo("Imagem") == 0) {
-                          return Container(
-                            // height: 50,
-                            child: Image.network(
-                              model.value,
-                              fit: BoxFit.contain,
-                              height: 300,
-                              width: 300,
-                            ),
-                          );
-                        }
+                          if (model.type.compareTo("Título") == 0) {
+                            return Container(
+                              height: 50,
+                              child: Text(model.value,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            );
+                          }
+                          if (model.type.compareTo("Texto") == 0) {
+                            return Container(
+                              height: 50,
+                              child: Text(
+                                model.value,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            );
+                          } else if (model.type.compareTo("Imagem") == 0) {
+                            return Container(
+                              // height: 50,
+                              child: Image.network(
+                                model.value,
+                                fit: BoxFit.contain,
+                                height: 300,
+                                width: 300,
+                              ),
+                            );
+                          }
 
-                        /* return Container(
+                          /* return Container(
                           child: Card(
                             margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
                             elevation: 20,
@@ -137,16 +140,15 @@ class _CasesSintomasPageState
                             ),
                           ),
                         ); */
-                      },
-                    );
-                  }
-                },
+                        },
+                      );
+                    }
+                  },
+                ),
               ),
-            ),
-          ],
-        ),
-        )
-        );
+            ],
+          ),
+        ));
   }
 
   // Modo edição (adicionar ou excluir campos)
@@ -185,7 +187,8 @@ class _CasesSintomasPageState
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   ListTile(
-                                    title: Center(
+                                    title: _selectField(model, index)
+                                    /* Center(
                                       child: Text(
                                         model.type,
                                         style: TextStyle(
@@ -193,7 +196,8 @@ class _CasesSintomasPageState
                                           fontSize: 18,
                                         ),
                                       ),
-                                    ),
+                                    ) */
+                                    ,
                                   ),
                                 ],
                               ),
@@ -212,32 +216,39 @@ class _CasesSintomasPageState
               ),
             ),
             Divider(
-                height: 10.0,
-                indent: 5.0,
-                color: Colors.black,
-                            ),
-                            
-            SizedBox(height: 10.0,),
+              height: 10.0,
+              indent: 5.0,
+              color: Colors.black,
+            ),
+            SizedBox(
+              height: 10.0,
+            ),
             Text(
               'Adicionar Campos',
-              style: TextStyle(fontWeight: FontWeight.bold,  fontSize: 18.0,),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 18.0,
+              ),
               textAlign: TextAlign.center,
-             
             ),
             Padding(
-              padding: EdgeInsets.only(bottom: 10.0,),
+              padding: EdgeInsets.only(
+                bottom: 10.0,
+              ),
             ),
             Row(
               children: <Widget>[
                 Padding(
                   padding: EdgeInsets.only(right: screenWidth * 0.05),
-                  child: IconButton(icon: Icon(Icons.add_photo_alternate,
-                   color: Colors.blueGrey[500],
-      size: 50.0,
-      semanticLabel: 'Imagem',
-                  ),
-                  tooltip: 'Imagem',
-                   onPressed:() async {
+                  child: IconButton(
+                      icon: Icon(
+                        Icons.add_photo_alternate,
+                        color: Colors.blueGrey[500],
+                        size: 50.0,
+                        semanticLabel: 'Imagem',
+                      ),
+                      tooltip: 'Imagem',
+                      onPressed: () async {
                         ComponentModel model = ComponentModel();
                         model.type = 'Imagem';
                         model.idCases = widget.model.id;
@@ -248,89 +259,139 @@ class _CasesSintomasPageState
                         await controller.getDocuments(
                             widget.model.id, widget.page);
                       }),
-                  
-                  
-                  
-                  
-                  /*circularButton(
-                      text: 'Imagem',
-                      func: () async {
-                        ComponentModel model = ComponentModel();
-                        model.type = 'Imagem';
-                        model.idCases = widget.model.id;
-                        model.page = widget.page;
-                        model.value = 'https://livecasthd.com.br/sem_foto.png';
-                        // model.type = 'image';
-                        await controller.create(model);
-                        await controller.getDocuments(
-                            widget.model.id, widget.page);
-                      }*/),
+                ),
                 Expanded(
                   flex: 1,
                   child: Container(),
                 ),
                 Padding(
-                padding: EdgeInsets.only(right: screenWidth * 0.05),
-                  child: IconButton(icon: Icon(Icons.note_add,
-                   color: Colors.blueGrey[500],
-      size: 50.0,
-      semanticLabel: 'Texto',),
-       tooltip: 'Texto',
-       onPressed:  () async {
-                        ComponentModel model = ComponentModel();
-                        model.type = 'Texto';
-                        model.idCases = widget.model.id;
-                        model.page = widget.page;
-                        model.value = 'Digite o conteúdo para o tópico deste caso.';
-                        // model.type = 'text';
-                        await controller.create(model);
-                        await controller.getDocuments(
-                            widget.model.id, widget.page);
-                      })),
+                    padding: EdgeInsets.only(right: screenWidth * 0.05),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.description,
+                          color: Colors.blueGrey[500],
+                          size: 50.0,
+                          semanticLabel: 'Texto',
+                        ),
+                        tooltip: 'Texto',
+                        onPressed: () async {
+                          ComponentModel model = ComponentModel();
+                          model.type = 'Texto';
+                          model.idCases = widget.model.id;
+                          model.page = widget.page;
+                          model.value =
+                              'Digite o conteúdo para o tópico deste caso.';
+                          // model.type = 'text';
+                          await controller.create(model);
+                          await controller.getDocuments(
+                              widget.model.id, widget.page);
+                        })),
                 Expanded(
                   flex: 1,
                   child: Container(),
                 ),
- 
                 Padding(
-                   padding: EdgeInsets.only(right: screenWidth * 0.05),
-                  child: IconButton(icon: Icon(Icons.playlist_add,
-                   color: Colors.blueGrey[500],
-      size: 50.0,
-      semanticLabel: 'Título',),
-       tooltip: 'Título',
-       onPressed:() {}
-       )),
+                    padding: EdgeInsets.only(right: screenWidth * 0.05),
+                    child: IconButton(
+                        icon: Icon(
+                          Icons.title,
+                          color: Colors.blueGrey[500],
+                          size: 50.0,
+                          semanticLabel: 'Título',
+                        ),
+                        tooltip: 'Título',
+                        onPressed: () async {
+                          ComponentModel model = ComponentModel();
+                          model.type = 'Título';
+                          model.idCases = widget.model.id;
+                          model.page = widget.page;
+                          model.value = 'Digite um título para o conteúdo';
+                          // model.type = 'topic';
+                          await controller.create(model);
+                          await controller.getDocuments(
+                              widget.model.id, widget.page);
+                        })),
                 SizedBox(height: 10),
               ],
             ),
-           /*Column(
-              children: [
-                Padding(
-                     padding: EdgeInsets.only(top: screenWidth * 0.05),
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        'Último Campo',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                        // style: TextStyle(fontSize: 18),
-                        textAlign: TextAlign.center,
-                      ),
-                      circularButton(
-                          text: 'Excluir',
-                          func: () async {
-                            await controller.delete(
-                                widget.model.id, widget.page);
-                            await controller.getDocuments(
-                                widget.model.id, widget.page);
-                          }),
-                    ],
-                  ),
-                ),
-              ],
-            ),*/
           ],
         ));
+  }
+
+  // Exibir os campos do caso
+  Widget _selectField(ComponentModel model, int index) {
+    return Row(
+      children: <Widget>[
+        Expanded(
+          flex: 2,
+          child: Container(),
+        ),
+        Text(
+          model.type,
+          // "Campo | ${model.type}",
+          // textAlign: TextAlign.end,
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 18,
+          ),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(),
+        ),
+        SizedBox(
+          width: 35,
+          // height: 40,
+          child: FlatButton(
+              padding: EdgeInsets.all(1),
+              onPressed: () async {
+                _showAlertDialogDelete(model);
+              },
+              child: Icon(
+                Icons.delete,
+                color: Colors.redAccent,
+              )),
+        ),
+      ],
+    );
+  }
+
+  // Aviso de confirmação para deletar campo
+  void _showAlertDialogDelete(ComponentModel model) {
+    // model ??= CasesModel();
+
+    Widget cancelButton = FlatButton(
+      child: Text("Cancelar"),
+      onPressed: () {
+        Modular.to.pop();
+      },
+    );
+    // configura o button
+    Widget okButton = FlatButton(
+      child: Text("OK"),
+      onPressed: () async {
+        // await controller.delete(model);
+        await controller.delete(widget.model.id, widget.page, model.id);
+        await controller.getDocuments(widget.model.id, widget.page);
+        Modular.to.pop();
+      },
+    );
+    // configura o  AlertDialog
+    AlertDialog alerta = AlertDialog(
+      title: Text("Aviso"),
+      content: Text("Deseja excluir esse campo?"),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+    // exibe o dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alerta;
+      },
+    );
   }
 
 /*   Widget _selectField() {

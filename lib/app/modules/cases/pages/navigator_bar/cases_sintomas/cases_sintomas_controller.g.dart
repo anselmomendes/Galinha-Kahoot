@@ -72,10 +72,10 @@ mixin _$CasesSintomasController on _CasesSintomasBase, Store {
       ActionController(name: '_CasesSintomasBase');
 
   @override
-  dynamic delete(String casesID, String page) {
+  dynamic delete(String casesID, String page, String componentID) {
     final _$actionInfo = _$_CasesSintomasBaseActionController.startAction();
     try {
-      return super.delete(casesID, page);
+      return super.delete(casesID, page, componentID);
     } finally {
       _$_CasesSintomasBaseActionController.endAction(_$actionInfo);
     }

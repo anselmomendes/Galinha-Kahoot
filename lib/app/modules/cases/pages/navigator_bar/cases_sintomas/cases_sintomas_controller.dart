@@ -32,8 +32,8 @@ abstract class _CasesSintomasBase with Store {
   }
 
   @action
-  delete(String casesID, String page) {
-    return casesRepository.deleteWidget(casesID, page);
+  delete(String casesID, String page, String componentID) {
+    return casesRepository.deleteWidget(casesID, page, componentID);
   }
 
   @action

@@ -24,11 +24,11 @@ class _CasesRelatorioPageState
 
   @override
   Widget build(BuildContext context) {
-    /*
+    
     return Observer(builder: (_) {
-      if (controller.editMode) {
+      /* if (controller.editMode) {
         return modoEdicao(widget.model);
-      } else
+      } else */
         return modoVisualizacao();
     });
   }
@@ -41,17 +41,18 @@ class _CasesRelatorioPageState
         title: Text(widget.title),
         centerTitle: true,
       ),
-      floatingActionButton: FloatingActionButton(
+      /* floatingActionButton: FloatingActionButton(
           backgroundColor: appContrastColor,
           child: Icon(Icons.edit),
           onPressed: () {
             controller.editMode = true;
-          }),
+          }), */
       body: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
         child: Column(
           children: <Widget>[
-            Container(
+            Container()
+            /* Container(
               child: Image.network(
                 widget.model.imageUrlSix, //widget.casesModel.imageUrlTwo,
                 height: 300,
@@ -72,13 +73,13 @@ class _CasesRelatorioPageState
                 widget.model.textSix, //widget.casesModel.textTwo,
                 style: TextStyle(fontSize: 18),
               ),
-            ),
+            ), */
           ],
         ),
       ),
     );
   }
-
+/* 
   Scaffold modoEdicao(CasesModel model) {
 
     // Iniciado os campos com os texto do db
@@ -204,6 +205,7 @@ class _CasesRelatorioPageState
           ],
         ),
       ),
-    );*/
+    );
   }
+ */
 }

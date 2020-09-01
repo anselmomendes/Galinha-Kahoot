@@ -11,7 +11,7 @@ abstract class ICasesRepository {
 
   //funções de componentes
   Future<bool> createWidget(ComponentModel model);
-  Future<bool> deleteWidget(String casesID, String page);
+  Future<bool> deleteWidget(String casesID, String page, String componentID);
   Future<bool> updateWidget(ComponentModel model);
   Future<List<ComponentModel>> getDocuments(String idCases, String page);
 }
