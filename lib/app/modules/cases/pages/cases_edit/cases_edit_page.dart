@@ -115,7 +115,7 @@ class _CasesEditPageState
         TextFormField(
           // controller: _initalValue,
           maxLength: 1000,
-          maxLines: 5,
+          maxLines: 15,
           //initialValue: widget.model.topicTree,
           initialValue: widget.model.value,
           onChanged: (v) => widget.model.value = v,

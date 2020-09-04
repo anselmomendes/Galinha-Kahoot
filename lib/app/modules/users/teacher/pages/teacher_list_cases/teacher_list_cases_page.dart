@@ -110,7 +110,7 @@ class _TeacherListCasesPageState
                                   _showAlertDialogDelete(model: model);
                                 },
                               ),
-                              FlatButton(
+                              /* FlatButton(
                                 color: Colors.redAccent,
                                 child: const Text('EDITAR'),
                                 onPressed: () {
@@ -120,7 +120,7 @@ class _TeacherListCasesPageState
                                     arguments: model,
                                   );
                                 },
-                              ),
+                              ), */
                             /*  FlatButton(
                                 color: Colors.redAccent,
                                 child: const Text('ACESSAR'),

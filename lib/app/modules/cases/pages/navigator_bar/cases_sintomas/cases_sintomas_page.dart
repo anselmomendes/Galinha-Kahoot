@@ -81,8 +81,8 @@ class _CasesSintomasPageState
 
                           if (model.type.compareTo("Título") == 0) {
                             return Container(
-                             margin: EdgeInsets.fromLTRB(0, 25, 0, 10),
-                              
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+
                               child: Text(model.value,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -93,7 +93,9 @@ class _CasesSintomasPageState
                           }
                           if (model.type.compareTo("Texto") == 0) {
                             return Container(
-                              //*height: 50,
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+
+                              // height: 50,
                               child: Text(
                                 model.value,
                                 textAlign: TextAlign.justify,
@@ -102,11 +104,13 @@ class _CasesSintomasPageState
                             );
                           } else if (model.type.compareTo("Imagem") == 0) {
                             return Container(
+                             margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+
                               // height: 50,
                               child: Image.network(
                                 model.value,
                                 fit: BoxFit.contain,
-                                height: 400,
+                                // height: 400,
                                 width: 300,
                               ),
                             );
