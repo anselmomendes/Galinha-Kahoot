@@ -131,11 +131,19 @@ class _TeacherPerfilPageState
                       )),
                       Divider(thickness: 2.0),
                       SizedBox(height: screenWidth * 0.5),
-                      Column(
+
+                      Center(
+                     child: Column(
                          mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                         RaisedButton(
-                        child: Text('Editar Dados'),
+                           color: Colors.blueAccent,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        side: BorderSide(color:Colors.blueAccent)),
+                        child: Text('Editar Dados',
+                        style: TextStyle(color: Colors.white,),
+                        ),
                           onPressed:  () {
                               Navigator.pushNamed(
                                   context, 'teacher/teacher_perfil_edit',
@@ -145,8 +153,15 @@ class _TeacherPerfilPageState
                       
                       // Divider(thickness: 2.0),
                       SizedBox(height: 10),
+                      
                       RaisedButton(
-                        child: Text('Alterar Senha'),
+                         color: Colors.blueAccent,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        side: BorderSide(color:Colors.blueAccent)),
+                        child: Text('Alterar Senha',
+                         style: TextStyle(color: Colors.white,),
+                        ),
                           onPressed: () {
                               _showVerifyEmailSentDialogConfirm();
                             },
@@ -161,12 +176,19 @@ class _TeacherPerfilPageState
                       // Divider(thickness: 2.0),
                       SizedBox(height: 10),
                       RaisedButton(
-                        child: Text('Excluir Conta'),
+                         color: Colors.blueAccent,
+    shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.0),
+        side: BorderSide(color:Colors.blueAccent)),
+                        child: Text('Excluir Conta',
+                         style: TextStyle(color: Colors.white,)
+                        ),
                           onPressed:  () {
                               _showAlertDialogDelete(model: model);
                             },
                             ),
                         ],
+                      ),
                       ),
                     ],
                   ))

@@ -181,7 +181,7 @@ class _CasesQuizEditPageState
         SizedBox(height: 10),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 300,
+          maxLength: 800,
           maxLines: 3,
           initialValue: widget.model.question,
           onChanged: (v) => widget.model.question = v,
@@ -548,7 +548,7 @@ class _CasesQuizEditPageState
         SizedBox(height: 10),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 300,
+          maxLength: 800,
           maxLines: 3,
           initialValue: widget.model.commentary,
           onChanged: (v) => widget.model.commentary = v,
@@ -662,7 +662,7 @@ class _CasesQuizEditPageState
         SizedBox(height: 10),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 300,
+          maxLength: 800,
           maxLines: 3,
           //initialValue: widget.model.topicTree,
           initialValue: widget.model.question,
@@ -770,7 +770,7 @@ class _CasesQuizEditPageState
         SizedBox(height: 10),
         TextFormField(
           // controller: _initalValue,
-          maxLength: 300,
+          maxLength: 800,
           maxLines: 3,
           initialValue: widget.model.commentary,
           onChanged: (v) => widget.model.commentary = v,

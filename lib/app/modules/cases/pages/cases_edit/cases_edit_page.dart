@@ -153,7 +153,7 @@ class _CasesEditPageState
         ),
         SizedBox(height: 5),
         TextFormField(
-          maxLength: 50,
+          maxLength: 300,
           // controller: _initalValue,
           // initialValue: controller.casesViewModel.casesPage.data[0].toString(),
           initialValue: widget.model.value,
