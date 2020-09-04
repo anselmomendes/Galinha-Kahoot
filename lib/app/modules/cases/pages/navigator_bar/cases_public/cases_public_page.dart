@@ -10,7 +10,7 @@ class CasesPublicPage extends StatefulWidget {
   final CasesModel model;
   final bool showAppBar;
 
-  const CasesPublicPage({Key key, this.title = "CasesPublic", this.model, this.showAppBar = true})
+  const CasesPublicPage({Key key, this.title = "Casos Públicos", this.model, this.showAppBar = true})
       : super(key: key);
 
   @override
