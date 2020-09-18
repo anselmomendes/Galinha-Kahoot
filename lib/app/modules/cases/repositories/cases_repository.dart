@@ -52,13 +52,13 @@ class CasesRepository extends Disposable implements ICasesRepository {
 
   Future<bool> createWidget(ComponentModel model) async {
     try {
-      model.position = (await casesPage
+      /* model.position = (await casesPage
               .document(model.idCases)
               .collection(model.page)
               .getDocuments())
           .documents
           .length
-          .toString();
+          .toString(); */
 
       casesPage
           .document(model.idCases)

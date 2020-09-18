@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 class ComponentModel {
   String id;
   String idCases;
-  String position;
+  int position;
   String type;
   String value;
   String page;

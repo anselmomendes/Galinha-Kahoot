@@ -21,6 +21,7 @@ class CasesSintomasPage extends StatefulWidget {
 class _CasesSintomasPageState
     extends ModularState<CasesSintomasPage, CasesSintomasController> {
   bool editMode;
+  int lastPosition;
 
   @override
   void initState() {
@@ -82,7 +83,6 @@ class _CasesSintomasPageState
                           if (model.type.compareTo("Título") == 0) {
                             return Container(
                               margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
-
                               child: Text(model.value,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
@@ -104,7 +104,7 @@ class _CasesSintomasPageState
                             );
                           } else if (model.type.compareTo("Imagem") == 0) {
                             return Container(
-                             margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                              margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
 
                               // height: 50,
                               child: Image.network(
@@ -178,6 +178,14 @@ class _CasesSintomasPageState
                     );
                   else {
                     List<ComponentModel> list = controller.cases;
+
+                    if (list.length != 0) {
+                      // Valor (position) do último campo
+                      lastPosition = list.last.position + 1;
+                    } else {
+                      lastPosition = 1;
+                    }
+
                     return ListView.builder(
                       itemCount: controller.cases.length,
                       itemBuilder: (_, index) {
@@ -260,6 +268,8 @@ class _CasesSintomasPageState
                         model.page = widget.page;
                         model.value = 'https://livecasthd.com.br/sem_foto.png';
                         // model.type = 'image';
+                        model.position = lastPosition;
+
                         await controller.create(model);
                         await controller.getDocuments(
                             widget.model.id, widget.page);
@@ -287,6 +297,8 @@ class _CasesSintomasPageState
                           model.value =
                               'Digite o conteúdo para o tópico deste caso.';
                           // model.type = 'text';
+                          model.position = lastPosition;
+
                           await controller.create(model);
                           await controller.getDocuments(
                               widget.model.id, widget.page);
@@ -312,6 +324,9 @@ class _CasesSintomasPageState
                           model.page = widget.page;
                           model.value = 'Digite um título para o conteúdo';
                           // model.type = 'topic';
+                          model.position = lastPosition;
+                          print(lastPosition);
+
                           await controller.create(model);
                           await controller.getDocuments(
                               widget.model.id, widget.page);
@@ -327,12 +342,12 @@ class _CasesSintomasPageState
   Widget _selectField(ComponentModel model, int index) {
     return Row(
       children: <Widget>[
-        Expanded(
+        /* Expanded(
           flex: 2,
           child: Container(),
-        ),
-        Text(
-          model.type,
+        ), */
+        Text('Posição ${model.position} | ${model.type}',
+          // model.type,
           // "Campo | ${model.type}",
           // textAlign: TextAlign.end,
           style: TextStyle(
