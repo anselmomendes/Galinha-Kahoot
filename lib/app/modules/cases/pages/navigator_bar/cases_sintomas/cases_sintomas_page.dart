@@ -21,6 +21,8 @@ class CasesSintomasPage extends StatefulWidget {
 class _CasesSintomasPageState
     extends ModularState<CasesSintomasPage, CasesSintomasController> {
   bool editMode;
+
+  // Variável p/ pegar o valor da posição do último campo
   int lastPosition;
 
   @override
@@ -217,7 +219,7 @@ class _CasesSintomasPageState
                               onTap: () {
                                 Navigator.pushNamed(
                                     context, '/cases/cases_edit',
-                                    arguments: model);
+                                    arguments: model).then((value) async => await controller.getDocuments(model.idCases, model.page));
                               },
                             ),
                           ),
@@ -347,7 +349,6 @@ class _CasesSintomasPageState
           child: Container(),
         ), */
         Text('Posição ${model.position} | ${model.type}',
-          // model.type,
           // "Campo | ${model.type}",
           // textAlign: TextAlign.end,
           style: TextStyle(

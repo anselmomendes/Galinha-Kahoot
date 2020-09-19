@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_edit/cases_edit_controller.dart';
@@ -17,7 +18,6 @@ class CasesEditPage extends StatefulWidget {
 
 class _CasesEditPageState
     extends ModularState<CasesEditPage, CasesEditController> {
-
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -30,15 +30,84 @@ class _CasesEditPageState
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+        padding: const EdgeInsets.fromLTRB(30, 10, 30, 30),
         child: ListView(
           children: <Widget>[
-            Container(height: screenWidth * 1.2, child: _selectField()),
+            Container(
+              margin: const EdgeInsets.fromLTRB(10, 0, 10, 10),
+              alignment: Alignment.center,
+              width: 200.0,
+              height: 50.0,
+              decoration: myBoxDecoration(),
+              child: Text(
+                'Posição do campo',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.white,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(height: 10),
+            TextFormField(
+              // controller: _initalPosition,
+              keyboardType: TextInputType.number,
+              maxLength: 2,
+              maxLines: 1,
+              initialValue: widget.model.position.toString(),
+              inputFormatters: <TextInputFormatter>[
+                WhitelistingTextInputFormatter.digitsOnly
+              ],
+              onChanged: (v) {
+                // Salva no model a posição em int
+                widget.model.position = int.parse(v);
+              },
+              decoration: InputDecoration(
+                icon: CircleAvatar(
+                    radius: 18.0,
+                    backgroundColor: Colors.blueAccent,
+                    child: Padding(
+                      padding: EdgeInsets.all(2),
+                      child: Text(
+                        '#',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 23.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )),
+                labelText: 'Digite a posição do campo',
+                fillColor: Colors.redAccent,
+                focusColor: Colors.redAccent,
+                hoverColor: Colors.redAccent,
+                // hintText: 'Digite o título',
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                  borderSide: BorderSide(
+                    color: Colors.black,
+                    width: 1.0,
+                  ),
+                ),
+              ),
+            ),
+            Divider(
+              height: 10,
+              thickness: 1.0,
+            ),
+            Container(height: screenWidth * 1.1, child: _selectField()),
             // SizedBox(height: 20),
             circularButton(
                 text: 'Salvar',
                 func: () async {
-                  // widget.model.value = _initalValue.text.toString();
                   if (await controller.update(widget.model)) {
                     _showAlertDialog(context, 'Componente Registrado',
                         'O componente do caso foi registrado com sucesso!');
@@ -76,6 +145,7 @@ class _CasesEditPageState
         TextFormField(
           // controller: _initalValue,
           maxLength: 40,
+          maxLines: 2,
           //initialValue: _textFour.text,
           initialValue: widget.model.value,
           onChanged: (v) => widget.model.value = v,
@@ -203,6 +273,19 @@ class _CasesEditPageState
       builder: (BuildContext context) {
         return alerta;
       },
+    );
+  }
+
+  BoxDecoration myBoxDecoration() {
+    return BoxDecoration(
+      color: Colors.blueAccent,
+      border: Border.all(
+        width: 3.0,
+        color: Colors.blueAccent,
+      ),
+      borderRadius: BorderRadius.all(
+          Radius.circular(5.0) //         <--- border radius here
+          ),
     );
   }
 }
