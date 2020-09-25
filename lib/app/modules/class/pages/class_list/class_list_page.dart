@@ -32,8 +32,8 @@ class _ClassListPageState
           builder: (_) {
             print('teste');
 
-            //if (controller.classList.data == null)
-            if (controller.classList2.data == null) //para testes
+            if (controller.classList.data == null)
+            // if (controller.classList2.data == null) //para testes
               return Center(
                 child: CircularProgressIndicator(),
               );
@@ -41,14 +41,14 @@ class _ClassListPageState
             else if (controller.classList2.hasError)
               return Center(
                 child: RaisedButton(
-                  // onPressed: () => controller.getList(),
-                  onPressed: () => controller.getListTrue(),
+                  onPressed: () => controller.getList(),
+                  // onPressed: () => controller.getListTrue(),
                   child: Text('Error'),
                 ),
               );
             else {
-              //List<ClassModel> list = controller.classList.data;
-              List<ClassModel> list = controller.classList2.data;
+              List<ClassModel> list = controller.classList.data;
+              // List<ClassModel> list = controller.classList2.data;
 
               return ListView.builder(
                 itemCount: list.length,

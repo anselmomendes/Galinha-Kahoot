@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
-import '../..//models/TeacherModel.dart';
-import '../..//pages/teacher_perfil/teacher_perfil_controller.dart';
+import '../../models/TeacherModel.dart';
+import '../../pages/teacher_perfil/teacher_perfil_controller.dart';
 
 class TeacherPerfilEditPage extends StatefulWidget {
   final TeacherModel teacherModel;
@@ -18,12 +18,10 @@ class TeacherPerfilEditPage extends StatefulWidget {
 class _TeacherPerfilEditPageState
     extends ModularState<TeacherPerfilEditPage, TeacherPerfilController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  // final TextEditingController _emailController = TextEditingController();
-  // final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _universityController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
 
-@override
+  @override
   void initState() {
     // TODO: implement initState
     // Iniciado os campos com os dados do db
@@ -31,7 +29,6 @@ class _TeacherPerfilEditPageState
     _universityController.text = widget.teacherModel.university;
     super.initState();
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -80,41 +77,21 @@ class _TeacherPerfilEditPageState
                       hintText: "Nome da Universidade",
                       prefixIcon: Icon(Icons.school),
                     )),
-
-                /* // Email
-                TextFormField(
-                    controller: _emailController,
-                    decoration: const InputDecoration(
-                      labelText: 'Email',
-                      hintText: "Endereço de email",
-                      prefixIcon: Icon(Icons.mail),
-                    )),
-
-                // Senha
-                TextFormField(
-                    controller: _passwordController,
-                    decoration: const InputDecoration(
-                      labelText: 'Senha',
-                      hintText: "Senha",
-                      prefixIcon: Icon(Icons.lock),
-                    )), */
               ])),
           SizedBox(height: 20),
-          Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                FlatButton(
-                    onPressed: () {
-                      // _register;
-                      widget.teacherModel.name = _nameController.text;
-                      widget.teacherModel.university = _universityController.text;
-                      controller.save(widget.teacherModel);
-                      debugPrint('Botão: salvar');
-                    },
-                    color: appContrastColor,
-                    child:
-                        Text('Salvar', style: TextStyle(color: Colors.white)))
-              ])
+          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: <
+              Widget>[
+            FlatButton(
+                onPressed: () {
+                  // _register;
+                  widget.teacherModel.name = _nameController.text;
+                  widget.teacherModel.university = _universityController.text;
+                  controller.save(widget.teacherModel);
+                  debugPrint('Botão: salvar');
+                },
+                color: appContrastColor,
+                child: Text('Salvar', style: TextStyle(color: Colors.white)))
+          ])
         ])));
   }
 }

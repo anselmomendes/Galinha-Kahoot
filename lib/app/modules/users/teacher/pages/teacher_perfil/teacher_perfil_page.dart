@@ -131,64 +131,69 @@ class _TeacherPerfilPageState
                       )),
                       Divider(thickness: 2.0),
                       SizedBox(height: screenWidth * 0.5),
-
                       Center(
-                     child: Column(
-                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                        RaisedButton(
-                           color: Colors.blueAccent,
-    shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        side: BorderSide(color:Colors.blueAccent)),
-                        child: Text('Editar Dados',
-                        style: TextStyle(color: Colors.white,),
-                        ),
-                          onPressed:  () {
-                              Navigator.pushNamed(
-                                  context, 'teacher/teacher_perfil_edit',
-                                  arguments: model);
-                            }
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RaisedButton(
+                                color: Colors.blueAccent,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(color: Colors.blueAccent)),
+                                child: Text(
+                                  'Editar Dados',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onPressed: () {
+                                  Navigator.pushNamed(
+                                      context, 'teacher/teacher_perfil_edit',
+                                      arguments: model);
+                                }),
+
+                            // Divider(thickness: 2.0),
+                            SizedBox(height: 10),
+
+                            RaisedButton(
+                              color: Colors.blueAccent,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.blueAccent)),
+                              child: Text(
+                                'Alterar Senha',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              onPressed: () {
+                                _showVerifyEmailSentDialogConfirm();
+                              },
                             ),
-                      
-                      // Divider(thickness: 2.0),
-                      SizedBox(height: 10),
-                      
-                      RaisedButton(
-                         color: Colors.blueAccent,
-    shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        side: BorderSide(color:Colors.blueAccent)),
-                        child: Text('Alterar Senha',
-                         style: TextStyle(color: Colors.white,),
-                        ),
-                          onPressed: () {
-                              _showVerifyEmailSentDialogConfirm();
-                            },
-                            ),
-                     
-                              /* try {
+
+                            /* try {
                                 await auth.sendPasswordResetMail(user.email);
                                 _showVerifyEmailSentDialogConfirm();
                               } catch (e) {
                                 print("Error em alterar senha: $e");
-                              } */             
-                      // Divider(thickness: 2.0),
-                      SizedBox(height: 10),
-                      RaisedButton(
-                         color: Colors.blueAccent,
-    shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10.0),
-        side: BorderSide(color:Colors.blueAccent)),
-                        child: Text('Excluir Conta',
-                         style: TextStyle(color: Colors.white,)
-                        ),
-                          onPressed:  () {
-                              _showAlertDialogDelete(model: model);
-                            },
+                              } */
+                            // Divider(thickness: 2.0),
+                            SizedBox(height: 10),
+                            RaisedButton(
+                              color: Colors.blueAccent,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.blueAccent)),
+                              child: Text('Excluir Conta',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                  )),
+                              onPressed: () {
+                                _showAlertDialogDelete(model: model);
+                              },
                             ),
-                        ],
-                      ),
+                          ],
+                        ),
                       ),
                     ],
                   ))
