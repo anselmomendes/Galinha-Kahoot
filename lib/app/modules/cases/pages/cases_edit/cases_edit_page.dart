@@ -5,6 +5,9 @@ import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_edit/cases_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
+import 'dart:io';
+import 'package:image_cropper/image_cropper.dart';
+import 'package:image_picker/image_picker.dart';
 
 class CasesEditPage extends StatefulWidget {
   final String title;
@@ -18,6 +21,10 @@ class CasesEditPage extends StatefulWidget {
 
 class _CasesEditPageState
     extends ModularState<CasesEditPage, CasesEditController> {
+  final picker = ImagePicker();
+  File _selectedImage;
+  bool _inProcess = false;
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -103,7 +110,7 @@ class _CasesEditPageState
               height: 10,
               thickness: 1.0,
             ),
-            Container(height: screenWidth * 1.1, child: _selectField()),
+            Container(height: screenWidth * 1.01, child: _selectField(screenWidth)),
             // SizedBox(height: 20),
             circularButton(
                 text: 'Salvar',
@@ -121,17 +128,19 @@ class _CasesEditPageState
     );
   }
 
-  Widget _selectField() {
+  // Seleção do tipo de campo
+  Widget _selectField(var screenWidth) {
     if (widget.model.type.compareTo("Título") == 0) {
       return _fieldTopic();
     } else if (widget.model.type.compareTo("Texto") == 0) {
       return _fieldText();
     } else if (widget.model.type.compareTo("Imagem") == 0) {
-      return _fieldImage();
+      return _fieldImage(screenWidth);
     } else
       return null;
   }
 
+  // Campo do tipo "Título"
   Widget _fieldTopic() {
     return Column(
       children: <Widget>[
@@ -172,6 +181,7 @@ class _CasesEditPageState
     );
   }
 
+  // Campo do tipo "Texto"
   Widget _fieldText() {
     return Column(
       children: <Widget>[
@@ -212,45 +222,76 @@ class _CasesEditPageState
     );
   }
 
-  Widget _fieldImage() {
+  // Campo do tipo "Imagem"
+  Widget _fieldImage(var screenWidth) {
+
     return Column(
       children: <Widget>[
-        SizedBox(height: 5),
-        Text(
-          'Imagem',
-          style: TextStyle(fontSize: 18),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 5),
-        TextFormField(
-          maxLength: 300,
-          // controller: _initalValue,
-          // initialValue: controller.casesViewModel.casesPage.data[0].toString(),
-          initialValue: widget.model.value,
-          onChanged: (v) => widget.model.value = v,
-          decoration: InputDecoration(
-            labelText: 'Digite o link da imagem',
-            // hintText: 'Insira o link',
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: BorderSide(
-                color: Colors.black,
-                width: 1.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: BorderSide(
-                color: Colors.black,
-                width: 2.0,
-              ),
-            ),
-          ),
-        ),
+        // SizedBox(height: 5),
+        _inProcess != false
+            ? Container(
+              padding: EdgeInsets.fromLTRB(10, 30, 20, 10),
+                // color: Colors.white,
+                // height: double.infinity,
+                height: screenWidth*0.3,
+                // width: double.infinity,
+                width: screenWidth*0.3,
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: 70,
+                  height: 70,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 5.0,
+                    backgroundColor: Theme.of(context).primaryColor,
+                  ),
+                ),
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  _selectedImage != null
+                      ? Image.file(
+                          _selectedImage,
+                          width: 300,
+                          height: 300,
+                          fit: BoxFit.cover,
+                        )
+                      : Container(
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300]
+                        ),
+                          width: 300,
+                          height: 300,
+                          child: Icon(
+                            Icons.camera_alt,
+                            size: 250,
+                            color: Colors.grey,
+                          ),
+                        ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      RaisedButton(
+                        onPressed: () {
+                          getImage(ImageSource.camera);
+                        },
+                        child: Text('Câmera'),
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          getImage(ImageSource.gallery);
+                        },
+                        child: Text('Galeria'),
+                      ),
+                    ],
+                  )
+                ],
+              )
       ],
     );
   }
 
+  // ShowDialog p/ informar se os dados foram salvos ou não
   void _showAlertDialog(BuildContext context, String titulo, String mensagem) {
     // configura o button
     Widget okButton = FlatButton(
@@ -276,6 +317,7 @@ class _CasesEditPageState
     );
   }
 
+  // Para caixa de texto personalizada
   BoxDecoration myBoxDecoration() {
     return BoxDecoration(
       color: Colors.blueAccent,
@@ -288,4 +330,36 @@ class _CasesEditPageState
           ),
     );
   }
+
+  // Método para acessar a câmera ou galeria do celular
+  void getImage(ImageSource src) async {
+    this.setState(() {
+      _inProcess = true;
+    });
+    final PickedFile = await picker.getImage(source: src);
+    if (PickedFile != null) {
+      File cropped = await ImageCropper.cropImage(
+          sourcePath: PickedFile.path,
+          aspectRatio: CropAspectRatio(ratioX: 1, ratioY: 1),
+          compressQuality: 100,
+          maxHeight: 700,
+          maxWidth: 700,
+          compressFormat: ImageCompressFormat.jpg,
+          androidUiSettings: AndroidUiSettings(
+            toolbarTitle: 'Camera',
+          ),
+          iosUiSettings: IOSUiSettings(
+            title: 'Camera',
+          ));
+      setState(() {
+        _selectedImage = cropped;
+        _inProcess = false;
+      });
+    } else {
+      setState(() {
+        _inProcess = false;
+      });
+    }
+  }
+
 }
