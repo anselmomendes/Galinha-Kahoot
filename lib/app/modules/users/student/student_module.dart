@@ -1,5 +1,7 @@
-import 'package:galinha_karoot/app/modules/users/student/pages/student_add_case/student_add_case_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_add_case/student_add_class_page.dart';
+import 'package:galinha_karoot/app/modules/users/student/pages/student_add_class/student_add_class_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student/pages/student_add_class/student_add_class_page.dart';
+import 'package:galinha_karoot/app/modules/users/student/pages/student_case/student_case_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student/pages/student_case/student_case_page.dart';
 // import 'package:galinha_karoot/app/modules/common/AuthPage.dart';
 import 'pages/student_login_email/student_login_email_page.dart';
 import 'pages/student_login_options/student_menu_options_page.dart';
@@ -16,13 +18,14 @@ import 'pages/student_cadastro/student_cadastro_page.dart';
 class StudentModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => StudentAddCaseController()),
+        Bind((i) => StudentCaseController()),
         Bind((i) => StudentMenuController()),
         Bind((i) => StudentLoginController()),
         Bind((i) => StudentCadastroController()),
-          Bind((i) => StudentAddCaseController()),
+        Bind((i) => StudentAddClassController()),
         Bind((i) => StudentService()),
         Bind((i) => StudentRepository()),
+        Bind((i) => StudentCaseController()),
       ];
 
   @override
@@ -34,7 +37,8 @@ class StudentModule extends ChildModule {
         Router('/student_menu_options',
             child: (_, args) => StudentMenuOptionsPage()),
         Router('/student_menu', child: (_, args) => StudentMenuPage()),
-         Router('/student_add_class', child: (_, args) => StudentAddClassPage()),
+        Router('/student_add_class', child: (_, args) => StudentAddClassPage()),
+        Router('/student_case', child: (_, args) => StudentCasePage()),
       ];
 
   static Inject get to => Inject<StudentModule>.of();

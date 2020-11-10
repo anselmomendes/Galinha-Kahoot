@@ -37,7 +37,7 @@ class ClassCard extends StatelessWidget {
 							),						
 						]),
 					])
-			), onTap: (){ print("Abrir turma através da ID");} )
+			), onTap: (){  Navigator.pushNamed(context, '/student/student_case');} )
 		);  
 	}
 

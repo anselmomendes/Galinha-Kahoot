@@ -63,8 +63,7 @@ class _StudentAddClassPageState extends State<StudentAddClassPage> {
                       //onPressed: _openCaso) // MÉTODO ANTERIOR
                       // NOVA MÉTODO DE ACESSO
                       onPressed: () { 
-                        //_openCaso();
-                        //Navigator.pushNamed(context, '/student/student_menu');
+                             
                       },
                     )
                   ]),
