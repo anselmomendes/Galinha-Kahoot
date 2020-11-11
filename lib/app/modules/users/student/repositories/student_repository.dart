@@ -1,58 +1,96 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/class/models/StudentClassMeta.dart';
+import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
+import 'package:galinha_karoot/app/modules/users/student/model/student_model.dart';
+import 'package:rxdart/rxdart.dart';
+
+enum RegisterClassState { LOADING, SUCESS, FAIL }
 
 class StudentRepository extends Disposable {
-
   final Firestore firestore = Firestore.instance;
   final Auth auth = Auth();
+  FirebaseUser firebaseUser;
 
-  StudentRepository(){
+  final _stateController = BehaviorSubject<RegisterClassState>();
+  final _classesController = BehaviorSubject<List<ClassModel>>();
+
+  Stream<RegisterClassState> get outState => _stateController.stream;
+  Stream<List<ClassModel>> get outClasses => _classesController.stream;
+
+  StudentRepository() {
     print("Student Repo started!");
   }
 
-  /* TODO: Create cached current user reference in Auth class */
-  Future<DocumentReference> getCurrentUserReference() async{
-      var user = await auth.getCurrentUser();
-
-      if (user != null){
-        return firestore.collection('users')
-          .where('user', isEqualTo: user.uid)
-          .getDocuments()
-          .then((docs){
-              if (docs.documents.isNotEmpty)
-                return docs.documents[0].reference;
-        });
-      }
+  Future<StudentModel> getUserInfo() async {
+    firebaseUser = await FirebaseAuth.instance.currentUser();
+    DocumentSnapshot doc =
+        await firestore.collection("users").document(firebaseUser.uid).get();
+    return StudentModel.fromDocument(doc);
   }
 
-  Future<List<StudentClassMeta>> getClasses() async{
-    print("Fetching classes...");
-    var userRef = await getCurrentUserReference();	
-    List<DocumentSnapshot> metaList = new List<DocumentSnapshot>();
-    List<StudentClassMeta> classList = new List<StudentClassMeta>();
-
-    await firestore.collection('users.classes')
-      .where('user', isEqualTo: userRef)
-      .getDocuments().then((docs){
-        metaList.addAll(docs.documents);
+  /**
+   * Função que lista as turmas que o aluno esta inserido,
+   */
+  Future<Stream<List<ClassModel>>> getClasses(StudentModel student) async {
+    List<ClassModel> list;
+    firestore
+        .collection("users")
+        .document(student.uid)
+        .collection("classes")
+        .snapshots()
+        .listen((classes) {
+      classes.documents.forEach((turma) {
+        list.add(ClassModel.fromDocument(turma));
+      });
+      _classesController.add(list);
     });
-
-    for(int i=0; i < metaList.length; i++){
-        DocumentSnapshot element = metaList[i];
-        DocumentReference classRef = element.data['class'];
-        DocumentSnapshot aclass = await firestore.collection('classes')
-                                        .document(classRef.documentID).get();
-        classList.add(StudentClassMeta.fromDocument(aclass));        
-    }
-    print("Done fetching classes...");
-    return classList;
   }
 
+  //Função que procura a turma pelo codigo
+  Future<ClassModel> getClassByAcessCode(
+      String accessCode, StudentModel student) async {
+    DocumentSnapshot doc = (await firestore
+        .collection('Class')
+        .where("accessCode", isEqualTo: accessCode)
+        .getDocuments()) as DocumentSnapshot;
+    ClassModel model = ClassModel.fromDocument(doc);
+    addClass(model, student);
+  }
+
+  //Função que adiciona o aluno a turma encontrada
+  void addClass(ClassModel classmodel, StudentModel student) async {
+    if (await verifyRegisterClass(student)) {
+      await firestore
+          .collection("Class")
+          .document(classmodel.id)
+          .collection("students")
+          .document(student.uid)
+          .setData({'name': student.name, 'id': student.uid});
+      _stateController.add(RegisterClassState.SUCESS);
+    } else {
+      _stateController.add(RegisterClassState.FAIL);
+    }
+  }
+
+  //Função que verifica se o aluno já estava na turma
+  Future<bool> verifyRegisterClass(StudentModel student) async {
+    return await firestore
+        .collection("Class")
+        .document(student.uid)
+        .get()
+        .then((doc) {
+      if (doc.data == null) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  }
 
   @override
   void dispose() {
-    
+    _stateController.close();
   }
 }

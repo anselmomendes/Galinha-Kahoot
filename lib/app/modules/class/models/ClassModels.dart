@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:galinha_karoot/app/modules/users/student/model/student_model.dart';
 
 class ClassModel {
   String id;
@@ -14,38 +15,39 @@ class ClassModel {
   int timer;
   int position;
   DocumentReference reference;
+  List<StudentModel> listStudents;
 
-  ClassModel({
-    this.id,
-    this.className = '',
-    this.accessCode,
-    this.status = true,
-    this.casesID = '',
-    this.titleCase = '',
-    this.creationDate,
-    this.modifiedDate,
-    this.endTime,
-    this.timer,
-    this.position,
-    this.teacherID = '',
-    this.reference,
-  });
+  ClassModel(
+      {this.id,
+      this.className = '',
+      this.accessCode,
+      this.status = true,
+      this.casesID = '',
+      this.titleCase = '',
+      this.creationDate,
+      this.modifiedDate,
+      this.endTime,
+      this.timer,
+      this.position,
+      this.teacherID = '',
+      this.reference,
+      this.listStudents});
 
   factory ClassModel.fromDocument(DocumentSnapshot doc) => ClassModel(
-        id: doc["id"],
-        className: doc["className"],
-        accessCode: doc["accessCode"],
-        status: doc["status"],
-        casesID: doc["casesID"],
-        titleCase: doc["titleCase"],
-        creationDate: doc["creationDate"],
-        modifiedDate: doc["modifiedDate"],
-        endTime: doc["endTime"],
-        timer: doc["timer"],
-        position: doc["position"],
-        teacherID: doc["teacherID"],
-        reference: doc.reference,
-      );
+      id: doc["id"],
+      className: doc["className"],
+      accessCode: doc["accessCode"],
+      status: doc["status"],
+      casesID: doc["casesID"],
+      titleCase: doc["titleCase"],
+      creationDate: doc["creationDate"],
+      modifiedDate: doc["modifiedDate"],
+      endTime: doc["endTime"],
+      timer: doc["timer"],
+      position: doc["position"],
+      teacherID: doc["teacherID"],
+      reference: doc.reference,
+      listStudents: doc['listStudents']);
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -60,5 +62,6 @@ class ClassModel {
         "timer": timer,
         "position": position,
         "teacherID": teacherID,
+        "listStudents": listStudents
       };
 }
