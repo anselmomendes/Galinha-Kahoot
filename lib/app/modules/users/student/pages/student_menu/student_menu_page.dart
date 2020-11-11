@@ -49,6 +49,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   SizedBox(height: 10),
+<<<<<<< HEAD
                   Text("Casos pendentes:",
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
@@ -126,6 +127,8 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                               onTap: () {
                                 print("Tocado");
                               }))),
+=======
+>>>>>>> 51ab16c687002d23e785252dddcad71a5b9b296d
                   SizedBox(height: 15),
                   Text("Meu desempenho:",
                       style:
@@ -179,12 +182,17 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                               onTap: () {
                                 print("Tocado 2");
                               }))),
+<<<<<<< HEAD
+=======
+
+>>>>>>> 51ab16c687002d23e785252dddcad71a5b9b296d
                   SizedBox(height: 15),
                   Text("Minhas turmas:",
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
                   SizedBox(height: 5),
                   Column(
+<<<<<<< HEAD
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       mainAxisSize: MainAxisSize.max,
                       children: controller.classes
@@ -199,4 +207,37 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
 		controller.getClasses();
 		super.initState();
 	}*/
+=======
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    mainAxisSize: MainAxisSize.max,
+                    children: controller.classes
+                        .map((e) => ClassCard.fromClass(e))
+                        .toList(),
+                    //;
+                  ),
+                  RaisedButton(
+                      color: Colors.blueAccent,
+                      padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                          side: BorderSide(color: Colors.blueAccent)),
+                  child:  Text(
+                          'Adicionar Turmas',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      
+                      onPressed: () {
+                         Navigator.pushNamed(context, '/student/student_add_class');
+                      }),
+                ])));
+  }
+
+  @override
+  void initState() {
+    controller.getClasses();
+    super.initState();
+  }
+>>>>>>> 51ab16c687002d23e785252dddcad71a5b9b296d
 }
