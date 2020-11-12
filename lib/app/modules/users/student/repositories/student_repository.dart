@@ -61,13 +61,16 @@ class StudentRepository extends Disposable {
 
   //Função que adiciona o aluno a turma encontrada
   void addClass(ClassModel classmodel, StudentModel student) async {
+    DateTime myDateTime = DateTime.now();
+    Timestamp time = Timestamp.fromDate(myDateTime);
     if (await verifyRegisterClass(student)) {
       await firestore
           .collection("Class")
           .document(classmodel.id)
           .collection("students")
           .document(student.uid)
-          .setData({'name': student.name, 'id': student.uid});
+          .setData(
+              {'name': student.name, 'id': student.uid, 'registerDate': time});
       _stateController.add(RegisterClassState.SUCESS);
     } else {
       _stateController.add(RegisterClassState.FAIL);

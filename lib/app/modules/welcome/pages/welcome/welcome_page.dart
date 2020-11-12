@@ -18,14 +18,17 @@ class _WelcomePageState extends ModularState<WelcomePage, WelcomeController> {
   }
 
   userIsLogged() async {
+    print("Verificando user logado");
     var result = await controller.autoLogIn();
+    String role = await controller.getUserRole();
     if (result) {
-      Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
+      if (role == "student") {
+        Navigator.pushReplacementNamed(context, '/student/student_menu');
+      }
+      if (role == "teacher") {
+        Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
+      }
     }
-    /*
-    if (true) {
-      Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
-    }*/
   }
 
   @override

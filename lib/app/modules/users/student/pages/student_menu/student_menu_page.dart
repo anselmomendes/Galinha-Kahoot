@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/users/student/pages/student_menu/student_menu_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student/widgets_student/ClassCard.dart';
+import 'package:mobx/src/api/async.dart';
 import '../../widgets_student/custom_drawer.dart';
 
 class StudentMenuPage extends StatefulWidget {
@@ -48,157 +51,30 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  SizedBox(height: 10),
-<<<<<<< HEAD
-                  Text("Casos pendentes:",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
-                  SizedBox(
-                      child: Card(
-                          child: new InkWell(
-                              child: Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: <Widget>[
-                                              Text(
-                                                  'Casos de possuimentos por demônios.',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 13,
-                                                      color: Colors.black87)),
-                                              Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: <Widget>[
-                                                    Icon(
-                                                        Icons
-                                                            .collections_bookmark,
-                                                        size: 12),
-                                                    SizedBox(width: 5),
-                                                    RichText(
-                                                        text: TextSpan(
-                                                      text: 'Turma do Satanás',
-                                                      style: TextStyle(
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize: 13,
-                                                          color:
-                                                              Colors.black54),
-                                                    ))
-                                                  ]),
-                                              Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  children: <Widget>[
-                                                    Icon(Icons.alarm, size: 12),
-                                                    SizedBox(width: 5),
-                                                    RichText(
-                                                        text: TextSpan(
-                                                            text: 'Expira em: ',
-                                                            style: TextStyle(
-                                                                fontSize: 11,
-                                                                color: Colors
-                                                                    .black87),
-                                                            children: <
-                                                                TextSpan>[
-                                                          TextSpan(
-                                                              text: "5 horas",
-                                                              style: TextStyle(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w900))
-                                                        ]))
-                                                  ])
-                                            ])
-                                      ])),
-                              onTap: () {
-                                print("Tocado");
-                              }))),
-=======
->>>>>>> 51ab16c687002d23e785252dddcad71a5b9b296d
-                  SizedBox(height: 15),
-                  Text("Meu desempenho:",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
-                  SizedBox(
-                      child: Card(
-                          child: InkWell(
-                              child: Padding(
-                                  padding: EdgeInsets.all(10),
-                                  child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            children: <Widget>[
-                                              Text(
-                                                  'Questionário sobre condicionais',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize: 13)),
-                                              Text(
-                                                  'Algoritmos condicionais em linguagem C.',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.w300,
-                                                      fontSize: 10))
-                                            ]),
-                                        Container(
-                                            decoration: BoxDecoration(
-                                                color: Colors.green,
-                                                borderRadius:
-                                                    BorderRadius.circular(50)),
-                                            child: Padding(
-                                              padding: EdgeInsets.all(5),
-                                              child: RichText(
-                                                  text: TextSpan(
-                                                      text: "10/10",
-                                                      style: TextStyle(
-                                                          fontSize: 10,
-                                                          fontWeight: FontWeight
-                                                              .w800))),
-                                            ))
-                                      ])),
-                              onTap: () {
-                                print("Tocado 2");
-                              }))),
-<<<<<<< HEAD
-=======
-
->>>>>>> 51ab16c687002d23e785252dddcad71a5b9b296d
-                  SizedBox(height: 15),
                   Text("Minhas turmas:",
                       style:
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
                   SizedBox(height: 5),
-                  Column(
-<<<<<<< HEAD
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      mainAxisSize: MainAxisSize.max,
-                      children: controller.classes
-                          .map((e) => ClassCard.fromClass(e))
-                          .toList() //;
-                      )
+                  SafeArea(
+                    child: Expanded(
+                      child: Observer(builder: (_) {
+                        if (controller.classes.data == null ||
+                            controller.classes.data.isEmpty) {
+                          return Text(
+                              "Você não esta cadastrado em nenhuma turma");
+                        } else {
+                          return Container(
+                            child: ListView.builder(
+                              itemBuilder: (context, index) {
+                                return ClassCard.fromClass(
+                                    controller.classes.data[index]);
+                              },
+                            ),
+                          );
+                        }
+                      }),
+                    ),
+                  )
                 ])));
   }
 /*
@@ -207,37 +83,4 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
 		controller.getClasses();
 		super.initState();
 	}*/
-=======
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisSize: MainAxisSize.max,
-                    children: controller.classes
-                        .map((e) => ClassCard.fromClass(e))
-                        .toList(),
-                    //;
-                  ),
-                  RaisedButton(
-                      color: Colors.blueAccent,
-                      padding: const EdgeInsets.fromLTRB(10.0, 10.0, 10.0, 10.0),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0),
-                          side: BorderSide(color: Colors.blueAccent)),
-                  child:  Text(
-                          'Adicionar Turmas',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      
-                      onPressed: () {
-                         Navigator.pushNamed(context, '/student/student_add_class');
-                      }),
-                ])));
-  }
-
-  @override
-  void initState() {
-    controller.getClasses();
-    super.initState();
-  }
->>>>>>> 51ab16c687002d23e785252dddcad71a5b9b296d
 }
