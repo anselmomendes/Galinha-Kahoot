@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_config/cases_config_controller.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/cases_config/cases_config_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 
 class CasesConfigPage extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_config/cases_config_page.dart';
+import 'package:galinha_karoot/app/modules/cases/pages/cases_config/cases_config_page.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 
 import 'cases_config_controller.dart';
