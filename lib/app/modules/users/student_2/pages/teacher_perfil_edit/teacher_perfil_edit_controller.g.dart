@@ -13,14 +13,14 @@ mixin _$TeacherPerfilEditController on _TeacherPerfilEditControllerBase, Store {
       Atom(name: '_TeacherPerfilEditControllerBase.teacherList');
 
   @override
-  TeacherModel get teacherList {
+  StudentModel get teacherList {
     _$teacherListAtom.context.enforceReadPolicy(_$teacherListAtom);
     _$teacherListAtom.reportObserved();
     return super.teacherList;
   }
 
   @override
-  set teacherList(TeacherModel value) {
+  set teacherList(StudentModel value) {
     _$teacherListAtom.context.conditionallyRunInAction(() {
       super.teacherList = value;
       _$teacherListAtom.reportChanged();
@@ -31,7 +31,7 @@ mixin _$TeacherPerfilEditController on _TeacherPerfilEditControllerBase, Store {
       ActionController(name: '_TeacherPerfilEditControllerBase');
 
   @override
-  dynamic save(TeacherModel model) {
+  dynamic save(StudentModel model) {
     final _$actionInfo =
         _$_TeacherPerfilEditControllerBaseActionController.startAction();
     try {

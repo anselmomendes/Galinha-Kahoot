@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
-import '../../models/TeacherModel.dart';
+import '../../models/StudentModel.dart';
 import '../../pages/teacher_perfil/teacher_perfil_controller.dart';
 
 class TeacherPerfilEditPage extends StatefulWidget {
-  final TeacherModel teacherModel;
+  final StudentModel teacherModel; // Esse model agora é do Student_2
   final String title;
   const TeacherPerfilEditPage(
       {Key key, this.title = "Editar Dados", @required this.teacherModel})

@@ -6,7 +6,7 @@ import 'teacher_root_controller.dart';
 
 class TeacherRootPage extends StatefulWidget {
   final String title;
-  const TeacherRootPage({Key key, this.title = "Menu Professor"})
+  const TeacherRootPage({Key key, this.title = "Menu Aluno"})
       : super(key: key);
 
   @override

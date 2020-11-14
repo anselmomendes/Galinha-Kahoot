@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class TeacherModel {
+class StudentModel {
   int id;
   String name;
   String sobrenome;
@@ -14,7 +14,7 @@ class TeacherModel {
   String university;
   String uid;
   
-  TeacherModel({
+  StudentModel({
     this.id,
     this.name,
     this.sobrenome,
@@ -31,7 +31,7 @@ class TeacherModel {
 
 
 
-  factory TeacherModel.fromDocument(DocumentSnapshot doc) => TeacherModel(
+  factory StudentModel.fromDocument(DocumentSnapshot doc) => StudentModel(
         id: doc["id"],
         name: doc["name"],
         sobrenome: doc["sobrenome"],

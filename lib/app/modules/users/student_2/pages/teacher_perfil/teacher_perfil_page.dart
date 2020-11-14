@@ -4,7 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
-import '../../models/TeacherModel.dart';
+import '../../models/StudentModel.dart';
 import 'teacher_perfil_controller.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
@@ -64,7 +64,8 @@ class _TeacherPerfilPageState
               ),
             );
           else {
-            TeacherModel model = controller.teacherList;
+            StudentModel model = controller.teacherList;
+            // TeacherModel model = controller.teacherList;
 
             return SingleChildScrollView(
               padding: EdgeInsets.only(
@@ -282,8 +283,8 @@ class _TeacherPerfilPageState
     );
   }
 
-  void _showAlertDialogDelete({TeacherModel model}) {
-    model ??= TeacherModel();
+  void _showAlertDialogDelete({StudentModel model}) {
+    model ??= StudentModel();
     var screenWidth = MediaQuery.of(context).size.width;
 
     Widget cancelButton = FlatButton(

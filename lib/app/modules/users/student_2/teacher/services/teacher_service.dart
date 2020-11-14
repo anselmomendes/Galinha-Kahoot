@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import '../models/TeacherModel.dart';
+// import '../models/TeacherModel.dart';
 import '../repositories/interfaces/teacher_repositories_interfaces.dart';
 import 'interfaces/teacher_services_interfaces.dart';
 
@@ -11,7 +11,7 @@ class TeacherService extends Disposable implements ITeacherServices {
   final ITeacherRepository teacherRepository;
   TeacherService({this.teacherRepository});
 
-  @override
+  /* @override
   Future delete(TeacherModel model) {
     return teacherRepository.delete(model);
   }
@@ -34,5 +34,5 @@ class TeacherService extends Disposable implements ITeacherServices {
   @override
   Future create(TeacherModel model) {
     return teacherRepository.create(model);
-  }
+  } */
 }
