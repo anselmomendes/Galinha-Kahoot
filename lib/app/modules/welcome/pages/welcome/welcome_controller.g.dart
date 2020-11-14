@@ -26,6 +26,13 @@ mixin _$WelcomeController on _WelcomeBase, Store {
     }, _$isLoggedInAtom, name: '${_$isLoggedInAtom.name}_set');
   }
 
+  final _$getUserRoleAsyncAction = AsyncAction('getUserRole');
+
+  @override
+  Future<String> getUserRole() {
+    return _$getUserRoleAsyncAction.run(() => super.getUserRole());
+  }
+
   @override
   String toString() {
     final string = 'isLoggedIn: ${isLoggedIn.toString()}';
