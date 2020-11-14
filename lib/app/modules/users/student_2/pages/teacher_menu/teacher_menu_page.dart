@@ -27,7 +27,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
       body: Center(
           child: ListView(
         children: <Widget>[
-          Card(
+         /*   Card(
              shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.0),
     ),
@@ -37,7 +37,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 //const SizedBox(height: 15,),
-                 ListTile(
+              ListTile(
                   //contentPadding: EdgeInsets.only(left: 30),
                   leading: Icon(
                     Icons.local_hospital,
@@ -76,7 +76,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                 ),
               ],
             ),
-          ),
+          ), */
           Card(
              shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.0),
@@ -102,7 +102,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                         fontSize: 18,
                       )),
                   subtitle:
-                      Text('Acesse status de turmas ou crie novas turmas.',
+                      Text('Acesse suas turmas cadastradas.',
                           style: TextStyle(
                             fontSize: 16,
                           )),
@@ -118,7 +118,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                     ),
                     FlatButton(
                       color: Colors.redAccent,
-                      child: const Text('CRIAR'),
+                      child: const Text('CADASTRAR'),
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
                         // Navigator.pushNamed(context, '/teacher_select');
