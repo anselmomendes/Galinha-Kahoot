@@ -22,7 +22,7 @@ class StudentMenuController with Store {
 
   @action
   void getClasses() {
-    repo.getClasses(user);
+    repo.getClasses();
     classes = repo.outClasses.asObservable();
   }
 }

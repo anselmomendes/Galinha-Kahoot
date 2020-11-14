@@ -112,8 +112,8 @@ class _WelcomePageState extends ModularState<WelcomePage, WelcomeController> {
                     // Navigator.pushNamed(context, '/student/student_login');
                     Navigator.pushNamed(
                         // context, '/student/student_menu_options');
-                        context, '/student/student_login_email'
-                        );
+                        context,
+                        '/student/student_login_email');
                   },
                   child: Text(
                     "Sou aluno",

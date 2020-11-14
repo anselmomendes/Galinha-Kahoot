@@ -33,7 +33,8 @@ class StudentRepository extends Disposable {
   /**
    * Função que lista as turmas que o aluno esta inserido,
    */
-  Future<Stream<List<ClassModel>>> getClasses(StudentModel student) async {
+  Future<Stream<List<ClassModel>>> getClasses() async {
+    StudentModel student = await getUserInfo();
     List<ClassModel> list;
     firestore
         .collection("users")
@@ -51,19 +52,27 @@ class StudentRepository extends Disposable {
   //Função que procura a turma pelo codigo
   Future<ClassModel> getClassByAcessCode(
       String accessCode, StudentModel student) async {
-    DocumentSnapshot doc = (await firestore
+    var access = int.parse(accessCode);
+    print("Funfei 2, accessCode: $access");
+    QuerySnapshot doc = await firestore
         .collection('Class')
-        .where("accessCode", isEqualTo: accessCode)
-        .getDocuments()) as DocumentSnapshot;
-    ClassModel model = ClassModel.fromDocument(doc);
-    addClass(model, student);
+        .where("accessCode", isEqualTo: access)
+        .getDocuments();
+    ClassModel model;
+    doc.documents.forEach((classs) {
+      model = ClassModel.fromDocument(classs);
+    });
+    print(model);
+    addClass(model);
   }
 
   //Função que adiciona o aluno a turma encontrada
-  void addClass(ClassModel classmodel, StudentModel student) async {
+  void addClass(ClassModel classmodel) async {
+    StudentModel student = await getUserInfo();
+    print("Funfei 3");
     DateTime myDateTime = DateTime.now();
     Timestamp time = Timestamp.fromDate(myDateTime);
-    if (await verifyRegisterClass(student)) {
+    if (await verifyRegisterClass(student, classmodel) == true) {
       await firestore
           .collection("Class")
           .document(classmodel.id)
@@ -71,16 +80,36 @@ class StudentRepository extends Disposable {
           .document(student.uid)
           .setData(
               {'name': student.name, 'id': student.uid, 'registerDate': time});
+      addClassForStudent(classmodel);
       _stateController.add(RegisterClassState.SUCESS);
     } else {
       _stateController.add(RegisterClassState.FAIL);
     }
   }
 
+  void addClassForStudent(ClassModel classmodel) async {
+    StudentModel student = await getUserInfo();
+    DateTime myDateTime = DateTime.now();
+    Timestamp time = Timestamp.fromDate(myDateTime);
+    await firestore
+        .collection("users")
+        .document(student.uid)
+        .collection("classes")
+        .document(classmodel.id)
+        .setData({
+      'ClassName': classmodel.className,
+      'id': classmodel.id,
+      'registerDate': time
+    });
+  }
+
   //Função que verifica se o aluno já estava na turma
-  Future<bool> verifyRegisterClass(StudentModel student) async {
+  Future<bool> verifyRegisterClass(
+      StudentModel student, ClassModel classmodel) async {
     return await firestore
         .collection("Class")
+        .document(classmodel.id)
+        .collection("students")
         .document(student.uid)
         .get()
         .then((doc) {

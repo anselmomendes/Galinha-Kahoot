@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:galinha_karoot/app/modules/users/student/pages/student_add_class/student_add_class_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student/repositories/student_repository.dart';
 
 class StudentAddClassPage extends StatefulWidget {
   final String title;
-  const StudentAddClassPage({Key key, this.title = ""})
-      : super(key: key);
+  const StudentAddClassPage({Key key, this.title = ""}) : super(key: key);
 
   @override
   _StudentAddClassPageState createState() => _StudentAddClassPageState();
 }
 
 class _StudentAddClassPageState extends State<StudentAddClassPage> {
+  var controller = StudentAddClassController();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    controller.repo.outState.listen((state) {
+      switch (state) {
+        case RegisterClassState.SUCESS:
+          print("Cadastrou");
+          break;
+        case RegisterClassState.FAIL:
+          print("Deu ruim");
+          break;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-         centerTitle: true,
-      ),
-      body:GestureDetector(
+        appBar: AppBar(
+          title: Text(widget.title),
+          centerTitle: true,
+        ),
+        body: GestureDetector(
             onTap: () {
               FocusScope.of(context).unfocus();
             },
@@ -34,8 +53,7 @@ class _StudentAddClassPageState extends State<StudentAddClassPage> {
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w600)),
                     SizedBox(height: 5),
-                    Text(
-                        "Digite o ID da turma disponibilizado pelo professor.",
+                    Text("Digite o ID da turma disponibilizado pelo professor.",
                         textAlign: TextAlign.center),
                     SizedBox(height: 20),
                     Center(
@@ -44,9 +62,7 @@ class _StudentAddClassPageState extends State<StudentAddClassPage> {
                           width: 150,
                           child: TextField(
                               textAlign: TextAlign.center,
-                            /*  controller: casoIdController, 
-                              onChanged: _onCasoIdChanged,
-                              maxLength: maxIdLength,*/
+                              onChanged: controller.changeID,
                               decoration: InputDecoration(hintText: "ID"),
                               style: TextStyle(fontSize: 18))),
                     ], mainAxisAlignment: MainAxisAlignment.spaceEvenly)),
@@ -62,8 +78,8 @@ class _StudentAddClassPageState extends State<StudentAddClassPage> {
                       child: Text("Adicionar"),
                       //onPressed: _openCaso) // MÉTODO ANTERIOR
                       // NOVA MÉTODO DE ACESSO
-                      onPressed: () { 
-                             
+                      onPressed: () {
+                        controller.getClassByAcessCode();
                       },
                     )
                   ]),
