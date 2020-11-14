@@ -1,20 +1,21 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 import 'package:galinha_karoot/app/modules/common/EmailPasswordForm.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 
-class StudentEmailLoginPage extends StatefulWidget {
-  final String title;
-
-  StudentEmailLoginPage({Key key, this.title = "Entrar como aluno"})
+class TeacherLoginPage extends StatefulWidget {
+  TeacherLoginPage({Key key, this.title = "Entrar como professor"})
       : super(key: key);
 
+  final String title;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
-  _StudentEmailLoginPageState createState() => _StudentEmailLoginPageState();
+  _TeacherLoginPageState createState() => _TeacherLoginPageState();
 }
 
-class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
+class _TeacherLoginPageState extends State<TeacherLoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,8 +37,7 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
                                   appLogoMediumSize),
                           SizedBox(height: 20),
                           Text(widget.title, style: headerTextStyle),
-                          EmailPasswordForm(
-                              callback: _authCallback, ecallback: _authError),
+                          EmailPasswordForm(callback: _authCallback),
                           InkWell(
                               child: Text("Não tem uma conta?",
                                   style: TextStyle(color: Colors.blue)),
@@ -48,26 +48,20 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
   _authCallback(result) async {
     try {
       var user = (await Auth().getCurrentUser());
-      print(user);
       if (user.uid.length > 0 && user.uid != null) {
-        var role = await Auth().getUserRole();
-        print(role);
+        // &&
 
         // First check the role of the user
-        if (role != null) {
-          // Check for if mail is verified
-          if (user.isEmailVerified) {
-            if (role == "student")
-              // Navigator.pushNamed(context, '/student/student_menu');
-              Navigator.pushNamed(context, '/student/student_menu');
-            else if (role == "teacher")
-              throw Exception("Este usuário já cadastrado como professor!");
-            else
-              throw Exception("Usuário mal cadastrado!");
-          } else
-            _showVerifyEmailSentDialog(user.email);
+        if (await Auth().getUserRole() == "student") {
+          throw Exception("Usuário já cadastrado como aluno!");
+        }
+
+        // Check for if mail is verified
+        if (user.isEmailVerified) {
+          // String role = await Auth().getCurrentUserRole();
+          Navigator.pushNamed(context, '/teacher/teacher_root');
         } else {
-          throw Exception("Usuário mal cadastrado!");
+          _showVerifyEmailSentDialog();
         }
       } else {
         throw Exception("Usuário não cadastrado!");
@@ -75,10 +69,6 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
     } catch (e) {
       _showSignInError(e.toString());
     }
-  }
-
-  _authError(error) async {
-    _showSignInError(error);
   }
 
   void _showSignInError(text) {
@@ -102,16 +92,15 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
     );
   }
 
-  void _showVerifyEmailSentDialog(email) {
+  void _showVerifyEmailSentDialog() {
     showDialog(
       context: context,
       builder: (BuildContext context) {
         // return object of type Dialog
         return AlertDialog(
           title: new Text("Verifique seu email."),
-          content: new Text("Você precisa verificar seu email (" +
-              email +
-              ") antes de continuar."),
+          content:
+              new Text("Você precisa verificar seu email antes de continuar."),
           actions: <Widget>[
             new FlatButton(
               child: new Text("OK"),
@@ -126,6 +115,6 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
   }
 
   _gotoRegister() {
-    Navigator.pushNamed(context, '/student/student_register');
+    Navigator.pushNamed(context, '/teacher/teacher_cadastro');
   }
 }

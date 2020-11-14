@@ -73,7 +73,8 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
                       // NOVA MÉTODO DE ACESSO
                       onPressed: () { 
                         //_openCaso();
-                        Navigator.pushNamed(context, '/student/student_menu');
+                        // Navigator.pushNamed(context, '/student/student_menu');
+                        Navigator.pushNamed(context, '/student_2/teacher/teacher_menu');
                       },
                     )
                   ]),
@@ -128,7 +129,9 @@ class _StudentLoginPageState extends State<StudentLoginPage> {
       ).show();
     }
     // IR PARA PAGINA DE MENU
-    Navigator.pushNamed(context, '/student/student_menu');
+    // Navigator.pushNamed(context, '/student/student_menu');
+    Navigator.pushNamed(context, '/student_2/teacher/teacher_menu');
+
 
     // Go to caso
     /*Widget destination =

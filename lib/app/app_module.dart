@@ -1,3 +1,5 @@
+import 'package:dio/dio.dart';
+// import 'student_2_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/cases_module.dart';
 import 'package:galinha_karoot/app/modules/class/class_module.dart';
@@ -14,11 +16,13 @@ import 'modules/cases/repositories/cases_repository.dart';
 import 'modules/cases/repositories/question_repository.dart';
 import 'modules/cases/store/cases_store.dart';
 import 'modules/cases/view_model/cases_viewmodel.dart';
+import 'modules/users/student_2/student_2_module.dart';
 import 'modules/users/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 
 class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
+        // Bind((i) => Student2Repository(firestore: Firestore.instance)),
         Bind((i) => AppController()),
         Bind((i) => CasesRepository(firestore: Firestore.instance)),
         Bind((i) => QuestionRepository(firestore: Firestore.instance)),
@@ -33,6 +37,7 @@ class AppModule extends MainModule {
         Router('/cases', module: CasesModule()),
         Router('/class', module: ClassModule()),
         Router('/student', module: StudentModule()),
+        Router('/student_2', module: Student2Module()),
         Router('/teacher', module: TeacherModule()),
       ];
 
