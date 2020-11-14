@@ -35,7 +35,7 @@ import 'package:dio/dio.dart';
 class Student2Module extends ChildModule {
   @override
   List<Bind> get binds => [
-        Bind((i) => Student2Repository(firestore: Firestore.instance)),
+        Bind((i) => Student2Repository()),
         // Bind((i) => TeacherPerfilEditController(i.get<TeacherRepository>())),
         Bind((i) => TeacherPerfilEditController(i.get<Student2Repository>())),
         // Bind((i) => TeacherPerfilController(
@@ -58,8 +58,8 @@ class Student2Module extends ChildModule {
 
   @override
   List<Router> get routers => [
-    // Router('/student_2_menu', child: (_, args) => WelcomePage()),
-    Router('/teacher_login', child: (_, args) => TeacherLoginPage()),
+        // Router('/student_2_menu', child: (_, args) => WelcomePage()),
+        Router('/teacher_login', child: (_, args) => TeacherLoginPage()),
         Router('/teacher_area', child: (_, args) => TeacherAreaPage()),
         Router('/teacher_cadastro', child: (_, args) => TeacherCadastroPage()),
         Router('/teacher_menu',
@@ -79,7 +79,7 @@ class Student2Module extends ChildModule {
             child: (_, args) => TeacherPerfilPage(showAppBar: true)),
         Router('/teacher_report_select',
             child: (_, args) => TeacherReportSelectPage(showAppBar: true)),
-  ];
+      ];
 
   static Inject get to => Inject<Student2Module>.of();
 }
