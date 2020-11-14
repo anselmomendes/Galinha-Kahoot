@@ -21,6 +21,7 @@ dependencies:
   crypto: 2.1.4
   uuid: ^2.1.0  
   flutter_duration_picker: "^1.0.0"
+  image_picker: ^0.6.7+14
   rxdart: ^0.24.1
   flutter:
     sdk: flutter

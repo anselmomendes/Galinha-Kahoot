@@ -58,6 +58,7 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
           // Check for if mail is verified
           if (user.isEmailVerified) {
             if (role == "student")
+              // Navigator.pushNamed(context, '/student/student_menu');
               Navigator.pushNamed(context, '/student/student_menu');
             else if (role == "teacher")
               throw Exception("Este usuário já cadastrado como professor!");
