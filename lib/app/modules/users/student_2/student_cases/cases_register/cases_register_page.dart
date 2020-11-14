@@ -4,8 +4,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/cases_register/cases_register_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:galinha_karoot/app/shared/widgets/text_form_field/TextFormField.dart';
 
-import '../../../../shared/widgets/text_form_field/TextFormField.dart';
 
 class CasesRegisterPage extends StatefulWidget {
   final String title;
