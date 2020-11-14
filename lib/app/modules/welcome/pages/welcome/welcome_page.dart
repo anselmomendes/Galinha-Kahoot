@@ -26,7 +26,9 @@ class _WelcomePageState extends ModularState<WelcomePage, WelcomeController> {
         Navigator.pushReplacementNamed(context, '/student/student_menu');
       }
       if (role == "teacher") {
-        Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
+        // Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
+        // Nova rota
+        Navigator.pushReplacementNamed(context, '/student_2/teacher_root');
       }
     }
   }

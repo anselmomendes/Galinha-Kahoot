@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../models/TeacherModel.dart';
+// import '../models/TeacherModel.dart';
 
 class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
   final Firestore firestore;
@@ -13,7 +13,7 @@ class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
   @override
   void dispose() {}
 
-  @override
+  /* @override
   Future delete(TeacherModel model) {
     // TODO: implement delete
     return model.reference.delete();
@@ -97,5 +97,5 @@ class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
         'idTurma': model.idTurma
       });
     }
-  }
+  } */
 }
