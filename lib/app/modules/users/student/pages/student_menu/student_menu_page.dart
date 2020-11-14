@@ -56,23 +56,25 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                           TextStyle(fontWeight: FontWeight.w700, fontSize: 16)),
                   SizedBox(height: 5),
                   SafeArea(
-                    child: Expanded(
-                      child: Observer(builder: (_) {
-                        if (controller.classes.data == null ||
-                            controller.classes.data.isEmpty) {
-                          return Text(
-                              "Você não esta cadastrado em nenhuma turma");
-                        } else {
-                          return Container(
-                            child: ListView.builder(
-                              itemBuilder: (context, index) {
-                                return ClassCard.fromClass(
-                                    controller.classes.data[index]);
-                              },
-                            ),
-                          );
-                        }
-                      }),
+                    child: Container(
+                      child: Expanded(
+                        child: Observer(builder: (_) {
+                          if (controller.classes.data == null ||
+                              controller.classes.data.isEmpty) {
+                            return Text(
+                                "Você não esta cadastrado em nenhuma turma");
+                          } else {
+                            return Container(
+                              child: ListView.builder(
+                                itemBuilder: (context, index) {
+                                  return ClassCard.fromClass(
+                                      controller.classes.data[index]);
+                                },
+                              ),
+                            );
+                          }
+                        }),
+                      ),
                     ),
                   )
                 ])));

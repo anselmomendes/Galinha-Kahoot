@@ -1,4 +1,3 @@
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:mobx/mobx.dart';
