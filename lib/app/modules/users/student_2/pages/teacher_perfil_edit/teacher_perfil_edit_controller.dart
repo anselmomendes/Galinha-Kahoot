@@ -17,12 +17,12 @@ abstract class _TeacherPerfilEditControllerBase with Store {
   StudentModel teacherList;
 
   _TeacherPerfilEditControllerBase(this.teacherRepository);
-
+/*
   @action
   save(StudentModel model) {
     teacherRepository.save(model);
   }
-
+*/
   /* @observable
   int value = 0;
 

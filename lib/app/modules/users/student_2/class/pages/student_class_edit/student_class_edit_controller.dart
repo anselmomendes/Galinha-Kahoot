@@ -4,11 +4,11 @@ import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:mobx/mobx.dart';
 
-part 'class_edit_controller.g.dart';
+part 'student_class_edit_controller.g.dart';
 
-class ClassEditController = _ClassEditControllerBase with _$ClassEditController;
+class StudentClassEditController = _StudentClassEditControllerBase with _$StudentClassEditController;
 
-abstract class _ClassEditControllerBase with Store {
+abstract class _StudentClassEditControllerBase with Store {
   final ClassRepository classRepository;
   final CasesRepository casesRepository;
 
@@ -18,7 +18,7 @@ abstract class _ClassEditControllerBase with Store {
   ObservableStream<List<ClassModel>> classList;
   ObservableStream<List<CasesModel>> casesList;
 
-  _ClassEditControllerBase(this.classRepository, this.casesRepository) {
+  _StudentClassEditControllerBase(this.classRepository, this.casesRepository) {
     getList();
   }
 
