@@ -2,21 +2,21 @@ import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:mobx/mobx.dart';
 
-part 'student_class_detail_controller.g.dart';
+part 'student_report_select_controller.g.dart';
 
-class StudentClassDetailController = _StudentClassDetailControllerBase
-    with _$StudentClassDetailController;
+class StudentReportSelectController = _StudentReportSelectControllerBase
+    with _$StudentReportSelectController;
 
-abstract class _StudentClassDetailControllerBase with Store {
-  final StudentClassRepository classRepository;
+abstract class _StudentReportSelectControllerBase with Store {
+  final ClassRepository classRepository;
 
   @observable
   ObservableStream<List<ClassModel>> classList;
 
-  _StudentClassDetailControllerBase(this.classRepository){
+  _StudentReportSelectControllerBase(this.classRepository){
     getList();
-  }
 
+  }
 
   @action
   getList() {

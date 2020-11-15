@@ -8,7 +8,7 @@ import '../../widgets_student/custom_drawer.dart';
 
 class StudentMenuPage extends StatefulWidget {
   final String title;
-  const StudentMenuPage({Key key, this.title = "Aluno"}) : super(key: key);
+  const StudentMenuPage({Key key, this.title = "Aluno", bool showAppBar}) : super(key: key);
 
   @override
   _StudentMenuPageState createState() => _StudentMenuPageState();
