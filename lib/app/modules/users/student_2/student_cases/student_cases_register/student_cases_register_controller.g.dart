@@ -9,7 +9,7 @@ part of 'student_cases_register_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$StudentCasesRegisterController on _StudentCasesRegisterBase, Store {
-  final _$casesListAtom = Atom(name: '_CasesRegisterBase.casesList');
+  final _$casesListAtom = Atom(name: '_StudentCasesRegisterBase.casesList');
 
   @override
   ObservableStream<List<CasesModel>> get casesList {
@@ -27,11 +27,12 @@ mixin _$StudentCasesRegisterController on _StudentCasesRegisterBase, Store {
   }
 
   final _$_StudentCasesRegisterBaseActionController =
-      ActionController(name: '_CasesRegisterBase');
+      ActionController(name: '_StudentCasesRegisterBase');
 
   @override
   Future<bool> save(CasesModel model) {
-    final _$actionInfo = _$_StudentCasesRegisterBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesRegisterBaseActionController.startAction();
     try {
       return super.save(model);
     } finally {

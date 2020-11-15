@@ -26,7 +26,8 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
     }, _$quizListAtom, name: '${_$quizListAtom.name}_set');
   }
 
-  final _$casesPageAtom = Atom(name: '_CasesQuizControllerBase.casesPage');
+  final _$casesPageAtom =
+      Atom(name: '_StudentCasesQuizControllerBase.casesPage');
 
   @override
   ObservableStream<List<ComponentModel>> get casesPage {
@@ -43,7 +44,7 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
     }, _$casesPageAtom, name: '${_$casesPageAtom.name}_set');
   }
 
-  final _$quizAtom = Atom(name: '_CasesQuizControllerBase.quiz');
+  final _$quizAtom = Atom(name: '_StudentCasesQuizControllerBase.quiz');
 
   @override
   List<QuizModel> get quiz {
@@ -60,7 +61,7 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
     }, _$quizAtom, name: '${_$quizAtom.name}_set');
   }
 
-  final _$casesAtom = Atom(name: '_CasesQuizControllerBase.cases');
+  final _$casesAtom = Atom(name: '_StudentCasesQuizControllerBase.cases');
 
   @override
   List<ComponentModel> get cases {
@@ -77,7 +78,7 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
     }, _$casesAtom, name: '${_$casesAtom.name}_set');
   }
 
-  final _$editModeAtom = Atom(name: '_CasesQuizControllerBase.editMode');
+  final _$editModeAtom = Atom(name: '_StudentCasesQuizControllerBase.editMode');
 
   @override
   bool get editMode {
@@ -103,7 +104,7 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
   }
 
   final _$_StudentCasesQuizControllerBaseActionController =
-      ActionController(name: '_CasesQuizControllerBase');
+      ActionController(name: '_StudentCasesQuizControllerBase');
 
   @override
   dynamic delete(String casesID, String page, String questionID) {

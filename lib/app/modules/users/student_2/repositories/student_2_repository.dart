@@ -34,7 +34,7 @@ class Student2Repository extends Disposable {
   /**
    * Função que lista as turmas que o aluno esta inserido,
    */
-  Future<Stream<List<ClassModel>>> getClasses() async {
+  Future getClasses() async {
     StudentModel student = await getUserInfo();
     List<ClassModel> list;
     firestore

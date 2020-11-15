@@ -27,11 +27,12 @@ mixin _$StudentClassRegisterController on _StudentClassRegisterBase, Store {
   }
 
   final _$_StudentClassRegisterBaseActionController =
-      ActionController(name: '_ClassRegisterBase');
+      ActionController(name: '_StudentClassRegisterBase');
 
   @override
   dynamic getList() {
-    final _$actionInfo = _$_StudentClassRegisterBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentClassRegisterBaseActionController.startAction();
     try {
       return super.getList();
     } finally {
@@ -41,7 +42,8 @@ mixin _$StudentClassRegisterController on _StudentClassRegisterBase, Store {
 
   @override
   dynamic save(ClassModel model) {
-    final _$actionInfo = _$_StudentClassRegisterBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentClassRegisterBaseActionController.startAction();
     try {
       return super.save(model);
     } finally {
@@ -51,7 +53,8 @@ mixin _$StudentClassRegisterController on _StudentClassRegisterBase, Store {
 
   @override
   dynamic delete(ClassModel model) {
-    final _$actionInfo = _$_StudentClassRegisterBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentClassRegisterBaseActionController.startAction();
     try {
       return super.delete(model);
     } finally {

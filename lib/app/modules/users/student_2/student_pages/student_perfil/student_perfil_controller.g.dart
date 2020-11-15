@@ -9,7 +9,7 @@ part of 'student_perfil_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$StudentPerfilController on _StudentPerfilBase, Store {
-  final _$teacherListAtom = Atom(name: '_TeacherPerfilBase.teacherList');
+  final _$teacherListAtom = Atom(name: '_StudentPerfilBase.teacherList');
 
   @override
   StudentModel get teacherList {
@@ -26,7 +26,7 @@ mixin _$StudentPerfilController on _StudentPerfilBase, Store {
     }, _$teacherListAtom, name: '${_$teacherListAtom.name}_set');
   }
 
-  final _$valueAtom = Atom(name: '_TeacherPerfilBase.value');
+  final _$valueAtom = Atom(name: '_StudentPerfilBase.value');
 
   @override
   int get value {

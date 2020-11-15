@@ -5,7 +5,6 @@ import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_list/class_list_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_controller.dart';
 
-
 class StudentClassListPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
@@ -35,18 +34,9 @@ class _StudentClassListPageState
             print('teste');
 
             if (controller.classList.data == null)
-            // if (controller.classList2.data == null) //para testes
+              // if (controller.classList2.data == null) //para testes
               return Center(
                 child: CircularProgressIndicator(),
-              );
-            //else if (controller.classList.hasError)
-            else if (controller.classList2.hasError)
-              return Center(
-                child: RaisedButton(
-                  onPressed: () => controller.getList(),
-                  // onPressed: () => controller.getListTrue(),
-                  child: Text('Error'),
-                ),
               );
             else {
               List<ClassModel> list = controller.classList.data;
@@ -93,29 +83,6 @@ class _StudentClassListPageState
                             },
                             //subtitle: Text(model.right),
                           ),
-                          ButtonBar(
-                            children: <Widget>[
-                              FlatButton(
-                                color: Colors.redAccent,
-                                child: const Text('EXCLUIR'),
-                                onPressed: () {
-                                  // controller.delete(model);
-                                  _showAlertDialogDelete(model: model);
-                                },
-                              ),
-                              FlatButton(
-                                color: Colors.redAccent,
-                                child: const Text('EDITAR'),
-                                onPressed: () {
-                                  // _showDialog(model: model);
-                                  // Navigator.pushNamed(context, '/class/class_edit');
-                                  Navigator.pushNamed(
-                                      context, '/class/class_edit',
-                                      arguments: model);
-                                },
-                              ),
-                            ],
-                          ),
                         ],
                       ),
                     ),
@@ -126,45 +93,6 @@ class _StudentClassListPageState
           },
         ),
       ),
-    );
-  }
-
-  void _showAlertDialogDelete({ClassModel model}) {
-    model ??= ClassModel();
-
-    Widget cancelButton = FlatButton(
-      child: Text("Cancelar"),
-      onPressed: () {
-        // _casesID.text = '';
-        // _teacherID.text = '';
-        Modular.to.pop();
-      },
-    );
-    // configura o button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () {
-        // _casesID.text = '';
-        // _teacherID.text = '';
-        controller.delete(model);
-        Modular.to.pop();
-      },
-    );
-    // configura o  AlertDialog
-    AlertDialog alerta = AlertDialog(
-      title: Text("Aviso"),
-      content: Text("Deseja excluir a turma?"),
-      actions: [
-        cancelButton,
-        okButton,
-      ],
-    );
-    // exibe o dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alerta;
-      },
     );
   }
 }

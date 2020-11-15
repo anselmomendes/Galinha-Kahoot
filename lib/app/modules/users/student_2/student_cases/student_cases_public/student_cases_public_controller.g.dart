@@ -48,7 +48,8 @@ mixin _$StudentCasesPublicController on _StudentCasesPublicBase, Store {
 
   @override
   dynamic getList() {
-    final _$actionInfo = _$_StudentCasesPublicBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesPublicBaseActionController.startAction();
     try {
       return super.getList();
     } finally {
@@ -58,7 +59,8 @@ mixin _$StudentCasesPublicController on _StudentCasesPublicBase, Store {
 
   @override
   void increment() {
-    final _$actionInfo = _$_StudentCasesPublicBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesPublicBaseActionController.startAction();
     try {
       return super.increment();
     } finally {
