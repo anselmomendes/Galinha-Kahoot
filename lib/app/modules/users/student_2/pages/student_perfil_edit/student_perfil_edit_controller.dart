@@ -4,19 +4,19 @@ import '../../models/StudentModel.dart';
 // import '../../repositories/teacher_repository.dart';
 import 'package:mobx/mobx.dart';
 
-part 'teacher_perfil_edit_controller.g.dart';
+part 'student_perfil_edit_controller.g.dart';
 
-class TeacherPerfilEditController = _TeacherPerfilEditControllerBase
-    with _$TeacherPerfilEditController;
+class StudentPerfilEditController = _StudentPerfilEditControllerBase
+    with _$StudentPerfilEditController;
 
-abstract class _TeacherPerfilEditControllerBase with Store {
+abstract class _StudentPerfilEditControllerBase with Store {
   // final TeacherRepository teacherRepository;
   final Student2Repository teacherRepository;
 
   @observable
   StudentModel teacherList;
 
-  _TeacherPerfilEditControllerBase(this.teacherRepository);
+  _StudentPerfilEditControllerBase(this.teacherRepository);
 /*
   @action
   save(StudentModel model) {

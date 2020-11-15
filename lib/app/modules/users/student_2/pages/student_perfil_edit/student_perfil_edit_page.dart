@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/pages/student_perfil_edit/student_perfil_edit_controller.dart';
 import '../../models/StudentModel.dart';
-import '../../pages/teacher_perfil/teacher_perfil_controller.dart';
 
 class TeacherPerfilEditPage extends StatefulWidget {
   final StudentModel teacherModel; // Esse model agora é do Student_2
@@ -16,7 +16,7 @@ class TeacherPerfilEditPage extends StatefulWidget {
 }
 
 class _TeacherPerfilEditPageState
-    extends ModularState<TeacherPerfilEditPage, TeacherPerfilController> {
+    extends ModularState<TeacherPerfilEditPage, StudentPerfilEditController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _universityController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -86,7 +86,7 @@ class _TeacherPerfilEditPageState
                   // _register;
                   widget.teacherModel.name = _nameController.text;
                   widget.teacherModel.university = _universityController.text;
-                  controller.save(widget.teacherModel);
+                  /*controller.save(widget.teacherModel);*/
                   debugPrint('Botão: salvar');
                 },
                 color: appContrastColor,

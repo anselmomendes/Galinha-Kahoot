@@ -5,13 +5,13 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
 import '../../models/StudentModel.dart';
-import 'teacher_perfil_controller.dart';
+import 'student_perfil_controller.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
 
-class TeacherPerfilPage extends StatefulWidget {
+class StudentPerfilPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
-  const TeacherPerfilPage(
+  const StudentPerfilPage(
       {Key key, this.title = "TeacherPerfil", this.showAppBar})
       : super(key: key);
 
@@ -20,7 +20,7 @@ class TeacherPerfilPage extends StatefulWidget {
 }
 
 class _TeacherPerfilPageState
-    extends ModularState<TeacherPerfilPage, TeacherPerfilController> {
+    extends ModularState<StudentPerfilPage, StudentPerfilController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
   final auth = Auth();
@@ -305,13 +305,13 @@ class _TeacherPerfilPageState
         if (_formKey.currentState.validate()) {
           deleteUser();
 
-          if (_passCheck == true) {
+          /*  if (_passCheck == true) {
             controller.delete(model);
             user.delete();
             controller.controllerRoot.logout();
             Navigator.pushNamedAndRemoveUntil(
                 context, '/', (Route<dynamic> route) => false);
-          }
+          }*/
 
           /* if (_passCheck == false) {
             _passwordController.text = '';

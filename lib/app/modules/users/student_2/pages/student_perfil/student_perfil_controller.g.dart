@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'teacher_perfil_controller.dart';
+part of 'student_perfil_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'teacher_perfil_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$TeacherPerfilController on _TeacherPerfilBase, Store {
-  final _$teacherListAtom = Atom(name: '_TeacherPerfilBase.teacherList');
+mixin _$StudentPerfilController on _StudentPerfilBase, Store {
+  final _$teacherListAtom = Atom(name: '_StudentPerfilBase.teacherList');
 
   @override
   StudentModel get teacherList {
@@ -26,7 +26,7 @@ mixin _$TeacherPerfilController on _TeacherPerfilBase, Store {
     }, _$teacherListAtom, name: '${_$teacherListAtom.name}_set');
   }
 
-  final _$valueAtom = Atom(name: '_TeacherPerfilBase.value');
+  final _$valueAtom = Atom(name: '_StudentPerfilBase.value');
 
   @override
   int get value {
@@ -50,36 +50,16 @@ mixin _$TeacherPerfilController on _TeacherPerfilBase, Store {
     return _$getListAsyncAction.run(() => super.getList());
   }
 
-  final _$_TeacherPerfilBaseActionController =
-      ActionController(name: '_TeacherPerfilBase');
-
-  @override
-  dynamic save(StudentModel model) {
-    final _$actionInfo = _$_TeacherPerfilBaseActionController.startAction();
-    try {
-      return super.save(model);
-    } finally {
-      _$_TeacherPerfilBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic delete(StudentModel model) {
-    final _$actionInfo = _$_TeacherPerfilBaseActionController.startAction();
-    try {
-      return super.delete(model);
-    } finally {
-      _$_TeacherPerfilBaseActionController.endAction(_$actionInfo);
-    }
-  }
+  final _$_StudentPerfilBaseActionController =
+      ActionController(name: '_StudentPerfilBase');
 
   @override
   void increment() {
-    final _$actionInfo = _$_TeacherPerfilBaseActionController.startAction();
+    final _$actionInfo = _$_StudentPerfilBaseActionController.startAction();
     try {
       return super.increment();
     } finally {
-      _$_TeacherPerfilBaseActionController.endAction(_$actionInfo);
+      _$_StudentPerfilBaseActionController.endAction(_$actionInfo);
     }
   }
 

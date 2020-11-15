@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'class_detail_controller.dart';
+part of 'student_class_detail_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,10 +8,8 @@ part of 'class_detail_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-import 'package:mobx/mobx.dart';
-
-mixin _$StudentClassDetailController on _StudentClassDetailControllerBase, Store {
-  final _$classListAtom = Atom(name: '_StudentClassDetailControllerBase.classList');
+mixin _$StudentClassDetailController on _StudentClassDetailBase, Store {
+  final _$classListAtom = Atom(name: '_StudentClassDetailBase.classList');
 
   @override
   ObservableStream<List<ClassModel>> get classList {
@@ -26,20 +24,6 @@ mixin _$StudentClassDetailController on _StudentClassDetailControllerBase, Store
       super.classList = value;
       _$classListAtom.reportChanged();
     }, _$classListAtom, name: '${_$classListAtom.name}_set');
-  }
-
-  final _$_StudentClassDetailControllerBaseActionController =
-      ActionController(name: '_ClassDetailControllerBase');
-
-  @override
-  dynamic getList() {
-    final _$actionInfo =
-        _$_StudentClassDetailControllerBaseActionController.startAction();
-    try {
-      return super.getList();
-    } finally {
-      _$_StudentClassDetailControllerBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override

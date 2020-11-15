@@ -1,25 +1,24 @@
 import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
 
 import '../../models/StudentModel.dart';
-import '../../pages/teacher_root/teacher_root_controller.dart';
+import '../teacher_root/teacher_root_controller.dart';
 // import '../../repositories/teacher_repository.dart';
 import 'package:mobx/mobx.dart';
 
-part 'teacher_perfil_controller.g.dart';
+part 'student_perfil_controller.g.dart';
 
-class TeacherPerfilController = _TeacherPerfilBase
-    with _$TeacherPerfilController;
+class StudentPerfilController = _StudentPerfilBase
+    with _$StudentPerfilController;
 
-abstract class _TeacherPerfilBase with Store {
+abstract class _StudentPerfilBase with Store {
   // final TeacherRepository teacherRepository;
   final Student2Repository teacherRepository;
   final TeacherRootController controllerRoot;
 
-
   @observable
   StudentModel teacherList;
 
-  _TeacherPerfilBase(this.teacherRepository, this.controllerRoot){
+  _StudentPerfilBase(this.teacherRepository, this.controllerRoot) {
     getList();
   }
 
@@ -28,7 +27,7 @@ abstract class _TeacherPerfilBase with Store {
     teacherList = await teacherRepository.getAllStream();
   }
 
- /* @action
+  /* @action
   save(StudentModel model) {
     teacherRepository.save(model);
   }
@@ -38,14 +37,12 @@ abstract class _TeacherPerfilBase with Store {
     teacherRepository.delete(model);
   }
 */
-  
+
   @observable
   int value = 0;
-
 
   @action
   void increment() {
     value++;
   }
-
 }

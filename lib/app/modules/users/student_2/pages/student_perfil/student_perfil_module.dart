@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../pages/teacher_perfil/teacher_perfil_page.dart';
+import 'student_perfil_page.dart';
 
 class TeacherPerfilModule extends ModuleWidget {
   final bool showAppBar;
@@ -16,5 +16,5 @@ class TeacherPerfilModule extends ModuleWidget {
   static Inject get to => Inject<TeacherPerfilModule>.of();
 
   @override
-  Widget get view => TeacherPerfilPage(showAppBar: showAppBar);
+  Widget get view => StudentPerfilPage(showAppBar: showAppBar);
 }
