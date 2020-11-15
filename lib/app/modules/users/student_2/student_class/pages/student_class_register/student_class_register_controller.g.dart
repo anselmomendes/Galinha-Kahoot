@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'class_register_controller.dart';
+part of 'student_class_register_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,8 @@ part of 'class_register_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$ClassRegisterController on _ClassRegisterBase, Store {
-  final _$classListAtom = Atom(name: '_ClassRegisterBase.classList');
+mixin _$StudentClassRegisterController on _StudentClassRegisterBase, Store {
+  final _$classListAtom = Atom(name: '_StudentClassRegisterBase.classList');
 
   @override
   ObservableStream<List<ClassModel>> get classList {
@@ -26,36 +26,36 @@ mixin _$ClassRegisterController on _ClassRegisterBase, Store {
     }, _$classListAtom, name: '${_$classListAtom.name}_set');
   }
 
-  final _$_ClassRegisterBaseActionController =
+  final _$_StudentClassRegisterBaseActionController =
       ActionController(name: '_ClassRegisterBase');
 
   @override
   dynamic getList() {
-    final _$actionInfo = _$_ClassRegisterBaseActionController.startAction();
+    final _$actionInfo = _$_StudentClassRegisterBaseActionController.startAction();
     try {
       return super.getList();
     } finally {
-      _$_ClassRegisterBaseActionController.endAction(_$actionInfo);
+      _$_StudentClassRegisterBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic save(ClassModel model) {
-    final _$actionInfo = _$_ClassRegisterBaseActionController.startAction();
+    final _$actionInfo = _$_StudentClassRegisterBaseActionController.startAction();
     try {
       return super.save(model);
     } finally {
-      _$_ClassRegisterBaseActionController.endAction(_$actionInfo);
+      _$_StudentClassRegisterBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic delete(ClassModel model) {
-    final _$actionInfo = _$_ClassRegisterBaseActionController.startAction();
+    final _$actionInfo = _$_StudentClassRegisterBaseActionController.startAction();
     try {
       return super.delete(model);
     } finally {
-      _$_ClassRegisterBaseActionController.endAction(_$actionInfo);
+      _$_StudentClassRegisterBaseActionController.endAction(_$actionInfo);
     }
   }
 

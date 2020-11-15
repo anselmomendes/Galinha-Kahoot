@@ -4,14 +4,15 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_detail/class_detail_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_controller.dart';
 import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
 
-class ClassDetailPage extends StatefulWidget {
+class StudentClassDetailPage extends StatefulWidget {
   final ClassModel classModel;
   final bool showAppBar;
   final String title;
-  const ClassDetailPage({
+  const StudentClassDetailPage({
     Key key,
     this.title = "Detalhe da Turma",
     this.showAppBar = true,
@@ -19,11 +20,11 @@ class ClassDetailPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _ClassDetailPageState createState() => _ClassDetailPageState();
+  _StudentClassDetailPageState createState() => _StudentClassDetailPageState();
 }
 
-class _ClassDetailPageState
-    extends ModularState<ClassDetailPage, ClassDetailController> {
+class _StudentClassDetailPageState
+    extends ModularState<StudentClassDetailPage, StudentClassDetailController> {
   // Variável para o status da turma
   String _statusLocal;
 

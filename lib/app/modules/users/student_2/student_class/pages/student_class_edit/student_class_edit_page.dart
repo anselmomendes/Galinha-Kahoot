@@ -1,76 +1,70 @@
-import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/class/pages/class_register/class_register_controller.dart';
-import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
+import 'package:galinha_karoot/app/modules/class/pages/class_edit/class_edit_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_edit/student_class_edit_controller.dart';
 import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
 
-class ClassRegisterPage extends StatefulWidget {
+class StudentClassEditPage extends StatefulWidget {
+  final ClassModel classModel;
+  final bool showAppBar;
   final String title;
-  const ClassRegisterPage({Key key, this.title = "Cadastrar Turma"})
+  const StudentClassEditPage(
+      {Key key,
+      this.title = "Editar Turma",
+      @required this.classModel,
+      this.showAppBar = true})
       : super(key: key);
 
   @override
-  _ClassRegisterPageState createState() => _ClassRegisterPageState();
+  _StudentClassEditPageState createState() => _StudentClassEditPageState();
 }
 
-class _ClassRegisterPageState
-    extends ModularState<ClassRegisterPage, ClassRegisterController> {
-  // final _casesID = TextEditingController();
-  // final _teacherID = TextEditingController();
-  // final _timer = TextEditingController();
+class _StudentClassEditPageState
+    extends ModularState<StudentClassEditPage, StudentClassEditController> {
   final _className = TextEditingController();
   var _casesID = "";
   var _titleCases = "";
 
-  // String nomeCidade = "";
   // Variaveis para o status da class
-  var _status = ['Ativado', 'Desativado'];
-  var _itemSelected = 'Ativado';
-
-  Timestamp myTimeStamp;
-  DateTime myDateTime;
-
-  // var _currentTimeValue = 1;
+  var status = ['Ativado', 'Desativado'];
+  String itemSelected = 'Ativado';
+  String currentStatus;
 
   // Variável para seleção do caso no RadioListTile
   var selectedCase;
 
-  // Data de criação da class
-  var creationDate;
-
   // Variável do temporizador selecionado (em minutos) - 5 dias (padrão)
   Duration resultingDuration = Duration(minutes: 7200);
-
-  // Temporizador personalizado - data final para desativar a turma
-  var endTime;
-
-  // Código de acesso da class de 4 dígitos
-  int _accessCode = 999 + Random().nextInt(9999 - 999);
+  int currentTime;
+  Timestamp myTimeStamp;
+  DateTime modifiedDate;
 
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-    ClassModel model = ClassModel();
-    CasesModel model2 = CasesModel();
+    // ClassModel model = ClassModel();
 
-    /* // Coletando informações do usuário professor
-    getUserLogged(); */
+    bool statusBool = widget.classModel.status;
+    checkStatus(statusBool);
+    String currentTitleCase = widget.classModel.titleCase;
+    currentTime = widget.classModel.timer;
+    // _titleCases = widget.classModel.titleCase;
 
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.redAccent,
-        title: Text(widget.title),
-        centerTitle: true,
-      ),
+      appBar: widget.showAppBar
+          ? AppBar(
+              backgroundColor: Colors.redAccent,
+              title: Text(widget.title),
+              centerTitle: true,
+            )
+          : null,
       body: SingleChildScrollView(
         padding: EdgeInsets.only(
             // top: screenWidth * 0.2,
@@ -89,43 +83,45 @@ class _ClassRegisterPageState
               ),
             );
           else {
-            List<CasesModel> list = controller.casesList.data;
-
             return Center(
               child: Column(
                 children: <Widget>[
                   SizedBox(height: 10),
-                  Text("Selecione o status:", style: headerTextStyle),
+                  Text("Alterar status:", style: headerTextStyle),
+                  Text("Status atual: ${currentStatus}"),
                   // Parte do DropDown
                   DropdownButton(
-                    items: _status.map((String dropDownStringItem) {
+                    // items: _status.map((String dropDownStringItem) {
+                    items: status.map((String dropDownStringItem) {
                       return DropdownMenuItem<String>(
                         value: dropDownStringItem,
                         child: Text(dropDownStringItem),
                       );
                     }).toList(),
                     onChanged: (String newItemSelected) {
-                      _dropDownItemSelected(newItemSelected);
+                      itemSelected = newItemSelected;
+                      print(itemSelected);
                       setState(() {
-                        this._itemSelected = newItemSelected;
+                        itemSelected = newItemSelected;
                       });
+                      // });
                     },
-                    value: _itemSelected,
+                    value: itemSelected,
                   ),
                   Divider(height: 20),
-                  Text("Adicione o nome da turma:", style: headerTextStyle),
+                  Text("Alterar nome da turma:", style: headerTextStyle),
                   // Nome da turma
                   TextFormField(
-                      controller: _className,
-                      maxLength: 20,
-                      decoration: const InputDecoration(
-                        labelText: 'Nome da turma',
-                        hintText: "Digite o nome da turma",
-                        prefixIcon: Icon(Icons.title),
-                      )),
-                  // SizedBox(height: 20),
-                  // Divider(height: 20),
+                    maxLength: 20,
+                    initialValue: widget.classModel.className,
+                    onChanged: (v) => widget.classModel.className = v,
+                    decoration: const InputDecoration(
+                      labelText: 'Nome da turma',
+                      prefixIcon: Icon(Icons.title),
+                    ),
+                  ),
                   Text("Selecione o temporizador:", style: headerTextStyle),
+                  Text("Temporizador atual: ${currentTime} minutos"),
                   SizedBox(height: 5),
                   // selectionText(resultingDuration),
                   selectionText(resultingDuration),
@@ -136,29 +132,22 @@ class _ClassRegisterPageState
                           context: context,
                           initialTime: new Duration(minutes: 30),
                         );
-                        // var time = new DateTime.now();
-                        // var time2;
+
                         if (resultingDuration != null) {
                           Duration durationZeroTest = Duration(minutes: 0);
 
                           if (resultingDuration.compareTo(durationZeroTest) ==
                               0) {
                             resultingDuration = Duration(minutes: 7200);
-                            // time2 = new DateTime.now().add(resultingDuration);
                           }
-                          // time2 = new DateTime.now().add(resultingDuration);
                         } else {
                           resultingDuration = Duration(minutes: 7200);
-                          // time2 = new DateTime.now().add(resultingDuration);
                         }
-                        // print(time);
-                        // print(time2);
                         setState(() {
                           resultingDuration = resultingDuration;
                         });
-                        // print(resultingDuration);
                       },
-                      color: appContrastColor,
+                      color: appColor,
                       child: Text(
                         "Selecionar",
                         style: TextStyle(color: Colors.white),
@@ -171,9 +160,10 @@ class _ClassRegisterPageState
                     children: <Widget>[
                       // _casesID
                       Text("Selecione o caso:", style: headerTextStyle),
+                      Text("Caso atual: ${currentTitleCase}"),
                       // Lista de de casos (teste)
                       Container(
-                        height: screenWidth * 0.55,
+                        height: screenWidth * 0.45,
                         child: Observer(
                           builder: (_) {
                             if (controller.casesList.data == null)
@@ -211,11 +201,11 @@ class _ClassRegisterPageState
                                           print(index);
                                           //print("Current Case ${currentCase.question}");
                                           setSelectedCase(currentCase);
-                                          _casesID = model.reference.documentID;
+                                          _casesID = model.id;
                                           _titleCases = model.title;
                                         },
                                         selected: selectedCase == model,
-                                        activeColor: Colors.redAccent,
+                                        activeColor: Colors.red,
                                       )
                                     ],
                                   );
@@ -230,60 +220,29 @@ class _ClassRegisterPageState
                   Divider(
                     height: 10,
                   ),
-                  // SizedBox(height: 40),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
                       Observer(builder: (BuildContext context) {
                         return FlatButton(
                             onPressed: () {
-                              // Novo modelo para capturar data/horário e temporizador
-                              myDateTime = DateTime.now();
-                              model.creationDate =
-                                  Timestamp.fromDate(myDateTime);
-                              model.endTime = Timestamp.fromDate(
-                                  myDateTime.add(resultingDuration));
-                              model.modifiedDate =
-                                  Timestamp.fromDate(myDateTime);
-                              model.timer = resultingDuration.inMinutes;
+                              modifiedDate = DateTime.now();
 
-                              // Salvando nome da turma
-                              model.className = _className.text;
-                              // Salvando código de acesso
-                              model.accessCode = _accessCode;
-                              // Relacionando info de caso com a turma
-                              model.titleCase = _titleCases;
-                              model.casesID = _casesID;
+                              widget.classModel.timer =
+                                  resultingDuration.inMinutes;
+                              widget.classModel.className =
+                                  widget.classModel.className;
+                              widget.classModel.endTime = Timestamp.fromDate(
+                                  modifiedDate.add(resultingDuration));
 
-                              // Condicional para transformar o status e salva no model
-                              if (_itemSelected.compareTo('Ativado') == 0) {
-                                model.status = true;
-                              } else {
-                                model.status = false;
+                              if (selectedCase != null) {
+                                widget.classModel.titleCase = _titleCases;
                               }
                               
-                              controller.save(model);
-                              _showAlertDialog(context);
+                              widget.classModel.modifiedDate =
+                                  Timestamp.fromDate(modifiedDate);
 
-                              /* == Comentários importantes == */
-                              
-                              // Modelo antigo de captura de data e horário
-                              // model.creationDate =
-                              //     new DateFormat("dd/MM/y hh:mm")
-                              //         .format(DateTime.now());
-                              /* model.endTime = myDateTime
-                                  .add(resultingDuration)
-                                  .toString(); */
-                              // model.timer = resultingDuration.toString();
-                              // model.className = _className;
-
-                              // model.creationDate = creationDate;
-                              // model.endTime = re
-                              // Para teste
-                              /* print("Data de criação; ${creationDate}");
-                                 print("Data de fechamento: ${endTime}");
-                                 print("Data com temporizador: ${standartTimer}"); */
-
+                              // importante
                               // var testTime = DateTime.now();
                               // var testTime2 =
                               //     DateTime.now().add(Duration(minutes: 130));
@@ -292,16 +251,22 @@ class _ClassRegisterPageState
                               // var diferenca = testTime2.difference(testTime);
                               // print(diferenca);
                               // print(testTime.isBefore(testTime2));
+
+                              if (itemSelected.compareTo('Ativado') == 0) {
+                                widget.classModel.status = true;
+                              } else {
+                                widget.classModel.status = false;
+                              }
+
+                              controller.save(widget.classModel);
+                              _showAlertDialog(context);
                             },
-                            color: appContrastColor,
-                            child: Text('Salvar',
+                            color: appColor,
+                            child: Text('Atualizar',
                                 style: TextStyle(color: Colors.white)));
                       })
                     ],
                   ),
-                  SizedBox(
-                    height: 20.0,
-                  )
                 ],
               ),
             );
@@ -311,14 +276,26 @@ class _ClassRegisterPageState
     );
   }
 
-  // Menu de opções (Ativado ou Desativado)
-  void _dropDownItemSelected(String newItem) {
-    setState(() {
-      this._itemSelected = newItem;
-    });
+  // Converter o status de 'true' ou 'false' para 'Ativado' ou 'Desativado'
+  void checkStatus(bool status) {
+    if (status.toString().compareTo('true') == 0) {
+      currentStatus = 'Ativado';
+    } else {
+      currentStatus = 'Desativado';
+    }
   }
 
-  // Aviso que a turma foi criada
+/*   // Condicional para exibição do temporizado padrão ou o selecionado
+  Widget selectionText(Duration resultingDuration) {
+    Duration v = Duration(minutes: 7200);
+
+    if (resultingDuration.compareTo(v) == 0) {
+      return Text(
+          "Por padrão, a turma será desativada em ${resultingDuration.inDays} dias.");
+    }
+    return Text("Turma será desativada em ${resultingDuration.inMinutes} min.");
+  } */
+
   void _showAlertDialog(BuildContext context) {
     // configura o button
     Widget okButton = FlatButton(
@@ -345,15 +322,4 @@ class _ClassRegisterPageState
       },
     );
   }
-
-/*   // Condicional para exibição do temporizador padrão ou o selecionado
-  Widget selectionText(Duration resultingDuration) {
-    Duration v = Duration(minutes: 7200);
-
-    if (resultingDuration.compareTo(v) == 0) {
-      return Text(
-          "Por padrão, a turma será desativada em ${resultingDuration.inDays} dias.");
-    }
-    return Text("Turma será desativada em ${resultingDuration.inMinutes} min.");
-  } */
 }

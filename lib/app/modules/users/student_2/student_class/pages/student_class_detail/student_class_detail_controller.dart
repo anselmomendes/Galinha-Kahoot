@@ -2,18 +2,18 @@ import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:mobx/mobx.dart';
 
-part 'class_detail_controller.g.dart';
+part 'student_class_detail_controller.g.dart';
 
-class ClassDetailController = _ClassDetailControllerBase
-    with _$ClassDetailController;
+class StudentClassDetailController = _StudentClassDetailControllerBase
+    with _$StudentClassDetailController;
 
-abstract class _ClassDetailControllerBase with Store {
+abstract class _StudentClassDetailControllerBase with Store {
   final ClassRepository classRepository;
 
   @observable
   ObservableStream<List<ClassModel>> classList;
 
-  _ClassDetailControllerBase(this.classRepository){
+  _StudentClassDetailControllerBase(this.classRepository){
     getList();
   }
 

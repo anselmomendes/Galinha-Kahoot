@@ -4,12 +4,12 @@ import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:mobx/mobx.dart';
 
-part 'class_register_controller.g.dart';
+part 'student_class_register_controller.g.dart';
 
-class ClassRegisterController = _ClassRegisterBase
-    with _$ClassRegisterController;
+class StudentClassRegisterController = _StudentClassRegisterBase
+    with _$StudentClassRegisterController;
 
-abstract class _ClassRegisterBase with Store {
+abstract class _StudentClassRegisterBase with Store {
   final ClassRepository classRepository;
   final CasesRepository casesRepository;
 
@@ -26,7 +26,7 @@ abstract class _ClassRegisterBase with Store {
     selectedCase = newSelected;
   } */
 
-  _ClassRegisterBase(this.classRepository, this.casesRepository) {
+  _StudentClassRegisterBase(this.classRepository, this.casesRepository) {
     getList();
   }
 

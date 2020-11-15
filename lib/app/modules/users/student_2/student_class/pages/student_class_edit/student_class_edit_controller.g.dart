@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'class_edit_controller.dart';
+part of 'student_class_edit_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,8 +8,9 @@ part of 'class_edit_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
-mixin _$ClassEditController on _ClassEditControllerBase, Store {
-  final _$classListAtom = Atom(name: '_ClassEditControllerBase.classList');
+
+mixin _$StudentClassEditController on _StudentClassEditControllerBase, Store {
+  final _$classListAtom = Atom(name: '_StudentClassEditControllerBase.classList');
 
   @override
   ObservableStream<List<ClassModel>> get classList {
@@ -26,39 +27,39 @@ mixin _$ClassEditController on _ClassEditControllerBase, Store {
     }, _$classListAtom, name: '${_$classListAtom.name}_set');
   }
 
-  final _$_ClassEditControllerBaseActionController =
-      ActionController(name: '_ClassEditControllerBase');
+  final _$_StudentClassEditControllerBaseActionController =
+      ActionController(name: '_StudentClassEditControllerBase');
 
   @override
   dynamic getList() {
     final _$actionInfo =
-        _$_ClassEditControllerBaseActionController.startAction();
+        _$_StudentClassEditControllerBaseActionController.startAction();
     try {
       return super.getList();
     } finally {
-      _$_ClassEditControllerBaseActionController.endAction(_$actionInfo);
+      _$_StudentClassEditControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic save(ClassModel model) {
     final _$actionInfo =
-        _$_ClassEditControllerBaseActionController.startAction();
+        _$_StudentClassEditControllerBaseActionController.startAction();
     try {
       return super.save(model);
     } finally {
-      _$_ClassEditControllerBaseActionController.endAction(_$actionInfo);
+      _$_StudentClassEditControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic delete(ClassModel model) {
     final _$actionInfo =
-        _$_ClassEditControllerBaseActionController.startAction();
+        _$_StudentClassEditControllerBaseActionController.startAction();
     try {
       return super.delete(model);
     } finally {
-      _$_ClassEditControllerBaseActionController.endAction(_$actionInfo);
+      _$_StudentClassEditControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
