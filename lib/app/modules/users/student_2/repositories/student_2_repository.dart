@@ -54,7 +54,6 @@ class Student2Repository extends Disposable {
   Future<ClassModel> getClassByAcessCode(
       String accessCode, StudentModel student) async {
     var access = int.parse(accessCode);
-    print("Funfei 2, accessCode: $access");
     QuerySnapshot doc = await firestore
         .collection('Class')
         .where("accessCode", isEqualTo: access)
