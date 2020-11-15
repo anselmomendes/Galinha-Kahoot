@@ -3,17 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class TeacherMenuPage extends StatefulWidget {
+class StudentMenuPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
-  const TeacherMenuPage({Key key, this.title = "Professor e Estudante - Teste", this.showAppBar})
+  const StudentMenuPage({Key key, this.title = "Professor e Estudante - Teste", this.showAppBar})
       : super(key: key);
 
   @override
-  _TeacherMenuPageState createState() => _TeacherMenuPageState();
+  _StudentMenuPageState createState() => _StudentMenuPageState();
 }
 
-class _TeacherMenuPageState extends State<TeacherMenuPage> {
+class _StudentMenuPageState extends State<StudentMenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
