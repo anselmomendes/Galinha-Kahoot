@@ -1,0 +1,4 @@
+lib/app/modules/users/student_2/student_perfil/student_perfil_page.dart
+test/app/modules/users/student_2/student_perfil/student_perfil_page_test.dart
+lib/app/modules/users/student_2/student_perfil/student_perfil_controller.dart
+test/app/modules/users/student_2/student_perfil/student_perfil_controller_test.dart

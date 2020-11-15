@@ -50,7 +50,8 @@ class _StudentClassDetailPageState
             else if (controller.classList.hasError)
               return Center(
                 child: RaisedButton(
-                  onPressed: () => controller.getList(),
+                  onPressed: () {},
+                  /*controller.getList(),*/
                   child: Text('Error'),
                 ),
               );
@@ -214,7 +215,8 @@ class _StudentClassDetailPageState
                             children: <TextSpan>[
                               TextSpan(
                                   // text: '${widget.classModel.timer} minutos',
-                                  text: selectiontextDetail(widget.classModel.timer),
+                                  text: selectiontextDetail(
+                                      widget.classModel.timer),
                                   style: text2TextStyle),
                             ],
                           )),

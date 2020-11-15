@@ -1,3 +1,4 @@
+import 'student_perfil/student_perfil_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
@@ -13,10 +14,10 @@ import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_login/t
 import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_login/teacher_login_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_menu/teacher_menu_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_menu/teacher_menu_page.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_perfil/teacher_perfil_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_perfil/teacher_perfil_page.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_perfil_edit/teacher_perfil_edit_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_perfil_edit/teacher_perfil_edit_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_perfil/student_perfil_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_perfil/student_perfil_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_perfil_edit/student_perfil_edit_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_perfil_edit/student_perfil_edit_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_register/teacher_register_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_register/teacher_register_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/pages/teacher_report_select/teacher_report_select_controller.dart';
@@ -35,12 +36,13 @@ import 'package:dio/dio.dart';
 class Student2Module extends ChildModule {
   @override
   List<Bind> get binds => [
+        $StudentPerfilController,
         Bind((i) => Student2Repository()),
         // Bind((i) => TeacherPerfilEditController(i.get<TeacherRepository>())),
         Bind((i) => TeacherPerfilEditController(i.get<Student2Repository>())),
         // Bind((i) => TeacherPerfilController(
         //     i.get<TeacherRepository>(), i.get<TeacherRootController>())),
-        Bind((i) => TeacherPerfilController(
+        Bind((i) => StudentPerfilController(
             i.get<Student2Repository>(), i.get<TeacherRootController>())),
         Bind((i) => TeacherAboutController()),
         Bind((i) => TeacherRootController()),
@@ -70,7 +72,7 @@ class Student2Module extends ChildModule {
         Router('/register', child: (_, args) => TeacherRegisterPage()),
         Router('/teacher_select', child: (_, args) => TeacherSelectPage()),
         Router('/teacher_perfil_edit',
-            child: (_, args) => TeacherPerfilEditPage(
+            child: (_, args) => StudentPerfilEditPage(
                   teacherModel: args.data,
                 )),
         Router('/teacher_about',
