@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class TeacherRegisterPage extends StatefulWidget {
+class StudentRegisterPage extends StatefulWidget {
   final String title;
-  const TeacherRegisterPage({Key key, this.title = "TeacherRegister"})
+  const StudentRegisterPage({Key key, this.title = "StudentRegister"})
       : super(key: key);
 
   @override
-  _TeacherRegisterPageState createState() => _TeacherRegisterPageState();
+  _StudentRegisterPageState createState() => _StudentRegisterPageState();
 }
 
-class _TeacherRegisterPageState extends State<TeacherRegisterPage> {
+class _StudentRegisterPageState extends State<StudentRegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:galinha_karoot/app/modules/users/teacher/models/TeacherModel.dart';
 import '../../models/StudentModel.dart';
 import 'student_perfil_controller.dart';
 import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
@@ -12,22 +13,14 @@ class StudentPerfilPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
   const StudentPerfilPage(
-<<<<<<< HEAD:lib/app/modules/users/student_2/student_pages/student_perfil/student_perfil_page.dart
       {Key key, this.title = "StudentPerfil", this.showAppBar})
-=======
-      {Key key, this.title = "TeacherPerfil", this.showAppBar})
->>>>>>> 864e4a80f2e3a8511f8f2f80f27b06a817ceac22:lib/app/modules/users/student_2/pages/student_perfil/student_perfil_page.dart
       : super(key: key);
 
   @override
   _StudentPerfilPageState createState() => _StudentPerfilPageState();
 }
 
-<<<<<<< HEAD:lib/app/modules/users/student_2/student_pages/student_perfil/student_perfil_page.dart
 class _StudentPerfilPageState
-=======
-class _TeacherPerfilPageState
->>>>>>> 864e4a80f2e3a8511f8f2f80f27b06a817ceac22:lib/app/modules/users/student_2/pages/student_perfil/student_perfil_page.dart
     extends ModularState<StudentPerfilPage, StudentPerfilController> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _passwordController = TextEditingController();
@@ -72,8 +65,7 @@ class _TeacherPerfilPageState
               ),
             );
           else {
-            StudentModel model = controller.teacherList;
-            // TeacherModel model = controller.teacherList;
+           StudentModel model = controller.teacherList;
 
             return SingleChildScrollView(
               padding: EdgeInsets.only(
@@ -158,7 +150,7 @@ class _TeacherPerfilPageState
                                 onPressed: () {
                                   Navigator.pushNamed(
                                       context, 'teacher/teacher_perfil_edit',
-                                      arguments: model);
+                                      arguments: model );
                                 }),
 
                             // Divider(thickness: 2.0),
@@ -313,13 +305,13 @@ class _TeacherPerfilPageState
         if (_formKey.currentState.validate()) {
           deleteUser();
 
-          /*  if (_passCheck == true) {
+          if (_passCheck == true) {
             controller.delete(model);
             user.delete();
             controller.controllerRoot.logout();
             Navigator.pushNamedAndRemoveUntil(
                 context, '/', (Route<dynamic> route) => false);
-          }*/
+          }
 
           /* if (_passCheck == false) {
             _passwordController.text = '';

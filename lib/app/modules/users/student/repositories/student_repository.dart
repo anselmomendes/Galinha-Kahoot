@@ -19,7 +19,7 @@ class StudentRepository extends Disposable {
   Stream<RegisterClassState> get outState => _stateController.stream;
   Stream<List<ClassModel>> get outClasses => _classesController.stream;
 
-  StudentRepository() {
+  StudentRepository({Firestore firestore}) {
     print("Student Repo started!");
   }
 

@@ -9,7 +9,7 @@ part of 'student_perfil_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$StudentPerfilController on _StudentPerfilBase, Store {
-  final _$teacherListAtom = Atom(name: '_StudentPerfilBase.teacherList');
+  final _$teacherListAtom = Atom(name: '_TeacherPerfilBase.teacherList');
 
   @override
   StudentModel get teacherList {
@@ -26,7 +26,7 @@ mixin _$StudentPerfilController on _StudentPerfilBase, Store {
     }, _$teacherListAtom, name: '${_$teacherListAtom.name}_set');
   }
 
-  final _$valueAtom = Atom(name: '_StudentPerfilBase.value');
+  final _$valueAtom = Atom(name: '_TeacherPerfilBase.value');
 
   @override
   int get value {
@@ -51,8 +51,7 @@ mixin _$StudentPerfilController on _StudentPerfilBase, Store {
   }
 
   final _$_StudentPerfilBaseActionController =
-<<<<<<< HEAD:lib/app/modules/users/student_2/student_pages/student_perfil/student_perfil_controller.g.dart
-      ActionController(name: '_TeacherPerfilBase');
+      ActionController(name: '_StudentPerfilBase');
 
   @override
   dynamic save(StudentModel model) {
@@ -73,9 +72,6 @@ mixin _$StudentPerfilController on _StudentPerfilBase, Store {
       _$_StudentPerfilBaseActionController.endAction(_$actionInfo);
     }
   }
-=======
-      ActionController(name: '_StudentPerfilBase');
->>>>>>> 864e4a80f2e3a8511f8f2f80f27b06a817ceac22:lib/app/modules/users/student_2/pages/student_perfil/student_perfil_controller.g.dart
 
   @override
   void increment() {
