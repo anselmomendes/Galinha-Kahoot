@@ -58,7 +58,7 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
           // Check for if mail is verified
           if (user.isEmailVerified) {
             if (role == "student")
-              Navigator.pushNamed(context, '/student_2/teacher_root');
+              Navigator.pushNamed(context, '/student_2/student_root');
               // Navigator.pushNamed(context, '/student_2/teacher_menu');
               // Navigator.pushNamed(context, '/student/student_menu');
             else if (role == "teacher")

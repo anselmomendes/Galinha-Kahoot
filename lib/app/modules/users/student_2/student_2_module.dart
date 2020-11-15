@@ -2,8 +2,6 @@ import 'package:galinha_karoot/app/modules/users/student/pages/student_cadastro/
 import 'package:galinha_karoot/app/modules/users/student/pages/student_cadastro/student_cadastro_page.dart';
 import 'package:galinha_karoot/app/modules/users/student/pages/student_login/student_login_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student/pages/student_login/student_login_page.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_menu/student_menu_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_menu/student_menu_page.dart';
 import 'package:galinha_karoot/app/modules/users/student/repositories/student_repository.dart';
 import 'package:galinha_karoot/app/modules/users/student/services/student_service.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_about/student_about_controller.dart';
@@ -12,6 +10,8 @@ import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_area/student_area_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_list_cases/student_list_cases_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_list_cases/student_list_cases_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_menu/student_menu_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_menu/student_menu_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_perfil/student_perfil_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_perfil/student_perfil_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_perfil_edit/student_perfil_edit_controller.dart';
@@ -70,7 +70,7 @@ class Student2Module extends ChildModule {
             child: (_, args) => StudentMenuPage(showAppBar: true)),
         Router('/teacher_list_cases',
             child: (_, args) => StudentListCasesPage(showAppBar: true)),
-        Router('/teacher_root', child: (_, args) => StudentRootPage()),
+        Router('/student_root', child: (_, args) => StudentRootPage()),
         Router('/register', child: (_, args) => StudentRegisterPage()),
         Router('/teacher_select', child: (_, args) => StudentSelectPage()),
         Router('/teacher_perfil_edit',

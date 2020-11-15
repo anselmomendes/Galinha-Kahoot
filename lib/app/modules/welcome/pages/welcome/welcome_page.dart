@@ -23,12 +23,12 @@ class _WelcomePageState extends ModularState<WelcomePage, WelcomeController> {
     String role = await controller.getUserRole();
     if (result) {
       if (role == "student") {
-        Navigator.pushReplacementNamed(context, '/student/student_menu');
+        Navigator.pushReplacementNamed(context, '/student_2/student_root');
       }
       if (role == "teacher") {
         // Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
         // Nova rota
-        Navigator.pushReplacementNamed(context, '/student_2/teacher_root');
+        Navigator.pushReplacementNamed(context, '/teacher/teacher_root');
       }
     }
   }

@@ -1,5 +1,4 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_menu/student_menu_page.dart';
 import 'student_menu_controller.dart';
 import 'student_menu_page.dart';
 
