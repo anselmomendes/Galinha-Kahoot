@@ -11,30 +11,41 @@ import 'package:galinha_karoot/app/modules/class/pages/class_register/class_regi
 import 'package:galinha_karoot/app/modules/class/services/class_service.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_edit/student_class_edit_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_edit/student_class_edit_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_page.dart';
 
 class ClassModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => CasesRepository(firestore: Firestore.instance)),
-        Bind((i) => ClassEditController(i.get<ClassRepository>(), i.get<CasesRepository>())),
-        Bind((i) => ClassDetailController(i.get<ClassRepository>())),
-        Bind((i) => ClassRegisterController(
+        Bind((i) => StudentClassEditController(i.get<ClassRepository>(), i.get<CasesRepository>())),
+        Bind((i) => StudentClassDetailController(i.get<ClassRepository>())),
+        Bind((i) => StudentClassRegisterController(
             i.get<ClassRepository>(), i.get<CasesRepository>())),
-        Bind((i) => ClassListController(i.get<ClassRepository>())),
-        Bind((i) => ClassService()),
-        Bind((i) => ClassRepository(firestore: Firestore.instance)),
-      ];
-
-  @override
-  List<Router> get routers => [
-        Router('/class_register', child: (_, args) => ClassRegisterPage()),
-        Router('/class_list', child: (_, args) => ClassListPage()),
-        Router('/class_detail',
-            child: (_, args) => ClassDetailPage(
-                  classModel: args.data,
-                )),
-        Router('/class_edit', child: (_, args) => ClassEditPage(classModel: args.data,))
-      ];
-
-  static Inject get to => Inject<ClassModule>.of();
+        Bind((i) => StudentClassListController(i.get<ClassRepository>())),
+        Bind((i) => StudentClassService()),
+                Bind((i) => ClassRepository(firestore: Firestore.instance)),
+              ];
+        
+          @override
+          List<Router> get routers => [
+                Router('/class_register', child: (_, args) => StudentClassRegisterPage()),
+                Router('/class_list', child: (_, args) => StudentClassListPage()),
+                Router('/class_detail',
+                    child: (_, args) => StudentClassDetailPage(
+                          classModel: args.data,
+                        )),
+                Router('/class_edit', child: (_, args) => StudentClassEditPage(classModel: args.data,))
+              ];
+        
+          static Inject get to => Inject<ClassModule>.of();
+        }
+        
+        class StudentClassService {
 }
