@@ -68,7 +68,7 @@ class _StudentClassListPageState
                           ListTile(
                             leading: Icon(Icons.arrow_forward_ios),
                             title: Text(
-                              'Turma ${index + 1}',
+                              'Turma ${index + 1} - ${model.className}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
@@ -76,18 +76,21 @@ class _StudentClassListPageState
                             ),
                             subtitle: Text(
                               // model.creationDate,
-                              'Turma: ${model.className}',
+                              'Caso: ',
                               style: TextStyle(
                                 fontSize: 16,
                               ),
                             ),
+                           
+                            // AO CLICAR AQUI, EXIBIR AQUI O CASO
+                           
                             onTap: () {
                               /* Navigator.pushNamed(
                                   context, '/cases/cases_single',
                                   arguments: question_model) */
                               Navigator.pushNamed(
                                 context,
-                                '/class/student_class_detail',
+                                '/student_class/student_class_detail',
                                 arguments: model,
                               );
                             },
@@ -95,22 +98,22 @@ class _StudentClassListPageState
                           ),
                           ButtonBar(
                             children: <Widget>[
-                              FlatButton(
+                              /*FlatButton(
                                 color: Colors.redAccent,
                                 child: const Text('EXCLUIR'),
                                 onPressed: () {
                                   // controller.delete(model);
                                   _showAlertDialogDelete(model: model);
                                 },
-                              ),
+                              ),*/
                               FlatButton(
                                 color: Colors.redAccent,
-                                child: const Text('EDITAR'),
+                                child: const Text('DADOS'),
                                 onPressed: () {
                                   // _showDialog(model: model);
                                   // Navigator.pushNamed(context, '/class/class_edit');
                                   Navigator.pushNamed(
-                                      context, '/class/student_class_edit',
+                                      context, '/student_class/student_class_detail',
                                       arguments: model);
                                 },
                               ),
