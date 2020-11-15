@@ -87,7 +87,7 @@ class _StudentClassListPageState
                                   arguments: question_model) */
                               Navigator.pushNamed(
                                 context,
-                                '/class/class_detail',
+                                '/class/student_class_detail',
                                 arguments: model,
                               );
                             },
@@ -110,7 +110,7 @@ class _StudentClassListPageState
                                   // _showDialog(model: model);
                                   // Navigator.pushNamed(context, '/class/class_edit');
                                   Navigator.pushNamed(
-                                      context, '/class/class_edit',
+                                      context, '/class/student_class_edit',
                                       arguments: model);
                                 },
                               ),

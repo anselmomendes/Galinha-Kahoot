@@ -113,7 +113,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                       color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
-                        Modular.to.pushNamed('/class/class_list');
+                        Modular.to.pushNamed('/student_class/student_class_list');
                       },
                     ),
                     FlatButton(
@@ -122,7 +122,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
                         // Navigator.pushNamed(context, '/teacher_select');
-                        Modular.to.pushNamed('/class/class_register');
+                        Modular.to.pushNamed('/student_class/student_add_class');
                       },
                     ),
                   ],
@@ -166,7 +166,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         // Modular.to.pushNamed('/teacher/teacher_report');
-                        Modular.to.pushNamed('/teacher/teacher_report_select');
+                        Modular.to.pushNamed('/student_2/student_report_select');
                       },
                     ),
                   ],

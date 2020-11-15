@@ -11,6 +11,7 @@ import 'package:galinha_karoot/app/modules/class/pages/class_register/class_regi
 import 'package:galinha_karoot/app/modules/class/services/class_service.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_edit/student_class_edit_controller.dart';
@@ -20,7 +21,7 @@ import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/s
 import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_page.dart';
 
-class ClassModule extends ChildModule {
+class StudentClassModule extends ChildModule {
   @override
   List<Bind> get binds => [
         Bind((i) => CasesRepository(firestore: Firestore.instance)),
@@ -35,16 +36,18 @@ class ClassModule extends ChildModule {
         
           @override
           List<Router> get routers => [
-                Router('/class_register', child: (_, args) => StudentClassRegisterPage()),
-                Router('/class_list', child: (_, args) => StudentClassListPage()),
-                Router('/class_detail',
+                Router('/student_class_register', child: (_, args) => StudentClassRegisterPage()),
+                Router('/student_class_list', child: (_, args) => StudentClassListPage()),
+                Router('/student_class_detail',
                     child: (_, args) => StudentClassDetailPage(
                           classModel: args.data,
                         )),
-                Router('/class_edit', child: (_, args) => StudentClassEditPage(classModel: args.data,))
+                Router('/student_class_edit', child: (_, args) => StudentClassEditPage(classModel: args.data,)),
+                 Router('/student_add_class',
+            child: (_, args) => StudentAddClassPage()),
               ];
         
-          static Inject get to => Inject<ClassModule>.of();
+          static Inject get to => Inject<StudentClassModule>.of();
         }
         
         class StudentClassService {
