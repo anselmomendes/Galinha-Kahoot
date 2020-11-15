@@ -4,16 +4,16 @@ import 'package:mobx/mobx.dart';
 
 part 'class_detail_controller.g.dart';
 
-class ClassDetailController = _ClassDetailControllerBase
-    with _$ClassDetailController;
+class StudentClassDetailController = _StudentClassDetailControllerBase
+    with _$StudentClassDetailController;
 
-abstract class _ClassDetailControllerBase with Store {
-  final ClassRepository classRepository;
+abstract class _StudentClassDetailControllerBase with Store {
+  final StudentClassRepository classRepository;
 
   @observable
   ObservableStream<List<ClassModel>> classList;
 
-  _ClassDetailControllerBase(this.classRepository){
+  _StudentClassDetailControllerBase(this.classRepository){
     getList();
   }
 
