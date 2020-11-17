@@ -52,7 +52,9 @@ class _StudentCasesRelatorioPageState
         padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
         child: Column(
           children: <Widget>[
-            Container()
+            Container(
+              
+            ),
             /* Container(
               child: Image.network(
                 widget.model.imageUrlSix, //widget.casesModel.imageUrlTwo,

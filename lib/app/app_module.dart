@@ -18,6 +18,7 @@ import 'modules/cases/repositories/question_repository.dart';
 import 'modules/cases/store/cases_store.dart';
 import 'modules/cases/view_model/cases_viewmodel.dart';
 import 'modules/users/student_2/student_2_module.dart';
+import 'modules/users/student_2/student_cases/cases_module.dart';
 import 'modules/users/teacher/pages/teacher_list_cases/teacher_list_cases_controller.dart';
 
 class AppModule extends MainModule {
@@ -41,6 +42,7 @@ class AppModule extends MainModule {
         Router('/student_2', module: Student2Module()),
         Router('/teacher', module: TeacherModule()),
          Router('/student_class', module: StudentClassModule()),
+       Router('/student_cases', module: StudentCasesModule()),
       ];
 
   @override

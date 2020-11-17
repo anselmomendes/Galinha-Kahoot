@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_cases_quiz_module.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_modulle_.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_module.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
 
 class StudentCasesHomePage extends StatefulWidget {
@@ -20,10 +21,10 @@ class _StudentCasesHomePageState
   final List<Widget> _widgetOptions = <Widget>[
     // CasesAnamneseModule(),
     // Novo modo
-    CasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao'),
-    CasesSintomasModule(title: "Avaliação", page: 'avaliacao'),
-    CasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos'),
-    CasesSintomasModule(title: "Exames", page: 'exames'),
+    StudentCasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao'),
+    StudentCasesSintomasModule(title: "Avaliação", page: 'avaliacao'),
+    StudentCasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos'),
+    StudentCasesSintomasModule(title: "Exames", page: 'exames'),
     // CasesSintomasModule(title: "Quiz", page: 'quiz'),
 
     // Modo antigo
@@ -32,8 +33,8 @@ class _StudentCasesHomePageState
     // CasesProcedimentoModule(),
     // CasesExamesModule(),
     // CasesKahootModule(),
-    CasesQuizModule(title: "Quiz", page: 'quiz'),
-    CasesRelatorioModule(),
+    StudentCasesQuizModule(title: "Quiz", page: 'quiz'),
+    //StudentCasesRelatorioModule(),
   ];
 
   @override
@@ -44,10 +45,10 @@ class _StudentCasesHomePageState
         children: <Widget>[
     // CasesAnamneseModule(),
     // Novo modo
-    CasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao', model: widget.model),
-    CasesSintomasModule(title: "Avaliação", page: 'avaliacao', model: widget.model),
-    CasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos', model: widget.model),
-    CasesSintomasModule(title: "Exames", page: 'exames', model: widget.model),
+    StudentCasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao', model: widget.model),
+    StudentCasesSintomasModule(title: "Avaliação", page: 'avaliacao', model: widget.model),
+    StudentCasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos', model: widget.model),
+    StudentCasesSintomasModule(title: "Exames", page: 'exames', model: widget.model),
     // CasesSintomasModule(title: "Quiz", page: 'quiz'),
 
     // Modo antigo
@@ -56,8 +57,8 @@ class _StudentCasesHomePageState
     // CasesProcedimentoModule(),
     // CasesExamesModule(),
     // CasesKahootModule(),
-    CasesQuizModule(title: "Quiz", page: 'quiz', model: widget.model),
-    CasesRelatorioModule(),
+    StudentCasesQuizModule(title: "Quiz", page: 'quiz', model: widget.model),
+    //StudentCasesRelatorioModule(),
   ],
       ),
       bottomNavigationBar: AnimatedBuilder(

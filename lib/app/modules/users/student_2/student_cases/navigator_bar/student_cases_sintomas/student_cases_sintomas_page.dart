@@ -39,7 +39,7 @@ class _StudentCasesSintomasPageState
 
     return Observer(builder: (_) {
       if (editMode == true) {
-        return modeEdition(widget.model, screenWidth);
+        return modeVisualization(screenWidth);
       } else {
         return modeVisualization(screenWidth);
       }
@@ -55,14 +55,14 @@ class _StudentCasesSintomasPageState
           title: Text(widget.title),
           centerTitle: true,
         ),
-        floatingActionButton: FloatingActionButton(
+       /* floatingActionButton: FloatingActionButton(
             backgroundColor: appContrastColor,
             child: Icon(Icons.edit),
             onPressed: () {
               setState(() {
                 editMode = true;
               });
-            }),
+            }), */
         body: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
           child: Column(
@@ -160,7 +160,7 @@ class _StudentCasesSintomasPageState
   }
 
   // Modo edição (adicionar ou excluir campos)
-  Scaffold modeEdition(CasesModel model, var screenWidth) {
+ /* Scaffold modeEdition(CasesModel model, var screenWidth) {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.1,
@@ -339,10 +339,10 @@ class _StudentCasesSintomasPageState
             ),
           ],
         ));
-  }
+  }*/
 
   // Exibir os campos do caso
-  Widget _selectField(ComponentModel model, int index) {
+ /* Widget _selectField(ComponentModel model, int index) {
     return Row(
       children: <Widget>[
         /* Expanded(
@@ -376,7 +376,7 @@ class _StudentCasesSintomasPageState
         ),
       ],
     );
-  }
+  }*/
 
   // Aviso de confirmação para deletar campo
   void _showAlertDialogDelete(ComponentModel model) {

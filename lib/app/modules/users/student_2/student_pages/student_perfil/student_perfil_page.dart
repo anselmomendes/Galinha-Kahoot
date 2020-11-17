@@ -13,7 +13,7 @@ class StudentPerfilPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
   const StudentPerfilPage(
-      {Key key, this.title = "StudentPerfil", this.showAppBar})
+      {Key key, this.title = "Perfil", this.showAppBar})
       : super(key: key);
 
   @override

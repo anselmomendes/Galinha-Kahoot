@@ -113,7 +113,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                       color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
-                        Modular.to.pushNamed('/student_class/student_class_list');
+                        Modular.to.pushNamed('/student_class/student_class_details');
                       },
                     ),
                     FlatButton(

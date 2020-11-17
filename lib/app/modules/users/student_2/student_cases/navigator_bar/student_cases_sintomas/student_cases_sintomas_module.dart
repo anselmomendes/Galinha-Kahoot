@@ -4,6 +4,7 @@ import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_page.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_page.dart';
 
 class StudentCasesSintomasModule extends ModuleWidget {
   String title;
@@ -17,7 +18,7 @@ class StudentCasesSintomasModule extends ModuleWidget {
   static Inject get to => Inject<StudentCasesSintomasModule>.of();
 
   @override
-  Widget get view => CasesSintomasPage(title: title, page: page,
+  Widget get view => StudentCasesSintomasPage(title: title, page: page,
         model: model,
       );
 }

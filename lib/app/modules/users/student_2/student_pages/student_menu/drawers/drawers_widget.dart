@@ -82,23 +82,15 @@ class DrawersWidget extends StatelessWidget {
 
                   icon: Icons.person,
                   title: "Meu Perfil",
-                  route: '/teacher/teacher_perfil'),
-              _getTile(
-                  icon: Icons.local_hospital,
-                  title: "Acessar Casos",
-                  route: '/teacher/teacher_list_cases'),
-              _getTile(
-                  icon: Icons.description,
-                  title: "Relatórios",
-                  route: '/teacher/teacher_report'),
+                  route: '/student_2/student_perfil'),
               _getTile(
                   icon: Icons.info,
                   title: "Sobre",
-                  route: '/teacher/teacher_about'),
+                  route: '/student_2/student_about'),
                    _getTile(
                   icon: Icons.public,
                   title: "Casos Públicos",
-                  route: '/cases/cases_public'),
+                  route: '/student_cases/student_cases_public'),
               ListTile(
                 leading: Icon(Icons.exit_to_app),
                 title: Text(

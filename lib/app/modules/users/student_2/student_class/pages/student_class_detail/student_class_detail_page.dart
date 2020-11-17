@@ -88,7 +88,7 @@ class _StudentClassDetailPageState
                           Center(
                             child: Column(
                               children: <Widget>[
-                                Text("Olá professor! ",
+                                Text("Olá! ",
                                     style: TextStyle(
                                         fontSize: 20,
                                         fontWeight: FontWeight.w600)),

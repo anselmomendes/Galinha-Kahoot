@@ -69,16 +69,16 @@ class _StudentListCasesPageState
                                 fontSize: 18,
                               ),
                             ),
-                            trailing: IconButton(
+                         /*   trailing: IconButton(
                               icon: Icon(Icons.settings),
                               color: Colors.blueGrey,
                               onPressed: () {
                                 Modular.to.pushNamed(
-                                  '/cases/cases_config',
+                                  '/student_cases/student_cases_config',
                                   arguments: model,
                                 );
                               },
-                            ),
+                            ),*/
                             subtitle: //Text(model.title),
                                 Text(
                               model
@@ -95,13 +95,13 @@ class _StudentListCasesPageState
                               ); */
                               Navigator.pushNamed(
                                 context,
-                                '/cases/cases_home',
+                                '/student_cases/student_cases_home',
                                 arguments: model,
                               );
                             },
                             //subtitle: Text(model.right),
                           ),
-                          ButtonBar(
+                         /* ButtonBar(
                             children: <Widget>[
                               FlatButton(
                                 color: Colors.redAccent,
@@ -138,7 +138,7 @@ class _StudentListCasesPageState
                                 },
                               ), */
                             ],
-                          ),
+                          ),*/
                         ],
                       ),
                     ),
