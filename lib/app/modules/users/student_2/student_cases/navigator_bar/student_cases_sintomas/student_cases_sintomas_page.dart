@@ -16,11 +16,12 @@ class StudentCasesSintomasPage extends StatefulWidget {
       : super(key: key);
 
   @override
-  _StudentCasesSintomasPageState createState() => _StudentCasesSintomasPageState();
+  _StudentCasesSintomasPageState createState() =>
+      _StudentCasesSintomasPageState();
 }
 
-class _StudentCasesSintomasPageState
-    extends ModularState<StudentCasesSintomasPage, StudentCasesSintomasController> {
+class _StudentCasesSintomasPageState extends ModularState<
+    StudentCasesSintomasPage, StudentCasesSintomasController> {
   bool editMode;
 
   // Variável p/ pegar o valor da posição do último campo
@@ -28,26 +29,14 @@ class _StudentCasesSintomasPageState
 
   @override
   void initState() {
+    super.initState();
     controller.getDocuments(widget.model.id, widget.page);
     editMode = false;
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
-
-    return Observer(builder: (_) {
-      if (editMode == true) {
-        return modeVisualization(screenWidth);
-      } else {
-        return modeVisualization(screenWidth);
-      }
-    });
-  }
-
-  // Modo visualização do tópico do caso
-  Scaffold modeVisualization(var screenWidth) {
     return Scaffold(
         appBar: AppBar(
           elevation: 0.1,
@@ -55,31 +44,23 @@ class _StudentCasesSintomasPageState
           title: Text(widget.title),
           centerTitle: true,
         ),
-       /* floatingActionButton: FloatingActionButton(
-            backgroundColor: appContrastColor,
-            child: Icon(Icons.edit),
-            onPressed: () {
-              setState(() {
-                editMode = true;
-              });
-            }), */
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: screenWidth * 1.4,
-                child: Observer(
-                  name: 'componentes',
-                  builder: (_) {
-                    if (controller.cases == null)
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    else {
-                      List<ComponentModel> list = controller.cases;
-                      return ListView.builder(
-                        itemCount: controller.cases.length,
+        body: Observer(builder: (_) {
+          if (controller.cases.data == null) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (controller.cases.data.isEmpty) {
+            return Text("Nenhum caso encontrado");
+          } else {
+            List<ComponentModel> list = controller.cases.data;
+            return SingleChildScrollView(
+              padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+              child: Column(
+                children: <Widget>[
+                  Container(
+                      height: screenWidth * 1.4,
+                      child: ListView.builder(
+                        itemCount: controller.cases.data.length,
                         itemBuilder: (_, index) {
                           ComponentModel model = list[index];
 
@@ -118,349 +99,12 @@ class _StudentCasesSintomasPageState
                               ),
                             );
                           }
-
-                          /* return Container(
-                          child: Card(
-                            margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                            elevation: 20,
-                            child: GestureDetector(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  ListTile(
-                                    title: Center(
-                                      child: Text(
-                                        model.type,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, '/cases/cases_edit',
-                                    arguments: model);
-                              },
-                            ),
-                          ),
-                        ); */
                         },
-                      );
-                    }
-                  },
-                ),
+                      )),
+                ],
               ),
-            ],
-          ),
-        ));
+            );
+          }
+        }));
   }
-
-  // Modo edição (adicionar ou excluir campos)
- /* Scaffold modeEdition(CasesModel model, var screenWidth) {
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0.1,
-          backgroundColor: appContrastColor,
-          title: Text(widget.title),
-          centerTitle: true,
-        ),
-        body: Column(
-          children: [
-            Container(
-              height: screenWidth * 1.15,
-              child: Observer(
-                name: 'componentes',
-                builder: (_) {
-                  if (controller.cases == null)
-                    return Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  else {
-                    List<ComponentModel> list = controller.cases;
-
-                    if (list.length != 0) {
-                      // Valor (position) do último campo
-                      lastPosition = list.last.position + 1;
-                    } else {
-                      lastPosition = 1;
-                    }
-
-                    return ListView.builder(
-                      itemCount: controller.cases.length,
-                      itemBuilder: (_, index) {
-                        ComponentModel model = list[index];
-
-                        return Container(
-                          child: Card(
-                            margin: EdgeInsets.fromLTRB(15.0, 15.0, 15.0, 5.0),
-                            elevation: 20,
-                            child: GestureDetector(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  ListTile(
-                                    title: _selectField(model, index)
-                                    /* Center(
-                                      child: Text(
-                                        model.type,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                    ) */
-                                    ,
-                                  ),
-                                ],
-                              ),
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, '/cases/cases_edit',
-                                    arguments: model).then((value) async => await controller.getDocuments(model.idCases, model.page));
-                              },
-                            ),
-                          ),
-                        );
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
-            Divider(
-              height: 10.0,
-              indent: 5.0,
-              color: Colors.black,
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              'Adicionar Campos',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18.0,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            Padding(
-              padding: EdgeInsets.only(
-                bottom: 10.0,
-              ),
-            ),
-            Row(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(right: screenWidth * 0.05),
-                  child: IconButton(
-                      icon: Icon(
-                        Icons.add_photo_alternate,
-                        color: Colors.blueGrey[500],
-                        size: 50.0,
-                        semanticLabel: 'Imagem',
-                      ),
-                      tooltip: 'Imagem',
-                      onPressed: () async {
-                        ComponentModel model = ComponentModel();
-                        model.type = 'Imagem';
-                        model.idCases = widget.model.id;
-                        model.page = widget.page;
-                        model.value = 'https://livecasthd.com.br/sem_foto.png';
-                        // model.type = 'image';
-                        model.position = lastPosition;
-
-                        await controller.create(model);
-                        await controller.getDocuments(
-                            widget.model.id, widget.page);
-                      }),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(),
-                ),
-                Padding(
-                    padding: EdgeInsets.only(right: screenWidth * 0.05),
-                    child: IconButton(
-                        icon: Icon(
-                          Icons.description,
-                          color: Colors.blueGrey[500],
-                          size: 50.0,
-                          semanticLabel: 'Texto',
-                        ),
-                        tooltip: 'Texto',
-                        onPressed: () async {
-                          ComponentModel model = ComponentModel();
-                          model.type = 'Texto';
-                          model.idCases = widget.model.id;
-                          model.page = widget.page;
-                          model.value =
-                              'Digite o conteúdo para o tópico deste caso.';
-                          // model.type = 'text';
-                          model.position = lastPosition;
-
-                          await controller.create(model);
-                          await controller.getDocuments(
-                              widget.model.id, widget.page);
-                        })),
-                Expanded(
-                  flex: 1,
-                  child: Container(),
-                ),
-                Padding(
-                    padding: EdgeInsets.only(right: screenWidth * 0.05),
-                    child: IconButton(
-                        icon: Icon(
-                          Icons.title,
-                          color: Colors.blueGrey[500],
-                          size: 50.0,
-                          semanticLabel: 'Título',
-                        ),
-                        tooltip: 'Título',
-                        onPressed: () async {
-                          ComponentModel model = ComponentModel();
-                          model.type = 'Título';
-                          model.idCases = widget.model.id;
-                          model.page = widget.page;
-                          model.value = 'Digite um título para o conteúdo';
-                          // model.type = 'topic';
-                          model.position = lastPosition;
-                          print(lastPosition);
-
-                          await controller.create(model);
-                          await controller.getDocuments(
-                              widget.model.id, widget.page);
-                        })),
-                SizedBox(height: 10),
-              ],
-            ),
-          ],
-        ));
-  }*/
-
-  // Exibir os campos do caso
- /* Widget _selectField(ComponentModel model, int index) {
-    return Row(
-      children: <Widget>[
-        /* Expanded(
-          flex: 2,
-          child: Container(),
-        ), */
-        Text('Posição ${model.position} | ${model.type}',
-          // "Campo | ${model.type}",
-          // textAlign: TextAlign.end,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            fontSize: 18,
-          ),
-        ),
-        Expanded(
-          flex: 2,
-          child: Container(),
-        ),
-        SizedBox(
-          width: 35,
-          // height: 40,
-          child: FlatButton(
-              padding: EdgeInsets.all(1),
-              onPressed: () async {
-                _showAlertDialogDelete(model);
-              },
-              child: Icon(
-                Icons.delete,
-                color: Colors.redAccent,
-              )),
-        ),
-      ],
-    );
-  }*/
-
-  // Aviso de confirmação para deletar campo
-  void _showAlertDialogDelete(ComponentModel model) {
-    // model ??= CasesModel();
-
-    Widget cancelButton = FlatButton(
-      child: Text("Cancelar"),
-      onPressed: () {
-        Modular.to.pop();
-      },
-    );
-    // configura o button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () async {
-        // await controller.delete(model);
-        await controller.delete(widget.model.id, widget.page, model.id);
-        await controller.getDocuments(widget.model.id, widget.page);
-        Modular.to.pop();
-      },
-    );
-    // configura o  AlertDialog
-    AlertDialog alerta = AlertDialog(
-      title: Text("Aviso"),
-      content: Text("Deseja excluir esse campo?"),
-      actions: [
-        cancelButton,
-        okButton,
-      ],
-    );
-    // exibe o dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alerta;
-      },
-    );
-  }
-
-/*   Widget _selectField() {
-    if (widget.model.type.compareTo("Título") == 0) {
-      return _fieldTopic();
-    } else if (widget.model.type.compareTo("Texto") == 0) {
-      return _fieldText();
-    } else if (widget.model.type.compareTo("Imagem") == 0) {
-      return _fieldImage();
-    } else
-      return null;
-  } */
-
-/*   Widget _fieldTopic() {
-    return Column(
-      children: <Widget>[
-        SizedBox(height: 5),
-        Text(
-          'Título',
-          style: TextStyle(fontSize: 18),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(height: 5),
-        TextFormField(
-          controller: initalValue,
-          maxLength: 40,
-          //initialValue: _textFour.text,
-          decoration: InputDecoration(
-            labelText: 'Digite um título para o caso',
-            hintText: 'Digite o título',
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: BorderSide(
-                color: Colors.black,
-                width: 1.0,
-              ),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(5.0),
-              borderSide: BorderSide(
-                color: Colors.black,
-                width: 2.0,
-              ),
-            ),
-          ),
-        ),
-      ],
-    );
-  } */
 }

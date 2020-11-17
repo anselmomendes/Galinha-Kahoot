@@ -29,14 +29,14 @@ mixin _$StudentCasesSintomasController on _StudentCasesSintomasBase, Store {
   final _$casesAtom = Atom(name: '_StudentCasesSintomasBase.cases');
 
   @override
-  List<ComponentModel> get cases {
+  ObservableStream<List<ComponentModel>> get cases {
     _$casesAtom.context.enforceReadPolicy(_$casesAtom);
     _$casesAtom.reportObserved();
     return super.cases;
   }
 
   @override
-  set cases(List<ComponentModel> value) {
+  set cases(ObservableStream<List<ComponentModel>> value) {
     _$casesAtom.context.conditionallyRunInAction(() {
       super.cases = value;
       _$casesAtom.reportChanged();
@@ -72,22 +72,11 @@ mixin _$StudentCasesSintomasController on _StudentCasesSintomasBase, Store {
       ActionController(name: '_StudentCasesSintomasBase');
 
   @override
-  dynamic delete(String casesID, String page, String componentID) {
+  dynamic getController() {
     final _$actionInfo =
         _$_StudentCasesSintomasBaseActionController.startAction();
     try {
-      return super.delete(casesID, page, componentID);
-    } finally {
-      _$_StudentCasesSintomasBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic create(ComponentModel model) {
-    final _$actionInfo =
-        _$_StudentCasesSintomasBaseActionController.startAction();
-    try {
-      return super.create(model);
+      return super.getController();
     } finally {
       _$_StudentCasesSintomasBaseActionController.endAction(_$actionInfo);
     }

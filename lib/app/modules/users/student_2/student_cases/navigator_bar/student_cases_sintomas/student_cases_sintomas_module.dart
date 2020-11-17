@@ -18,7 +18,9 @@ class StudentCasesSintomasModule extends ModuleWidget {
   static Inject get to => Inject<StudentCasesSintomasModule>.of();
 
   @override
-  Widget get view => StudentCasesSintomasPage(title: title, page: page,
+  Widget get view => StudentCasesSintomasPage(
+        title: title,
+        page: page,
         model: model,
       );
 }

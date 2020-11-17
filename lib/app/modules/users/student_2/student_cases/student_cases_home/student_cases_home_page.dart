@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_module.dart';
@@ -48,36 +49,48 @@ class _StudentCasesHomePageState
 
   @override
   Widget build(BuildContext context) {
-    CasesModel model = controller.caseModel.data;
     return Scaffold(
-      body: PageView(
-        controller: controller.pageViewController,
-        children: <Widget>[
-          // CasesAnamneseModule(),
-          // Novo modo
-          StudentCasesSintomasModule(
-              title: "Apresentação do Caso",
-              page: 'apresentacao',
-              model: model),
-          StudentCasesSintomasModule(
-              title: "Avaliação", page: 'avaliacao', model: model),
-          StudentCasesSintomasModule(
-              title: "Informações Cirúrgicas",
-              page: 'procedimentos',
-              model: model),
-          StudentCasesSintomasModule(
-              title: "Exames", page: 'exames', model: model),
-          // CasesSintomasModule(title: "Quiz", page: 'quiz'),
+      body: Observer(
+        builder: (_) {
+          if (controller.caseModel.data == null &&
+              controller.pageViewController == null)
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          else {
+            CasesModel model = controller.caseModel.data;
+            return PageView(
+              controller: controller.pageViewController,
+              children: <Widget>[
+                // CasesAnamneseModule(),
+                // Novo modo
+                StudentCasesSintomasModule(
+                    title: "Apresentação do Caso",
+                    page: 'apresentacao',
+                    model: model),
+                StudentCasesSintomasModule(
+                    title: "Avaliação", page: 'avaliacao', model: model),
+                StudentCasesSintomasModule(
+                    title: "Informações Cirúrgicas",
+                    page: 'procedimentos',
+                    model: model),
+                StudentCasesSintomasModule(
+                    title: "Exames", page: 'exames', model: model),
+                // CasesSintomasModule(title: "Quiz", page: 'quiz'),
 
-          // Modo antigo
-          // CasesSintomasModule(),
-          // CasesAvaliacaoModule(),
-          // CasesProcedimentoModule(),
-          // CasesExamesModule(),
-          // CasesKahootModule(),
-          StudentCasesQuizModule(title: "Quiz", page: 'quiz', model: model),
-          //StudentCasesRelatorioModule(),
-        ],
+                // Modo antigo
+                // CasesSintomasModule(),
+                // CasesAvaliacaoModule(),
+                // CasesProcedimentoModule(),
+                // CasesExamesModule(),
+                // CasesKahootModule(),
+                StudentCasesQuizModule(
+                    title: "Quiz", page: 'quiz', model: model),
+                //StudentCasesRelatorioModule(),
+              ],
+            );
+          }
+        },
       ),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller.pageViewController,

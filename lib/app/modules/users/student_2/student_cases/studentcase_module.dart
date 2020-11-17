@@ -11,6 +11,7 @@ import 'package:galinha_karoot/app/modules/cases/repositories/quiz_repository.da
 import 'package:galinha_karoot/app/modules/cases/services/cases_service.dart';
 import 'package:galinha_karoot/app/modules/cases/view_model/cases_viewmodel.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_public/student_cases_public_controller.dart';
@@ -27,8 +28,8 @@ class StudentCaseModule extends MainModule {
         Bind((i) => CasesRegisterController(i.get<CasesRepository>())),
         Bind((i) => CasesService()),
         Bind((i) => QuizRepository(firestore: Firestore.instance)),
-        Bind((i) =>
-            CasesSintomasController(casesRepository: i.get<CasesRepository>())),
+        Bind((i) => StudentCasesSintomasController(
+            student2repository: i.get<Student2Repository>())),
       ];
 
   @override
