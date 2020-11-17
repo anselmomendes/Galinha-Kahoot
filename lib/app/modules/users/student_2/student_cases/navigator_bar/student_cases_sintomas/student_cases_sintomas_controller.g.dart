@@ -69,11 +69,12 @@ mixin _$StudentCasesSintomasController on _StudentCasesSintomasBase, Store {
   }
 
   final _$_StudentCasesSintomasBaseActionController =
-      ActionController(name: '_CasesSintomasBase');
+      ActionController(name: '_StudentCasesSintomasBase');
 
   @override
   dynamic delete(String casesID, String page, String componentID) {
-    final _$actionInfo = _$_StudentCasesSintomasBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesSintomasBaseActionController.startAction();
     try {
       return super.delete(casesID, page, componentID);
     } finally {
@@ -83,7 +84,8 @@ mixin _$StudentCasesSintomasController on _StudentCasesSintomasBase, Store {
 
   @override
   dynamic create(ComponentModel model) {
-    final _$actionInfo = _$_StudentCasesSintomasBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesSintomasBaseActionController.startAction();
     try {
       return super.create(model);
     } finally {

@@ -27,6 +27,10 @@ class _StudentClassDetailPageState
     extends ModularState<StudentClassDetailPage, StudentClassDetailController> {
   // Variável para o status da turma
   String _statusLocal;
+  @override
+  void initState() {
+    controller.setClass(widget.classModel);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +47,14 @@ class _StudentClassDetailPageState
       body: Container(
         child: Observer(
           builder: (_) {
-            if (controller.classList.data == null)
+            if (controller.classModel.data == null)
               return Center(
                 child: CircularProgressIndicator(),
               );
-            else if (controller.classList.hasError)
-              return Center(
-                child: RaisedButton(
-                  onPressed: () => controller.getList(),
-                  child: Text('Error'),
-                ),
-              );
             else {
+              ClassModel model = controller.classModel.data;
               // Conversão do status
-              bool _statusBool = widget.classModel.status;
+              bool _statusBool = model.status;
               _checkStatus(_statusBool);
 
               // Tratamento de data
@@ -64,11 +62,11 @@ class _StudentClassDetailPageState
               var modifiedDate;
               var endTime;
               creationDate = DateFormat("dd/MM/y hh:mm a")
-                  .format(widget.classModel.creationDate.toDate());
+                  .format(model.creationDate.toDate());
               modifiedDate = DateFormat("dd/MM/y hh:mm a")
-                  .format(widget.classModel.modifiedDate.toDate());
-              endTime = DateFormat("dd/MM/y hh:mm a")
-                  .format(widget.classModel.endTime.toDate());
+                  .format(model.modifiedDate.toDate());
+              endTime =
+                  DateFormat("dd/MM/y hh:mm a").format(model.endTime.toDate());
 
               return SingleChildScrollView(
                 padding: EdgeInsets.only(
@@ -109,7 +107,7 @@ class _StudentClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${widget.classModel.accessCode}',
+                                  text: '${model.accessCode}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -138,7 +136,7 @@ class _StudentClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${widget.classModel.className}',
+                                  text: '${model.className}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -153,7 +151,7 @@ class _StudentClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${widget.classModel.titleCase}',
+                                  text: '${model.titleCase}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -213,8 +211,8 @@ class _StudentClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  // text: '${widget.classModel.timer} minutos',
-                                  text: selectiontextDetail(widget.classModel.timer),
+                                  // text: '${model.timer} minutos',
+                                  text: selectiontextDetail(model.timer),
                                   style: text2TextStyle),
                             ],
                           )),

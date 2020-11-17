@@ -26,7 +26,7 @@ mixin _$StudentCasesRelatorioController on _StudentCasesRelatorioBase, Store {
     }, _$editModeAtom, name: '${_$editModeAtom.name}_set');
   }
 
-  final _$casesListAtom = Atom(name: '_CasesRelatorioBase.casesList');
+  final _$casesListAtom = Atom(name: '_StudentCasesRelatorioBase.casesList');
 
   @override
   ObservableStream<List<CasesModel>> get casesList {
@@ -43,36 +43,39 @@ mixin _$StudentCasesRelatorioController on _StudentCasesRelatorioBase, Store {
     }, _$casesListAtom, name: '${_$casesListAtom.name}_set');
   }
 
-  final _$_CasesRelatorioBaseActionController =
-      ActionController(name: '_CasesRelatorioBase');
+  final _$_StudentCasesRelatorioBaseActionController =
+      ActionController(name: '_StudentCasesRelatorioBase');
 
   @override
   dynamic getList() {
-    final _$actionInfo = _$_CasesRelatorioBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesRelatorioBaseActionController.startAction();
     try {
       return super.getList();
     } finally {
-      _$_CasesRelatorioBaseActionController.endAction(_$actionInfo);
+      _$_StudentCasesRelatorioBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic save(CasesModel model) {
-    final _$actionInfo = _$_CasesRelatorioBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesRelatorioBaseActionController.startAction();
     try {
       return super.save(model);
     } finally {
-      _$_CasesRelatorioBaseActionController.endAction(_$actionInfo);
+      _$_StudentCasesRelatorioBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic delete(CasesModel model) {
-    final _$actionInfo = _$_CasesRelatorioBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesRelatorioBaseActionController.startAction();
     try {
       return super.delete(model);
     } finally {
-      _$_CasesRelatorioBaseActionController.endAction(_$actionInfo);
+      _$_StudentCasesRelatorioBaseActionController.endAction(_$actionInfo);
     }
   }
 

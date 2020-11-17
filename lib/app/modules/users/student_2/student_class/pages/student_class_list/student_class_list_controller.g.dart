@@ -26,70 +26,16 @@ mixin _$StudentClassListController on _StudentClassListBase, Store {
     }, _$classListAtom, name: '${_$classListAtom.name}_set');
   }
 
-  final _$classList2Atom = Atom(name: '_StudentClassListBase.classList2');
+  final _$loadListAsyncAction = AsyncAction('loadList');
 
   @override
-  ObservableStream<List<ClassModel>> get classList2 {
-    _$classList2Atom.context.enforceReadPolicy(_$classList2Atom);
-    _$classList2Atom.reportObserved();
-    return super.classList2;
-  }
-
-  @override
-  set classList2(ObservableStream<List<ClassModel>> value) {
-    _$classList2Atom.context.conditionallyRunInAction(() {
-      super.classList2 = value;
-      _$classList2Atom.reportChanged();
-    }, _$classList2Atom, name: '${_$classList2Atom.name}_set');
-  }
-
-  final _$_StudentClassListBaseActionController =
-      ActionController(name: '_StudentClassListBase');
-
-  @override
-  dynamic getList() {
-    final _$actionInfo = _$_StudentClassListBaseActionController.startAction();
-    try {
-      return super.getList();
-    } finally {
-      _$_StudentClassListBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic getListTrue() {
-    final _$actionInfo = _$_StudentClassListBaseActionController.startAction();
-    try {
-      return super.getListTrue();
-    } finally {
-      _$_StudentClassListBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic save(ClassModel model) {
-    final _$actionInfo = _$_StudentClassListBaseActionController.startAction();
-    try {
-      return super.save(model);
-    } finally {
-      _$_StudentClassListBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic delete(ClassModel model) {
-    final _$actionInfo = _$_StudentClassListBaseActionController.startAction();
-    try {
-      return super.delete(model);
-    } finally {
-      _$_StudentClassListBaseActionController.endAction(_$actionInfo);
-    }
+  Future loadList() {
+    return _$loadListAsyncAction.run(() => super.loadList());
   }
 
   @override
   String toString() {
-    final string =
-        'classList: ${classList.toString()},classList2: ${classList2.toString()}';
+    final string = 'classList: ${classList.toString()}';
     return '{$string}';
   }
 }

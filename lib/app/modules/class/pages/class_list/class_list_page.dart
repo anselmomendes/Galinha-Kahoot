@@ -30,10 +30,8 @@ class _ClassListPageState
       body: Container(
         child: Observer(
           builder: (_) {
-            print('teste');
-
             if (controller.classList.data == null)
-            // if (controller.classList2.data == null) //para testes
+              // if (controller.classList2.data == null) //para testes
               return Center(
                 child: CircularProgressIndicator(),
               );

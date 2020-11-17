@@ -27,7 +27,7 @@ mixin _$StudentCasesHomeController on _StudentCasesHomeBase, Store {
   }
 
   final _$_StudentCasesHomeBaseActionController =
-      ActionController(name: '_CasesHomeBase');
+      ActionController(name: '_StudentCasesHomeBase');
 
   @override
   void increment() {

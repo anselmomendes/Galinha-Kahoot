@@ -27,11 +27,12 @@ mixin _$StudentCasesConfigController on _StudentCasesConfigBase, Store {
   }
 
   final _$_StudentCasesConfigBaseActionController =
-      ActionController(name: '_CasesConfigBase');
+      ActionController(name: '_StudentCasesConfigBase');
 
   @override
   dynamic getList() {
-    final _$actionInfo = _$_StudentCasesConfigBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesConfigBaseActionController.startAction();
     try {
       return super.getList();
     } finally {
@@ -41,7 +42,8 @@ mixin _$StudentCasesConfigController on _StudentCasesConfigBase, Store {
 
   @override
   dynamic update(CasesModel model) {
-    final _$actionInfo = _$_StudentCasesConfigBaseActionController.startAction();
+    final _$actionInfo =
+        _$_StudentCasesConfigBaseActionController.startAction();
     try {
       return super.update(model);
     } finally {

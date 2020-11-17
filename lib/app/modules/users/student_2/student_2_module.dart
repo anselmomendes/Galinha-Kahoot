@@ -29,10 +29,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 
-
-import 'package:galinha_karoot/app/modules/users/student_2/teacher/repositories/teacher_repository.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/teacher/services/teacher_service.dart';
-
 import 'repositories/student_2_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:dio/dio.dart';
@@ -44,8 +40,8 @@ class Student2Module extends ChildModule {
         Bind((i) => Student2Repository()),
         Bind((i) => StudentPerfilEditController(i.get<Student2Repository>())),
         Bind((i) => StudentPerfilEditController(i.get<Student2Repository>())),
-         Bind((i) => StudentPerfilController(
-          i.get<Student2Repository>(), i.get<StudentRootController>())),
+        Bind((i) => StudentPerfilController(
+            i.get<Student2Repository>(), i.get<StudentRootController>())),
         Bind((i) => StudentPerfilController(
             i.get<Student2Repository>(), i.get<StudentRootController>())),
         Bind((i) => StudentAboutController()),

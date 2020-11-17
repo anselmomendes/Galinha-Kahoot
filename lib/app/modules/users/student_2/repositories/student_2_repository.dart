@@ -16,9 +16,11 @@ class Student2Repository extends Disposable {
 
   final _stateController = BehaviorSubject<RegisterClassState>();
   final _classesController = BehaviorSubject<List<ClassModel>>();
+  final _classController = BehaviorSubject<ClassModel>();
 
   Stream<RegisterClassState> get outState => _stateController.stream;
   Stream<List<ClassModel>> get outClasses => _classesController.stream;
+  Stream<ClassModel> get outClass => _classController.stream;
 
   Student2Repository() {
     print("Student Repo started!");
@@ -34,9 +36,9 @@ class Student2Repository extends Disposable {
   /**
    * Função que lista as turmas que o aluno esta inserido,
    */
-  Future<Stream<List<ClassModel>>> getClasses() async {
+  Future<Null> getClasses() async {
     StudentModel student = await getUserInfo();
-    List<ClassModel> list;
+    List<ClassModel> list = [];
     firestore
         .collection("users")
         .document(student.uid)
@@ -47,6 +49,17 @@ class Student2Repository extends Disposable {
         list.add(ClassModel.fromDocument(turma));
       });
       _classesController.add(list);
+    });
+  }
+
+  Future<void> getClass(ClassModel classModel) async {
+    firestore
+        .collection("Class")
+        .document(classModel.id)
+        .snapshots()
+        .listen((turma) {
+      ClassModel model = ClassModel.fromDocument(turma);
+      _classController.add(model);
     });
   }
 
@@ -97,7 +110,7 @@ class Student2Repository extends Disposable {
         .collection("classes")
         .document(classmodel.id)
         .setData({
-      'ClassName': classmodel.className,
+      'className': classmodel.className,
       'id': classmodel.id,
       'registerDate': time
     });
