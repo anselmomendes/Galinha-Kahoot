@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
+import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
 
 class StudentCasesHomePage extends StatefulWidget {
-  final CasesModel model;
-  StudentCasesHomePage({Key key, @required this.model}) : super(key: key);
+  final ClassModel classModel;
+  StudentCasesHomePage({Key key, @required this.classModel}) : super(key: key);
   @override
   _StudentCasesHomePageState createState() => _StudentCasesHomePageState();
 }
 
-
 class _StudentCasesHomePageState
     extends ModularState<StudentCasesHomePage, StudentCasesHomeController> {
+  @override
+  void initState() {
+    super.initState();
+    print("Turma recebida na CaseHome: ${widget.classModel.className}");
+    controller.getCase(widget.classModel);
+  }
+
   final List<Widget> _widgetOptions = <Widget>[
     // CasesAnamneseModule(),
     // Novo modo
@@ -38,27 +44,43 @@ class _StudentCasesHomePageState
 
   @override
   Widget build(BuildContext context) {
+    CasesModel model = controller.caseModel.data;
     return Scaffold(
       body: PageView(
         controller: controller.pageViewController,
         children: <Widget>[
-    // CasesAnamneseModule(),
-    // Novo modo
-    CasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao', model: widget.model),
-    CasesSintomasModule(title: "Avaliação", page: 'avaliacao', model: widget.model),
-    CasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos', model: widget.model),
-    CasesSintomasModule(title: "Exames", page: 'exames', model: widget.model),
-    // CasesSintomasModule(title: "Quiz", page: 'quiz'),
+          // CasesAnamneseModule(),
+          // Novo modo
+          CasesSintomasModule(
+              title: "Apresentação do Caso",
+              page: 'apresentacao',
+              model: model),
+          CasesSintomasModule(
+              title: "Avaliação", page: 'avaliacao', model: model),
+          CasesSintomasModule(
+              title: "Informações Cirúrgicas",
+              page: 'procedimentos',
+              model: model),
+          CasesSintomasModule(
+            title: "Exames",
+            page: 'exames',
+            model: model,
+          ),
+          // CasesSintomasModule(title: "Quiz", page: 'quiz'),
 
-    // Modo antigo
-    // CasesSintomasModule(),
-    // CasesAvaliacaoModule(),
-    // CasesProcedimentoModule(),
-    // CasesExamesModule(),
-    // CasesKahootModule(),
-    CasesQuizModule(title: "Quiz", page: 'quiz', model: widget.model),
-    CasesRelatorioModule(),
-  ],
+          // Modo antigo
+          // CasesSintomasModule(),
+          // CasesAvaliacaoModule(),
+          // CasesProcedimentoModule(),
+          // CasesExamesModule(),
+          // CasesKahootModule(),
+          CasesQuizModule(
+            page: 'quiz',
+            model: model,
+            title: "Quiz",
+          ),
+          CasesRelatorioModule(),
+        ],
       ),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller.pageViewController,
