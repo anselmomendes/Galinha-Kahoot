@@ -19,6 +19,9 @@ class StudentClassListPage extends StatefulWidget {
 class _StudentClassListPageState
     extends ModularState<StudentClassListPage, StudentClassListController> {
   @override
+  void initState() {}
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: widget.showAppBar
@@ -31,14 +34,16 @@ class _StudentClassListPageState
       body: Container(
         child: Observer(
           builder: (_) {
-            print('teste');
-
-            if (controller.classList.data == null)
+            if (controller.classList.data == null) {
               // if (controller.classList2.data == null) //para testes
               return Center(
                 child: CircularProgressIndicator(),
               );
-            else {
+            } else if (controller.classList.data.isEmpty) {
+              return Center(
+                child: Text("Nenhuma turma encontrada"),
+              );
+            } else {
               List<ClassModel> list = controller.classList.data;
               // List<ClassModel> list = controller.classList2.data;
 
@@ -58,7 +63,7 @@ class _StudentClassListPageState
                           ListTile(
                             leading: Icon(Icons.arrow_forward_ios),
                             title: Text(
-                              'Turma ${index + 1}',
+                              'Turma ${model.className}',
                               style: TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
@@ -66,7 +71,7 @@ class _StudentClassListPageState
                             ),
                             subtitle: Text(
                               // model.creationDate,
-                              'Turma: ${model.className}',
+                              'Turma: ${model.id}',
                               style: TextStyle(
                                 fontSize: 16,
                               ),
@@ -77,7 +82,7 @@ class _StudentClassListPageState
                                   arguments: question_model) */
                               Navigator.pushNamed(
                                 context,
-                                '/class/class_detail',
+                                '/student_class/student_class_detail',
                                 arguments: model,
                               );
                             },

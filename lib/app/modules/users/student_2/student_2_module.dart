@@ -4,6 +4,8 @@ import 'package:galinha_karoot/app/modules/users/student/pages/student_login/stu
 import 'package:galinha_karoot/app/modules/users/student/pages/student_login/student_login_page.dart';
 import 'package:galinha_karoot/app/modules/users/student/repositories/student_repository.dart';
 import 'package:galinha_karoot/app/modules/users/student/services/student_service.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/studentclass_module.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_about/student_about_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_about/student_about_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_area/student_area_controller.dart';
@@ -77,8 +79,9 @@ class Student2Module extends ChildModule {
             child: (_, args) => StudentAboutPage(showAppBar: true)),
         Router('/teacher_perfil',
             child: (_, args) => StudentPerfilPage(showAppBar: true)),
-        Router('/teacher_report_select',
+        Router('/student_report_select',
             child: (_, args) => StudentReportSelectPage(showAppBar: true)),
+           
       ];
 
   static Inject get to => Inject<Student2Module>.of();
