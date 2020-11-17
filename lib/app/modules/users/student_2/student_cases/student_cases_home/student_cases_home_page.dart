@@ -3,14 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
-<<<<<<< HEAD
+import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_cases_quiz_module.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_modulle_.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_module.dart';
-=======
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
->>>>>>> 41807777dc4997f54122b4e40fa064743080ebb0
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
 
 class StudentCasesHomePage extends StatefulWidget {
@@ -32,9 +28,11 @@ class _StudentCasesHomePageState
   final List<Widget> _widgetOptions = <Widget>[
     // CasesAnamneseModule(),
     // Novo modo
-    StudentCasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao'),
+    StudentCasesSintomasModule(
+        title: "Apresentação do Caso", page: 'apresentacao'),
     StudentCasesSintomasModule(title: "Avaliação", page: 'avaliacao'),
-    StudentCasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos'),
+    StudentCasesSintomasModule(
+        title: "Informações Cirúrgicas", page: 'procedimentos'),
     StudentCasesSintomasModule(title: "Exames", page: 'exames'),
     // CasesSintomasModule(title: "Quiz", page: 'quiz'),
 
@@ -55,23 +53,31 @@ class _StudentCasesHomePageState
       body: PageView(
         controller: controller.pageViewController,
         children: <Widget>[
-    // CasesAnamneseModule(),
-    // Novo modo
-    StudentCasesSintomasModule(title: "Apresentação do Caso", page: 'apresentacao', model: widget.model),
-    StudentCasesSintomasModule(title: "Avaliação", page: 'avaliacao', model: widget.model),
-    StudentCasesSintomasModule(title: "Informações Cirúrgicas", page: 'procedimentos', model: widget.model),
-    StudentCasesSintomasModule(title: "Exames", page: 'exames', model: widget.model),
-    // CasesSintomasModule(title: "Quiz", page: 'quiz'),
+          // CasesAnamneseModule(),
+          // Novo modo
+          StudentCasesSintomasModule(
+              title: "Apresentação do Caso",
+              page: 'apresentacao',
+              model: model),
+          StudentCasesSintomasModule(
+              title: "Avaliação", page: 'avaliacao', model: model),
+          StudentCasesSintomasModule(
+              title: "Informações Cirúrgicas",
+              page: 'procedimentos',
+              model: model),
+          StudentCasesSintomasModule(
+              title: "Exames", page: 'exames', model: model),
+          // CasesSintomasModule(title: "Quiz", page: 'quiz'),
 
-    // Modo antigo
-    // CasesSintomasModule(),
-    // CasesAvaliacaoModule(),
-    // CasesProcedimentoModule(),
-    // CasesExamesModule(),
-    // CasesKahootModule(),
-    StudentCasesQuizModule(title: "Quiz", page: 'quiz', model: widget.model),
-    //StudentCasesRelatorioModule(),
-  ],
+          // Modo antigo
+          // CasesSintomasModule(),
+          // CasesAvaliacaoModule(),
+          // CasesProcedimentoModule(),
+          // CasesExamesModule(),
+          // CasesKahootModule(),
+          StudentCasesQuizModule(title: "Quiz", page: 'quiz', model: model),
+          //StudentCasesRelatorioModule(),
+        ],
       ),
       bottomNavigationBar: AnimatedBuilder(
         animation: controller.pageViewController,
