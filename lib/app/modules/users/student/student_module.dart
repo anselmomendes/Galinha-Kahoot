@@ -22,7 +22,6 @@ class StudentModule extends ChildModule {
         // Bind((i) => StudentMenuController()),
         Bind((i) => StudentLoginController()),
         Bind((i) => StudentCadastroController()),
-        Bind((i) => StudentAddClassController()),
         Bind((i) => StudentService()),
         Bind((i) => StudentRepository()),
         Bind((i) => StudentCaseController()),

@@ -76,6 +76,9 @@ class _StudentClassListPageState
                                 fontSize: 16,
                               ),
                             ),
+
+                            // AO CLICAR AQUI, EXIBIR AQUI O CASO
+
                             onTap: () {
                               /* Navigator.pushNamed(
                                   context, '/cases/cases_single',
