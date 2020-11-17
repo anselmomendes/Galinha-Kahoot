@@ -76,14 +76,7 @@ class _StudentCasesHomePageState
                     model: model),
                 StudentCasesSintomasModule(
                     title: "Exames", page: 'exames', model: model),
-                // CasesSintomasModule(title: "Quiz", page: 'quiz'),
 
-                // Modo antigo
-                // CasesSintomasModule(),
-                // CasesAvaliacaoModule(),
-                // CasesProcedimentoModule(),
-                // CasesExamesModule(),
-                // CasesKahootModule(),
                 StudentCasesQuizModule(
                     title: "Quiz", page: 'quiz', model: model),
                 //StudentCasesRelatorioModule(),

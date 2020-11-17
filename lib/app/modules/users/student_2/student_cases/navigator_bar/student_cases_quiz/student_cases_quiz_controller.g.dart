@@ -44,23 +44,6 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
     }, _$casesPageAtom, name: '${_$casesPageAtom.name}_set');
   }
 
-  final _$quizAtom = Atom(name: '_StudentCasesQuizControllerBase.quiz');
-
-  @override
-  List<QuizModel> get quiz {
-    _$quizAtom.context.enforceReadPolicy(_$quizAtom);
-    _$quizAtom.reportObserved();
-    return super.quiz;
-  }
-
-  @override
-  set quiz(List<QuizModel> value) {
-    _$quizAtom.context.conditionallyRunInAction(() {
-      super.quiz = value;
-      _$quizAtom.reportChanged();
-    }, _$quizAtom, name: '${_$quizAtom.name}_set');
-  }
-
   final _$casesAtom = Atom(name: '_StudentCasesQuizControllerBase.cases');
 
   @override
@@ -95,34 +78,22 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
     }, _$editModeAtom, name: '${_$editModeAtom.name}_set');
   }
 
-  final _$getDocumentsAsyncAction = AsyncAction('getDocuments');
+  final _$loadQuizAsyncAction = AsyncAction('loadQuiz');
 
   @override
-  Future getDocuments(String casesID, String page) {
-    return _$getDocumentsAsyncAction
-        .run(() => super.getDocuments(casesID, page));
+  Future loadQuiz(String casesID, String page) {
+    return _$loadQuizAsyncAction.run(() => super.loadQuiz(casesID, page));
   }
 
   final _$_StudentCasesQuizControllerBaseActionController =
       ActionController(name: '_StudentCasesQuizControllerBase');
 
   @override
-  dynamic delete(String casesID, String page, String questionID) {
+  dynamic getQuiz() {
     final _$actionInfo =
         _$_StudentCasesQuizControllerBaseActionController.startAction();
     try {
-      return super.delete(casesID, page, questionID);
-    } finally {
-      _$_StudentCasesQuizControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic create(QuizModel model) {
-    final _$actionInfo =
-        _$_StudentCasesQuizControllerBaseActionController.startAction();
-    try {
-      return super.create(model);
+      return super.getQuiz();
     } finally {
       _$_StudentCasesQuizControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -131,7 +102,7 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
   @override
   String toString() {
     final string =
-        'quizList: ${quizList.toString()},casesPage: ${casesPage.toString()},quiz: ${quiz.toString()},cases: ${cases.toString()},editMode: ${editMode.toString()}';
+        'quizList: ${quizList.toString()},casesPage: ${casesPage.toString()},cases: ${cases.toString()},editMode: ${editMode.toString()}';
     return '{$string}';
   }
 }

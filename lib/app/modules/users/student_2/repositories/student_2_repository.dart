@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
+import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/models/StudentModel.dart';
@@ -21,6 +22,7 @@ class Student2Repository extends Disposable {
   final _classController = BehaviorSubject<ClassModel>();
   final _caseController = BehaviorSubject<CasesModel>();
   final _componentsController = BehaviorSubject<List<ComponentModel>>();
+  final _quizConttoller = BehaviorSubject<List<QuizModel>>();
 
   Stream<RegisterClassState> get outState => _stateController.stream;
   Stream<List<ClassModel>> get outClasses => _classesController.stream;
@@ -28,6 +30,7 @@ class Student2Repository extends Disposable {
   Stream<CasesModel> get outCase => _caseController.stream;
   Stream<List<ComponentModel>> get outComponents =>
       _componentsController.stream;
+  Stream<List<QuizModel>> get outQuiz => _quizConttoller.stream;
 
   Student2Repository() {
     print("Student Repo started!");
@@ -96,6 +99,28 @@ class Student2Repository extends Disposable {
           .where((element) => element.idCases == idCases)
           .toList();
       _componentsController.add(list);
+    } catch (e) {
+      print("Erro ao chamar os componentes: $e");
+      return null;
+    }
+  }
+
+  Future<void> getQuiz(String idCases, String page) async {
+    List<QuizModel> list = [];
+    try {
+      var collection = await Firestore.instance
+          .collection("Cases")
+          .document(idCases)
+          .collection(page)
+          .orderBy('position')
+          .getDocuments();
+
+      list = collection.documents
+          .map((item) => QuizModel.fromMap(item))
+          .where((element) => element.idCases == idCases)
+          .toList();
+      print("Foram encontrados ${list.length} quizes");
+      _quizConttoller.add(list);
     } catch (e) {
       print("Erro ao chamar os componentes: $e");
       return null;

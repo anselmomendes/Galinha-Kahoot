@@ -1,33 +1,29 @@
 import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
 import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/quiz_repository.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'student_cases_quiz_controller.g.dart';
 
-class StudentCasesQuizController = _StudentCasesQuizControllerBase with _$StudentCasesQuizController;
+class StudentCasesQuizController = _StudentCasesQuizControllerBase
+    with _$StudentCasesQuizController;
 
 abstract class _StudentCasesQuizControllerBase with Store {
-  final QuizRepository quizRepository;
-  final CasesRepository casesRepository;
+  final Student2Repository student2repository;
 
-  // Construtor (se modificar aqui, tem deve modificar 'cases_module')
-  _StudentCasesQuizControllerBase({this.casesRepository, this.quizRepository});
+  _StudentCasesQuizControllerBase({this.student2repository}) {
+    print("Case controller iniciado");
+  }
 
   void dispose() {
-    casesRepository.dispose();
-    quizRepository.dispose();
+    student2repository.dispose();
   }
 
   @observable
   ObservableStream<List<QuizModel>> quizList;
-  
-  @observable
-  ObservableStream<List<ComponentModel>> casesPage;
 
   @observable
-  List<QuizModel> quiz;
+  ObservableStream<List<ComponentModel>> casesPage;
 
   @observable
   List<ComponentModel> cases;
@@ -35,44 +31,19 @@ abstract class _StudentCasesQuizControllerBase with Store {
   @observable
   bool editMode = false;
 
-
-  /* @action
-  getDocuments(String casesID, String page) async {
-    cases = await casesRepository.getDocuments(casesID, page);
-  } */
-
   // Chama a função para puxar as questões do caso
   @action
-  getDocuments(String casesID, String page) async {
-    quiz = await quizRepository.getDocuments(casesID, page);
+  loadQuiz(String casesID, String page) async {
+    try {
+      student2repository.getQuiz(casesID, page);
+    } catch (e) {
+      print("Erro ao chamar os quiz: $e");
+    }
+    getQuiz();
   }
 
-  /* @action
-  delete(String casesID, String page) {
-    return casesRepository.deleteWidget(casesID, page);
-  } */
-
-  // Deleta a questão
   @action
-  delete(String casesID, String page, String questionID) {
-    return quizRepository.deleteWidget(casesID, page, questionID);
+  getQuiz() {
+    quizList = student2repository.outQuiz.asObservable();
   }
-  
-  /* @action
-  create(ComponentModel model) {
-    return casesRepository.createWidget(model);
-  } */
-
-  // Cria uma questão
-  @action
-  create(QuizModel model) {
-    return quizRepository.createWidget(model);
-  }
-
-  /* @action
-  getList(/* String casesID */) {
-    quizList = quizRepository.get().asObservable();
-    // quizList = quizRepository.getQuiz(casesID).asObservable();
-  } */
-
 }
