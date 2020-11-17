@@ -26,17 +26,11 @@ mixin _$StudentClassListController on _StudentClassListBase, Store {
     }, _$classListAtom, name: '${_$classListAtom.name}_set');
   }
 
-  final _$_StudentClassListBaseActionController =
-      ActionController(name: '_StudentClassListBase');
+  final _$loadListAsyncAction = AsyncAction('loadList');
 
   @override
-  dynamic getList() {
-    final _$actionInfo = _$_StudentClassListBaseActionController.startAction();
-    try {
-      return super.getList();
-    } finally {
-      _$_StudentClassListBaseActionController.endAction(_$actionInfo);
-    }
+  Future loadList() {
+    return _$loadListAsyncAction.run(() => super.loadList());
   }
 
   @override

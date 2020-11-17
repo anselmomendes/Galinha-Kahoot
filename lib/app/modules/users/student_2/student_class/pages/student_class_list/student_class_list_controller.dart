@@ -1,6 +1,4 @@
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
 import 'package:mobx/mobx.dart';
 
@@ -16,10 +14,20 @@ abstract class _StudentClassListBase with Store {
   ObservableStream<List<ClassModel>> classList;
 
   _StudentClassListBase(this.student2repository) {
-    student2repository.getClasses();
+    loadList();
+    getList();
   }
 
   @action
+  loadList() async {
+    try {
+      print("Chamando getList");
+      student2repository.getClasses();
+    } catch (e) {
+      print("Deu erro : $e");
+    }
+  }
+
   getList() {
     classList = student2repository.outClasses.asObservable();
   }

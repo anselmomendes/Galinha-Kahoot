@@ -10,42 +10,34 @@ part of 'student_class_detail_controller.dart';
 
 mixin _$StudentClassDetailController
     on _StudentClassDetailControllerBase, Store {
-  final _$classListAtom =
-      Atom(name: '_StudentClassDetailControllerBase.classList');
+  final _$classModelAtom =
+      Atom(name: '_StudentClassDetailControllerBase.classModel');
 
   @override
-  ObservableStream<List<ClassModel>> get classList {
-    _$classListAtom.context.enforceReadPolicy(_$classListAtom);
-    _$classListAtom.reportObserved();
-    return super.classList;
+  ObservableStream<ClassModel> get classModel {
+    _$classModelAtom.context.enforceReadPolicy(_$classModelAtom);
+    _$classModelAtom.reportObserved();
+    return super.classModel;
   }
 
   @override
-  set classList(ObservableStream<List<ClassModel>> value) {
-    _$classListAtom.context.conditionallyRunInAction(() {
-      super.classList = value;
-      _$classListAtom.reportChanged();
-    }, _$classListAtom, name: '${_$classListAtom.name}_set');
+  set classModel(ObservableStream<ClassModel> value) {
+    _$classModelAtom.context.conditionallyRunInAction(() {
+      super.classModel = value;
+      _$classModelAtom.reportChanged();
+    }, _$classModelAtom, name: '${_$classModelAtom.name}_set');
   }
 
-  final _$_StudentClassDetailControllerBaseActionController =
-      ActionController(name: '_StudentClassDetailControllerBase');
+  final _$setClassAsyncAction = AsyncAction('setClass');
 
   @override
-  dynamic getList() {
-    final _$actionInfo =
-        _$_StudentClassDetailControllerBaseActionController.startAction();
-    try {
-      return super.getList();
-    } finally {
-      _$_StudentClassDetailControllerBaseActionController
-          .endAction(_$actionInfo);
-    }
+  Future<dynamic> setClass(ClassModel model) {
+    return _$setClassAsyncAction.run(() => super.setClass(model));
   }
 
   @override
   String toString() {
-    final string = 'classList: ${classList.toString()}';
+    final string = 'classModel: ${classModel.toString()}';
     return '{$string}';
   }
 }
