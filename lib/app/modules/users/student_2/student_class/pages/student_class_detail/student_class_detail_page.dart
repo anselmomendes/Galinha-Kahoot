@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/class/pages/class_detail/class_detail_controller.dart';
 import 'package:galinha_karoot/app/modules/common/styles.dart';
@@ -52,9 +53,9 @@ class _StudentClassDetailPageState
                 child: CircularProgressIndicator(),
               );
             else {
-              ClassModel model = controller.classModel.data;
+              ClassModel classModel = controller.classModel.data;
               // Conversão do status
-              bool _statusBool = model.status;
+              bool _statusBool = classModel.status;
               _checkStatus(_statusBool);
 
               // Tratamento de data
@@ -62,11 +63,11 @@ class _StudentClassDetailPageState
               var modifiedDate;
               var endTime;
               creationDate = DateFormat("dd/MM/y hh:mm a")
-                  .format(model.creationDate.toDate());
+                  .format(classModel.creationDate.toDate());
               modifiedDate = DateFormat("dd/MM/y hh:mm a")
-                  .format(model.modifiedDate.toDate());
-              endTime =
-                  DateFormat("dd/MM/y hh:mm a").format(model.endTime.toDate());
+                  .format(classModel.modifiedDate.toDate());
+              endTime = DateFormat("dd/MM/y hh:mm a")
+                  .format(classModel.endTime.toDate());
 
               return SingleChildScrollView(
                 padding: EdgeInsets.only(
@@ -107,7 +108,7 @@ class _StudentClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${model.accessCode}',
+                                  text: '${classModel.accessCode}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -136,7 +137,7 @@ class _StudentClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${model.className}',
+                                  text: '${classModel.className}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -151,7 +152,7 @@ class _StudentClassDetailPageState
                                 fontWeight: headerFontWeight),
                             children: <TextSpan>[
                               TextSpan(
-                                  text: '${model.titleCase}',
+                                  text: '${classModel.titleCase}',
                                   style: text2TextStyle),
                             ],
                           )),
@@ -212,7 +213,7 @@ class _StudentClassDetailPageState
                             children: <TextSpan>[
                               TextSpan(
                                   // text: '${model.timer} minutos',
-                                  text: selectiontextDetail(model.timer),
+                                  text: selectiontextDetail(classModel.timer),
                                   style: text2TextStyle),
                             ],
                           )),
@@ -235,6 +236,17 @@ class _StudentClassDetailPageState
                       ),
                     ),
                     SizedBox(height: 20),
+                    Center(
+                      child: RaisedButton(
+                          child: Text("Acessar Caso"),
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/student_cases/cases_home',
+                              arguments: classModel,
+                            );
+                          }),
+                    )
                   ],
                 ),
               );

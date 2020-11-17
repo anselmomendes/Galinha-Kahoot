@@ -1,5 +1,5 @@
+import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
 import 'package:mobx/mobx.dart';
 
@@ -28,6 +28,5 @@ abstract class _StudentClassDetailControllerBase with Store {
 
   getClassforController() {
     classModel = student2repository.outClass.asObservable();
-    print("getClassforController foi chamada");
   }
 }

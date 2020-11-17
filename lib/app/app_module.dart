@@ -5,6 +5,7 @@ import 'package:galinha_karoot/app/modules/cases/cases_module.dart';
 import 'package:galinha_karoot/app/modules/class/class_module.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:galinha_karoot/app/modules/users/student/student_module.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/studentcase_module.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/studentclass_module.dart';
 import 'package:galinha_karoot/app/modules/users/teacher/teacher_module.dart';
 import 'package:galinha_karoot/app/app_controller.dart';

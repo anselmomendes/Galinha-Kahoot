@@ -3,21 +3,32 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_module.dart';
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
+<<<<<<< HEAD
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_cases_quiz_module.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_modulle_.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_module.dart';
+=======
+import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
+import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
+>>>>>>> 41807777dc4997f54122b4e40fa064743080ebb0
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
 
 class StudentCasesHomePage extends StatefulWidget {
-  final CasesModel model;
-  StudentCasesHomePage({Key key, @required this.model}) : super(key: key);
+  final ClassModel classModel;
+  StudentCasesHomePage({Key key, @required this.classModel}) : super(key: key);
   @override
   _StudentCasesHomePageState createState() => _StudentCasesHomePageState();
 }
 
-
 class _StudentCasesHomePageState
     extends ModularState<StudentCasesHomePage, StudentCasesHomeController> {
+  @override
+  void initState() {
+    super.initState();
+    print("Turma recebida na CaseHome: ${widget.classModel.className}");
+    controller.getCase(widget.classModel);
+  }
+
   final List<Widget> _widgetOptions = <Widget>[
     // CasesAnamneseModule(),
     // Novo modo
@@ -39,6 +50,7 @@ class _StudentCasesHomePageState
 
   @override
   Widget build(BuildContext context) {
+    CasesModel model = controller.caseModel.data;
     return Scaffold(
       body: PageView(
         controller: controller.pageViewController,
