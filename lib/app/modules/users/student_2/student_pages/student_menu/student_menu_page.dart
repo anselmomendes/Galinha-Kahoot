@@ -6,7 +6,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 class StudentMenuPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
-  const StudentMenuPage({Key key, this.title = "Professor e Estudante - Teste", this.showAppBar})
+  const StudentMenuPage(
+      {Key key, this.title = "Professor e Estudante - Teste", this.showAppBar})
       : super(key: key);
 
   @override
@@ -27,7 +28,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
       body: Center(
           child: ListView(
         children: <Widget>[
-         /*   Card(
+          /*   Card(
              shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(15.0),
     ),
@@ -78,9 +79,9 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
             ),
           ), */
           Card(
-             shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-    ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             margin: EdgeInsets.all(15),
             elevation: 20,
             child: Column(
@@ -101,11 +102,10 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                       )),
-                  subtitle:
-                      Text('Acesse suas turmas cadastradas.',
-                          style: TextStyle(
-                            fontSize: 16,
-                          )),
+                  subtitle: Text('Acesse suas turmas cadastradas.',
+                      style: TextStyle(
+                        fontSize: 16,
+                      )),
                 ),
                 ButtonBar(
                   children: <Widget>[
@@ -113,7 +113,8 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                       color: Colors.redAccent,
                       child: const Text('ACESSAR'),
                       onPressed: () {
-                        Modular.to.pushNamed('/student_class/student_class_details');
+                        Modular.to
+                            .pushNamed('/student_class/student_class_list');
                       },
                     ),
                     FlatButton(
@@ -122,7 +123,8 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                       onPressed: () {
                         //Navigator.pushNamed(context, '/')
                         // Navigator.pushNamed(context, '/teacher_select');
-                        Modular.to.pushNamed('/student_class/student_add_class');
+                        Modular.to
+                            .pushNamed('/student_class/student_add_class');
                       },
                     ),
                   ],
@@ -131,9 +133,9 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
             ),
           ),
           Card(
-             shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-    ),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
             margin: EdgeInsets.all(15),
             elevation: 20,
             child: Column(
@@ -166,7 +168,8 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                       child: const Text('ACESSAR'),
                       onPressed: () {
                         // Modular.to.pushNamed('/teacher/teacher_report');
-                        Modular.to.pushNamed('/student_2/student_report_select');
+                        Modular.to
+                            .pushNamed('/student_2/student_report_select');
                       },
                     ),
                   ],
