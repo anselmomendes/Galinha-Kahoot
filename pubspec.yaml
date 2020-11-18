@@ -56,6 +56,12 @@ flutter:
     - assets/Layout_cases/layout_2.jpg
     - assets/Layout_cases/layout_3.jpg
     - assets/Layout_cases/layout_4.jpg
+    - assets/imagem2.jpg
+    - assets/imagem4.jpg
+    - assets/imagem2.1.jpg
+    - assets/imagem2.2.jpg
+   
+
   uses-material-design: true
 
 

@@ -53,7 +53,7 @@ class _StudentQuizPageState
         //área da pergunta
 
         Container(
-          decoration: BoxDecoration(
+         decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/imagem2.jpg"),
               fit: BoxFit.cover,
@@ -118,13 +118,6 @@ class _StudentQuizPageState
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
-                                /*Título*/ Text(
-                                  'Dados e dados de dados',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 22),
-                                ),
                                 Padding(
                                   padding: EdgeInsets.only(top: 10.0),
                                 ),
@@ -134,7 +127,7 @@ class _StudentQuizPageState
                                       10.0, 0.0, 10.0, 10.0),
                                   child: Text(
                                     '${controller.getQuestion()}',
-                                    style: TextStyle(fontSize: 16),
+                                    style: TextStyle(fontSize: 24),
                                   ),
                                 ),
                               ],
