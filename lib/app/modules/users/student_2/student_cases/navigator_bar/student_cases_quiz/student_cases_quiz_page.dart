@@ -57,54 +57,16 @@ class _StudentCasesQuizPageState
               children: <Widget>[
                 Container(
                     height: screenWidth * 1.4,
-                    child: ListView.builder(
-                      itemCount: list.length,
-                      itemBuilder: (_, index) {
-                        QuizModel model = list[index];
-
-                        if (model.type.compareTo("type1") == 0) {
-                          return Container(
-                            height: 60,
-                            child: Column(
-                              children: <Widget>[
-                                Text('Questão ${index + 1} - Múltipla escolha',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                Text(model.question,
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      // fontWeight: FontWeight.bold,
-                                    )),
-                              ],
-                            ),
-                          );
-                        } else if (model.type.compareTo("type2") == 0) {
-                          return Container(
-                            height: 60,
-                            child: Column(
-                              children: <Widget>[
-                                Text(
-                                    'Questão ${index + 1} - Verdadeiro ou falso',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                Text(
-                                  model.question,
-                                  textAlign: TextAlign.justify,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    // fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        }
-                      },
+                    child: Container(
+                      child: Center(
+                        child: RaisedButton(
+                            child: Text("Iniciar Quiz"),
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                  context, '/student_quiz/quizpage',
+                                  arguments: list);
+                            }),
+                      ),
                     )),
               ],
             ),
