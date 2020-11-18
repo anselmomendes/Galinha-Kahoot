@@ -27,7 +27,6 @@ class _StudentQuizPageState
     // TODO: implement initState
     super.initState();
     controller.getQuiz(widget.list);
-   
   }
 
   @override
@@ -45,8 +44,8 @@ class _StudentQuizPageState
       return Scaffold(
           appBar: AppBar(
             title: Text(widget.title),
-             centerTitle: true,
-             backgroundColor: Colors.purple,
+            centerTitle: true,
+            backgroundColor: Colors.purple,
           ),
           body: trueOrFalse());
     }
@@ -61,17 +60,12 @@ class _StudentQuizPageState
         //área da pergunta
 
         Container(
-<<<<<<< HEAD
-          /*
-          decoration: BoxDecoration(          
-=======
-         decoration: BoxDecoration(
->>>>>>> 7b44723991cbfda58b1df49e076f8ef84f3c946e
+          decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/imagem2.jpg"),
               fit: BoxFit.cover,
             ),
-          ),*/
+          ),
           child: Column(
             children: [
               Container(
@@ -177,22 +171,22 @@ class _StudentQuizPageState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                    child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: Colors.blue,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'A',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
+                      child: CircleAvatar(
+                          radius: 20.0,
+                          backgroundColor: Colors.blue,
+                          child: Padding(
+                            padding: EdgeInsets.all(2),
+                            child: Text(
+                              'A',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )),
-                        onTap: null ,
+                          )),
+                      onTap: null,
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
@@ -252,22 +246,22 @@ class _StudentQuizPageState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                    child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor:  Colors.blue,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'B',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
+                      child: CircleAvatar(
+                          radius: 20.0,
+                          backgroundColor: Colors.blue,
+                          child: Padding(
+                            padding: EdgeInsets.all(2),
+                            child: Text(
+                              'B',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )),
-                        onTap: null,
+                          )),
+                      onTap: null,
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
@@ -317,22 +311,22 @@ class _StudentQuizPageState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     InkWell(
-                    child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor:  Colors.blue,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'C',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
+                      child: CircleAvatar(
+                          radius: 20.0,
+                          backgroundColor: Colors.blue,
+                          child: Padding(
+                            padding: EdgeInsets.all(2),
+                            child: Text(
+                              'C',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )),
-                        onTap: null,
+                          )),
+                      onTap: null,
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
@@ -381,24 +375,24 @@ class _StudentQuizPageState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   InkWell(
-                    child:  CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: Colors.blue,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'D',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
+                    InkWell(
+                      child: CircleAvatar(
+                          radius: 20.0,
+                          backgroundColor: Colors.blue,
+                          child: Padding(
+                            padding: EdgeInsets.all(2),
+                            child: Text(
+                              'D',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )),
-                        onTap: null,
-                        ),
+                          )),
+                      onTap: null,
+                    ),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
@@ -446,24 +440,24 @@ class _StudentQuizPageState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   InkWell(
-                    child:  CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor:  Colors.blue,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'E',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
+                    InkWell(
+                      child: CircleAvatar(
+                          radius: 20.0,
+                          backgroundColor: Colors.blue,
+                          child: Padding(
+                            padding: EdgeInsets.all(2),
+                            child: Text(
+                              'E',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 23.0,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                          ),
-                        )),
-                        onTap: null,
-                   ),
+                          )),
+                      onTap: null,
+                    ),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
@@ -688,14 +682,15 @@ class _StudentQuizPageState
 
   Widget nextQuestionButton(String answer) {
     return RaisedButton(
-       color: Colors.transparent,
-       padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(color: Colors.transparent)),
-                              child:  Text("Responder",
-                              style: TextStyle(color: Colors.white),
-                              ),
+        color: Colors.transparent,
+        padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: BorderSide(color: Colors.transparent)),
+        child: Text(
+          "Responder",
+          style: TextStyle(color: Colors.white),
+        ),
         onPressed: () {
           bool correct = controller.correctAnswer(answer);
           print("Resposta $correct");

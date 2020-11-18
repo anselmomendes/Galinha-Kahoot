@@ -18,25 +18,26 @@ class QuizModel {
   String commentary;
   String questionNumber;
   DocumentReference reference;
+  String answerStudent;
 
-  QuizModel({
-    this.id,
-    this.idCases,
-    this.position,
-    this.type,
-    this.page,
-    this.question,
-    this.answers1,
-    this.answers2,
-    this.answers3,
-    this.answers4,
-    this.answers5,
-    this.right,
-    this.time,
-    this.commentary,
-    this.questionNumber,
-    this.reference,
-  }) {
+  QuizModel(
+      {this.id,
+      this.idCases,
+      this.position,
+      this.type,
+      this.page,
+      this.question,
+      this.answers1,
+      this.answers2,
+      this.answers3,
+      this.answers4,
+      this.answers5,
+      this.right,
+      this.time,
+      this.commentary,
+      this.questionNumber,
+      this.reference,
+      this.answerStudent}) {
     id = id ?? Uuid().v1();
   }
 
@@ -57,6 +58,7 @@ class QuizModel {
     map['time'] = time;
     map['commentary'] = commentary;
     map['questionNumber'] = questionNumber;
+    map['answerStudent'] = answerStudent;
     return map;
   }
 
@@ -76,5 +78,6 @@ class QuizModel {
       time: map["time"],
       commentary: map["commentary"],
       questionNumber: map["questionNumber"],
+      answerStudent: map["answerStudent"],
       reference: map.reference);
 }

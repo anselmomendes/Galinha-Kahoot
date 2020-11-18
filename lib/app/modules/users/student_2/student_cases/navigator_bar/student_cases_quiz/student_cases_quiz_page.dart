@@ -63,11 +63,12 @@ class _StudentCasesQuizPageState
                       child: Center(
                         child: RaisedButton(
                             child: Text("Iniciar Quiz"),
-                            onPressed: () {                            
+                            onPressed: () {
                               Navigator.pushNamed(
-                                  context, '/student_2/splash_screen_quiz',
-                                  arguments: list,
-                                  );
+                                context,
+                                '/student_2/splash_screen_quiz',
+                                arguments: list,
+                              );
                             }),
                       ),
                     )),
@@ -78,31 +79,27 @@ class _StudentCasesQuizPageState
   }
 
   Widget _introScreen() {
-  return Stack(
-    children: <Widget>[
-      SplashScreen(
-        seconds: 3,
-        gradientBackground: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [
-            Color(0xffED213A),
-            Color(0xff93291E)
-          ],
+    return Stack(
+      children: <Widget>[
+        SplashScreen(
+          seconds: 3,
+          gradientBackground: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [Color(0xffED213A), Color(0xff93291E)],
+          ),
+          navigateAfterSeconds: StudentQuizPage(),
+          loaderColor: Colors.transparent,
         ),
-        navigateAfterSeconds: StudentQuizPage(),
-        loaderColor: Colors.transparent,
-      ),
-      Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/bits.png"),
-            fit: BoxFit.none,
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/bits.png"),
+              fit: BoxFit.none,
+            ),
           ),
         ),
-      ),
-    ],
-  );
-}
-
+      ],
+    );
+  }
 }

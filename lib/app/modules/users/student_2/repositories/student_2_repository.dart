@@ -17,6 +17,7 @@ class Student2Repository extends Disposable {
   final Auth auth = Auth();
   FirebaseUser firebaseUser;
 
+  //Controllers que armazenam o fluxo de dados
   final _stateController = BehaviorSubject<RegisterClassState>();
   final _classesController = BehaviorSubject<List<ClassModel>>();
   final _classController = BehaviorSubject<ClassModel>();
@@ -24,6 +25,7 @@ class Student2Repository extends Disposable {
   final _componentsController = BehaviorSubject<List<ComponentModel>>();
   final _quizConttoller = BehaviorSubject<List<QuizModel>>();
 
+  //Funções que carregam os dados das Streams
   Stream<RegisterClassState> get outState => _stateController.stream;
   Stream<List<ClassModel>> get outClasses => _classesController.stream;
   Stream<ClassModel> get outClass => _classController.stream;
@@ -36,6 +38,7 @@ class Student2Repository extends Disposable {
     print("Student Repo started!");
   }
 
+  //Carrega os dados do usuario
   Future<StudentModel> getUserInfo() async {
     firebaseUser = await FirebaseAuth.instance.currentUser();
     DocumentSnapshot doc =
@@ -62,6 +65,11 @@ class Student2Repository extends Disposable {
     });
   }
 
+  /**
+   * Função que carrega a Turma, ela recebe a turma 
+   * fica armazenada no repositorio do aluno(essa turma possui menos dados,
+   *  por isso e necessario carregar a original)
+   */
   Future<void> getClass(ClassModel classModel) async {
     firestore
         .collection("Class")
@@ -73,6 +81,7 @@ class Student2Repository extends Disposable {
     });
   }
 
+  //Função que carrega o caso
   Future<void> getCase(ClassModel classModel) async {
     firestore
         .collection("Cases")
@@ -84,6 +93,7 @@ class Student2Repository extends Disposable {
     });
   }
 
+  //Função que carrega os componentes do Caso, ex: os textos e imagens.
   Future<void> getCaseComponent(String idCases, String page) async {
     List<ComponentModel> list = [];
     try {
@@ -105,6 +115,7 @@ class Student2Repository extends Disposable {
     }
   }
 
+  //Função para carregar o quiz
   Future<void> getQuiz(String idCases, String page) async {
     List<QuizModel> list = [];
     try {
@@ -127,8 +138,39 @@ class Student2Repository extends Disposable {
     }
   }
 
+  //Função para armazenar o Quiz respondido dentro do repositorio do aluno
+  Future<void> setQuizAnswered(List<QuizModel> quiz) async {
+    StudentModel student = await getUserInfo();
+    String idClass = await getIDClass(quiz[0].idCases);
+    quiz.forEach((question) {
+      Firestore.instance
+          .collection("users")
+          .document('${student.id}')
+          .collection('classes')
+          .document(idClass)
+          .collection("cases")
+          .document("quiz[0].idCases")
+          .collection("quiz")
+          .document(question.id)
+          .setData(question.toMap());
+    });
+  }
+
+  //Função de apoio da setQuizAnswered(), serve para procurar o ID da turma que o quiz esta inserido
+  Future<String> getIDClass(String casesID) async {
+    String classID;
+    QuerySnapshot doc = await Firestore.instance
+        .collection("Class")
+        .where("casesID", isEqualTo: casesID)
+        .getDocuments();
+    doc.documents.forEach((classe) {
+      classID = classe.documentID;
+    });
+    return classID;
+  }
+
   //Função que procura a turma pelo codigo
-  Future<ClassModel> getClassByAcessCode(
+  Future<void> getClassByAcessCode(
       String accessCode, StudentModel student) async {
     var access = int.parse(accessCode);
     QuerySnapshot doc = await firestore
@@ -164,6 +206,7 @@ class Student2Repository extends Disposable {
     }
   }
 
+  //Função que adiciona a turma dentro do repositorio do aluno
   void addClassForStudent(ClassModel classmodel) async {
     StudentModel student = await getUserInfo();
     DateTime myDateTime = DateTime.now();

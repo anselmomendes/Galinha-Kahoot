@@ -1,4 +1,5 @@
 import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'dart:math';
@@ -9,8 +10,12 @@ class StudentQuizController = _StudentQuizControllerBase
     with _$StudentQuizController;
 
 abstract class _StudentQuizControllerBase with Store {
+  Student2Repository student2repository;
+
   @observable
   List<QuizModel> _listquiz;
+
+  List<QuizModel> _listquizAnswered;
 
   Random _random = new Random();
   int questionIndex = 0;
@@ -62,7 +67,7 @@ abstract class _StudentQuizControllerBase with Store {
   bool correctAnswer(String answer) {
     var correct = _listquiz[questionIndex].right == answer;
     hitNumber = hitNumber + (correct ? 1 : 0);
-    answers[_listquiz[questionIndex].id] = answer;
+    _listquiz[questionIndex].answerStudent = answer;
     return correct;
   }
 }
