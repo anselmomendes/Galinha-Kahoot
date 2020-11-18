@@ -238,7 +238,13 @@ class _StudentClassDetailPageState
                     SizedBox(height: 20),
                     Center(
                       child: RaisedButton(
-                          child: Text("Acessar Caso"),
+                        color: Colors.blue,
+       padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.blue)),
+                          child: Text("Acessar Caso",
+                            style: TextStyle(color: Colors.white),),
                           onPressed: () {
                             Navigator.pushNamed(
                               context,
