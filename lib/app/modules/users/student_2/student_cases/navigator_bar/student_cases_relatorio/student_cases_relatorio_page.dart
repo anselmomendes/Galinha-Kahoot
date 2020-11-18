@@ -10,7 +10,7 @@ import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart'
 class StudentCasesRelatorioPage extends StatefulWidget {
   final String title;
   final CasesModel model;
-  const StudentCasesRelatorioPage({Key key, this.title = "Relatório", this.model})
+  const StudentCasesRelatorioPage({Key key, this.title = "Relatório", this.model, String page})
       : super(key: key);
 
   @override

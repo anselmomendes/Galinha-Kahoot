@@ -57,13 +57,66 @@ class _StudentCasesQuizPageState
             padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
             child: Column(
               children: <Widget>[
+                 Padding(padding: EdgeInsets.only(bottom: 50.0),),
+              Card(
+                 margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                      elevation: 5,
+                      color: Colors.white,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const ListTile(
+              leading: Icon(Icons.list,
+              size: 40.0,
+              ),
+              title: Text('Questões de Múltipla Escolha'),
+              subtitle: Text('5/10',
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+          ],
+        ),
+      ),
+      Padding(padding: EdgeInsets.only(bottom: 25.0),),
+         Card(
+            margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                      elevation: 5,
+                      color: Colors.white,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const ListTile(
+              leading: Icon(Icons.done_outline,
+               size: 30.0,
+              ),
+              title: Text('Questões de Verdadeiro ou Falso',
+              ),
+              subtitle: Text('5/10',
+               style: TextStyle(fontSize: 16,),
+            ),
+            ),
+          ],
+        ),
+      ),
                 Container(
                     height: screenWidth * 1.4,
                     child: Container(
                       child: Center(
                         child: RaisedButton(
+<<<<<<< HEAD
                             child: Text("Iniciar Quiz"),
                             onPressed: () {
+=======
+                            color: Colors.blue,
+       padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.blue)),
+                            child: Text("Iniciar Quiz",
+                             style: TextStyle(color: Colors.white),
+                            ),
+                            onPressed: () {                            
+>>>>>>> 5187142cafff3721c4da3d7745b96265032a5184
                               Navigator.pushNamed(
                                 context,
                                 '/student_2/splash_screen_quiz',
@@ -99,7 +152,16 @@ class _StudentCasesQuizPageState
             ),
           ),
         ),
+<<<<<<< HEAD
       ],
     );
   }
+=======
+      ),
+    ],
+  );
+  
+}
+
+>>>>>>> 5187142cafff3721c4da3d7745b96265032a5184
 }

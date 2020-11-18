@@ -13,6 +13,8 @@ import 'package:galinha_karoot/app/modules/cases/view_model/cases_viewmodel.dart
 import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_cases_quiz_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_cases_quiz_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_page.dart';
@@ -33,6 +35,7 @@ class StudentCaseModule extends MainModule {
             student2repository: i.get<Student2Repository>())),
         Bind((i) => StudentCasesQuizController(
             student2repository: i.get<Student2Repository>())),
+        Bind((i) => StudentCasesRelatorioController(student2Repository: i.get<Student2Repository>(), casesRepository: i.get<CasesRepository>())),
       ];
 
   @override
@@ -46,6 +49,8 @@ class StudentCaseModule extends MainModule {
             child: (_, args) => CasesSintomasPage(model: args.data)),
         Router('/quiz',
             child: (_, args) => StudentCasesQuizPage(model: args.data)),
+             Router('/cases_relatory',
+            child: (_, args) => StudentCasesRelatorioPage(model: args.data)),
       ];
 
   static Inject get to => Inject<CasesModule>.of();

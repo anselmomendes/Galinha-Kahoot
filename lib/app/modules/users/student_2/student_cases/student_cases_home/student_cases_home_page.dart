@@ -6,7 +6,7 @@ import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/
 import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
 import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_cases_quiz_module.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_modulle_.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_module_.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_module.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
 
@@ -36,7 +36,6 @@ class _StudentCasesHomePageState
         title: "Informações Cirúrgicas", page: 'procedimentos'),
     StudentCasesSintomasModule(title: "Exames", page: 'exames'),
     // CasesSintomasModule(title: "Quiz", page: 'quiz'),
-
     // Modo antigo
     // CasesSintomasModule(),
     // CasesAvaliacaoModule(),
@@ -44,7 +43,7 @@ class _StudentCasesHomePageState
     // CasesExamesModule(),
     // CasesKahootModule(),
     StudentCasesQuizModule(title: "Quiz", page: 'quiz'),
-    //StudentCasesRelatorioModule(),
+    StudentCasesRelatorioModule(title: "Relatório", page: 'relatorio'),
   ];
 
   @override
@@ -78,7 +77,9 @@ class _StudentCasesHomePageState
                     title: "Exames", page: 'exames', model: model),
 
                 StudentCasesQuizModule(
-                    title: "Quiz", page: 'quiz', model: model),
+                    title: "Quiz", page: 'quiz', model: model),  
+                StudentCasesRelatorioModule(
+                    title: "Relatório", page: 'relatorio', model: model),
                 //StudentCasesRelatorioModule(),
               ],
             );
