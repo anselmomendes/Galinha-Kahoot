@@ -62,7 +62,7 @@ abstract class _StudentQuizControllerBase with Store {
   bool correctAnswer(String answer) {
     var correct = _listquiz[questionIndex].right == answer;
     hitNumber = hitNumber + (correct ? 1 : 0);
-    answers[_listquiz[questionIndex].id][correct];
+    answers[_listquiz[questionIndex].id] = answer;
     return correct;
   }
 }

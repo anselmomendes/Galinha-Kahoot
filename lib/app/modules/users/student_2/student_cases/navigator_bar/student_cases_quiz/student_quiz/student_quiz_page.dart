@@ -48,17 +48,20 @@ class _StudentQuizPageState
 
   Widget multChoise() {
     String answer;
+    MaterialColor colorA = Colors.blue;
+
     return ListView(
       children: [
         //área da pergunta
 
         Container(
-          decoration: BoxDecoration(
+          /*
+          decoration: BoxDecoration(          
             image: DecorationImage(
               image: AssetImage("assets/imagem2.jpg"),
               fit: BoxFit.cover,
             ),
-          ),
+          ),*/
           child: Column(
             children: [
               Container(
@@ -154,17 +157,14 @@ class _StudentQuizPageState
         Expanded(
           flex: 2,
           child: Container(
+            /*
             decoration: BoxDecoration(
               color: Colors.transparent,
               image: DecorationImage(
                 image: AssetImage("assets/imagem4.jpg"),
                 fit: BoxFit.cover,
-              ),
-              /*borderRadius: BorderRadius.only(
-					topLeft: Radius.circular(30),
-					topRight: Radius.circular(30),
-				),*/
-            ),
+              ),*/
+
             margin: EdgeInsets.fromLTRB(1.0, 0.0, 1.0, 0.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -175,7 +175,7 @@ class _StudentQuizPageState
                   children: [
                     CircleAvatar(
                         radius: 20.0,
-                        backgroundColor: Colors.blueAccent[900],
+                        backgroundColor: colorA,
                         child: Padding(
                           padding: EdgeInsets.all(2),
                           child: Text(
@@ -191,39 +191,49 @@ class _StudentQuizPageState
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
-                    Card(
-                      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                      elevation: 5,
-                      color: Colors.white,
-                      child: Container(
-                        margin: const EdgeInsets.all(5.0),
-                        alignment: Alignment.center,
-                        width: 300.0,
-                        height: 110.0,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            width: 3.0,
+                    GestureDetector(
+                      onTap: () {
+                        answer = 'a';
+                        print("Resposta marcada: $answer");
+                        setState(() {
+                          colorA = Colors.red;
+                          print("Cor ${colorA.value}");
+                        });
+                      },
+                      child: Card(
+                        margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                        elevation: 5,
+                        color: Colors.white,
+                        child: Container(
+                          margin: const EdgeInsets.all(5.0),
+                          alignment: Alignment.center,
+                          width: 300.0,
+                          height: 110.0,
+                          decoration: BoxDecoration(
                             color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(
-                                  10.0) //         <--- border radius here
-                              ),
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
-                                child: Text(
-                                  '${controller.getanswers1()}',
-                                  style: TextStyle(fontSize: 16),
+                            border: Border.all(
+                              width: 3.0,
+                              color: Colors.transparent,
+                            ),
+                            borderRadius: BorderRadius.all(Radius.circular(
+                                    10.0) //         <--- border radius here
                                 ),
-                              ),
-                            ],
+                          ),
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.vertical,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: <Widget>[
+                                Padding(
+                                  padding:
+                                      EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+                                  child: Text(
+                                    '${controller.getanswers1()}',
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
@@ -496,12 +506,13 @@ class _StudentQuizPageState
         //área da pergunta
 
         Container(
+          /*
           decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/imagem2.1.jpg"),
               fit: BoxFit.cover,
             ),
-          ),
+          ),*/
           child: Column(
             children: [
               Container(
@@ -596,17 +607,14 @@ class _StudentQuizPageState
         Expanded(
           flex: 2,
           child: Container(
+            /*
             decoration: BoxDecoration(
               color: Colors.transparent,
               image: DecorationImage(
                 image: AssetImage("assets/imagem2.2.jpg"),
                 fit: BoxFit.cover,
               ),
-              /*borderRadius: BorderRadius.only(
-					topLeft: Radius.circular(30),
-					topRight: Radius.circular(30),
-				),*/
-            ),
+            ),*/
             margin: EdgeInsets.fromLTRB(1.0, 0.0, 1.0, 0.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -721,6 +729,7 @@ class _StudentQuizPageState
         child: Text("Responder"),
         onPressed: () {
           bool correct = controller.correctAnswer(answer);
+          print("Resposta $correct");
           ResultDialog.show(
             context,
             question: controller.question,
