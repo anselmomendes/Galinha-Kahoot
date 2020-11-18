@@ -28,6 +28,7 @@ import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/widgets/Splash_Screen.dart';
 
 import 'repositories/student_2_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -81,7 +82,8 @@ class Student2Module extends ChildModule {
             child: (_, args) => StudentPerfilPage(showAppBar: true)),
         Router('/student_report_select',
             child: (_, args) => StudentReportSelectPage(showAppBar: true)),
-           
+         Router('/splash_screen_quiz',
+            child: (_, args) => Splash(list: args.data,)),
       ];
 
   static Inject get to => Inject<Student2Module>.of();

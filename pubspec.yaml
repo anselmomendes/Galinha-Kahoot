@@ -24,6 +24,7 @@ dependencies:
   image_picker: ^0.6.7+14
   image_cropper: ^1.2.3
   rxdart: ^0.24.1
+  splashscreen: ^1.2.0
   flutter:
     sdk: flutter
 
@@ -40,7 +41,7 @@ vars:
 scripts: 
     mobx_build: $clean & $get & $runner build --delete-conflicting-outputs
     mobx_watch: $clean & $get & $runner watch --delete-conflicting-outputs
-
+   
 
 flutter:
 
@@ -56,6 +57,12 @@ flutter:
     - assets/Layout_cases/layout_2.jpg
     - assets/Layout_cases/layout_3.jpg
     - assets/Layout_cases/layout_4.jpg
+    - assets/imagem2.jpg
+    - assets/imagem4.jpg
+    - assets/imagem2.1.jpg
+    - assets/imagem2.2.jpg
+   
+
   uses-material-design: true
 
 
