@@ -27,7 +27,7 @@ class _StudentQuizPageState
     // TODO: implement initState
     super.initState();
     controller.getQuiz(widget.list);
-   
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
   }
 
   @override

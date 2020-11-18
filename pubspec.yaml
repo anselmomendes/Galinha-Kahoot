@@ -61,6 +61,9 @@ flutter:
     - assets/imagem4.jpg
     - assets/imagem2.1.jpg
     - assets/imagem2.2.jpg
+    - assets/imagem5.jpg
+    - assets/imagem6.jpg
+    - assets/imagem7.jpg
    
 
   uses-material-design: true
