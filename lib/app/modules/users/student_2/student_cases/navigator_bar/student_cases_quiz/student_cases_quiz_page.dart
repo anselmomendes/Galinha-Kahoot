@@ -36,6 +36,7 @@ class _StudentCasesQuizPageState
 
   int mult;
   int trueorfalse;
+
   //Função para contar quantas questões de cada tipo
   void countQuestions(List<QuizModel> list) {
     mult = 0;
@@ -148,11 +149,34 @@ class _StudentCasesQuizPageState
                               ),
                             ),
                             onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/student_2/splash_screen_quiz',
-                                arguments: list,
-                              );
+                              controller.verifyAccessQuiz(list);
+                              print(
+                                  "Valor do acesso na page: ${controller.access}");
+                              if (controller.access == true) {
+                                Navigator.pushNamed(
+                                  context,
+                                  '/student_2/splash_screen_quiz',
+                                  arguments: list,
+                                );
+                              } else if (controller.access == false) {
+                                print("Você já realizou este quiz");
+                                showDialog(
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        content: Text(
+                                            "Você já realizou este quiz, veja seu desempenho na aba relatorio"),
+                                        actions: [
+                                          FlatButton(
+                                            child: const Text('OK'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          )
+                                        ],
+                                      );
+                                    },
+                                    context: context);
+                              }
                             }),
                       ),
                     )),

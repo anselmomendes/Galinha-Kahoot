@@ -26,6 +26,9 @@ abstract class _StudentCasesQuizControllerBase with Store {
   ObservableStream<List<ComponentModel>> casesPage;
 
   @observable
+  bool access;
+
+  @observable
   List<ComponentModel> cases;
 
   @observable
@@ -45,5 +48,9 @@ abstract class _StudentCasesQuizControllerBase with Store {
   @action
   getQuiz() {
     quizList = student2repository.outQuiz.asObservable();
+  }
+
+  Future verifyAccessQuiz(List<QuizModel> listquiz) async {
+    access = await student2repository.verifyAccessQuiz(listquiz);
   }
 }

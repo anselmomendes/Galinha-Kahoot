@@ -139,7 +139,7 @@ class Student2Repository extends Disposable {
   }
 
   //Função para armazenar o Quiz respondido dentro do repositorio do aluno
-  Future saveQuizAnswered(List<QuizModel> quiz) async {
+  Future saveQuizAnswered(List<QuizModel> quiz, int hitNumber) async {
     StudentModel student = await getUserInfo();
     String idClass = await getIDClass(quiz[0].idCases);
     quiz.forEach((question) async {
@@ -154,7 +154,36 @@ class Student2Repository extends Disposable {
           .document(question.id)
           .setData(question.toMap())
           .whenComplete(() => print("Questão foi salva"));
+      await Firestore.instance
+          .collection("users")
+          .document('${student.uid}')
+          .collection('classes')
+          .document(idClass)
+          .collection("cases")
+          .document(quiz[0].idCases)
+          .setData({'hits': hitNumber, 'access': 'disable'});
     });
+  }
+
+  Future<bool> verifyAccessQuiz(List<QuizModel> quiz) async {
+    StudentModel student = await getUserInfo();
+    String idClass = await getIDClass(quiz[0].idCases);
+    bool access = true;
+    DocumentSnapshot doc = await Firestore.instance
+        .collection("users")
+        .document('${student.uid}')
+        .collection('classes')
+        .document(idClass)
+        .collection("cases")
+        .document(quiz[0].idCases)
+        .get();
+    doc.data.forEach((key, value) {
+      if (value == "disable") {
+        access = false;
+      }
+    });
+    print("Valor do acesso: $access");
+    return access;
   }
 
   //Função de apoio da setQuizAnswered(), serve para procurar o ID da turma que o quiz esta inserido

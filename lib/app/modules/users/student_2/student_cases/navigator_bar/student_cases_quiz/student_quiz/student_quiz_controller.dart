@@ -75,7 +75,7 @@ abstract class _StudentQuizControllerBase with Store {
 
   Future saveAnswer() async {
     try {
-      await student2repository.saveQuizAnswered(_listquiz);
+      await student2repository.saveQuizAnswered(_listquiz, hitNumber);
     } catch (e) {
       print("Erro ao salvar o quiz: $e");
     }
