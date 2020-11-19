@@ -199,7 +199,7 @@ class _StudentQuizPageState
                         onTap: () {
                           answer = 'a';
                           setState(() {
-                              colors1 = Colors.green;
+                            colors1 = Colors.green;
                             if (colors1 == Colors.green) {
                               colors2 = Colors.blue;
                               colors3 = Colors.blue;
@@ -213,43 +213,58 @@ class _StudentQuizPageState
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
-                    Card(
-                      margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
-                      elevation: 5,
-                      color: Colors.white,
-                      child: Container(
-                        margin: const EdgeInsets.all(5.0),
-                        alignment: Alignment.center,
-                        width: 300.0,
-                        height: 110.0,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            width: 3.0,
-                            color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(
-                                  10.0) //         <--- border radius here
+                    GestureDetector(
+                        child: Card(
+                          margin: EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+                          elevation: 5,
+                          color: Colors.white,
+                          child: Container(
+                            margin: const EdgeInsets.all(5.0),
+                            alignment: Alignment.center,
+                            width: 300.0,
+                            height: 110.0,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border.all(
+                                width: 3.0,
+                                color: Colors.transparent,
                               ),
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
-                                child: Text(
-                                  '${controller.getanswers1()}',
-                                  style: TextStyle(fontSize: 16),
-                                ),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                      10.0) //         <--- border radius here
+                                  ),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+                                    child: Text(
+                                      '${controller.getanswers1()}',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                        onTap: () {
+                          answer = 'a';
+                          setState(() {
+                            colors1 = Colors.green;
+                            if (colors1 == Colors.green) {
+                              colors2 = Colors.blue;
+                              colors3 = Colors.blue;
+                              colors4 = Colors.blue;
+                              colors5 = Colors.blue;
+                            } else {
+                              colors1 = Colors.blue;
+                            }
+                          });
+                        }),
                   ],
                 ),
 
@@ -276,7 +291,7 @@ class _StudentQuizPageState
                         onTap: () {
                           answer = 'b';
                           setState(() {
-                              colors2 = Colors.green;
+                            colors2 = Colors.green;
                             if (colors2 == Colors.green) {
                               colors1 = Colors.blue;
                               colors3 = Colors.blue;
@@ -290,43 +305,58 @@ class _StudentQuizPageState
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
-                    Card(
-                      margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
-                      elevation: 5,
-                      color: Colors.white,
-                      child: Container(
-                        margin: const EdgeInsets.all(5.0),
-                        alignment: Alignment.center,
-                        width: 300.0,
-                        height: 110.0,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            width: 3.0,
-                            color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(
-                                  10.0) //         <--- border radius here
+                    GestureDetector(
+                        child: Card(
+                          margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+                          elevation: 5,
+                          color: Colors.white,
+                          child: Container(
+                            margin: const EdgeInsets.all(5.0),
+                            alignment: Alignment.center,
+                            width: 300.0,
+                            height: 110.0,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border.all(
+                                width: 3.0,
+                                color: Colors.transparent,
                               ),
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
-                                child: Text(
-                                  '${controller.getanswers2()}',
-                                  style: TextStyle(fontSize: 16),
-                                ),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                      10.0) //         <--- border radius here
+                                  ),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+                                    child: Text(
+                                      '${controller.getanswers2()}',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                        onTap: () {
+                          answer = 'b';
+                          setState(() {
+                            colors2 = Colors.green;
+                            if (colors2 == Colors.green) {
+                              colors1 = Colors.blue;
+                              colors3 = Colors.blue;
+                              colors4 = Colors.blue;
+                              colors5 = Colors.blue;
+                            } else {
+                              colors2 = Colors.blue;
+                            }
+                          });
+                        }),
                   ],
                 ),
 
@@ -350,10 +380,10 @@ class _StudentQuizPageState
                                 ),
                               ),
                             )),
-                       onTap: () {
+                        onTap: () {
                           answer = 'c';
                           setState(() {
-                              colors3 = Colors.green;
+                            colors3 = Colors.green;
                             if (colors3 == Colors.green) {
                               colors1 = Colors.blue;
                               colors2 = Colors.blue;
@@ -367,43 +397,58 @@ class _StudentQuizPageState
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
-                    Card(
-                      margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
-                      elevation: 5,
-                      color: Colors.white,
-                      child: Container(
-                        margin: const EdgeInsets.all(5.0),
-                        alignment: Alignment.center,
-                        width: 300.0,
-                        height: 110.0,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            width: 3.0,
-                            color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(
-                                  10.0) //         <--- border radius here
+                    GestureDetector(
+                        child: Card(
+                          margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+                          elevation: 5,
+                          color: Colors.white,
+                          child: Container(
+                            margin: const EdgeInsets.all(5.0),
+                            alignment: Alignment.center,
+                            width: 300.0,
+                            height: 110.0,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border.all(
+                                width: 3.0,
+                                color: Colors.transparent,
                               ),
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
-                                child: Text(
-                                  '${controller.getanswers3()} ',
-                                  style: TextStyle(fontSize: 16),
-                                ),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                      10.0) //         <--- border radius here
+                                  ),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+                                    child: Text(
+                                      '${controller.getanswers3()} ',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                        onTap: () {
+                          answer = 'c';
+                          setState(() {
+                            colors3 = Colors.green;
+                            if (colors3 == Colors.green) {
+                              colors1 = Colors.blue;
+                              colors2 = Colors.blue;
+                              colors4 = Colors.blue;
+                              colors5 = Colors.blue;
+                            } else {
+                              colors3 = Colors.blue;
+                            }
+                          });
+                        }),
                   ],
                 ),
 
@@ -427,10 +472,10 @@ class _StudentQuizPageState
                                 ),
                               ),
                             )),
-                      onTap: () {
+                        onTap: () {
                           answer = 'd';
                           setState(() {
-                              colors4 = Colors.green;
+                            colors4 = Colors.green;
                             if (colors4 == Colors.green) {
                               colors1 = Colors.blue;
                               colors2 = Colors.blue;
@@ -444,43 +489,58 @@ class _StudentQuizPageState
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
-                    Card(
-                      margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
-                      elevation: 5,
-                      color: Colors.white,
-                      child: Container(
-                        margin: const EdgeInsets.all(5.0),
-                        alignment: Alignment.center,
-                        width: 300.0,
-                        height: 110.0,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            width: 3.0,
-                            color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(
-                                  10.0) //         <--- border radius here
+                    GestureDetector(
+                        child: Card(
+                          margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+                          elevation: 5,
+                          color: Colors.white,
+                          child: Container(
+                            margin: const EdgeInsets.all(5.0),
+                            alignment: Alignment.center,
+                            width: 300.0,
+                            height: 110.0,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border.all(
+                                width: 3.0,
+                                color: Colors.transparent,
                               ),
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
-                                child: Text(
-                                  '${controller.getanswers4()} ',
-                                  style: TextStyle(fontSize: 16),
-                                ),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                      10.0) //         <--- border radius here
+                                  ),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+                                    child: Text(
+                                      '${controller.getanswers4()} ',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                        onTap: () {
+                          answer = 'd';
+                          setState(() {
+                            colors4 = Colors.green;
+                            if (colors4 == Colors.green) {
+                              colors1 = Colors.blue;
+                              colors2 = Colors.blue;
+                              colors3 = Colors.blue;
+                              colors5 = Colors.blue;
+                            } else {
+                              colors4 = Colors.blue;
+                            }
+                          });
+                        }),
                   ],
                 ),
 
@@ -504,10 +564,10 @@ class _StudentQuizPageState
                                 ),
                               ),
                             )),
-                       onTap: () {
+                        onTap: () {
                           answer = 'e';
                           setState(() {
-                              colors5 = Colors.green;
+                            colors5 = Colors.green;
                             if (colors5 == Colors.green) {
                               colors1 = Colors.blue;
                               colors2 = Colors.blue;
@@ -521,43 +581,58 @@ class _StudentQuizPageState
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
-                    Card(
-                      margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
-                      elevation: 5,
-                      color: Colors.white,
-                      child: Container(
-                        margin: const EdgeInsets.all(5.0),
-                        alignment: Alignment.center,
-                        width: 300.0,
-                        height: 110.0,
-                        decoration: BoxDecoration(
-                          color: Colors.transparent,
-                          border: Border.all(
-                            width: 3.0,
-                            color: Colors.transparent,
-                          ),
-                          borderRadius: BorderRadius.all(Radius.circular(
-                                  10.0) //         <--- border radius here
+                    GestureDetector(
+                        child: Card(
+                          margin: EdgeInsets.fromLTRB(0.0, 25.0, 0.0, 0.0),
+                          elevation: 5,
+                          color: Colors.white,
+                          child: Container(
+                            margin: const EdgeInsets.all(5.0),
+                            alignment: Alignment.center,
+                            width: 300.0,
+                            height: 110.0,
+                            decoration: BoxDecoration(
+                              color: Colors.transparent,
+                              border: Border.all(
+                                width: 3.0,
+                                color: Colors.transparent,
                               ),
-                        ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.vertical,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Padding(
-                                padding:
-                                    EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
-                                child: Text(
-                                  '${controller.getanswers5()}',
-                                  style: TextStyle(fontSize: 16),
-                                ),
+                              borderRadius: BorderRadius.all(Radius.circular(
+                                      10.0) //         <--- border radius here
+                                  ),
+                            ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+                                    child: Text(
+                                      '${controller.getanswers5()}',
+                                      style: TextStyle(fontSize: 16),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ],
+                            ),
                           ),
                         ),
-                      ),
-                    ),
+                        onTap: () {
+                          answer = 'e';
+                          setState(() {
+                            colors5 = Colors.green;
+                            if (colors5 == Colors.green) {
+                              colors1 = Colors.blue;
+                              colors2 = Colors.blue;
+                              colors3 = Colors.blue;
+                              colors4 = Colors.blue;
+                            } else {
+                              colors5 = Colors.blue;
+                            }
+                          });
+                        }),
                   ],
                 ),
                 Padding(
