@@ -8,11 +8,11 @@ import 'student_quiz_controller.dart';
 class StudentQuizPage extends StatefulWidget {
   final String title;
   final List<QuizModel> list;
-   
+
   const StudentQuizPage({
     Key key,
     this.title = "Peensa Quiz",
-    @required this.list, 
+    @required this.list,
   }) : super(key: key);
 
   @override
@@ -35,7 +35,7 @@ class _StudentQuizPageState
     // TODO: implement initState
     super.initState();
     controller.getQuiz(widget.list);
-     SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
   }
 
   @override
@@ -53,8 +53,8 @@ class _StudentQuizPageState
       return Scaffold(
           appBar: AppBar(
             title: Text(widget.title),
-             centerTitle: true,
-             backgroundColor: Colors.blue,
+            centerTitle: true,
+            backgroundColor: Colors.blue,
           ),
           body: trueOrFalse());
     }
@@ -67,7 +67,7 @@ class _StudentQuizPageState
         //área da pergunta
 
         Container(
-         decoration: BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage("assets/imagem7.jpg"),
               fit: BoxFit.cover,
@@ -180,31 +180,36 @@ class _StudentQuizPageState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    
                     GestureDetector(
-                    child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: colors1,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'A',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )),
-                         onTap: () {
-                        answer = 'a';
-                        print("Resposta marcada: $answer");
-                        setState(() {
-                          colors1 = Colors.green;
-                          print("Cor ${colors1.value}");
-                        });
-                    } ),
+                        child: CircleAvatar(
+                            radius: 20.0,
+                            backgroundColor: colors1,
+                            child: Padding(
+                              padding: EdgeInsets.all(2),
+                              child: Text(
+                                'A',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )),
+                        onTap: () {
+                          answer = 'a';
+                          setState(() {
+                              colors1 = Colors.green;
+                            if (colors1 == Colors.green) {
+                              colors2 = Colors.blue;
+                              colors3 = Colors.blue;
+                              colors4 = Colors.blue;
+                              colors5 = Colors.blue;
+                            } else {
+                              colors1 = Colors.blue;
+                            }
+                          });
+                        }),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
@@ -252,30 +257,36 @@ class _StudentQuizPageState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   GestureDetector(
-                    child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor:  colors2,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'B',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )),
-                       onTap: () {
-                        answer = 'b';
-                        print("Resposta marcada: $answer");
-                        setState(() {
-                          colors2 = Colors.green;
-                          print("Cor ${colors2.value}");
-                        });
-                    } ),
+                    GestureDetector(
+                        child: CircleAvatar(
+                            radius: 20.0,
+                            backgroundColor: colors2,
+                            child: Padding(
+                              padding: EdgeInsets.all(2),
+                              child: Text(
+                                'B',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )),
+                        onTap: () {
+                          answer = 'b';
+                          setState(() {
+                              colors2 = Colors.green;
+                            if (colors2 == Colors.green) {
+                              colors1 = Colors.blue;
+                              colors3 = Colors.blue;
+                              colors4 = Colors.blue;
+                              colors5 = Colors.blue;
+                            } else {
+                              colors2 = Colors.blue;
+                            }
+                          });
+                        }),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
@@ -324,29 +335,35 @@ class _StudentQuizPageState
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
-                    child: CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor:  colors3,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'C',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )),
-                      onTap: () {
-                        answer = 'c';
-                        print("Resposta marcada: $answer");
-                        setState(() {
-                          colors3 = Colors.green;
-                          print("Cor ${colors3.value}");
-                        });
-                    } ),
+                        child: CircleAvatar(
+                            radius: 20.0,
+                            backgroundColor: colors3,
+                            child: Padding(
+                              padding: EdgeInsets.all(2),
+                              child: Text(
+                                'C',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )),
+                       onTap: () {
+                          answer = 'c';
+                          setState(() {
+                              colors3 = Colors.green;
+                            if (colors3 == Colors.green) {
+                              colors1 = Colors.blue;
+                              colors2 = Colors.blue;
+                              colors4 = Colors.blue;
+                              colors5 = Colors.blue;
+                            } else {
+                              colors3 = Colors.blue;
+                            }
+                          });
+                        }),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
@@ -394,30 +411,36 @@ class _StudentQuizPageState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                  GestureDetector(
-                    child:  CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor: colors4,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'D',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )),
-                       onTap: () {
-                        answer = 'd';
-                        print("Resposta marcada: $answer");
-                        setState(() {
-                          colors4 = Colors.green;
-                          print("Cor ${colors4.value}");
-                        });
-                    } ),
+                    GestureDetector(
+                        child: CircleAvatar(
+                            radius: 20.0,
+                            backgroundColor: colors4,
+                            child: Padding(
+                              padding: EdgeInsets.all(2),
+                              child: Text(
+                                'D',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )),
+                      onTap: () {
+                          answer = 'd';
+                          setState(() {
+                              colors4 = Colors.green;
+                            if (colors4 == Colors.green) {
+                              colors1 = Colors.blue;
+                              colors2 = Colors.blue;
+                              colors3 = Colors.blue;
+                              colors5 = Colors.blue;
+                            } else {
+                              colors4 = Colors.blue;
+                            }
+                          });
+                        }),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
@@ -465,30 +488,36 @@ class _StudentQuizPageState
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                   GestureDetector(
-                    child:  CircleAvatar(
-                        radius: 20.0,
-                        backgroundColor:  colors5,
-                        child: Padding(
-                          padding: EdgeInsets.all(2),
-                          child: Text(
-                            'E',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 23.0,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        )),
+                    GestureDetector(
+                        child: CircleAvatar(
+                            radius: 20.0,
+                            backgroundColor: colors5,
+                            child: Padding(
+                              padding: EdgeInsets.all(2),
+                              child: Text(
+                                'E',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 23.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )),
                        onTap: () {
-                        answer = 'e';
-                        print("Resposta marcada: $answer");
-                        setState(() {
-                          colors5 = Colors.green;
-                          print("Cor ${colors5.value}");
-                        });
-                    } ),
+                          answer = 'e';
+                          setState(() {
+                              colors5 = Colors.green;
+                            if (colors5 == Colors.green) {
+                              colors1 = Colors.blue;
+                              colors2 = Colors.blue;
+                              colors3 = Colors.blue;
+                              colors4 = Colors.blue;
+                            } else {
+                              colors5 = Colors.blue;
+                            }
+                          });
+                        }),
                     Padding(
                       padding: EdgeInsets.only(right: 15.0),
                     ),
@@ -715,14 +744,15 @@ class _StudentQuizPageState
 
   Widget nextQuestionButton(String answer) {
     return RaisedButton(
-       color: Colors.blue,
-       padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  side: BorderSide(color: Colors.transparent)),
-                              child:  Text("Responder",
-                              style: TextStyle(color: Colors.white),
-                              ),
+        color: Colors.blue,
+        padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10.0),
+            side: BorderSide(color: Colors.transparent)),
+        child: Text(
+          "Responder",
+          style: TextStyle(color: Colors.white),
+        ),
         onPressed: () {
           bool correct = controller.correctAnswer(answer);
           ResultDialog.show(
