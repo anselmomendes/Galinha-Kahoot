@@ -30,6 +30,8 @@ class _StudentQuizPageState
   Color colors3 = Colors.blue;
   Color colors4 = Colors.blue;
   Color colors5 = Colors.blue;
+  Color colorsTrue = Colors.black;
+  Color colorsFalse = Colors.black;
   String answer = '';
 
   @override
@@ -679,7 +681,7 @@ class _StudentQuizPageState
                       ),
                 ),
                 child: Text(
-                  'Questão 1 / 10',
+                  'Questão ${controller.questionIndex + 1} / ${controller.questionsNumber}',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.white,
@@ -728,7 +730,7 @@ class _StudentQuizPageState
                                   padding: EdgeInsets.fromLTRB(
                                       10.0, 0.0, 10.0, 10.0),
                                   child: Text(
-                                    '     São os dados que identificam o artigo e o seu autor ou autores. No caso de vários autores é necessário separar os nomes com vírgula. Além de dados em português, também é comum a inclusão do resumo e palavras-chave em outro idioma, geralmente o inglês. Veja quais são os elementos pré-textuais do artigo:São os dados que identificam o artigo e o seu autor ou autores. No caso de vários autores é necessário separar os São os dados que identificam o artigo e o seu autor ou autores. No caso de vários autores é necessário separar os nomes com vírgula. Além de dados em português, também é comum a inclusão do resumo e palavras-chave em outro idioma, geralmente o inglês. Veja quais são os elementos pré-textuais do artigo:São os dados que identificam o artigo e o seu autor ou autores. No caso de vários autores é necessário separar os',
+                                    '${controller.getQuestion()}',
                                     style: TextStyle(fontSize: 16),
                                   ),
                                 ),
@@ -771,46 +773,79 @@ class _StudentQuizPageState
                     Padding(
                       padding: EdgeInsets.only(right: 85.0),
                     ),
-                    ClipOval(
-                      child: Material(
-                        color: Colors.green, // button color
-                        child: InkWell(
-                          splashColor: Colors.greenAccent, // inkwell color
-                          child: SizedBox(
-                              width: 60,
-                              height: 60,
-                              child: Icon(
-                                Icons.done,
-                                color: Colors.white,
-                              )),
-                          onTap: () {},
+                    Column(
+                      children: [
+                        ClipOval(
+                          child: Material(
+                            color: Colors.green, // button color
+                            child: InkWell(
+                              splashColor: Colors.greenAccent, // inkwell color
+                              child: SizedBox(
+                                  width: 60,
+                                  height: 60,
+                                  child: Icon(
+                                    Icons.done,
+                                    color: Colors.white,
+                                  )),
+                              onTap: () {
+                                setState(() {
+                                  if (colorsFalse == Colors.blue) {
+                                    colorsFalse = Colors.black;
+                                  }
+                                  colorsTrue = Colors.blue;
+                                  answer = 'true';
+                                });
+                              },
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          "Verdadeiro",
+                          style: TextStyle(color: colorsTrue),
+                        )
+                      ],
                     ),
                     Padding(
                       padding: EdgeInsets.only(right: 100.0),
                     ),
-                    ClipOval(
-                      child: Material(
-                        color: Colors.red, // button color
-                        child: InkWell(
-                          splashColor: Colors.redAccent, // inkwell color
-                          child: SizedBox(
-                              width: 56,
-                              height: 56,
-                              child: Icon(
-                                Icons.close,
-                                color: Colors.white,
-                              )),
-                          onTap: () {},
+                    Column(
+                      children: [
+                        ClipOval(
+                          child: Material(
+                            color: Colors.red, // button color
+                            child: InkWell(
+                              splashColor: Colors.redAccent, // inkwell color
+                              child: SizedBox(
+                                  width: 56,
+                                  height: 56,
+                                  child: Icon(
+                                    Icons.close,
+                                    color: Colors.white,
+                                  )),
+                              onTap: () {
+                                setState(() {
+                                  if (colorsTrue == Colors.blue) {
+                                    colorsTrue = Colors.black;
+                                  }
+                                  colorsFalse = Colors.blue;
+                                  answer = 'false';
+                                });
+                              },
+                            ),
+                          ),
                         ),
-                      ),
+                        Text(
+                          "Falso",
+                          style: TextStyle(color: colorsFalse),
+                        )
+                      ],
                     ),
                   ],
                 ),
                 Padding(
                   padding: EdgeInsets.only(bottom: 150.0),
                 ),
+                nextQuestionButton()
               ],
             ),
           ),
@@ -833,6 +868,11 @@ class _StudentQuizPageState
         onPressed: () {
           bool correct = controller.correctAnswer(answer);
           setState(() {
+            ResultDialog.show(
+              context,
+              question: controller.question,
+              correct: correct,
+            );
             _scoreKeeper.add(
               Icon(
                 correct ? Icons.check : Icons.close,
@@ -848,11 +888,6 @@ class _StudentQuizPageState
               controller.saveAnswer();
             }
           });
-          ResultDialog.show(
-            context,
-            question: controller.question,
-            correct: correct,
-          );
         });
   }
 }

@@ -6,7 +6,6 @@ class ResultDialog {
     BuildContext context, {
     @required QuizModel question,
     @required bool correct,
-    @required Function onNext,
   }) {
     return showDialog<void>(
       context: context,
@@ -31,15 +30,6 @@ class ResultDialog {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                question.question,
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
-              ),
-              const SizedBox(height: 8),
-              Text(
                 correct ? 'Você acertou!' : 'Você errou! O correto é:',
                 style: TextStyle(
                   fontSize: 18,
@@ -48,7 +38,7 @@ class ResultDialog {
                 ),
               ),
               Text(
-                question.right,
+                question.right.toUpperCase(),
                 style: TextStyle(
                   color: Colors.white70,
                 ),
@@ -57,10 +47,9 @@ class ResultDialog {
           ),
           actions: [
             FlatButton(
-              child: const Text('PRÓXIMO'),
+              child: const Text('OK'),
               onPressed: () {
                 Navigator.of(context).pop();
-                onNext();
               },
             )
           ],
