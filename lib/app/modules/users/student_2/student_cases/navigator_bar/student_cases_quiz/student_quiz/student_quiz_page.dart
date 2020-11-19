@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_quiz/finish_dialog.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_quiz/result_dialog.dart';
 import 'student_quiz_controller.dart';
 
@@ -29,6 +30,7 @@ class _StudentQuizPageState
   Color colors3 = Colors.blue;
   Color colors4 = Colors.blue;
   Color colors5 = Colors.blue;
+  String answer = '';
 
   @override
   void initState() {
@@ -61,7 +63,6 @@ class _StudentQuizPageState
   }
 
   Widget multChoise() {
-    String answer;
     return ListView(
       children: [
         //área da pergunta
@@ -197,7 +198,7 @@ class _StudentQuizPageState
                               ),
                             )),
                         onTap: () {
-                          answer = 'a';
+                          answer = "a";
                           setState(() {
                             colors1 = Colors.green;
                             if (colors1 == Colors.green) {
@@ -345,6 +346,7 @@ class _StudentQuizPageState
                         ),
                         onTap: () {
                           answer = 'b';
+                          print("Resposta marcada: $answer");
                           setState(() {
                             colors2 = Colors.green;
                             if (colors2 == Colors.green) {
@@ -638,7 +640,7 @@ class _StudentQuizPageState
                 Padding(
                   padding: EdgeInsets.only(bottom: 45.0),
                 ),
-                nextQuestionButton(answer)
+                nextQuestionButton()
               ],
             ),
           ),
@@ -817,7 +819,7 @@ class _StudentQuizPageState
     );
   }
 
-  Widget nextQuestionButton(String answer) {
+  Widget nextQuestionButton() {
     return RaisedButton(
         color: Colors.blue,
         padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
@@ -830,24 +832,26 @@ class _StudentQuizPageState
         ),
         onPressed: () {
           bool correct = controller.correctAnswer(answer);
+          setState(() {
+            _scoreKeeper.add(
+              Icon(
+                correct ? Icons.check : Icons.close,
+                color: correct ? Colors.green : Colors.red,
+              ),
+            );
+            if (_scoreKeeper.length < controller.questionsNumber) {
+              controller.nextQuestion();
+            } else {
+              FinishDialog.show(context,
+                  hitNumber: controller.hitNumber,
+                  questionNumber: controller.questionsNumber);
+              controller.saveAnswer();
+            }
+          });
           ResultDialog.show(
             context,
             question: controller.question,
             correct: correct,
-            onNext: () {
-              setState(() {
-                _scoreKeeper.add(
-                  Icon(
-                    correct ? Icons.check : Icons.close,
-                    color: correct ? Colors.green : Colors.red,
-                  ),
-                );
-
-                if (_scoreKeeper.length < controller.questionsNumber) {
-                  controller.nextQuestion();
-                }
-              });
-            },
           );
         });
   }

@@ -10,14 +10,10 @@ class StudentQuizController = _StudentQuizControllerBase
     with _$StudentQuizController;
 
 abstract class _StudentQuizControllerBase with Store {
-  Student2Repository student2repository;
+  Student2Repository student2repository = Student2Repository();
 
-  @observable
   List<QuizModel> _listquiz;
 
-  List<QuizModel> _listquizAnswered;
-
-  Random _random = new Random();
   int questionIndex = 0;
   bool _shiftAnswer;
   int hitNumber = 0;
@@ -65,9 +61,23 @@ abstract class _StudentQuizControllerBase with Store {
   }
 
   bool correctAnswer(String answer) {
-    var correct = _listquiz[questionIndex].right == answer;
+    bool correct;
+    if (answer == _listquiz[questionIndex].right) {
+      correct = true;
+    } else {
+      correct = false;
+    }
     hitNumber = hitNumber + (correct ? 1 : 0);
     _listquiz[questionIndex].answerStudent = answer;
+
     return correct;
+  }
+
+  Future saveAnswer() async {
+    try {
+      await student2repository.saveQuizAnswered(_listquiz);
+    } catch (e) {
+      print("Erro ao salvar o quiz: $e");
+    }
   }
 }

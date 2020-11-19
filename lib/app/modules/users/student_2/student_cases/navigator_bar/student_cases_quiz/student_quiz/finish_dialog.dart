@@ -48,28 +48,14 @@ class FinishDialog {
                   color: Colors.white,
                 ),
               ),
-              Text(
-                'Que tal tentar mais uma vez? Quem sabe você consegue acertar todas na próxima!',
-                style: TextStyle(
-                  color: Colors.white70,
-                ),
-              ),
             ],
           ),
           actions: [
             FlatButton(
-              child: const Text('JOGAR NOVAMENTE'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => StudentQuizPage()),
-                );
-              },
-            ),
-            FlatButton(
               child: const Text('SAIR'),
               onPressed: () {
-                SystemNavigator.pop();
+                Navigator.pop(context);
+                Navigator.pop(context);
               },
             )
           ],

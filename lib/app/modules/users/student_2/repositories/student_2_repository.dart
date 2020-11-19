@@ -139,20 +139,21 @@ class Student2Repository extends Disposable {
   }
 
   //Função para armazenar o Quiz respondido dentro do repositorio do aluno
-  Future<void> setQuizAnswered(List<QuizModel> quiz) async {
+  Future saveQuizAnswered(List<QuizModel> quiz) async {
     StudentModel student = await getUserInfo();
     String idClass = await getIDClass(quiz[0].idCases);
-    quiz.forEach((question) {
-      Firestore.instance
+    quiz.forEach((question) async {
+      await Firestore.instance
           .collection("users")
-          .document('${student.id}')
+          .document('${student.uid}')
           .collection('classes')
           .document(idClass)
           .collection("cases")
-          .document("quiz[0].idCases")
+          .document(quiz[0].idCases)
           .collection("quiz")
           .document(question.id)
-          .setData(question.toMap());
+          .setData(question.toMap())
+          .whenComplete(() => print("Questão foi salva"));
     });
   }
 
@@ -166,6 +167,7 @@ class Student2Repository extends Disposable {
     doc.documents.forEach((classe) {
       classID = classe.documentID;
     });
+    print("Id da turma: $classID");
     return classID;
   }
 

@@ -50,8 +50,7 @@ class StudentRepository extends Disposable {
   }
 
   //Função que procura a turma pelo codigo
-  Future<ClassModel> getClassByAcessCode(
-      String accessCode, StudentModel student) async {
+  Future getClassByAcessCode(String accessCode, StudentModel student) async {
     var access = int.parse(accessCode);
     print("Funfei 2, accessCode: $access");
     QuerySnapshot doc = await firestore
