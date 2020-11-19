@@ -34,6 +34,22 @@ class _StudentCasesQuizPageState
     editMode = false;
   }
 
+  int mult;
+  int trueorfalse;
+  //Função para contar quantas questões de cada tipo
+  void countQuestions(List<QuizModel> list) {
+    mult = 0;
+    trueorfalse = 0;
+    list.forEach((question) {
+      if (question.type == "type1") {
+        mult++;
+      }
+      if (question.type == "type2") {
+        trueorfalse++;
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
@@ -53,6 +69,7 @@ class _StudentCasesQuizPageState
             return Text("Nenhum caso encontrado");
           }
           List<QuizModel> list = controller.quizList.data;
+          countQuestions(list);
           return SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
             child: Column(
@@ -67,16 +84,15 @@ class _StudentCasesQuizPageState
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      const ListTile(
-                        leading: 
-                         Icon(
+                      ListTile(
+                        leading: Icon(
                           Icons.list,
                           color: Colors.blueGrey,
                           size: 40.0,
                         ),
                         title: Text('Questões de Múltipla Escolha'),
                         subtitle: Text(
-                          '5/10',
+                          '$mult / ${list.length}',
                           style: TextStyle(fontSize: 16),
                         ),
                       ),
@@ -93,7 +109,7 @@ class _StudentCasesQuizPageState
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      const ListTile(
+                      ListTile(
                         leading: Icon(
                           Icons.done_outline,
                           color: Colors.blueGrey,
@@ -103,7 +119,7 @@ class _StudentCasesQuizPageState
                           'Questões de Verdadeiro ou Falso',
                         ),
                         subtitle: Text(
-                          '5/10',
+                          '$trueorfalse / ${list.length}',
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -125,9 +141,11 @@ class _StudentCasesQuizPageState
                                 side: BorderSide(color: Colors.blue)),
                             child: Text(
                               "Iniciar Quiz",
-                              style: TextStyle( fontSize: 20,
-              fontWeight: FontWeight.w700,
-              color: Colors.white,),
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w700,
+                                color: Colors.white,
+                              ),
                             ),
                             onPressed: () {
                               Navigator.pushNamed(
