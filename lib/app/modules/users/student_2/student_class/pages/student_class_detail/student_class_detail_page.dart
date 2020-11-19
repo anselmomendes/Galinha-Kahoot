@@ -244,7 +244,9 @@ class _StudentClassDetailPageState
                                   borderRadius: BorderRadius.circular(10.0),
                                   side: BorderSide(color: Colors.blue)),
                           child: Text("Acessar Caso",
-                            style: TextStyle(color: Colors.white),),
+                            style: TextStyle(fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,),),
                           onPressed: () {
                             Navigator.pushNamed(
                               context,

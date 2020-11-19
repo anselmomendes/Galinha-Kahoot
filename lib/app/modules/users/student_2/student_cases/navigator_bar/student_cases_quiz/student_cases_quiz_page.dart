@@ -68,8 +68,10 @@ class _StudentCasesQuizPageState
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       const ListTile(
-                        leading: Icon(
+                        leading: 
+                         Icon(
                           Icons.list,
+                          color: Colors.blueGrey,
                           size: 40.0,
                         ),
                         title: Text('Questões de Múltipla Escolha'),
@@ -94,6 +96,7 @@ class _StudentCasesQuizPageState
                       const ListTile(
                         leading: Icon(
                           Icons.done_outline,
+                          color: Colors.blueGrey,
                           size: 30.0,
                         ),
                         title: Text(
@@ -122,7 +125,9 @@ class _StudentCasesQuizPageState
                                 side: BorderSide(color: Colors.blue)),
                             child: Text(
                               "Iniciar Quiz",
-                              style: TextStyle(color: Colors.white),
+                              style: TextStyle( fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,),
                             ),
                             onPressed: () {
                               Navigator.pushNamed(

@@ -10,27 +10,28 @@ import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart'
 class StudentCasesRelatorioPage extends StatefulWidget {
   final String title;
   final CasesModel model;
-  const StudentCasesRelatorioPage({Key key, this.title = "Relatório", this.model, String page})
+  const StudentCasesRelatorioPage(
+      {Key key, this.title = "Relatório", this.model, String page})
       : super(key: key);
 
   @override
-  _StudentCasesRelatorioPageState createState() => _StudentCasesRelatorioPageState();
+  _StudentCasesRelatorioPageState createState() =>
+      _StudentCasesRelatorioPageState();
 }
 
-class _StudentCasesRelatorioPageState
-    extends ModularState<StudentCasesRelatorioPage, StudentCasesRelatorioController> {
+class _StudentCasesRelatorioPageState extends ModularState<
+    StudentCasesRelatorioPage, StudentCasesRelatorioController> {
   final _topicSix = TextEditingController();
   final _textSix = TextEditingController();
   final _imageUrlSix = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    
     return Observer(builder: (_) {
       /* if (controller.editMode) {
         return modoEdicao(widget.model);
       } else */
-        return modoVisualizacao();
+      return modoVisualizacao();
     });
   }
 
@@ -49,11 +50,92 @@ class _StudentCasesRelatorioPageState
             controller.editMode = true;
           }), */
       body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
         child: Column(
           children: <Widget>[
-            Container(
-              
+             Container(
+          margin: const EdgeInsets.all(10.0),
+          alignment: Alignment.center,
+          width: 200.0,
+          height: 50.0,
+          decoration: myBoxDecoration(),
+          child: Text(
+            'Meu desempenho',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Colors.white,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+            Padding(
+              padding: EdgeInsets.only(bottom: 20.0),
+            ),
+            Row(
+              children: [
+                Card(
+                     elevation: 5,
+                    shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
+                    child: InkWell(
+                        child: Padding(
+                            padding: EdgeInsets.all(20),
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Text('Questionário sobre condicionais',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: 15)),
+                                        Text(
+                                            'Algoritmos condicionais em linguagem C.',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w300,
+                                                fontSize: 12))
+                                      ]),
+                                ])),
+                        onTap: () {
+                          print("Tocado 2");
+                        })),
+                         Padding(
+              padding: EdgeInsets.only(right: 10.0),
+            ),
+                Container(
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(50)),
+                    child: Padding(
+                      padding: EdgeInsets.all(12),
+                      child: RichText(
+                          text: TextSpan(
+                              text: "10/10",
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.w800))),
+                    ))
+              ],
+            ),
+             Padding(
+              padding: EdgeInsets.only(bottom: 10.0),
+            ),
+            Divider(
+            color: Colors.blueGrey[500],
+            height: 5,
+            thickness: 1,
+            indent: 5,
+            endIndent: 2,
+          ),
+           Padding(
+              padding: EdgeInsets.only(bottom: 10.0),
             ),
             /* Container(
               child: Image.network(
@@ -81,7 +163,19 @@ class _StudentCasesRelatorioPageState
         ),
       ),
     );
+    
   }
+   BoxDecoration myBoxDecoration() {
+    return BoxDecoration(
+      color: Colors.blue,
+      border: Border.all(
+        width: 3.0,
+        color: Colors.blue,
+      ),
+      borderRadius: BorderRadius.all(
+          Radius.circular(5.0) //         <--- border radius here
+          ),
+    );
 /* 
   Scaffold modoEdicao(CasesModel model) {
 
@@ -211,4 +305,5 @@ class _StudentCasesRelatorioPageState
     );
   }
  */
+ }
 }

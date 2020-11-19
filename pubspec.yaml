@@ -59,11 +59,11 @@ flutter:
     - assets/Layout_cases/layout_4.jpg
     - assets/imagem2.jpg
     - assets/imagem4.jpg
-    - assets/imagem2.1.jpg
-    - assets/imagem2.2.jpg
-    - assets/imagem5.jpg
-    - assets/imagem6.jpg
     - assets/imagem7.jpg
+    - assets/imagem7.1.jpg
+    - assets/imagem7roxo.jpg
+    - assets/imagem7.1roxo.jpg
+    - assets/bitsbranco.png
    
 
   uses-material-design: true
