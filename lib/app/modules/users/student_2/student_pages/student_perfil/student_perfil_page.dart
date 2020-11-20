@@ -82,7 +82,7 @@ class _StudentPerfilPageState
                       Center(
                         child: Column(
                           children: <Widget>[
-                            Text("Olá professor! ",
+                            Text("Olá! ",
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.w600)),
                             SizedBox(height: 5),
