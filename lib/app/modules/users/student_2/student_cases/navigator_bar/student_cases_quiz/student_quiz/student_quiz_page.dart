@@ -882,6 +882,8 @@ class _StudentQuizPageState
             if (_scoreKeeper.length < controller.questionsNumber) {
               controller.nextQuestion();
             } else {
+              Navigator.pop(context);
+              Navigator.pop(context);
               FinishDialog.show(context,
                   hitNumber: controller.hitNumber,
                   questionNumber: controller.questionsNumber);

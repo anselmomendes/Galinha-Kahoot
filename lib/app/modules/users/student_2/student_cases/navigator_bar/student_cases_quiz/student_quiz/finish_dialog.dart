@@ -55,7 +55,6 @@ class FinishDialog {
               child: const Text('SAIR'),
               onPressed: () {
                 Navigator.pop(context);
-                Navigator.pop(context);
               },
             )
           ],
