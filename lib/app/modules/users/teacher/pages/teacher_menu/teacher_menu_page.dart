@@ -42,7 +42,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                   leading: Icon(
                     Icons.local_hospital,
                     color: Colors.blueGrey,
-                    size: 35.0,
+                    size: 40.0,
                   ),
                   title: Text('Casos',
                       style: TextStyle(
@@ -94,7 +94,7 @@ class _TeacherMenuPageState extends State<TeacherMenuPage> {
                   leading: Icon(
                     Icons.list,
                     color: Colors.blueGrey,
-                    size: 35.0,
+                    size: 40.0,
                   ),
                   title: Text('Turmas',
                       style: TextStyle(

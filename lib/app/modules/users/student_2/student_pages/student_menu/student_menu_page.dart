@@ -95,7 +95,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                   leading: Icon(
                     Icons.list,
                     color: Colors.blueGrey,
-                    size: 35.0,
+                    size: 40.0,
                   ),
                   title: Text('Turmas',
                       style: TextStyle(
@@ -146,17 +146,17 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                 ),
                 const ListTile(
                   leading: Icon(
-                    Icons.description,
+                    Icons.public,
                     color: Colors.blueGrey,
-                    size: 35.0,
+                    size: 40.0,
                   ),
-                  title: Text('Relatório',
+                  title: Text('Casos Públicos',
                       style: TextStyle(
                         fontWeight: FontWeight.w500,
                         fontSize: 18,
                       )),
                   subtitle:
-                      Text('Acesse os relatórios do Quiz do casos clínicos.',
+                      Text('Acesse casos criados por outros professores.',
                           style: TextStyle(
                             fontSize: 16,
                           )),
@@ -169,7 +169,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
                       onPressed: () {
                         // Modular.to.pushNamed('/teacher/teacher_report');
                         Modular.to
-                            .pushNamed('/student_2/student_report_select');
+                            .pushNamed('/student_cases/cases_public');
                       },
                     ),
                   ],

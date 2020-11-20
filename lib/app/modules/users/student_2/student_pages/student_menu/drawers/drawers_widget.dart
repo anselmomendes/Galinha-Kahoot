@@ -87,10 +87,6 @@ class DrawersWidget extends StatelessWidget {
                   icon: Icons.info,
                   title: "Sobre",
                   route: '/student_2/student_about'),
-                   _getTile(
-                  icon: Icons.public,
-                  title: "Casos Públicos",
-                  route: '/student_cases/student_cases_public'),
               ListTile(
                 leading: Icon(Icons.exit_to_app),
                 title: Text(
