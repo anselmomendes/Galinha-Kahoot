@@ -20,10 +20,11 @@ class _StudentAddClassPageState extends State<StudentAddClassPage> {
     controller.repo.outState.listen((state) {
       switch (state) {
         case RegisterClassState.SUCESS:
-          print("Cadastrou");
+          alerta('Turma foi cadastrada');
           break;
         case RegisterClassState.FAIL:
-          print("Deu ruim");
+          alerta(
+              'Ocorreu um erro, verifique se você já esta cadastrado a turma');
           break;
       }
     });
@@ -84,5 +85,30 @@ class _StudentAddClassPageState extends State<StudentAddClassPage> {
                     )
                   ]),
                 ]))));
+  }
+
+  alerta(String text) {
+    return showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10.0),
+            ),
+          ),
+          title: Text(text),
+          actions: [
+            FlatButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+            )
+          ],
+        );
+      },
+    );
   }
 }
