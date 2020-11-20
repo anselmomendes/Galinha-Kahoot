@@ -31,7 +31,6 @@ class _StudentCasesQuizPageState
   void initState() {
     super.initState();
     controller.loadQuiz(widget.model.id, widget.page);
-    editMode = false;
   }
 
   int mult;
@@ -129,57 +128,60 @@ class _StudentCasesQuizPageState
                     ],
                   ),
                 ),
-                Container(
-                    height: screenWidth * 1.4,
-                    child: Container(
-                      child: Center(
-                        child: RaisedButton(
-                            color: Colors.blue,
-                            padding: const EdgeInsets.fromLTRB(
-                                40.0, 20.0, 40.0, 20.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                side: BorderSide(color: Colors.blue)),
-                            child: Text(
-                              "Iniciar Quiz",
-                              style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                              ),
-                            ),
-                            onPressed: () {
-                              controller.verifyAccessQuiz(list);
-                              print(
-                                  "Valor do acesso na page: ${controller.access}");
-                              if (controller.access == true) {
-                                Navigator.pushNamed(
-                                  context,
-                                  '/student_2/splash_screen_quiz',
-                                  arguments: list,
-                                );
-                              } else if (controller.access == false) {
-                                print("Você já realizou este quiz");
-                                showDialog(
-                                    builder: (BuildContext context) {
-                                      return AlertDialog(
-                                        content: Text(
-                                            "Você já realizou este quiz, veja seu desempenho na aba relatorio"),
-                                        actions: [
-                                          FlatButton(
-                                            child: const Text('OK'),
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                          )
-                                        ],
-                                      );
-                                    },
-                                    context: context);
-                              }
-                            }),
-                      ),
-                    )),
+                Observer(
+                  builder: (_) {
+                    return Container(
+                        height: screenWidth * 1.4,
+                        child: Container(
+                          child: Center(
+                            child: RaisedButton(
+                                color: Colors.blue,
+                                padding: const EdgeInsets.fromLTRB(
+                                    40.0, 20.0, 40.0, 20.0),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    side: BorderSide(color: Colors.blue)),
+                                child: Text(
+                                  "Iniciar Quiz",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w700,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                onPressed: () async {
+                                  await controller.verifyAccessQuiz(list);
+                                  if (controller.access == true) {
+                                    Navigator.pushNamed(
+                                      context,
+                                      '/student_2/splash_screen_quiz',
+                                      arguments: list,
+                                    );
+                                  }
+                                  if (controller.access == false) {
+                                    print("Você já realizou este quiz");
+                                    showDialog(
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            content: Text(
+                                                "Você já realizou este quiz, veja seu desempenho na aba relatorio"),
+                                            actions: [
+                                              FlatButton(
+                                                child: const Text('OK'),
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                              )
+                                            ],
+                                          );
+                                        },
+                                        context: context);
+                                  }
+                                }),
+                          ),
+                        ));
+                  },
+                ),
               ],
             ),
           );

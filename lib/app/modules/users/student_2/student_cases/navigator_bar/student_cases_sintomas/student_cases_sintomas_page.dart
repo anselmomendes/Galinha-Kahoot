@@ -31,7 +31,6 @@ class _StudentCasesSintomasPageState extends ModularState<
   void initState() {
     super.initState();
     controller.getDocuments(widget.model.id, widget.page);
-    editMode = false;
   }
 
   @override

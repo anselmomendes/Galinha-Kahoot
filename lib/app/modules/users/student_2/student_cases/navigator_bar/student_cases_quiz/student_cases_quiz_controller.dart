@@ -51,6 +51,10 @@ abstract class _StudentCasesQuizControllerBase with Store {
   }
 
   Future verifyAccessQuiz(List<QuizModel> listquiz) async {
-    access = await student2repository.verifyAccessQuiz(listquiz);
+    try {
+      access = await student2repository.verifyAccessQuiz(listquiz);
+    } catch (e) {
+      print("Não foi possivel verificar");
+    }
   }
 }

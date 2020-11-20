@@ -169,20 +169,24 @@ class Student2Repository extends Disposable {
     StudentModel student = await getUserInfo();
     String idClass = await getIDClass(quiz[0].idCases);
     bool access = true;
-    DocumentSnapshot doc = await Firestore.instance
-        .collection("users")
-        .document('${student.uid}')
-        .collection('classes')
-        .document(idClass)
-        .collection("cases")
-        .document(quiz[0].idCases)
-        .get();
-    doc.data.forEach((key, value) {
-      if (value == "disable") {
-        access = false;
-      }
-    });
-    print("Valor do acesso: $access");
+    try {
+      DocumentSnapshot doc = await Firestore.instance
+          .collection("users")
+          .document('${student.uid}')
+          .collection('classes')
+          .document(idClass)
+          .collection("cases")
+          .document(quiz[0].idCases)
+          .get();
+      doc.data.forEach((key, value) {
+        if (value == "disable") {
+          access = false;
+        }
+      });
+    } catch (e) {
+      return access;
+    }
+
     return access;
   }
 
