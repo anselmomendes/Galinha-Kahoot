@@ -766,12 +766,12 @@ class _StudentQuizPageState
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.only(bottom: 30.0),
+                  padding: EdgeInsets.only(bottom: 100.0),
                 ),
                 Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(right: 85.0),
+                      padding: EdgeInsets.only(right: 80.0),
                     ),
                     Column(
                       children: [
@@ -801,7 +801,9 @@ class _StudentQuizPageState
                         ),
                         Text(
                           "Verdadeiro",
-                          style: TextStyle(color: colorsTrue),
+                          style: TextStyle(color: colorsTrue,
+                           fontSize: 16,
+                          ),
                         )
                       ],
                     ),
@@ -836,7 +838,9 @@ class _StudentQuizPageState
                         ),
                         Text(
                           "Falso",
-                          style: TextStyle(color: colorsFalse),
+                          style: TextStyle(color: colorsFalse,
+                          fontSize: 16,
+                          ),
                         )
                       ],
                     ),
