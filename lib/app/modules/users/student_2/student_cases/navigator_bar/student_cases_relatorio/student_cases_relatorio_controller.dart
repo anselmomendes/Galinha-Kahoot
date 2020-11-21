@@ -1,4 +1,5 @@
 import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
+import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/cases/store/cases_store.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
@@ -10,31 +11,41 @@ class StudentCasesRelatorioController = _StudentCasesRelatorioBase
     with _$StudentCasesRelatorioController;
 
 abstract class _StudentCasesRelatorioBase with Store {
-  final CasesRepository casesRepository;
   final Student2Repository student2Repository;
 
   @observable
-  bool editMode = false;
+  List<QuizModel> quizAnswered;
 
   @observable
-  ObservableStream<List<CasesModel>> casesList;
+  String hits;
 
-  _StudentCasesRelatorioBase({this.casesRepository, this.student2Repository}) {
-    getList();
+  @observable
+  ObservableStream<bool> access;
+
+  _StudentCasesRelatorioBase({this.student2Repository});
+
+  @action
+  getQuizAnswer(String idCases) async {
+    quizAnswered = await student2Repository.getQuizAnswer(idCases);
   }
 
   @action
-  getList() {
-    casesList = casesRepository.get().asObservable();
+  getHits(String idCases) async {
+    hits = await student2Repository.getHits(idCases);
   }
 
   @action
-  save(CasesModel model) {
-    casesRepository.save(model);
+  verifyQuiz(String idCases) async {
+    try {
+      await student2Repository.verifyAccessQuizReport(idCases);
+    } catch (e) {
+      print("Não foi possivel verificar: $e");
+    }
+    loadAccess();
   }
 
   @action
-  delete(CasesModel model) {
-    casesRepository.delete(model);
+  loadAccess() {
+    access = student2Repository.outAccessQuiz.asObservable();
   }
 }

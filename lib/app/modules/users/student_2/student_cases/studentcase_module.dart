@@ -35,7 +35,8 @@ class StudentCaseModule extends MainModule {
             student2repository: i.get<Student2Repository>())),
         Bind((i) => StudentCasesQuizController(
             student2repository: i.get<Student2Repository>())),
-        Bind((i) => StudentCasesRelatorioController(student2Repository: i.get<Student2Repository>(), casesRepository: i.get<CasesRepository>())),
+        Bind((i) => StudentCasesRelatorioController(
+            student2Repository: i.get<Student2Repository>())),
       ];
 
   @override
@@ -49,7 +50,7 @@ class StudentCaseModule extends MainModule {
             child: (_, args) => CasesSintomasPage(model: args.data)),
         Router('/quiz',
             child: (_, args) => StudentCasesQuizPage(model: args.data)),
-             Router('/cases_relatory',
+        Router('/cases_relatory',
             child: (_, args) => StudentCasesRelatorioPage(model: args.data)),
       ];
 

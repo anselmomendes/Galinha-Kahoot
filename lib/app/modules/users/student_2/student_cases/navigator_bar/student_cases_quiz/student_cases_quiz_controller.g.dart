@@ -44,6 +44,23 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
     }, _$casesPageAtom, name: '${_$casesPageAtom.name}_set');
   }
 
+  final _$accessAtom = Atom(name: '_StudentCasesQuizControllerBase.access');
+
+  @override
+  bool get access {
+    _$accessAtom.context.enforceReadPolicy(_$accessAtom);
+    _$accessAtom.reportObserved();
+    return super.access;
+  }
+
+  @override
+  set access(bool value) {
+    _$accessAtom.context.conditionallyRunInAction(() {
+      super.access = value;
+      _$accessAtom.reportChanged();
+    }, _$accessAtom, name: '${_$accessAtom.name}_set');
+  }
+
   final _$casesAtom = Atom(name: '_StudentCasesQuizControllerBase.cases');
 
   @override
@@ -102,7 +119,7 @@ mixin _$StudentCasesQuizController on _StudentCasesQuizControllerBase, Store {
   @override
   String toString() {
     final string =
-        'quizList: ${quizList.toString()},casesPage: ${casesPage.toString()},cases: ${cases.toString()},editMode: ${editMode.toString()}';
+        'quizList: ${quizList.toString()},casesPage: ${casesPage.toString()},access: ${access.toString()},cases: ${cases.toString()},editMode: ${editMode.toString()}';
     return '{$string}';
   }
 }

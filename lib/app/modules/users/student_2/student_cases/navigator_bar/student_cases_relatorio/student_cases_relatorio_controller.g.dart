@@ -9,71 +9,88 @@ part of 'student_cases_relatorio_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$StudentCasesRelatorioController on _StudentCasesRelatorioBase, Store {
-  final _$editModeAtom = Atom(name: '_StudentCasesRelatorioBase.editMode');
+  final _$quizAnsweredAtom =
+      Atom(name: '_StudentCasesRelatorioBase.quizAnswered');
 
   @override
-  bool get editMode {
-    _$editModeAtom.context.enforceReadPolicy(_$editModeAtom);
-    _$editModeAtom.reportObserved();
-    return super.editMode;
+  List<QuizModel> get quizAnswered {
+    _$quizAnsweredAtom.context.enforceReadPolicy(_$quizAnsweredAtom);
+    _$quizAnsweredAtom.reportObserved();
+    return super.quizAnswered;
   }
 
   @override
-  set editMode(bool value) {
-    _$editModeAtom.context.conditionallyRunInAction(() {
-      super.editMode = value;
-      _$editModeAtom.reportChanged();
-    }, _$editModeAtom, name: '${_$editModeAtom.name}_set');
+  set quizAnswered(List<QuizModel> value) {
+    _$quizAnsweredAtom.context.conditionallyRunInAction(() {
+      super.quizAnswered = value;
+      _$quizAnsweredAtom.reportChanged();
+    }, _$quizAnsweredAtom, name: '${_$quizAnsweredAtom.name}_set');
   }
 
-  final _$casesListAtom = Atom(name: '_StudentCasesRelatorioBase.casesList');
+  final _$hitsAtom = Atom(name: '_StudentCasesRelatorioBase.hits');
 
   @override
-  ObservableStream<List<CasesModel>> get casesList {
-    _$casesListAtom.context.enforceReadPolicy(_$casesListAtom);
-    _$casesListAtom.reportObserved();
-    return super.casesList;
+  String get hits {
+    _$hitsAtom.context.enforceReadPolicy(_$hitsAtom);
+    _$hitsAtom.reportObserved();
+    return super.hits;
   }
 
   @override
-  set casesList(ObservableStream<List<CasesModel>> value) {
-    _$casesListAtom.context.conditionallyRunInAction(() {
-      super.casesList = value;
-      _$casesListAtom.reportChanged();
-    }, _$casesListAtom, name: '${_$casesListAtom.name}_set');
+  set hits(String value) {
+    _$hitsAtom.context.conditionallyRunInAction(() {
+      super.hits = value;
+      _$hitsAtom.reportChanged();
+    }, _$hitsAtom, name: '${_$hitsAtom.name}_set');
+  }
+
+  final _$accessAtom = Atom(name: '_StudentCasesRelatorioBase.access');
+
+  @override
+  ObservableStream<bool> get access {
+    _$accessAtom.context.enforceReadPolicy(_$accessAtom);
+    _$accessAtom.reportObserved();
+    return super.access;
+  }
+
+  @override
+  set access(ObservableStream<bool> value) {
+    _$accessAtom.context.conditionallyRunInAction(() {
+      super.access = value;
+      _$accessAtom.reportChanged();
+    }, _$accessAtom, name: '${_$accessAtom.name}_set');
+  }
+
+  final _$getQuizAnswerAsyncAction = AsyncAction('getQuizAnswer');
+
+  @override
+  Future getQuizAnswer(String idCases) {
+    return _$getQuizAnswerAsyncAction.run(() => super.getQuizAnswer(idCases));
+  }
+
+  final _$getHitsAsyncAction = AsyncAction('getHits');
+
+  @override
+  Future getHits(String idCases) {
+    return _$getHitsAsyncAction.run(() => super.getHits(idCases));
+  }
+
+  final _$verifyQuizAsyncAction = AsyncAction('verifyQuiz');
+
+  @override
+  Future verifyQuiz(String idCases) {
+    return _$verifyQuizAsyncAction.run(() => super.verifyQuiz(idCases));
   }
 
   final _$_StudentCasesRelatorioBaseActionController =
       ActionController(name: '_StudentCasesRelatorioBase');
 
   @override
-  dynamic getList() {
+  dynamic loadAccess() {
     final _$actionInfo =
         _$_StudentCasesRelatorioBaseActionController.startAction();
     try {
-      return super.getList();
-    } finally {
-      _$_StudentCasesRelatorioBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic save(CasesModel model) {
-    final _$actionInfo =
-        _$_StudentCasesRelatorioBaseActionController.startAction();
-    try {
-      return super.save(model);
-    } finally {
-      _$_StudentCasesRelatorioBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  dynamic delete(CasesModel model) {
-    final _$actionInfo =
-        _$_StudentCasesRelatorioBaseActionController.startAction();
-    try {
-      return super.delete(model);
+      return super.loadAccess();
     } finally {
       _$_StudentCasesRelatorioBaseActionController.endAction(_$actionInfo);
     }
@@ -82,7 +99,7 @@ mixin _$StudentCasesRelatorioController on _StudentCasesRelatorioBase, Store {
   @override
   String toString() {
     final string =
-        'editMode: ${editMode.toString()},casesList: ${casesList.toString()}';
+        'quizAnswered: ${quizAnswered.toString()},hits: ${hits.toString()},access: ${access.toString()}';
     return '{$string}';
   }
 }

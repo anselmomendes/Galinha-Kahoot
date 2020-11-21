@@ -24,6 +24,7 @@ class Student2Repository extends Disposable {
   final _caseController = BehaviorSubject<CasesModel>();
   final _componentsController = BehaviorSubject<List<ComponentModel>>();
   final _quizConttoller = BehaviorSubject<List<QuizModel>>();
+  final _accessquizConttoller = BehaviorSubject<bool>();
 
   //Funções que carregam os dados das Streams
   Stream<RegisterClassState> get outState => _stateController.stream;
@@ -33,6 +34,7 @@ class Student2Repository extends Disposable {
   Stream<List<ComponentModel>> get outComponents =>
       _componentsController.stream;
   Stream<List<QuizModel>> get outQuiz => _quizConttoller.stream;
+  Stream<bool> get outAccessQuiz => _accessquizConttoller.stream;
 
   Student2Repository() {
     print("Student Repo started!");
@@ -165,6 +167,32 @@ class Student2Repository extends Disposable {
     });
   }
 
+  //Verifica se o aluno pode fazer o quiz
+  Future<void> verifyAccessQuizReport(String idCases) async {
+    StudentModel student = await getUserInfo();
+    String idClass = await getIDClass(idCases);
+    bool access = true;
+    try {
+      DocumentSnapshot doc = await Firestore.instance
+          .collection("users")
+          .document('${student.uid}')
+          .collection('classes')
+          .document(idClass)
+          .collection("cases")
+          .document(idCases)
+          .get();
+      doc.data.forEach((key, value) {
+        if (value == "disable") {
+          access = false;
+          _accessquizConttoller.add(access);
+        }
+      });
+    } catch (e) {
+      _accessquizConttoller.add(access);
+    }
+  }
+
+//Verifica se o aluno pode fazer o quiz
   Future<bool> verifyAccessQuiz(List<QuizModel> quiz) async {
     StudentModel student = await getUserInfo();
     String idClass = await getIDClass(quiz[0].idCases);
@@ -274,6 +302,54 @@ class Student2Repository extends Disposable {
         return false;
       }
     });
+  }
+
+  Future<List<QuizModel>> getQuizAnswer(String idCases) async {
+    StudentModel student = await getUserInfo();
+    String idClass = await getIDClass(idCases);
+    try {
+      var collection = await Firestore.instance
+          .collection("users")
+          .document(student.uid)
+          .collection("classes")
+          .document(idClass)
+          .collection("cases")
+          .document(idCases)
+          .collection("quiz")
+          .orderBy('questionNumber')
+          .getDocuments();
+      return collection.documents
+          .map((item) => QuizModel.fromMap(item))
+          .where((element) => element.idCases == idCases)
+          .toList();
+    } catch (e) {
+      print("Erro ao chamar os componentes: $e");
+      return null;
+    }
+  }
+
+  Future<String> getHits(String idCases) async {
+    StudentModel student = await getUserInfo();
+    String idClass = await getIDClass(idCases);
+    String hits;
+    try {
+      var collection = await Firestore.instance
+          .collection("users")
+          .document(student.uid)
+          .collection("classes")
+          .document(idClass)
+          .collection("cases")
+          .document(idCases)
+          .get();
+      collection.data.forEach((key, value) {
+        if (key == 'hits') {
+          hits = '$value';
+        }
+      });
+      return hits;
+    } catch (e) {
+      print("Não foi possivel carregar acertos: $e");
+    }
   }
 
   @override
