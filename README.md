@@ -3,9 +3,9 @@
 
 O projeto consiste na criação de um aplicativo de compartilhamento de conteúdos sobre casos médicos com a possbilidade de questionários serem criados por professores e enviados para que seus alunos respondam, similar ao aplicativo [Kahoot!](https://play.google.com/store/apps/details?id=no.mobitroll.kahoot.android). O aplicativo também deve contar com um relatório de desempenho de cada aluno com relação às suas respostas submetidas nos questionários.
 
-| Nome oficial  | Nome de desenvolvimento | Tipo | Referência|Contrato| Data de entrega||Versão do Flutter||Versão do Dart|
+| Nome oficial  | Nome de desenvolvimento | Tipo | Referência|Contrato| Data de entrega|
 | ------------- | ------------- 		  | - |-|-|-|
-| Peensa!       | Galinha Kahoot		  | Aplicativo |[Aplicativo Kahoot!](https://play.google.com/store/apps/details?id=no.mobitroll.kahoot.android)| [Contrato](https://z.zz.ht/bjNuR.pdf) |??/??/2020| |1.20.4| |2.9.2|
+| Peensa!       | Galinha Kahoot		  | Aplicativo |[Aplicativo Kahoot!](https://play.google.com/store/apps/details?id=no.mobitroll.kahoot.android)| [Contrato](https://z.zz.ht/bjNuR.pdf) |??/??/2020|
 
 ### Funcionalidades/ Módulos:
 
