@@ -5,7 +5,7 @@ O projeto consiste na criação de um aplicativo de compartilhamento de conteúd
 
 | Nome oficial | Nome de desenvolvimento | Tipo       | Referência                                                                                      | Contrato                             | Data de Entrega | Versão do Flutter | Versão do Dart |
 |--------------|-------------------------|------------|-------------------------------------------------------------------------------------------------|--------------------------------------|-----------------|-------------------|----------------|
-| Peensa!      | Galinha Kahoot          | Aplicativo | [Aplicativo Kahoot!](https://play.google.com/store/apps/details?id=no.mobitroll.kahoot.android) | [Contrato](https://z.zz.ht/bjNuR.pdf | ??/??/??        |       1.20.4      |      2.9.2     |
+| Peensa!      | Galinha Kahoot          | Aplicativo | [Aplicativo Kahoot!](https://play.google.com/store/apps/details?id=no.mobitroll.kahoot.android) | [Contrato](https://z.zz.ht/bjNuR.pdf) | ??/??/??        |       1.20.4      |      2.9.2     |
 
 ### Funcionalidades/ Módulos:
 
