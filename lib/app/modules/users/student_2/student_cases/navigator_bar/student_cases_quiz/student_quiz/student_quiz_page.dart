@@ -753,7 +753,7 @@ class _StudentQuizPageState
             decoration: BoxDecoration(
               color: Colors.transparent,
               image: DecorationImage(
-                image: AssetImage("assets/imagem7.1roxojpg"),
+                image: AssetImage("assets/imagem7.1roxo.jpg"),
                 fit: BoxFit.cover,
               ),
               /*borderRadius: BorderRadius.only(
