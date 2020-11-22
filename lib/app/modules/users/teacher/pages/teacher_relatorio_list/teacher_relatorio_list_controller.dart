@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 part 'teacher_relatorio_list_controller.g.dart';
 
-@Injectable()
 class TeacherRelatorioListController = _TeacherRelatorioListControllerBase
     with _$TeacherRelatorioListController;
 

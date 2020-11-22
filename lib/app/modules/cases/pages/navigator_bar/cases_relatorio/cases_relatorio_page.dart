@@ -51,7 +51,10 @@ class _CasesRelatorioPageState
             return SingleChildScrollView(
               padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
               child: Column(
-                children: <Widget>[],
+                children: <Widget>[
+                  Text("Total de alunos que responderam: ${list.length}"),
+                  Text("Media dos alunos: ${controller.avarege}")
+                ],
               ),
             );
           }

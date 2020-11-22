@@ -1,7 +1,7 @@
 import 'dart:ffi';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_Quiz/student_quiz_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_quiz/student_quiz_page.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';

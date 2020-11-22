@@ -1,17 +1,12 @@
-import 'package:galinha_karoot/app/modules/users/student/pages/student_cadastro/student_cadastro_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_cadastro/student_cadastro_page.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_login/student_login_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_login/student_login_page.dart';
-import 'package:galinha_karoot/app/modules/users/student/repositories/student_repository.dart';
-import 'package:galinha_karoot/app/modules/users/student/services/student_service.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_page.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/studentclass_module.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_about/student_about_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_about/student_about_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_area/student_area_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_area/student_area_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_cadastro/student_cadastro_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_list_cases/student_list_cases_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_list_cases/student_list_cases_page.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_login/student_login_controller.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_login/student_login_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_menu/student_menu_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_menu/student_menu_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_perfil/student_perfil_controller.dart';
@@ -52,19 +47,13 @@ class Student2Module extends ChildModule {
         Bind((i) => StudentAreaController()),
         Bind((i) => StudentCadastroController()),
         Bind((i) => StudentLoginController()),
-        Bind((i) => StudentService()),
         Bind((i) => StudentRegisterController()),
-        Bind((i) => StudentRepository(firestore: Firestore.instance)),
         Bind((i) => StudentListCasesController(
             casesRepository: i.get<CasesRepository>())),
       ];
 
   @override
   List<Router> get routers => [
-        // Router('/student_2_menu', child: (_, args) => WelcomePage()),
-        Router('/teacher_login', child: (_, args) => StudentLoginPage()),
-        Router('/teacher_area', child: (_, args) => StudentAreaPage()),
-        Router('/teacher_cadastro', child: (_, args) => StudentCadastroPage()),
         Router('/teacher_menu',
             child: (_, args) => StudentMenuPage(showAppBar: true)),
         Router('/student_list_cases',
@@ -82,8 +71,10 @@ class Student2Module extends ChildModule {
             child: (_, args) => StudentPerfilPage(showAppBar: true)),
         Router('/student_report_select',
             child: (_, args) => StudentReportSelectPage(showAppBar: true)),
-         Router('/splash_screen_quiz',
-            child: (_, args) => Splash(list: args.data,)),
+        Router('/splash_screen_quiz',
+            child: (_, args) => Splash(
+                  list: args.data,
+                )),
       ];
 
   static Inject get to => Inject<Student2Module>.of();

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 // import 'student_2_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/cases/cases_module.dart';
+import 'package:galinha_karoot/app/modules/cases/repositories/report_repository.dart';
 import 'package:galinha_karoot/app/modules/class/class_module.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'package:galinha_karoot/app/modules/users/student/student_module.dart';
@@ -29,6 +30,7 @@ class AppModule extends MainModule {
         Bind((i) => QuestionRepository(firestore: Firestore.instance)),
         Bind((i) => CasesStore()),
         Bind((i) => ClassRepository(firestore: Firestore.instance)),
+        Bind((i) => ReportRepository()),
         Bind((i) => CasesViewModel(casesRepository: i.get<CasesRepository>())),
       ];
 

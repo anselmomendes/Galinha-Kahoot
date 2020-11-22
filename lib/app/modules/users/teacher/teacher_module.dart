@@ -33,9 +33,6 @@ import 'pages/teacher_select/teacher_select_page.dart';
 class TeacherModule extends ChildModule {
   @override
   List<Bind> get binds => [
-        $TeacherRelatorioListController,
-        $TeacherRelatorioController,
-
         Bind((i) => TeacherPerfilEditController(i.get<TeacherRepository>())),
         Bind((i) => TeacherPerfilController(
             i.get<TeacherRepository>(), i.get<TeacherRootController>())),

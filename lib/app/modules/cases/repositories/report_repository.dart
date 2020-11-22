@@ -31,7 +31,7 @@ class ReportRepository extends Disposable {
     });
   }
 
-  void getStudentsWhoAnswered(String idCase) {
+  Future<void> getStudentsWhoAnswered(String idCase) async {
     List<StudentModel> list;
     Firestore.instance
         .collection("Cases")
