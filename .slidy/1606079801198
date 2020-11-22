@@ -1,0 +1,4 @@
+lib/app/modules/users/teacher/pages/teacher_relatorio_list/teacher_relatorio_list_page.dart
+test/app/modules/users/teacher/pages/teacher_relatorio_list/teacher_relatorio_list_page_test.dart
+lib/app/modules/users/teacher/pages/teacher_relatorio_list/teacher_relatorio_list_controller.dart
+test/app/modules/users/teacher/pages/teacher_relatorio_list/teacher_relatorio_list_controller_test.dart

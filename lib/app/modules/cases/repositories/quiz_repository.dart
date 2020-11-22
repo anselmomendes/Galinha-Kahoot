@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
@@ -42,14 +41,17 @@ class QuizRepository extends Disposable {
   }
 
   // Deleta widget de questões
-  Future<bool> deleteWidget(String casesID, String page, String questionID) async {
+  Future<bool> deleteWidget(
+      String casesID, String page, String questionID) async {
     try {
-        await casesPage
+      await casesPage
           .document(casesID)
-          .collection(page).document(questionID).delete();
+          .collection(page)
+          .document(questionID)
+          .delete();
 
-          // .orderBy('position')
-          // .getDocuments()
+      // .orderBy('position')
+      // .getDocuments()
 
       // a.documents.last.reference.delete();
       return true;
@@ -63,7 +65,11 @@ class QuizRepository extends Disposable {
   Future<bool> updateWidget(QuizModel model) async {
     try {
       // await casesPage.document(model.id).updateData(model.toMap());
-      await casesPage.document(model.idCases).collection(model.page).document(model.id).updateData(model.toMap());
+      await casesPage
+          .document(model.idCases)
+          .collection(model.page)
+          .document(model.id)
+          .updateData(model.toMap());
       return true;
     } catch (e) {
       print(e);
@@ -90,8 +96,6 @@ class QuizRepository extends Disposable {
       return null;
     }
   }
-
-  
 
   /* @override
   Future save(QuizModel model) async {
@@ -154,5 +158,5 @@ class QuizRepository extends Disposable {
   } */
 
   //dispose will be called automatically
-  
+
 }

@@ -155,7 +155,7 @@ class Student2Repository extends Disposable {
           .collection("quiz")
           .document(question.id)
           .setData(question.toMap())
-          .whenComplete(() => print("Questão foi salva"));
+          .whenComplete(() => print("Questão foi salva no aluno"));
       await Firestore.instance
           .collection("users")
           .document('${student.uid}')
@@ -164,6 +164,32 @@ class Student2Repository extends Disposable {
           .collection("cases")
           .document(quiz[0].idCases)
           .setData({'hits': hitNumber, 'access': 'disable'});
+    });
+  }
+
+  Future saveQuizAnsweredCase(List<QuizModel> quiz, int hitNumber) async {
+    StudentModel student = await getUserInfo();
+    quiz.forEach((question) async {
+      await Firestore.instance
+          .collection("Cases")
+          .document(quiz[0].idCases)
+          .collection("report")
+          .document(student.uid)
+          .collection("quizAnswered")
+          .document(question.id)
+          .setData(question.toMap())
+          .whenComplete(() => print("Questão foi salva no Case"));
+      await Firestore.instance
+          .collection("Cases")
+          .document(quiz[0].idCases)
+          .collection("report")
+          .document(student.uid)
+          .setData({
+        'hits': hitNumber,
+        'access': 'disable',
+        'uid': student.uid,
+        'name': student.name
+      });
     });
   }
 

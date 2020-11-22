@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:galinha_karoot/app/modules/users/student/model/student_model.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/models/StudentModel.dart';
 
 class ClassModel {
   String id;

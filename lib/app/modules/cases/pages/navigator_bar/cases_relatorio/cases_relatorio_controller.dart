@@ -1,6 +1,5 @@
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
-import 'package:galinha_karoot/app/modules/cases/store/cases_store.dart';
+import 'package:galinha_karoot/app/modules/cases/repositories/report_repository.dart';
+import 'package:galinha_karoot/app/modules/users/student_2/models/StudentModel.dart';
 import 'package:mobx/mobx.dart';
 
 part 'cases_relatorio_controller.g.dart';
@@ -9,30 +8,35 @@ class CasesRelatorioController = _CasesRelatorioBase
     with _$CasesRelatorioController;
 
 abstract class _CasesRelatorioBase with Store {
-  final CasesRepository casesRepository;
+  final ReportRepository reportRepository;
 
   @observable
-  bool editMode = false;
+  ObservableStream<List<StudentModel>> listStudents;
 
-  @observable
-  ObservableStream<List<CasesModel>> casesList;
+  int avarege;
+  int size;
 
-  _CasesRelatorioBase(this.casesRepository) {
+  _CasesRelatorioBase(this.reportRepository);
+
+  void loadList(String idCase) async {
+    try {
+      reportRepository.getStudentsWhoAnswered(idCase);
+    } catch (e) {
+      print("Não foi possivel carregar os alunos que responderam: $e");
+    }
     getList();
   }
 
-  @action
-  getList() {
-    casesList = casesRepository.get().asObservable();
+  void getList() {
+    listStudents = reportRepository.ouStudents.asObservable();
   }
 
-  @action
-  save(CasesModel model) {
-    casesRepository.save(model);
-  }
-
-  @action
-  delete(CasesModel model) {
-    casesRepository.delete(model);
+  double getAverage(List<StudentModel> list) {
+    int hit;
+    size = list.length;
+    list.forEach((student) {
+      hit = hit + student.hits;
+    });
+    return hit / size;
   }
 }

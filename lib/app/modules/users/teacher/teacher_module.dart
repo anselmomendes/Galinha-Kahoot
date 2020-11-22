@@ -1,3 +1,5 @@
+import 'pages/teacher_relatorio_list/teacher_relatorio_list_controller.dart';
+import 'pages/teacher_relatorio/teacher_relatorio_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
 import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
 import 'pages/teacher_list_cases/teacher_list_cases_controller.dart';
@@ -31,7 +33,9 @@ import 'pages/teacher_select/teacher_select_page.dart';
 class TeacherModule extends ChildModule {
   @override
   List<Bind> get binds => [
-    
+        $TeacherRelatorioListController,
+        $TeacherRelatorioController,
+
         Bind((i) => TeacherPerfilEditController(i.get<TeacherRepository>())),
         Bind((i) => TeacherPerfilController(
             i.get<TeacherRepository>(), i.get<TeacherRootController>())),
