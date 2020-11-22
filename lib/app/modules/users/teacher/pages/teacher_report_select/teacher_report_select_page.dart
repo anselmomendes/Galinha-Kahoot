@@ -103,8 +103,7 @@ class _TeacherReportSelectPageState extends ModularState<
                               ],
                             ),
                             onTap: () {
-                              print(index);
-                              //Navigator.pushNamed(context, '/teacher/teacher_menu');
+                              Navigator.pushNamed(context, '/teacher/teacher_relatorio');
                             },
                           ),
                         ),

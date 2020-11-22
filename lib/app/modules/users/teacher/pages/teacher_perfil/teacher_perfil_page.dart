@@ -12,7 +12,7 @@ class TeacherPerfilPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
   const TeacherPerfilPage(
-      {Key key, this.title = "TeacherPerfil", this.showAppBar})
+      {Key key, this.title = "Perfil", this.showAppBar})
       : super(key: key);
 
   @override

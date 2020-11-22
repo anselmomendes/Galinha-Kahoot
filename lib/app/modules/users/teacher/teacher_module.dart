@@ -1,3 +1,6 @@
+import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_relatorio/teacher_relatorio_page.dart';
+import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_relatorio_list/teacher_relatorio_list_page.dart';
+
 import 'pages/teacher_relatorio_list/teacher_relatorio_list_controller.dart';
 import 'pages/teacher_relatorio/teacher_relatorio_controller.dart';
 import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
@@ -45,6 +48,8 @@ class TeacherModule extends ChildModule {
         Bind((i) => TeacherLoginController()),
         Bind((i) => TeacherService()),
         Bind((i) => TeacherRegisterController()),
+        Bind((i) => TeacherRelatorioController()),
+        Bind((i) => TeacherRelatorioListController()),
         Bind((i) => TeacherRepository(firestore: Firestore.instance)),
         Bind((i) => TeacherListCasesController(
             casesRepository: i.get<CasesRepository>())),
@@ -74,6 +79,10 @@ class TeacherModule extends ChildModule {
             child: (_, args) => TeacherPerfilPage(showAppBar: true)),
         Router('/teacher_report_select',
             child: (_, args) => TeacherReportSelectPage(showAppBar: true)),
+        Router('/teacher_relatorio',
+            child: (_, args) => TeacherRelatorioPage(showAppBar: true)),
+        Router('/teacher_relatorio_list',
+            child: (_, args) => TeacherRelatorioListPage(showAppBar: true)),
       ];
 
   static Inject get to => Inject<TeacherModule>.of();
