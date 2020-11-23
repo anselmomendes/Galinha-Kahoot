@@ -170,7 +170,7 @@ class _CasesSintomasPageState
         body: Column(
           children: [
             Container(
-              height: screenWidth * 1.15,
+              height: screenWidth * 1.10,
               child: Observer(
                 name: 'componentes',
                 builder: (_) {
@@ -218,8 +218,11 @@ class _CasesSintomasPageState
                               ),
                               onTap: () {
                                 Navigator.pushNamed(
-                                    context, '/cases/cases_edit',
-                                    arguments: model).then((value) async => await controller.getDocuments(model.idCases, model.page));
+                                        context, '/cases/cases_edit',
+                                        arguments: model)
+                                    .then((value) async =>
+                                        await controller.getDocuments(
+                                            model.idCases, model.page));
                               },
                             ),
                           ),
@@ -235,55 +238,67 @@ class _CasesSintomasPageState
               indent: 5.0,
               color: Colors.black,
             ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Text(
-              'Adicionar Campos',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18.0,
-              ),
-              textAlign: TextAlign.center,
-            ),
+            Padding(padding: EdgeInsets.only(bottom: 8)),
+            
             Padding(
               padding: EdgeInsets.only(
-                bottom: 10.0,
+                bottom: 8.0,
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(right: screenWidth * 0.05),
-                  child: IconButton(
-                      icon: Icon(
-                        Icons.add_photo_alternate,
-                        color: Colors.blueGrey[500],
-                        size: 50.0,
-                        semanticLabel: 'Imagem',
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  
+                  children: [
+                    
+                    Padding(padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'Imagem',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
                       ),
-                      tooltip: 'Imagem',
-                      onPressed: () async {
-                        ComponentModel model = ComponentModel();
-                        model.type = 'Imagem';
-                        model.idCases = widget.model.id;
-                        model.page = widget.page;
-                        model.value = 'https://livecasthd.com.br/sem_foto.png';
-                        // model.type = 'image';
-                        model.position = lastPosition;
+                    ),
+                  ),
+                    IconButton(
+                        icon: Icon(
+                          Icons.add_photo_alternate,
+                          color: Colors.blueGrey[500],
+                          size: 50.0,
+                          semanticLabel: 'Imagem',
+                        ),
+                        tooltip: 'Imagem',
+                        onPressed: () async {
+                          ComponentModel model = ComponentModel();
+                          model.type = 'Imagem';
+                          model.idCases = widget.model.id;
+                          model.page = widget.page;
+                          model.value =
+                              'https://livecasthd.com.br/sem_foto.png';
+                          // model.type = 'image';
+                          model.position = lastPosition;
 
-                        await controller.create(model);
-                        await controller.getDocuments(
-                            widget.model.id, widget.page);
-                      }),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(),
-                ),
-                Padding(
-                    padding: EdgeInsets.only(right: screenWidth * 0.05),
-                    child: IconButton(
+                          await controller.create(model);
+                          await controller.getDocuments(
+                              widget.model.id, widget.page);
+                        }),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: 30.0,
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'Texto',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                      ),
+                    ),
+                  ),
+                    IconButton(
                         icon: Icon(
                           Icons.description,
                           color: Colors.blueGrey[500],
@@ -304,14 +319,28 @@ class _CasesSintomasPageState
                           await controller.create(model);
                           await controller.getDocuments(
                               widget.model.id, widget.page);
-                        })),
-                Expanded(
-                  flex: 1,
-                  child: Container(),
+                        })
+                  ],
                 ),
                 Padding(
-                    padding: EdgeInsets.only(right: screenWidth * 0.05),
-                    child: IconButton(
+                  padding: EdgeInsets.only(
+                    right: 100.0,
+                  ),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                
+                  children: [
+                  Padding(padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'Título',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                      ),
+                    ),
+                  ),
+                    IconButton(
                         icon: Icon(
                           Icons.title,
                           color: Colors.blueGrey[500],
@@ -332,8 +361,45 @@ class _CasesSintomasPageState
                           await controller.create(model);
                           await controller.getDocuments(
                               widget.model.id, widget.page);
-                        })),
-                SizedBox(height: 10),
+                        }),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: 30.0,
+                      ),
+                    ),
+                     Padding(padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'Link',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                      ),
+                    ),
+                  ),
+                    IconButton(
+                        icon: Icon(
+                          Icons.link,
+                          color: Colors.blueGrey[500],
+                          size: 50.0,
+                          semanticLabel: 'Link',
+                        ),
+                        tooltip: 'Link',
+                        onPressed: () async {
+                          ComponentModel model = ComponentModel();
+                          model.type = 'Link';
+                          model.idCases = widget.model.id;
+                          model.page = widget.page;
+                          model.value = 'Digite um link para o conteúdo';
+                          // model.type = 'topic';
+                          model.position = lastPosition;
+                          print(lastPosition);
+
+                          await controller.create(model);
+                          await controller.getDocuments(
+                              widget.model.id, widget.page);
+                        }),
+                  ],
+                ),
               ],
             ),
           ],
@@ -348,7 +414,8 @@ class _CasesSintomasPageState
           flex: 2,
           child: Container(),
         ), */
-        Text('Posição ${model.position} | ${model.type}',
+        Text(
+          'Posição ${model.position} | ${model.type}',
           // "Campo | ${model.type}",
           // textAlign: TextAlign.end,
           style: TextStyle(

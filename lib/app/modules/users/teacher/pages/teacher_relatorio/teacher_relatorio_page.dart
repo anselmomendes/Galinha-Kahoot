@@ -65,6 +65,7 @@ class _TeacherRelatorioPageState
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        
                         Text('N° de Questões:',
                             style: TextStyle(
                               color: Colors.black,
@@ -103,7 +104,7 @@ class _TeacherRelatorioPageState
                                 children: <Widget>[
                                   Text('Acertos:',
                                       style: TextStyle(
-                                        color: Colors.green,
+                                        color: Colors.green, fontWeight: FontWeight.w500,
                                       )),
                                   Text('30',
                                       style: TextStyle(
@@ -118,7 +119,7 @@ class _TeacherRelatorioPageState
                                 children: <Widget>[
                                   Text('Média da Turma:',
                                       style: TextStyle(
-                                        color: Colors.green,
+                                        color: Colors.green, fontWeight: FontWeight.w500,
                                       )),
                                   Text('30',
                                       style: TextStyle(
@@ -194,7 +195,7 @@ mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text('Erros:',
-                                      style: TextStyle(color: Colors.red)),
+                                      style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500,)),
                                   Text('30',
                                       style: TextStyle(
                                           color: Colors.black,
@@ -207,7 +208,7 @@ mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text('Média da Turma:',
-                                      style: TextStyle(color: Colors.red)),
+                                      style: TextStyle(color: Colors.red,  fontWeight: FontWeight.w500,)),
                                   Text('30',
                                       style: TextStyle(
                                           color: Colors.black,
