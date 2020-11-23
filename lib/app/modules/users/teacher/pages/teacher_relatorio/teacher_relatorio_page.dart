@@ -32,7 +32,7 @@ class _TeacherRelatorioPageState
             padding: const EdgeInsets.fromLTRB(30, 20, 30, 30),
             child: Column(
               children: <Widget>[
-                Container(
+                /* Container(
                   margin: const EdgeInsets.fromLTRB(50.0, 15.0, 50.0, 10.0),
                   alignment: Alignment.center,
                   width: 150.0,
@@ -47,13 +47,48 @@ class _TeacherRelatorioPageState
                         Radius.circular(5.0) //         <--- border radius here
                         ),
                   ),
-                  child: Text('Dados Gerais:',
-                      style: TextStyle(color: Colors.white, fontSize: 20.0)),
-                ),
-                Padding(padding: EdgeInsets.only(bottom: 5.0)),
+                  child: */
+                Text('Dados Gerais',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w600,
+                    )),
+                Divider(thickness: 2.0),
+
+                Padding(padding: EdgeInsets.only(bottom: 15.0)),
+
                 Column(
                   children: [
                     //Material onde exibe o total de acertos da turma
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text('N° de Questões:',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 22.0,
+                              fontWeight: FontWeight.w600,
+                            )),
+                        Padding(padding: EdgeInsets.only(right: 30.0)),
+                        Material(
+                          color: Colors.blue,
+                           elevation: 14.0,
+        borderRadius: BorderRadius.circular(12.0),
+        shadowColor: Color(0x802196F3),
+                            child: Center(
+                                child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Text('30',
+                                        style: TextStyle(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 22.0)))))
+                      ],
+                    ),
+
+                    Padding(padding: EdgeInsets.only(bottom: 20.0)),
 
                     _buildTile(
                       Padding(
@@ -67,7 +102,9 @@ class _TeacherRelatorioPageState
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text('Acertos:',
-                                      style: TextStyle(color: Colors.green,)),
+                                      style: TextStyle(
+                                        color: Colors.green,
+                                      )),
                                   Text('30',
                                       style: TextStyle(
                                           color: Colors.black,
@@ -80,7 +117,9 @@ class _TeacherRelatorioPageState
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text('Média da Turma:',
-                                      style: TextStyle(color: Colors.green,)),
+                                      style: TextStyle(
+                                        color: Colors.green,
+                                      )),
                                   Text('30',
                                       style: TextStyle(
                                           color: Colors.black,
@@ -189,10 +228,11 @@ mainAxisAlignment: MainAxisAlignment.center,
                       ),
                     ),
 
-                    Padding(padding: EdgeInsets.only(bottom: 30.0)),
+                    Padding(padding: EdgeInsets.only(bottom: 40.0)),
 
                     RaisedButton(
                         color: Colors.blue,
+                        padding: const EdgeInsets.all(18.0),
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0),
                             side: BorderSide(color: Colors.blueAccent)),

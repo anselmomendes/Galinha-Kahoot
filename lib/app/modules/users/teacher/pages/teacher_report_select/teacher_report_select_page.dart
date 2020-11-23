@@ -30,7 +30,9 @@ class _TeacherReportSelectPageState extends ModularState<
               title: Text(widget.title),
             )
           : null,
-      body: Column(
+      body: 
+    SingleChildScrollView(
+     child: Column(
         children: <Widget>[
           Container(
             //height: 50,
@@ -115,6 +117,7 @@ class _TeacherReportSelectPageState extends ModularState<
             ),
           ),
         ],
+      ),
       ),
     );
   }

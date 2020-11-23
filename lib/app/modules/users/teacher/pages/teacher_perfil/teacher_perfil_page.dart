@@ -136,6 +136,7 @@ class _TeacherPerfilPageState
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RaisedButton(
+                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
                                 color: Colors.blueAccent,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
@@ -157,6 +158,7 @@ class _TeacherPerfilPageState
 
                             RaisedButton(
                               color: Colors.blueAccent,
+                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                   side: BorderSide(color: Colors.blueAccent)),
@@ -180,6 +182,7 @@ class _TeacherPerfilPageState
                             // Divider(thickness: 2.0),
                             SizedBox(height: 10),
                             RaisedButton(
+                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
                               color: Colors.blueAccent,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),

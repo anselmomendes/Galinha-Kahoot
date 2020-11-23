@@ -26,13 +26,18 @@ class _TeacherRelatorioListPageState extends ModularState<
         title: Text(widget.title),
         centerTitle: true,
       ),
-      body: Column(
+      body:
+      
+      Padding(
+            padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+            child: Column(
         children: <Widget>[
             Expanded(
               flex: 4,
               child: _getListView(),
             ),
         ],
+      ),
       ),
     );
   }
