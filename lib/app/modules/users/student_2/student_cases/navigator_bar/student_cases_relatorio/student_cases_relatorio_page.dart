@@ -52,31 +52,30 @@ class _StudentCasesRelatorioPageState extends ModularState<
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Column(
                   children: <Widget>[
-                    
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                   Text('Atenção!',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w600,
-                    )),
-                      Padding(
-                      padding: EdgeInsets.only(right: 10.0),
+                        Text('Atenção!',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25.0,
+                              fontWeight: FontWeight.w600,
+                            )),
+                        Padding(
+                          padding: EdgeInsets.only(right: 10.0),
+                        ),
+                        Icon(
+                          Icons.warning,
+                          color: Colors.amber,
+                          size: 40.0,
+                        ),
+                      ],
                     ),
-                     Icon(
-                    Icons.warning,
-                    color: Colors.amber,
-                    size: 40.0,
-                  ),
-                    ],),
-                     Padding(
+                    Padding(
                       padding: EdgeInsets.only(bottom: 20.0),
                     ),
-                   Container(
-                      margin: const
-                       EdgeInsets.all(10.0),
+                    Container(
+                      margin: const EdgeInsets.all(10.0),
                       alignment: Alignment.center,
                       width: 220.0,
                       height: 80.0,
@@ -91,7 +90,6 @@ class _StudentCasesRelatorioPageState extends ModularState<
                         textAlign: TextAlign.center,
                       ),
                     ),
-                    
                     Padding(
                       padding: EdgeInsets.only(bottom: 10.0),
                     ),
@@ -121,13 +119,13 @@ class _StudentCasesRelatorioPageState extends ModularState<
                   child: Column(
                     children: <Widget>[
                       Text('Meu Desempenho',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 25.0,
-                      fontWeight: FontWeight.w600,
-                    )),
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25.0,
+                            fontWeight: FontWeight.w600,
+                          )),
                       Padding(padding: EdgeInsets.only(bottom: 10.0)),
-                       Divider(
+                      Divider(
                         color: Colors.blueGrey[500],
                         height: 5,
                         thickness: 1,

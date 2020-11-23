@@ -35,7 +35,7 @@ abstract class _TeacherRelatorioControllerBase with Store {
   }
 
   void loadQuiz() {
-    listquiz = reportRepository.outQuiz.asObservable();
+    listquiz = reportRepository.outQuiz.asObservable(initialValue: []);
   }
 
   void loadListStudents(String idCase) async {
@@ -48,7 +48,7 @@ abstract class _TeacherRelatorioControllerBase with Store {
   }
 
   void getList() async {
-    listStudents = await reportRepository.ouStudents.asObservable();
+    listStudents = reportRepository.ouStudents.asObservable(initialValue: []);
   }
 
   void getAverage(List<StudentModel> list1, List<QuizModel> list2) {

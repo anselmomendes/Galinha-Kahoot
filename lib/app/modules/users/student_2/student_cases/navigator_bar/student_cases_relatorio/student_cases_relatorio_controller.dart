@@ -11,7 +11,7 @@ abstract class _StudentCasesRelatorioBase with Store {
   final Student2Repository student2Repository;
 
   @observable
-  List<QuizModel> quizAnswered;
+  List<QuizModel> quizAnswered = [];
 
   @observable
   String hits;
@@ -23,12 +23,13 @@ abstract class _StudentCasesRelatorioBase with Store {
 
   @action
   getQuizAnswer(String idCases) async {
-    quizAnswered = await student2Repository.getQuizAnswer(idCases);
+    quizAnswered =
+        await student2Repository.getQuizAnswer(idCases).asObservable();
   }
 
   @action
   getHits(String idCases) async {
-    hits = await student2Repository.getHits(idCases);
+    hits = await student2Repository.getHits(idCases).asObservable();
   }
 
   @action
@@ -43,6 +44,6 @@ abstract class _StudentCasesRelatorioBase with Store {
 
   @action
   loadAccess() {
-    access = student2Repository.outAccessQuiz.asObservable();
+    access = student2Repository.outAccessQuiz.asObservable(initialValue: true);
   }
 }
