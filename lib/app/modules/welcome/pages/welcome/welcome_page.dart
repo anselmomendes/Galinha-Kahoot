@@ -46,6 +46,7 @@ class _WelcomePageState extends ModularState<WelcomePage, WelcomeController> {
         ),
         child: SingleChildScrollView(
           padding: EdgeInsets.only(
+            bottom: 200,
             top: 200.0,
             left: 40.0,
             right: 40.0,
