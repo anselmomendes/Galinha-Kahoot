@@ -55,9 +55,7 @@ class _TeacherRelatorioPageState
                       fontWeight: FontWeight.w600,
                     )),
                 Divider(thickness: 2.0),
-
                 Padding(padding: EdgeInsets.only(bottom: 15.0)),
-
                 Column(
                   children: [
                     //Material onde exibe o total de acertos da turma
@@ -65,7 +63,6 @@ class _TeacherRelatorioPageState
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        
                         Text('N° de Questões:',
                             style: TextStyle(
                               color: Colors.black,
@@ -74,10 +71,10 @@ class _TeacherRelatorioPageState
                             )),
                         Padding(padding: EdgeInsets.only(right: 30.0)),
                         Material(
-                          color: Colors.blue,
-                           elevation: 14.0,
-        borderRadius: BorderRadius.circular(12.0),
-        shadowColor: Color(0x802196F3),
+                            color: Colors.blue,
+                            elevation: 14.0,
+                            borderRadius: BorderRadius.circular(12.0),
+                            shadowColor: Color(0x802196F3),
                             child: Center(
                                 child: Padding(
                                     padding: const EdgeInsets.all(16.0),
@@ -104,7 +101,8 @@ class _TeacherRelatorioPageState
                                 children: <Widget>[
                                   Text('Acertos:',
                                       style: TextStyle(
-                                        color: Colors.green, fontWeight: FontWeight.w500,
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.w500,
                                       )),
                                   Text('30',
                                       style: TextStyle(
@@ -119,7 +117,8 @@ class _TeacherRelatorioPageState
                                 children: <Widget>[
                                   Text('Média da Turma:',
                                       style: TextStyle(
-                                        color: Colors.green, fontWeight: FontWeight.w500,
+                                        color: Colors.green,
+                                        fontWeight: FontWeight.w500,
                                       )),
                                   Text('30',
                                       style: TextStyle(
@@ -195,7 +194,10 @@ mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text('Erros:',
-                                      style: TextStyle(color: Colors.red, fontWeight: FontWeight.w500,)),
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.w500,
+                                      )),
                                   Text('30',
                                       style: TextStyle(
                                           color: Colors.black,
@@ -208,7 +210,10 @@ mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
                                   Text('Média da Turma:',
-                                      style: TextStyle(color: Colors.red,  fontWeight: FontWeight.w500,)),
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontWeight: FontWeight.w500,
+                                      )),
                                   Text('30',
                                       style: TextStyle(
                                           color: Colors.black,
@@ -231,6 +236,50 @@ mainAxisAlignment: MainAxisAlignment.center,
 
                     Padding(padding: EdgeInsets.only(bottom: 40.0)),
 
+                    Divider(thickness: 2.0),
+
+                    Padding(padding: EdgeInsets.only(bottom: 15.0)),
+
+                    _buildTile(
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Text('N° de Alunos que \nReponderam o Quiz:',
+                                      style: TextStyle(
+                                          color: Colors.blueGrey[800],
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 16.0)),
+                                  Text('30',
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 30.0))
+                                ],
+                              ),
+                              Material(
+                                  color: Colors.blueGrey[800],
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Icon(Icons.person,
+                                        color: Colors.white, size: 30.0),
+                                  )))
+                            ]),
+                      ),
+                    ),
+
+                    Padding(padding: EdgeInsets.only(bottom: 40.0)),
+
+                    //Botão para acessar lista de alunos
                     RaisedButton(
                         color: Colors.blue,
                         padding: const EdgeInsets.all(18.0),

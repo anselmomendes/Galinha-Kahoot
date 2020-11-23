@@ -48,60 +48,148 @@ class _TeacherRelatorioListPageState extends ModularState<
           child: Column(
             children: [
               ListTile(
-                leading: Icon(Icons.person_outline),
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
                 title: Text("Aluno(a)"),
                 subtitle: Text("Acertos: 10 / Erros: 10"),
               ),
+               Divider(),
               ListTile(
-                leading: Icon(Icons.person_outline),
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
                 title: Text("Aluno(a)"),
                 subtitle: Text("Acertos: 10 / Erros: 10"),
               ),
+              Divider(),
               ListTile(
-                leading: Icon(Icons.person_outline),
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
                 title: Text("Aluno(a)"),
                 subtitle: Text("Acertos: 10 / Erros: 10"),
               ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+            ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
               ListTile(
-                leading: Icon(Icons.person_outline),
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
                 title: Text("Aluno(a)"),
                 subtitle: Text("Acertos: 10 / Erros: 10"),
               ),
-              ListTile(
-                leading: Icon(Icons.person_outline),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
                 title: Text("Aluno(a)"),
                 subtitle: Text("Acertos: 10 / Erros: 10"),
               ),
-              ListTile(
-                leading: Icon(Icons.person_outline),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
                 title: Text("Aluno(a)"),
                 subtitle: Text("Acertos: 10 / Erros: 10"),
               ),
-              ListTile(
-                leading: Icon(Icons.person_outline),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
                 title: Text("Aluno(a)"),
                 subtitle: Text("Acertos: 10 / Erros: 10"),
               ),
-              ListTile(
-                leading: Icon(Icons.person_outline),
-                title: Text("Aluno(a)"),
-                subtitle: Text("Acertos: 10 / Erros: 10"),
-              ),
-              ListTile(
-                leading: Icon(Icons.person_outline),
-                title: Text("Aluno(a)"),
-                subtitle: Text("Acertos: 10 / Erros: 10"),
-              ),
-              ListTile(
-                leading: Icon(Icons.person_outline),
-                title: Text("Aluno(a)"),
-                subtitle: Text("Acertos: 10 / Erros: 10"),
-              ),
-              ListTile(
-                leading: Icon(Icons.person_outline),
-                title: Text("Aluno(a)"),
-                subtitle: Text("Acertos: 10 / Erros: 10"),
-              ),
+               Divider(),
             ],
           ),
         ),
