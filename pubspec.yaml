@@ -64,8 +64,10 @@ flutter:
     - assets/imagem7roxo.jpg
     - assets/imagem7.1roxo.jpg
     - assets/imagem7vermelho.jpg
+    - assets/imagem7vermelho2.jpg
     - assets/bitsbranco.png
    
+    
 
   uses-material-design: true
 

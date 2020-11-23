@@ -8,10 +8,10 @@ class DrawersWidget extends StatelessWidget {
   ListTile _getTile(
       {@required String title, IconData icon, @required String route}) {
     return ListTile(
-      leading: icon == null ? null : Icon(icon),
+      leading: icon == null ? null : Icon(icon,  color: Colors.white,),
       title: Text(
         title,
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(fontSize: 20,  color: Colors.white,),
       ),
       onTap: () {
         Modular.to.pop();
@@ -31,6 +31,12 @@ class DrawersWidget extends StatelessWidget {
         );
 
     return Drawer(
+      child: Container(
+ decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              colors: [Colors.redAccent[100], Colors.redAccent])),
       child: Stack(
         children: <Widget>[
           ListView(
@@ -44,10 +50,10 @@ class DrawersWidget extends StatelessWidget {
                   children: <Widget>[
                     Positioned(
                       left: 65,
-                      top: 0.0,
+                      top: 10.0,
                       child: Image.asset(
-                        'assets/bits.png',
-                        height: 110,
+                        'assets/bitsbranco.png',
+                        height: 100,
                       ),
                     ),
                     Positioned(
@@ -59,7 +65,7 @@ class DrawersWidget extends StatelessWidget {
                             Text(
                               'Olá professor!',
                               style: TextStyle(
-                                  fontSize: 18.0, fontWeight: FontWeight.bold),
+                                  fontSize: 18.0, fontWeight: FontWeight.bold,  color: Colors.white,),
                             ),
                             /* GestureDetector(
                               child: Text(
@@ -100,10 +106,10 @@ class DrawersWidget extends StatelessWidget {
                   title: "Casos Públicos",
                   route: '/cases/cases_public'),
               ListTile(
-                leading: Icon(Icons.exit_to_app),
+                leading: Icon(Icons.exit_to_app,  color: Colors.white,),
                 title: Text(
                   "Sair",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 20,  color: Colors.white,),
                 ),
                 onTap: () {
                   controller.logout();
@@ -114,6 +120,7 @@ class DrawersWidget extends StatelessWidget {
             ],
           ),
         ],
+      ),
       ),
     );
   }

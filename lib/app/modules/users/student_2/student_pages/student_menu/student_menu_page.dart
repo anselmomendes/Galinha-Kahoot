@@ -25,59 +25,19 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
               title: Text(widget.title),
             )
           : null,
-      body: Center(
+      body: 
+      Container(
+          decoration: BoxDecoration(
+          color: Colors.transparent,
+          image: DecorationImage(
+            image: AssetImage("assets/imagem7vermelho2.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+      child: Center(
           child: ListView(
         children: <Widget>[
-          /*   Card(
-             shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(15.0),
-    ),
-            margin: EdgeInsets.all(15),
-            elevation: 20,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                //const SizedBox(height: 15,),
-              ListTile(
-                  //contentPadding: EdgeInsets.only(left: 30),
-                  leading: Icon(
-                    Icons.local_hospital,
-                    color: Colors.blueGrey,
-                    size: 35.0,
-                  ),
-                  title: Text('Casos',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18,
-                      )),
-                  subtitle: Text('Acesse ou crie casos médicos.',
-                      style: TextStyle(
-                        fontSize: 16,
-                      )),
-                 ),
-                ButtonBar(
-                  children: <Widget>[
-                    FlatButton(
-                      color: Colors.redAccent,
-                      child: const Text('ACESSAR'),
-                      onPressed: () {
-                        // Navigator.pushNamed(context, '/');
-                        Modular.to.pushNamed('/teacher/teacher_list_cases');
-                      },
-                    ),
-                    FlatButton(
-                      color: Colors.redAccent,
-                      child: const Text('CRIAR'),
-                      onPressed: () {
-                        Modular.to.pushNamed('/cases/cases_register');
-                      },
-                    ),
-            
-                  ],
-                ),
-              ],
-            ),
-          ), */
+          Padding(padding: EdgeInsets.only(bottom: 5)),
           Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
@@ -179,6 +139,7 @@ class _StudentMenuPageState extends State<StudentMenuPage> {
           ),
         ],
       )),
+      ),
     );
   }
 }

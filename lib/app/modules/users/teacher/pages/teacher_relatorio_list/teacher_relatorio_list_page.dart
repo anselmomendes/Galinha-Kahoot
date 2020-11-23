@@ -48,6 +48,7 @@ class _TeacherRelatorioListPageState extends ModularState<
   }
 
   Widget _getListView() {
+<<<<<<< HEAD
     return ListView.builder(
       itemCount: widget.listmodel.length,
       itemBuilder: (context, index) {
@@ -59,6 +60,160 @@ class _TeacherRelatorioListPageState extends ModularState<
               "Acertos: ${model[index].hits} / Erros: ${model[index].errors}"),
         );
       },
+=======
+    var listview = ListView(
+      children: <Widget>[
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+              ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+              Divider(),
+              ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+            ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+              ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+             ListTile(
+                leading:  CircleAvatar(
+                radius: 18.0,
+                backgroundColor: Colors.blueAccent,
+                child: Padding(
+                  padding: EdgeInsets.all(3),
+                  child:  Icon(Icons.person_outline,
+                                        color: Colors.white, size: 30.0),
+                )),
+                title: Text("Aluno(a)"),
+                subtitle: Text("Acertos: 10 / Erros: 10"),
+              ),
+               Divider(),
+            ],
+          ),
+        ),
+      ],
+>>>>>>> b59ab1d467307f36200d3fe5a48ddde234debce1
     );
   }
 }
