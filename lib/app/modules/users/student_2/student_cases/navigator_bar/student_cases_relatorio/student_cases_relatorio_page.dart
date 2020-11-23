@@ -52,41 +52,46 @@ class _StudentCasesRelatorioPageState extends ModularState<
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Column(
                   children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.all(10.0),
-                      alignment: Alignment.center,
-                      width: 200.0,
-                      height: 50.0,
-                      decoration: myBoxDecoration(),
-                      child: Text(
-                        'Meu desempenho',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                    
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                   Text('Atenção!',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w600,
+                    )),
+                      Padding(
+                      padding: EdgeInsets.only(right: 10.0),
                     ),
-                    Container(
-                      margin: const EdgeInsets.all(10.0),
-                      alignment: Alignment.center,
-                      width: 200.0,
-                      height: 50.0,
-                      decoration: myBoxDecoration(),
-                      child: Text(
-                        'Você não realizou o Quiz ainda!',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                    Padding(
+                     Icon(
+                    Icons.warning,
+                    color: Colors.amber,
+                    size: 40.0,
+                  ),
+                    ],),
+                     Padding(
                       padding: EdgeInsets.only(bottom: 20.0),
                     ),
+                   Container(
+                      margin: const
+                       EdgeInsets.all(10.0),
+                      alignment: Alignment.center,
+                      width: 220.0,
+                      height: 80.0,
+                      decoration: myBoxDecoration(),
+                      child: Text(
+                        'O Quiz não foi respondido ainda!',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    
                     Padding(
                       padding: EdgeInsets.only(bottom: 10.0),
                     ),
@@ -115,23 +120,23 @@ class _StudentCasesRelatorioPageState extends ModularState<
                   padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        margin: const EdgeInsets.all(10.0),
-                        alignment: Alignment.center,
-                        width: 200.0,
-                        height: 50.0,
-                        decoration: myBoxDecoration(),
-                        child: Text(
-                          'Meu desempenho',
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
+                      Text('Meu Desempenho',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.w600,
+                    )),
+                      Padding(padding: EdgeInsets.only(bottom: 10.0)),
+                       Divider(
+                        color: Colors.blueGrey[500],
+                        height: 5,
+                        thickness: 1,
+                        indent: 5,
+                        endIndent: 2,
                       ),
+                      Padding(padding: EdgeInsets.only(bottom: 20.0)),
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Card(
                               elevation: 5,
@@ -194,13 +199,6 @@ class _StudentCasesRelatorioPageState extends ModularState<
                       Padding(
                         padding: EdgeInsets.only(bottom: 10.0),
                       ),
-                      Divider(
-                        color: Colors.blueGrey[500],
-                        height: 5,
-                        thickness: 1,
-                        indent: 5,
-                        endIndent: 2,
-                      ),
                       Padding(
                         padding: EdgeInsets.only(bottom: 10.0),
                       ),
@@ -221,7 +219,7 @@ class _StudentCasesRelatorioPageState extends ModularState<
         color: Colors.blue,
       ),
       borderRadius: BorderRadius.all(
-          Radius.circular(5.0) //         <--- border radius here
+          Radius.circular(15.0) //         <--- border radius here
           ),
     );
   }
