@@ -17,6 +17,7 @@ abstract class _StudentQuizControllerBase with Store {
   int questionIndex = 0;
   bool _shiftAnswer;
   int hitNumber = 0;
+  int errors = 0;
   String answer;
 
   Map answers;

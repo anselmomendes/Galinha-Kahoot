@@ -10,41 +10,9 @@ part of 'teacher_relatorio_list_controller.dart';
 
 mixin _$TeacherRelatorioListController
     on _TeacherRelatorioListControllerBase, Store {
-  final _$valueAtom = Atom(name: '_TeacherRelatorioListControllerBase.value');
-
-  @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
-  }
-
-  @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
-  }
-
-  final _$_TeacherRelatorioListControllerBaseActionController =
-      ActionController(name: '_TeacherRelatorioListControllerBase');
-
-  @override
-  void increment() {
-    final _$actionInfo =
-        _$_TeacherRelatorioListControllerBaseActionController.startAction();
-    try {
-      return super.increment();
-    } finally {
-      _$_TeacherRelatorioListControllerBaseActionController
-          .endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
-    final string = 'value: ${value.toString()}';
+    final string = '';
     return '{$string}';
   }
 }

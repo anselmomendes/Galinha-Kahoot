@@ -141,7 +141,11 @@ class Student2Repository extends Disposable {
   }
 
   //Função para armazenar o Quiz respondido dentro do repositorio do aluno
-  Future saveQuizAnswered(List<QuizModel> quiz, int hitNumber) async {
+  Future saveQuizAnswered(
+    List<QuizModel> quiz,
+    int hitNumber,
+  ) async {
+    int errors = (quiz.length - hitNumber);
     StudentModel student = await getUserInfo();
     String idClass = await getIDClass(quiz[0].idCases);
     quiz.forEach((question) async {
@@ -163,7 +167,7 @@ class Student2Repository extends Disposable {
           .document(idClass)
           .collection("cases")
           .document(quiz[0].idCases)
-          .setData({'hits': hitNumber, 'access': 'disable'});
+          .setData({'hits': hitNumber, 'errors': errors, 'access': 'disable'});
     });
   }
 

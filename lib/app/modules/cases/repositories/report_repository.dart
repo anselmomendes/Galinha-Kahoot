@@ -7,8 +7,10 @@ import 'package:rxdart/rxdart.dart';
 
 class ReportRepository extends Disposable {
   final _studentsController = BehaviorSubject<List<StudentModel>>();
+  final _quizConttoller = BehaviorSubject<List<QuizModel>>();
 
   Stream<List<StudentModel>> get ouStudents => _studentsController.stream;
+  Stream<List<QuizModel>> get outQuiz => _quizConttoller.stream;
 
   @override
   void dispose() {
@@ -32,7 +34,7 @@ class ReportRepository extends Disposable {
   }
 
   Future<void> getStudentsWhoAnswered(String idCase) async {
-    List<StudentModel> list;
+    List<StudentModel> list = [];
     Firestore.instance
         .collection("Cases")
         .document(idCase)
@@ -58,5 +60,27 @@ class ReportRepository extends Disposable {
     });
     print("Id da turma: $classID");
     return classID;
+  }
+
+  Future getQuiz(String casesID) async {
+    List<QuizModel> list = [];
+    try {
+      var collection = await Firestore.instance
+          .collection("Cases")
+          .document(casesID)
+          .collection("quiz")
+          .orderBy('position')
+          .getDocuments();
+
+      list = collection.documents
+          .map((item) => QuizModel.fromMap(item))
+          .where((element) => element.idCases == casesID)
+          .toList();
+      print("Foram encontrados ${list.length} quizes");
+      _quizConttoller.add(list);
+    } catch (e) {
+      print("Erro ao chamar os componentes: $e");
+      return null;
+    }
   }
 }

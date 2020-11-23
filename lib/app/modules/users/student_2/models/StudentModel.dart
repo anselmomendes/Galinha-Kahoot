@@ -14,6 +14,7 @@ class StudentModel {
   String university;
   String uid;
   int hits;
+  int errors;
 
   StudentModel(
       {this.id,
@@ -28,7 +29,8 @@ class StudentModel {
       this.role,
       this.university,
       this.uid,
-      this.hits});
+      this.hits,
+      this.errors});
 
   factory StudentModel.fromDocument(DocumentSnapshot doc) => StudentModel(
       id: doc["id"],
@@ -43,7 +45,8 @@ class StudentModel {
       role: doc["role"],
       university: doc["university"],
       uid: doc["uid"],
-      hits: doc["hits"]);
+      hits: doc["hits"],
+      errors: doc["errors"]);
 
   Map<String, dynamic> toJson() => {
         "id": id,

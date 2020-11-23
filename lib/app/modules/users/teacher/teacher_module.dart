@@ -1,3 +1,5 @@
+import 'package:galinha_karoot/app/modules/cases/repositories/quiz_repository.dart';
+import 'package:galinha_karoot/app/modules/cases/repositories/report_repository.dart';
 import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_relatorio/teacher_relatorio_page.dart';
 import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_relatorio_list/teacher_relatorio_list_page.dart';
 
@@ -80,9 +82,15 @@ class TeacherModule extends ChildModule {
         Router('/teacher_report_select',
             child: (_, args) => TeacherReportSelectPage(showAppBar: true)),
         Router('/teacher_relatorio',
-            child: (_, args) => TeacherRelatorioPage(showAppBar: true)),
+            child: (_, args) => TeacherRelatorioPage(
+                  showAppBar: true,
+                  model: args.data,
+                )),
         Router('/teacher_relatorio_list',
-            child: (_, args) => TeacherRelatorioListPage(showAppBar: true)),
+            child: (_, args) => TeacherRelatorioListPage(
+                  showAppBar: true,
+                  listmodel: args.data,
+                )),
       ];
 
   static Inject get to => Inject<TeacherModule>.of();
