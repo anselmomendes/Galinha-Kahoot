@@ -32,7 +32,7 @@ class _CasesHomePageState
     // CasesExamesModule(),
     // CasesKahootModule(),
     CasesQuizModule(title: "Quiz", page: 'quiz'),
-    CasesRelatorioModule(),
+    //CasesRelatorioModule(),
   ];
 
   @override
@@ -56,7 +56,7 @@ class _CasesHomePageState
     // CasesExamesModule(),
     // CasesKahootModule(),
     CasesQuizModule(title: "Quiz", page: 'quiz', model: widget.model),
-    CasesRelatorioModule(),
+    //CasesRelatorioModule(),
   ],
       ),
       bottomNavigationBar: AnimatedBuilder(
@@ -95,11 +95,11 @@ class _CasesHomePageState
                 backgroundColor: Colors.redAccent,
                 title: Text('Q', style: TextStyle(color: Colors.white)),
               ),
-              BottomNavigationBarItem(
+              /*BottomNavigationBarItem(
                 icon: Icon(Icons.subject, color: Colors.white),
                 backgroundColor: Colors.redAccent,
                 title: Text('R', style: TextStyle(color: Colors.white)),
-              ),
+              ),*/
             ],
           );
         },
