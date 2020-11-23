@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/cases/view_model/cases_viewmodel.dart';
+import 'package:PeensA/app/modules/cases/view_model/cases_viewmodel.dart';
 import 'package:mobx/mobx.dart';
 
 part 'cases_home_controller.g.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_page.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/users/student_2/repositories/student_2_repository.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_page.dart';
 
 class StudentCasesRelatorioModule extends ModuleWidget {
   String title;

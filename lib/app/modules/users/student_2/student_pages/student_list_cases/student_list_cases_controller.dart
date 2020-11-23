@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
-import 'package:galinha_karoot/app/modules/cases/view_model/cases_viewmodel.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/cases/repositories/cases_repository.dart';
+import 'package:PeensA/app/modules/cases/view_model/cases_viewmodel.dart';
 import 'package:mobx/mobx.dart';
 
 part 'student_list_cases_controller.g.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/class/pages/class_list/class_list_controller.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/class/pages/class_list/class_list_controller.dart';
 
 class ClassListPage extends StatefulWidget {
   final bool showAppBar;

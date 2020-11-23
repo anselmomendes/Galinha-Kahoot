@@ -1,12 +1,12 @@
-import 'package:galinha_karoot/app/modules/cases/repositories/quiz_repository.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/report_repository.dart';
-import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_relatorio/teacher_relatorio_page.dart';
-import 'package:galinha_karoot/app/modules/users/teacher/pages/teacher_relatorio_list/teacher_relatorio_list_page.dart';
+import 'package:PeensA/app/modules/cases/repositories/quiz_repository.dart';
+import 'package:PeensA/app/modules/cases/repositories/report_repository.dart';
+import 'package:PeensA/app/modules/users/teacher/pages/teacher_relatorio/teacher_relatorio_page.dart';
+import 'package:PeensA/app/modules/users/teacher/pages/teacher_relatorio_list/teacher_relatorio_list_page.dart';
 
 import 'pages/teacher_relatorio_list/teacher_relatorio_list_controller.dart';
 import 'pages/teacher_relatorio/teacher_relatorio_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
-import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
+import 'package:PeensA/app/modules/cases/repositories/cases_repository.dart';
+import 'package:PeensA/app/modules/class/repositories/class_repository.dart';
 import 'pages/teacher_list_cases/teacher_list_cases_controller.dart';
 import 'pages/teacher_perfil_edit/teacher_perfil_edit_controller.dart';
 import 'pages/teacher_perfil/teacher_perfil_controller.dart';

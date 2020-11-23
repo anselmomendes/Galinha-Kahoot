@@ -1,4 +1,4 @@
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
 import 'package:mobx/mobx.dart';
 
 part 'cases_store.g.dart';

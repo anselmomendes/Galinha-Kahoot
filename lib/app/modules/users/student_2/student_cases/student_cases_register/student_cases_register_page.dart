@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_register/cases_register_controller.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_register/student_cases_register_controller.dart';
-import 'package:galinha_karoot/app/shared/widgets/text_form_field/TextFormField.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/cases/pages/cases_register/cases_register_controller.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/student_cases_register/student_cases_register_controller.dart';
+import 'package:PeensA/app/shared/widgets/text_form_field/TextFormField.dart';
 
 
 class StudentCasesRegisterPage extends StatefulWidget {

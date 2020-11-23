@@ -1,4 +1,4 @@
-import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
+import 'package:PeensA/app/modules/class/repositories/class_repository.dart';
 import '../../pages/teacher_report_select/teacher_report_select_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../pages/teacher_report_select/teacher_report_select_page.dart';

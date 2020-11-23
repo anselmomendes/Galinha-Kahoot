@@ -1,7 +1,7 @@
-import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/quiz_repository.dart';
+import 'package:PeensA/app/modules/cases/models/ComponentModel.dart';
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
+import 'package:PeensA/app/modules/cases/repositories/cases_repository.dart';
+import 'package:PeensA/app/modules/cases/repositories/quiz_repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'cases_quiz_controller.g.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 //import 'package:galinha_karoot/app/modules/student/tiles/drawer_tile.dart';
-import 'package:galinha_karoot/app/shared/widgets/tiles/drawer_tile.dart';
+import 'package:PeensA/app/shared/widgets/tiles/drawer_tile.dart';
 
 class CustomDrawer extends StatelessWidget {
   @override

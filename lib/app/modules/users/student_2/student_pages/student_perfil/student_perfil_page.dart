@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/modules/users/teacher/models/TeacherModel.dart';
+import 'package:PeensA/app/modules/common/BaseAuth.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/users/teacher/models/TeacherModel.dart';
 import '../../models/StudentModel.dart';
 import 'student_perfil_controller.dart';
-import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
+import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class StudentPerfilPage extends StatefulWidget {
   final bool showAppBar;
@@ -138,6 +138,7 @@ class _StudentPerfilPageState
                           children: [
                             RaisedButton(
                                 color: Colors.blueAccent,
+                                 padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                     side: BorderSide(color: Colors.blueAccent)),
@@ -158,6 +159,7 @@ class _StudentPerfilPageState
 
                             RaisedButton(
                               color: Colors.blueAccent,
+                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                   side: BorderSide(color: Colors.blueAccent)),
@@ -182,6 +184,7 @@ class _StudentPerfilPageState
                             SizedBox(height: 10),
                             RaisedButton(
                               color: Colors.blueAccent,
+                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                   side: BorderSide(color: Colors.blueAccent)),

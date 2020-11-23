@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/cases_home/cases_home_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_module.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/cases/pages/cases_home/cases_home_controller.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_module.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_module.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_module.dart';
 
 class CasesHomePage extends StatefulWidget {
   final CasesModel model;

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
-import 'package:galinha_karoot/app/modules/common/EmailPasswordForm.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/common/BaseAuth.dart';
+import 'package:PeensA/app/modules/common/EmailPasswordForm.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
 
 class StudentEmailLoginPage extends StatefulWidget {
   final String title;

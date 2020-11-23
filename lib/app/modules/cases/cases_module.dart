@@ -1,8 +1,8 @@
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_page.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/ImageRepository.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_page.dart';
+import 'package:PeensA/app/modules/cases/repositories/ImageRepository.dart';
 
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_quiz/cases_quiz_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'pages/cases_config/cases_config_controller.dart';
 import 'pages/cases_config/cases_config_page.dart';

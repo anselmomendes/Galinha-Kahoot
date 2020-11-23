@@ -1,6 +1,6 @@
 import 'student_quiz_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_Quiz/student_quiz_controller.dart';
+import 'package:PeensA/app/modules/users/student/pages/student_Quiz/student_quiz_controller.dart';
 
 class StudentQuizModule extends ChildModule {
   @override

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_page.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_page.dart';
+import 'package:PeensA/app/modules/cases/repositories/cases_repository.dart';
 
 class CasesSintomasModule extends ModuleWidget {
   String title;

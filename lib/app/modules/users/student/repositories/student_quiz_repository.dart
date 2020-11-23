@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
 
 class StudentQuizRepository extends Disposable {
   final db = Firestore.instance;

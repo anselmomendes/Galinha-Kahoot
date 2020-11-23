@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/class/pages/class_detail/class_detail_controller.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/class/pages/class_detail/class_detail_controller.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
 
 class ClassDetailPage extends StatefulWidget {

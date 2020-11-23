@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/repositories/student_2_repository.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_controller.dart';
 
 class StudentAddClassPage extends StatefulWidget {
   final String title;

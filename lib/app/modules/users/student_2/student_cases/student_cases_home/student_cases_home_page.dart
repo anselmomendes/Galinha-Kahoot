@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_cases_quiz_module.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_module_.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_module.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz/student_cases_quiz_module.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/navigator_bar/student_cases_relatorio/student_cases_relatorio_module_.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_module.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/student_cases_home/student_cases_home_controller.dart';
 
 class StudentCasesHomePage extends StatefulWidget {
   final ClassModel classModel;

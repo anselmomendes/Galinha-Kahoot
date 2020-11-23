@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
-import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
+import 'package:PeensA/app/modules/cases/repositories/cases_repository.dart';
+import 'package:PeensA/app/modules/class/repositories/class_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_page.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_page.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_page.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_page.dart';
+import 'package:PeensA/app/modules/users/student_2/repositories/student_2_repository.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_page.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_page.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_page.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_page.dart';
 
 class StudentClassModule extends ChildModule {
   @override

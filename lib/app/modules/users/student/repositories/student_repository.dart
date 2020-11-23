@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
-import 'package:galinha_karoot/app/modules/users/student/model/student_model.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/common/BaseAuth.dart';
+import 'package:PeensA/app/modules/users/student/model/student_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 enum RegisterClassState { LOADING, SUCESS, FAIL }

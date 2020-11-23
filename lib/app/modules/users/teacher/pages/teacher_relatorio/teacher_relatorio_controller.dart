@@ -1,7 +1,7 @@
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/quiz_repository.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/report_repository.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/models/StudentModel.dart';
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
+import 'package:PeensA/app/modules/cases/repositories/quiz_repository.dart';
+import 'package:PeensA/app/modules/cases/repositories/report_repository.dart';
+import 'package:PeensA/app/modules/users/student_2/models/StudentModel.dart';
 import 'package:mobx/mobx.dart';
 
 part 'teacher_relatorio_controller.g.dart';

@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_duration_picker/flutter_duration_picker.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/class/pages/class_register/class_register_controller.dart';
-import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_controller.dart';
-import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/class/pages/class_register/class_register_controller.dart';
+import 'package:PeensA/app/modules/common/BaseAuth.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_register/student_class_register_controller.dart';
+import 'package:PeensA/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
 
 class StudentClassRegisterPage extends StatefulWidget {

@@ -1,8 +1,8 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_controller.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_page.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/report_repository.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_controller.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_relatorio/cases_relatorio_page.dart';
+import 'package:PeensA/app/modules/cases/repositories/report_repository.dart';
 
 class CasesRelatorioModule extends ModuleWidget {
   @override

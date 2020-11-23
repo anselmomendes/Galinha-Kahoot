@@ -1,5 +1,5 @@
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
+import 'package:PeensA/app/modules/users/student_2/repositories/student_2_repository.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'dart:math';
