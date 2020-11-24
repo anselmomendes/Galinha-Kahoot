@@ -9,23 +9,26 @@ class StudentCasesPublicPage extends StatefulWidget {
   final CasesModel model;
   final bool showAppBar;
 
-  const StudentCasesPublicPage({Key key, this.title = "Casos Públicos", this.model, this.showAppBar = true})
+  const StudentCasesPublicPage(
+      {Key key,
+      this.title = "Casos Públicos",
+      this.model,
+      this.showAppBar = true})
       : super(key: key);
 
   @override
   _StudentCasesPublicPageState createState() => _StudentCasesPublicPageState();
 }
 
-class _StudentCasesPublicPageState extends ModularState<StudentCasesPublicPage, StudentCasesPublicController> {
-   final _topicOne = TextEditingController();
+class _StudentCasesPublicPageState
+    extends ModularState<StudentCasesPublicPage, StudentCasesPublicController> {
+  final _topicOne = TextEditingController();
   final _textOne = TextEditingController();
   final _imageUrlOne = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
- appBar: widget.showAppBar
+      appBar: widget.showAppBar
           ? AppBar(
               backgroundColor: Colors.redAccent,
               title: Text(widget.title),
@@ -33,21 +36,20 @@ class _StudentCasesPublicPageState extends ModularState<StudentCasesPublicPage, 
             )
           : null,
       body: Container(
-         child: Observer(
+        child: Observer(
           builder: (_) {
             if (controller.casesList.data == null)
               return Center(
                 child: CircularProgressIndicator(),
               );
-            else if (controller.casesList.hasError) 
+            else if (controller.casesList.hasError)
               return Center(
                 child: RaisedButton(
-                  onPressed: () => controller.getList(), 
+                  onPressed: () => controller.getList(),
                   child: Text('Error'),
-                 
                 ),
               );
-                else {
+            else {
               List<CasesModel> list = controller.casesList.data;
 
               return ListView.builder(
@@ -95,9 +97,9 @@ class _StudentCasesPublicPageState extends ModularState<StudentCasesPublicPage, 
                                 onPressed: () {
                                   Navigator.pushNamed(
                                     context,
-                                    '/cases/cases_home',
+                                    '/student_cases/cases_home',
                                     arguments: model,
-                                   );
+                                  );
                                 },
                               ),
                             ],
@@ -108,7 +110,7 @@ class _StudentCasesPublicPageState extends ModularState<StudentCasesPublicPage, 
                   );
                 },
               );
-              }
+            }
           },
         ),
       ),

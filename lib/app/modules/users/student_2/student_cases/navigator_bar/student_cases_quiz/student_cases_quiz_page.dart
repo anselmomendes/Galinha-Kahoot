@@ -150,32 +150,40 @@ class _StudentCasesQuizPageState
                                   ),
                                 ),
                                 onPressed: () async {
-                                  await controller.verifyAccessQuiz(list);
-                                  if (controller.access == true) {
+                                  if (widget.model.public == 'false') {
+                                    await controller.verifyAccessQuiz(list);
+                                    if (controller.access == true) {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/student_2/splash_screen_quiz',
+                                        arguments: list,
+                                      );
+                                    }
+                                    if (controller.access == false) {
+                                      print("Você já realizou este quiz");
+                                      showDialog(
+                                          builder: (BuildContext context) {
+                                            return AlertDialog(
+                                              content: Text(
+                                                  "Você já realizou este quiz, veja seu desempenho na aba relatorio"),
+                                              actions: [
+                                                FlatButton(
+                                                  child: const Text('OK'),
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
+                                                )
+                                              ],
+                                            );
+                                          },
+                                          context: context);
+                                    }
+                                  } else {
                                     Navigator.pushNamed(
                                       context,
-                                      '/student_2/splash_screen_quiz',
+                                      '/student_2/splash_screen_quiz_public',
                                       arguments: list,
                                     );
-                                  }
-                                  if (controller.access == false) {
-                                    print("Você já realizou este quiz");
-                                    showDialog(
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            content: Text(
-                                                "Você já realizou este quiz, veja seu desempenho na aba relatorio"),
-                                            actions: [
-                                              FlatButton(
-                                                child: const Text('OK'),
-                                                onPressed: () {
-                                                  Navigator.of(context).pop();
-                                                },
-                                              )
-                                            ],
-                                          );
-                                        },
-                                        context: context);
                                   }
                                 }),
                           ),

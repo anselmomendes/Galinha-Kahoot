@@ -11,8 +11,8 @@ import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart'
 class StudentCasesSintomasPage extends StatefulWidget {
   final String title;
   final String page;
-  final CasesModel model;
-  const StudentCasesSintomasPage({Key key, this.title, this.model, this.page})
+  final String idCase;
+  const StudentCasesSintomasPage({Key key, this.title, this.page, this.idCase})
       : super(key: key);
 
   @override
@@ -30,7 +30,7 @@ class _StudentCasesSintomasPageState extends ModularState<
   @override
   void initState() {
     super.initState();
-    controller.getDocuments(widget.model.id, widget.page);
+    controller.getDocuments(widget.idCase, widget.page);
   }
 
   @override

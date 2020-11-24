@@ -2,13 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/models/StudentModel.dart';
 
 class ClassModel {
-  String id;
-  String className;
-  int accessCode;
-  bool status;
-  String casesID;
-  String titleCase;
-  String teacherID;
+  String id = '';
+  String className = '';
+  int accessCode = 0;
+  bool status = true;
+  String casesID = '';
+  String titleCase = '';
+  String teacherID = '';
   Timestamp creationDate;
   Timestamp modifiedDate;
   Timestamp endTime;
@@ -18,7 +18,7 @@ class ClassModel {
   List<StudentModel> listStudents;
 
   ClassModel(
-      {this.id,
+      {this.id = '',
       this.className = '',
       this.accessCode,
       this.status = true,

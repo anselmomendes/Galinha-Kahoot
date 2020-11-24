@@ -9,9 +9,9 @@ import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigat
 class StudentCasesSintomasModule extends ModuleWidget {
   String title;
   String page;
-  final CasesModel model;
+  final String idCase;
 
-  StudentCasesSintomasModule({this.model, this.title, this.page});
+  StudentCasesSintomasModule({this.idCase, this.title, this.page});
   @override
   List<Bind> get binds => [];
 
@@ -21,6 +21,6 @@ class StudentCasesSintomasModule extends ModuleWidget {
   Widget get view => StudentCasesSintomasPage(
         title: title,
         page: page,
-        model: model,
+        idCase: idCase,
       );
 }

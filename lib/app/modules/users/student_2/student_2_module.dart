@@ -1,3 +1,4 @@
+import 'package:galinha_karoot/app/modules/users/student_2/student_cases/student_cases_public/student_quiz_public/Splash_Screen.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_about/student_about_controller.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_about/student_about_page.dart';
 import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_area/student_area_controller.dart';
@@ -73,6 +74,10 @@ class Student2Module extends ChildModule {
             child: (_, args) => StudentReportSelectPage(showAppBar: true)),
         Router('/splash_screen_quiz',
             child: (_, args) => Splash(
+                  list: args.data,
+                )),
+        Router('/splash_screen_quiz_public',
+            child: (_, args) => SplashQuizPublic(
                   list: args.data,
                 )),
       ];

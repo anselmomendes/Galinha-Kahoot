@@ -43,7 +43,7 @@ class StudentCaseModule extends MainModule {
   List<Router> get routers => [
         Router('/cases_home',
             child: (_, args) => StudentCasesHomePage(
-                  classModel: args.data,
+                  casesModel: args.data,
                 )),
         Router('/cases_public', child: (_, args) => StudentCasesPublicPage()),
         Router('/sintomas',

@@ -29,4 +29,22 @@ abstract class _StudentClassDetailControllerBase with Store {
   getClassforController() {
     classModel = student2repository.outClass.asObservable();
   }
+
+  @observable
+  ObservableStream<CasesModel> caseModel;
+
+  @action
+  getCase(ClassModel classModel) async {
+    print("Getcase foi chamada");
+    try {
+      student2repository.getCase(classModel);
+    } catch (e) {
+      print("Erro ao procutar caso! : $e");
+    }
+    getCaseController();
+  }
+
+  getCaseController() {
+    caseModel = student2repository.outCase.asObservable();
+  }
 }

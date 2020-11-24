@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 class CasesModel {
-  String id;
+  String id = '';
   String title = '';
   String description = '';
-  String teacherID;
-  String position;
-  String public;
+  String teacherID = '';
+  String position = '';
+  String public = '';
   DocumentReference reference;
 
   CasesModel({
