@@ -1,5 +1,5 @@
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
 
 class ResultDialog {
   static Future show(

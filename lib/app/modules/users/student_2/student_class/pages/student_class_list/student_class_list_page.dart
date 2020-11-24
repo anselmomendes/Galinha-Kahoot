@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-<<<<<<< HEAD
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_controller.dart';
-=======
 import 'package:PeensA/app/modules/class/models/ClassModels.dart';
 import 'package:PeensA/app/modules/class/pages/class_list/class_list_controller.dart';
 import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_list/student_class_list_controller.dart';
->>>>>>> d2f871a13a0d632bc8763b1114d27f7e3dd48ad0
 
 class StudentClassListPage extends StatefulWidget {
   final bool showAppBar;
