@@ -28,24 +28,6 @@ mixin _$StudentClassDetailController
     }, _$classModelAtom, name: '${_$classModelAtom.name}_set');
   }
 
-  final _$caseModelAtom =
-      Atom(name: '_StudentClassDetailControllerBase.caseModel');
-
-  @override
-  ObservableStream<CasesModel> get caseModel {
-    _$caseModelAtom.context.enforceReadPolicy(_$caseModelAtom);
-    _$caseModelAtom.reportObserved();
-    return super.caseModel;
-  }
-
-  @override
-  set caseModel(ObservableStream<CasesModel> value) {
-    _$caseModelAtom.context.conditionallyRunInAction(() {
-      super.caseModel = value;
-      _$caseModelAtom.reportChanged();
-    }, _$caseModelAtom, name: '${_$caseModelAtom.name}_set');
-  }
-
   final _$setClassAsyncAction = AsyncAction('setClass');
 
   @override
@@ -53,17 +35,9 @@ mixin _$StudentClassDetailController
     return _$setClassAsyncAction.run(() => super.setClass(model));
   }
 
-  final _$getCaseAsyncAction = AsyncAction('getCase');
-
-  @override
-  Future getCase(ClassModel classModel) {
-    return _$getCaseAsyncAction.run(() => super.getCase(classModel));
-  }
-
   @override
   String toString() {
-    final string =
-        'classModel: ${classModel.toString()},caseModel: ${caseModel.toString()}';
+    final string = 'classModel: ${classModel.toString()}';
     return '{$string}';
   }
 }
