@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 3)).then((_) {
+    Future.delayed(Duration(seconds: 5)).then((_) {
       Navigator.popAndPushNamed(context, '/student_quiz/quizpage',
           arguments: widget.list);
     });

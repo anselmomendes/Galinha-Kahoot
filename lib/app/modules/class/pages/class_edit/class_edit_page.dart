@@ -119,6 +119,7 @@ class _ClassEditPageState
                       prefixIcon: Icon(Icons.title),
                     ),
                   ),
+                  /*
                   Text("Selecione o temporizador:", style: headerTextStyle),
                   Text("Temporizador atual: ${currentTime} minutos"),
                   SizedBox(height: 5),
@@ -150,7 +151,7 @@ class _ClassEditPageState
                       child: Text(
                         "Selecionar",
                         style: TextStyle(color: Colors.white),
-                      )),
+                      )),*/
                   Divider(
                     height: 30,
                   ),

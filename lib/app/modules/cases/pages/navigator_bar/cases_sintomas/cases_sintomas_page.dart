@@ -362,7 +362,7 @@ class _CasesSintomasPageState
                           await controller.getDocuments(
                               widget.model.id, widget.page);
                         }),
-                    Padding(
+                    /*Padding(
                       padding: EdgeInsets.only(
                         bottom: 30.0,
                       ),
@@ -397,7 +397,7 @@ class _CasesSintomasPageState
                           await controller.create(model);
                           await controller.getDocuments(
                               widget.model.id, widget.page);
-                        }),
+                        }),*/
                   ],
                 ),
               ],

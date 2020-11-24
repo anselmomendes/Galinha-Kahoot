@@ -201,8 +201,8 @@ class _ClassDetailPageState
                                   style: text2TextStyle),
                             ],
                           )),
-                          Divider(thickness: 2.0),
-                          SizedBox(height: 20),
+                          //Divider(thickness: 2.0),
+                        /*  SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
                             text: 'Temporizador: ',
@@ -216,8 +216,8 @@ class _ClassDetailPageState
                                   text: selectiontextDetail(widget.classModel.timer),
                                   style: text2TextStyle),
                             ],
-                          )),
-                          Divider(thickness: 2.0),
+                          )),*/
+                        /*  Divider(thickness: 2.0),
                           SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
@@ -230,7 +230,7 @@ class _ClassDetailPageState
                               TextSpan(
                                   text: '${endTime}', style: text2TextStyle),
                             ],
-                          )),
+                          )),*/
                           Divider(thickness: 2.0),
                         ],
                       ),
