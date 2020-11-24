@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
 import 'package:PeensA/app/modules/class/models/ClassModels.dart';
-import 'package:PeensA/app/modules/class/pages/class_detail/class_detail_controller.dart';
 import 'package:PeensA/app/modules/common/styles.dart';
 import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_controller.dart';
 import 'package:PeensA/app/shared/widgets/text_timer/selectionText.dart';
@@ -31,7 +30,6 @@ class _StudentClassDetailPageState
   @override
   void initState() {
     controller.setClass(widget.classModel);
-    controller.getCase(controller.classModel.data);
   }
 
   @override
@@ -49,123 +47,115 @@ class _StudentClassDetailPageState
       body: Container(
         child: Observer(
           builder: (_) {
-            if (controller.classModel.data == null)
+            if (controller.classModel == null)
               return Center(
                 child: CircularProgressIndicator(),
               );
             else {
               ClassModel classModel = controller.classModel.data;
+              // Conversão do status
+              bool _statusBool = classModel.status;
+              _checkStatus(_statusBool);
 
-              if (controller.caseModel.data == null) {
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                CasesModel casesModel = controller.caseModel.data;
-                print("Nome do caso: ${casesModel.title} ");
-                // Conversão do status
-                bool _statusBool = classModel.status;
-                _checkStatus(_statusBool);
+              // Tratamento de data
+              var creationDate;
+              var modifiedDate;
+              var endTime;
+              creationDate = DateFormat("dd/MM/y hh:mm a")
+                  .format(classModel.creationDate.toDate());
+              modifiedDate = DateFormat("dd/MM/y hh:mm a")
+                  .format(classModel.modifiedDate.toDate());
+              endTime = DateFormat("dd/MM/y hh:mm a")
+                  .format(classModel.endTime.toDate());
 
-                // Tratamento de data
-                var creationDate;
-                var modifiedDate;
-                var endTime;
-                creationDate = DateFormat("dd/MM/y hh:mm a")
-                    .format(classModel.creationDate.toDate());
-                modifiedDate = DateFormat("dd/MM/y hh:mm a")
-                    .format(classModel.modifiedDate.toDate());
-                endTime = DateFormat("dd/MM/y hh:mm a")
-                    .format(classModel.endTime.toDate());
-
-                return SingleChildScrollView(
-                  padding: EdgeInsets.only(
-                      top: screenWidth * 0.05,
-                      left: screenWidth * 0.05,
-                      right: screenWidth * 0.05),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      // Text("Cadastrar Casos", style: headerTextStyle),
-                      // SizedBox(height: 20),
-                      Form(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            // SizedBox(height: 25),
-                            Center(
-                              child: Column(
-                                children: <Widget>[
-                                  Text("Olá! ",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.w600)),
-                                  SizedBox(height: 5),
-                                  Text(
-                                      "Aqui você encontra as informações da turma.",
-                                      textAlign: TextAlign.center),
-                                ],
-                              ),
+              return SingleChildScrollView(
+                padding: EdgeInsets.only(
+                    top: screenWidth * 0.05,
+                    left: screenWidth * 0.05,
+                    right: screenWidth * 0.05),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    // Text("Cadastrar Casos", style: headerTextStyle),
+                    // SizedBox(height: 20),
+                    Form(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          // SizedBox(height: 25),
+                          Center(
+                            child: Column(
+                              children: <Widget>[
+                                Text("Olá! ",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w600)),
+                                SizedBox(height: 5),
+                                Text(
+                                    "Aqui você encontra as informações da turma.",
+                                    textAlign: TextAlign.center),
+                              ],
                             ),
-                            SizedBox(height: 30),
-                            RichText(
-                                text: TextSpan(
-                              text: 'Código de acesso: ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: headerFontSize,
-                                  fontWeight: headerFontWeight),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '${classModel.accessCode}',
-                                    style: text2TextStyle),
-                              ],
-                            )),
-                            Divider(thickness: 2.0),
-                            SizedBox(height: 20),
-                            RichText(
-                                text: TextSpan(
-                              text: 'Status: ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: headerFontSize,
-                                  fontWeight: headerFontWeight),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: _statusLocal, style: text2TextStyle),
-                              ],
-                            )),
-                            Divider(thickness: 2.0),
-                            SizedBox(height: 20),
-                            RichText(
-                                text: TextSpan(
-                              text: 'Nome da turma: ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: headerFontSize,
-                                  fontWeight: headerFontWeight),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '${classModel.className}',
-                                    style: text2TextStyle),
-                              ],
-                            )),
-                            Divider(thickness: 2.0),
-                            SizedBox(height: 20),
-                            RichText(
-                                text: TextSpan(
-                              text: 'Caso selecionado: ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: headerFontSize,
-                                  fontWeight: headerFontWeight),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '${classModel.titleCase}',
-                                    style: text2TextStyle),
-                              ],
-                            )),
-                            /* Divider(thickness: 2.0),
+                          ),
+                          SizedBox(height: 30),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Código de acesso: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${classModel.accessCode}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Status: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: _statusLocal, style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Nome da turma: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${classModel.className}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Caso selecionado: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${classModel.titleCase}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          /* Divider(thickness: 2.0),
                           SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
@@ -180,99 +170,98 @@ class _StudentClassDetailPageState
                                   style: text2TextStyle),
                             ],
                           )), */
-                            Divider(thickness: 2.0),
-                            SizedBox(height: 20),
-                            RichText(
-                                text: TextSpan(
-                              text: 'Data de criação: ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: headerFontSize,
-                                  fontWeight: headerFontWeight),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '${creationDate}',
-                                    style: text2TextStyle),
-                              ],
-                            )),
-                            Divider(thickness: 2.0),
-                            SizedBox(height: 20),
-                            RichText(
-                                text: TextSpan(
-                              text: 'Última modificação: ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: headerFontSize,
-                                  fontWeight: headerFontWeight),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '${modifiedDate}',
-                                    style: text2TextStyle),
-                              ],
-                            )),
-                            Divider(thickness: 2.0),
-                            SizedBox(height: 20),
-                            RichText(
-                                text: TextSpan(
-                              text: 'Temporizador: ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: headerFontSize,
-                                  fontWeight: headerFontWeight),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    // text: '${model.timer} minutos',
-                                    text: selectiontextDetail(classModel.timer),
-                                    style: text2TextStyle),
-                              ],
-                            )),
-                            Divider(thickness: 2.0),
-                            SizedBox(height: 20),
-                            RichText(
-                                text: TextSpan(
-                              text: 'Turma expira em: ',
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: headerFontSize,
-                                  fontWeight: headerFontWeight),
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '${endTime}', style: text2TextStyle),
-                              ],
-                            )),
-                            Divider(thickness: 2.0),
-                          ],
-                        ),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Data de criação: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${creationDate}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Última modificação: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${modifiedDate}',
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Temporizador: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  // text: '${model.timer} minutos',
+                                  text: selectiontextDetail(classModel.timer),
+                                  style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                          SizedBox(height: 20),
+                          RichText(
+                              text: TextSpan(
+                            text: 'Turma expira em: ',
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: headerFontSize,
+                                fontWeight: headerFontWeight),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '${endTime}', style: text2TextStyle),
+                            ],
+                          )),
+                          Divider(thickness: 2.0),
+                        ],
                       ),
-                      SizedBox(height: 20),
-                      Center(
-                        child: RaisedButton(
-                            color: Colors.blue,
-                            padding: const EdgeInsets.fromLTRB(
-                                40.0, 20.0, 40.0, 20.0),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                side: BorderSide(color: Colors.blue)),
-                            child: Text(
-                              "Acessar Caso",
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                              ),
+                    ),
+                    SizedBox(height: 20),
+                    Center(
+                      child: RaisedButton(
+                          color: Colors.blue,
+                          padding:
+                              const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10.0),
+                              side: BorderSide(color: Colors.blue)),
+                          child: Text(
+                            "Acessar Caso",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.white,
                             ),
-                            onPressed: () {
-                              Navigator.pushNamed(
-                                context,
-                                '/student_cases/cases_home',
-                                arguments: casesModel,
-                              );
-                            }),
-                      )
-                    ],
-                  ),
-                );
-              }
+                          ),
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              '/student_cases/cases_list',
+                              arguments: classModel,
+                            );
+                          }),
+                    )
+                  ],
+                ),
+              );
             }
           },
         ),

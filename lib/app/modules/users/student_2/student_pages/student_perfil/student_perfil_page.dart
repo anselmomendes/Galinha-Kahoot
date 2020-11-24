@@ -12,8 +12,7 @@ import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 class StudentPerfilPage extends StatefulWidget {
   final bool showAppBar;
   final String title;
-  const StudentPerfilPage(
-      {Key key, this.title = "Perfil", this.showAppBar})
+  const StudentPerfilPage({Key key, this.title = "Perfil", this.showAppBar})
       : super(key: key);
 
   @override
@@ -53,11 +52,11 @@ class _StudentPerfilPageState
       body: Container(
         // height: 550,
         child: Observer(builder: (_) {
-          if (controller.teacherList == null)
+          if (controller.studentModel == null)
             return Center(
               child: CircularProgressIndicator(),
             );
-          else if (controller.teacherList.name.isEmpty)
+          else if (controller.studentModel.name.isEmpty)
             return Center(
               child: RaisedButton(
                 onPressed: () => controller.getList(),
@@ -65,7 +64,7 @@ class _StudentPerfilPageState
               ),
             );
           else {
-           StudentModel model = controller.teacherList;
+            StudentModel model = controller.studentModel;
 
             return SingleChildScrollView(
               padding: EdgeInsets.only(
@@ -138,7 +137,8 @@ class _StudentPerfilPageState
                           children: [
                             RaisedButton(
                                 color: Colors.blueAccent,
-                                 padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
+                                padding: const EdgeInsets.fromLTRB(
+                                    18.0, 13.0, 18.0, 13.0),
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.0),
                                     side: BorderSide(color: Colors.blueAccent)),
@@ -150,8 +150,8 @@ class _StudentPerfilPageState
                                 ),
                                 onPressed: () {
                                   Navigator.pushNamed(
-                                      context, 'teacher/teacher_perfil_edit',
-                                      arguments: model );
+                                      context, 'student_2/student_perfil_edit',
+                                      arguments: model);
                                 }),
 
                             // Divider(thickness: 2.0),
@@ -159,7 +159,8 @@ class _StudentPerfilPageState
 
                             RaisedButton(
                               color: Colors.blueAccent,
-                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
+                              padding: const EdgeInsets.fromLTRB(
+                                  18.0, 13.0, 18.0, 13.0),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                   side: BorderSide(color: Colors.blueAccent)),
@@ -184,7 +185,8 @@ class _StudentPerfilPageState
                             SizedBox(height: 10),
                             RaisedButton(
                               color: Colors.blueAccent,
-                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
+                              padding: const EdgeInsets.fromLTRB(
+                                  18.0, 13.0, 18.0, 13.0),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                   side: BorderSide(color: Colors.blueAccent)),

@@ -9,38 +9,21 @@ part of 'student_perfil_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$StudentPerfilController on _StudentPerfilBase, Store {
-  final _$teacherListAtom = Atom(name: '_StudentPerfilBase.teacherList');
+  final _$studentModelAtom = Atom(name: '_StudentPerfilBase.studentModel');
 
   @override
-  StudentModel get teacherList {
-    _$teacherListAtom.context.enforceReadPolicy(_$teacherListAtom);
-    _$teacherListAtom.reportObserved();
-    return super.teacherList;
+  StudentModel get studentModel {
+    _$studentModelAtom.context.enforceReadPolicy(_$studentModelAtom);
+    _$studentModelAtom.reportObserved();
+    return super.studentModel;
   }
 
   @override
-  set teacherList(StudentModel value) {
-    _$teacherListAtom.context.conditionallyRunInAction(() {
-      super.teacherList = value;
-      _$teacherListAtom.reportChanged();
-    }, _$teacherListAtom, name: '${_$teacherListAtom.name}_set');
-  }
-
-  final _$valueAtom = Atom(name: '_StudentPerfilBase.value');
-
-  @override
-  int get value {
-    _$valueAtom.context.enforceReadPolicy(_$valueAtom);
-    _$valueAtom.reportObserved();
-    return super.value;
-  }
-
-  @override
-  set value(int value) {
-    _$valueAtom.context.conditionallyRunInAction(() {
-      super.value = value;
-      _$valueAtom.reportChanged();
-    }, _$valueAtom, name: '${_$valueAtom.name}_set');
+  set studentModel(StudentModel value) {
+    _$studentModelAtom.context.conditionallyRunInAction(() {
+      super.studentModel = value;
+      _$studentModelAtom.reportChanged();
+    }, _$studentModelAtom, name: '${_$studentModelAtom.name}_set');
   }
 
   final _$getListAsyncAction = AsyncAction('getList');
@@ -74,19 +57,8 @@ mixin _$StudentPerfilController on _StudentPerfilBase, Store {
   }
 
   @override
-  void increment() {
-    final _$actionInfo = _$_StudentPerfilBaseActionController.startAction();
-    try {
-      return super.increment();
-    } finally {
-      _$_StudentPerfilBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
-    final string =
-        'teacherList: ${teacherList.toString()},value: ${value.toString()}';
+    final string = 'studentModel: ${studentModel.toString()}';
     return '{$string}';
   }
 }

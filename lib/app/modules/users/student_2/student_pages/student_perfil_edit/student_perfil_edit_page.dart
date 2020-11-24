@@ -5,10 +5,10 @@ import 'package:PeensA/app/modules/users/student_2/student_pages/student_perfil_
 import '../../models/StudentModel.dart';
 
 class StudentPerfilEditPage extends StatefulWidget {
-  final StudentModel teacherModel; // Esse model agora é do Student_2
+  final StudentModel studentModel; // Esse model agora é do Student_2
   final String title;
   const StudentPerfilEditPage(
-      {Key key, this.title = "Editar Dados", @required this.teacherModel})
+      {Key key, this.title = "Editar Dados", @required this.studentModel})
       : super(key: key);
 
   @override
@@ -25,8 +25,8 @@ class _StudentPerfilEditPageState
   void initState() {
     // TODO: implement initState
     // Iniciado os campos com os dados do db
-    _nameController.text = widget.teacherModel.name;
-    _universityController.text = widget.teacherModel.university;
+    _nameController.text = widget.studentModel.name;
+    _universityController.text = widget.studentModel.university;
     super.initState();
   }
 
@@ -84,8 +84,8 @@ class _StudentPerfilEditPageState
             FlatButton(
                 onPressed: () {
                   // _register;
-                  widget.teacherModel.name = _nameController.text;
-                  widget.teacherModel.university = _universityController.text;
+                  widget.studentModel.name = _nameController.text;
+                  widget.studentModel.university = _universityController.text;
                   /*controller.save(widget.teacherModel);*/
                   debugPrint('Botão: salvar');
                 },

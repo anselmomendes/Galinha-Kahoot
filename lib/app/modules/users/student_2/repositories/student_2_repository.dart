@@ -48,6 +48,20 @@ class Student2Repository extends Disposable {
     return StudentModel.fromDocument(doc);
   }
 
+  @override
+  Future save(StudentModel model) {
+    // TODO: implement save
+    model.reference.updateData({
+      "name": model.name,
+      "university": model.university,
+    });
+  }
+
+  Future delete(StudentModel model) {
+    // TODO: implement delete
+    return model.reference.delete();
+  }
+
   /**
    * Função que lista as turmas que o aluno esta inserido,
    */

@@ -11,13 +11,13 @@ class CasesModel {
   DocumentReference reference;
 
   CasesModel({
-    this.position,
-    this.id,
-    this.title,
-    this.description,
-    this.teacherID,
+    this.position = '',
+    this.id = '',
+    this.title = '',
+    this.description = '',
+    this.teacherID = '',
     this.reference,
-    this.public,
+    this.public = '',
   }) {
     id = id ?? Uuid().v1();
   }
