@@ -13,40 +13,28 @@ class StudentPerfilController = _StudentPerfilBase
     with _$StudentPerfilController;
 
 abstract class _StudentPerfilBase with Store {
-  final Student2Repository teacherRepository;
+  final Student2Repository student2repository;
   final StudentRootController controllerRoot;
 
-
   @observable
-  StudentModel teacherList;
+  StudentModel studentModel;
 
-  _StudentPerfilBase(this.teacherRepository, this.controllerRoot){
+  _StudentPerfilBase(this.student2repository, this.controllerRoot) {
     getList();
   }
 
   @action
   getList() async {
-    teacherList = await teacherRepository.getAllStream();
+    studentModel = await student2repository.getUserInfo();
   }
 
   @action
   save(StudentModel model) {
-   // teacherRepository.save(model);
+    student2repository.save(model);
   }
 
   @action
   delete(StudentModel model) {
-   // teacherRepository.delete(model);
+    student2repository.delete(model);
   }
-
-  
-  @observable
-  int value = 0;
-
-
-  @action
-  void increment() {
-    value++;
-  }
-
 }

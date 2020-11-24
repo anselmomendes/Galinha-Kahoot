@@ -19,14 +19,11 @@ import 'package:PeensA/app/modules/users/student_2/student_pages/student_report_
 import 'package:PeensA/app/modules/users/student_2/student_pages/student_root/student_root_controller.dart';
 import 'package:PeensA/app/modules/users/student_2/student_pages/student_root/student_root_page.dart';
 import 'package:PeensA/app/modules/users/student_2/student_pages/student_select/student_select_page.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:PeensA/app/modules/cases/repositories/cases_repository.dart';
 import 'package:PeensA/app/modules/class/repositories/class_repository.dart';
 import 'package:PeensA/app/modules/users/student_2/widgets/Splash_Screen.dart';
-
 import 'repositories/student_2_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:dio/dio.dart';
 
 class Student2Module extends ChildModule {
   @override
@@ -53,16 +50,16 @@ class Student2Module extends ChildModule {
 
   @override
   List<Router> get routers => [
-        Router('/teacher_menu',
+        Router('/student_menu',
             child: (_, args) => StudentMenuPage(showAppBar: true)),
         Router('/student_list_cases',
             child: (_, args) => StudentListCasesPage(showAppBar: true)),
         Router('/student_root', child: (_, args) => StudentRootPage()),
         Router('/register', child: (_, args) => StudentRegisterPage()),
-        Router('/teacher_select', child: (_, args) => StudentSelectPage()),
-        Router('/teacher_perfil_edit',
+        Router('/student_select', child: (_, args) => StudentSelectPage()),
+        Router('/student_perfil_edit',
             child: (_, args) => StudentPerfilEditPage(
-                  teacherModel: args.data,
+                  studentModel: args.data,
                 )),
         Router('/student_about',
             child: (_, args) => StudentAboutPage(showAppBar: true)),

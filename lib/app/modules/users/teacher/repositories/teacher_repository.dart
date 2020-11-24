@@ -33,14 +33,6 @@ class TeacherRepository extends Disposable /* implements ITeacherRepository */ {
   Future<TeacherModel> getAllStream() async {
     var firebaseUser = await FirebaseAuth.instance.currentUser();
 
-    /* var a = await firestore
-        .collection('users')
-        .document(firebaseUser.uid)
-        .get()
-        .then((value) {
-      print(value.data);
-    });
-    return a; */
     var a = await firestore
         .collection('users')
         .document(firebaseUser.uid)

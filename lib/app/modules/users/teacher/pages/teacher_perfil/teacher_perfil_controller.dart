@@ -12,11 +12,10 @@ abstract class _TeacherPerfilBase with Store {
   final TeacherRepository teacherRepository;
   final TeacherRootController controllerRoot;
 
-
   @observable
   TeacherModel teacherList;
 
-  _TeacherPerfilBase(this.teacherRepository, this.controllerRoot){
+  _TeacherPerfilBase(this.teacherRepository, this.controllerRoot) {
     getList();
   }
 
@@ -35,14 +34,11 @@ abstract class _TeacherPerfilBase with Store {
     teacherRepository.delete(model);
   }
 
-  
   @observable
   int value = 0;
-
 
   @action
   void increment() {
     value++;
   }
-
 }
