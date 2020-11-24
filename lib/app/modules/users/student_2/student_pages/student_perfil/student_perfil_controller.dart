@@ -1,6 +1,4 @@
 import 'package:PeensA/app/modules/users/student_2/student_pages/student_root/student_root_controller.dart';
-import 'package:PeensA/app/modules/users/student_2/teacher/repositories/teacher_repository.dart';
-import 'package:PeensA/app/modules/users/teacher/models/TeacherModel.dart';
 
 import 'package:PeensA/app/modules/users/student_2/models/StudentModel.dart';
 import '../../student_pages/student_root/student_root_controller.dart';
