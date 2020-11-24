@@ -21,7 +21,7 @@ class _SplashQuizPublicState extends State<SplashQuizPublic> {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
     Future.delayed(Duration(seconds: 3)).then((_) {
-      Navigator.popAndPushNamed(context, '/student_quiz/quizpagePublic',
+      Navigator.popAndPushNamed(context, '/student_cases/student_quiz_public',
           arguments: widget.list);
     });
   }

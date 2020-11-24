@@ -13,7 +13,7 @@ class StudentQuizPublicPage extends StatefulWidget {
   const StudentQuizPublicPage({
     Key key,
     this.title = "Peensa Quiz",
-    @required this.list,
+    @required this.list, model,
   }) : super(key: key);
 
   @override

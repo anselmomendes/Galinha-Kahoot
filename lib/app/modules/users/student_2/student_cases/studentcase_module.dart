@@ -1,3 +1,5 @@
+import 'package:PeensA/app/modules/users/student_2/student_cases/student_cases_public/student_quiz_public/student_quiz_public_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/student_cases_public/student_quiz_public/student_quiz_public_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:PeensA/app/modules/cases/cases_module.dart';
@@ -37,6 +39,7 @@ class StudentCaseModule extends MainModule {
             student2repository: i.get<Student2Repository>())),
         Bind((i) => StudentCasesRelatorioController(
             student2Repository: i.get<Student2Repository>())),
+         Bind((i) => StudentQuizPublicController()),
       ];
 
   @override
@@ -52,6 +55,9 @@ class StudentCaseModule extends MainModule {
             child: (_, args) => StudentCasesQuizPage(model: args.data)),
         Router('/cases_relatory',
             child: (_, args) => StudentCasesRelatorioPage(model: args.data)),
+         Router('/student_quiz_public',
+            // ignore: missing_required_param
+            child: (_, args) => StudentQuizPublicPage(model: args.data)),    
       ];
 
   static Inject get to => Inject<CasesModule>.of();
