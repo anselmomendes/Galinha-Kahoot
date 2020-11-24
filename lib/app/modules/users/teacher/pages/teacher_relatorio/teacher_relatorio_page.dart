@@ -1,11 +1,13 @@
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/models/StudentModel.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/users/student_2/models/StudentModel.dart';
 import 'teacher_relatorio_controller.dart';
 
 class TeacherRelatorioPage extends StatefulWidget {
@@ -145,7 +147,7 @@ class _TeacherRelatorioPageState
                                             style: TextStyle(
                                                 color: Colors.black,
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 34.0))
+                                                fontSize: 34.0)),
                                       ],
                                     ),
                                     Material(

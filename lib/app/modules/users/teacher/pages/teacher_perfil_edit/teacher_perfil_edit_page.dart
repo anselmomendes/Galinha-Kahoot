@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
 import '../../models/TeacherModel.dart';
 import '../../pages/teacher_perfil/teacher_perfil_controller.dart';
 

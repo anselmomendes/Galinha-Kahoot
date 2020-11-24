@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/common/BaseAuth.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
 import '../../models/TeacherModel.dart';
 import 'teacher_perfil_controller.dart';
-import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
+import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class TeacherPerfilPage extends StatefulWidget {
   final bool showAppBar;

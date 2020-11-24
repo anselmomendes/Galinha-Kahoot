@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_edit/cases_edit_page.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_edit/cases_edit_page.dart';
 
 class CasesEditModule extends ChildModule {
   @override

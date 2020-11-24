@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/class/pages/class_detail/class_detail_controller.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/shared/widgets/text_timer/selectionText.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/class/pages/class_detail/class_detail_controller.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/shared/widgets/text_timer/selectionText.dart';
 import 'package:intl/intl.dart';
 
 class ClassDetailPage extends StatefulWidget {
@@ -201,8 +201,8 @@ class _ClassDetailPageState
                                   style: text2TextStyle),
                             ],
                           )),
-                          Divider(thickness: 2.0),
-                          SizedBox(height: 20),
+                          //Divider(thickness: 2.0),
+                        /*  SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
                             text: 'Temporizador: ',
@@ -216,8 +216,8 @@ class _ClassDetailPageState
                                   text: selectiontextDetail(widget.classModel.timer),
                                   style: text2TextStyle),
                             ],
-                          )),
-                          Divider(thickness: 2.0),
+                          )),*/
+                        /*  Divider(thickness: 2.0),
                           SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
@@ -230,7 +230,7 @@ class _ClassDetailPageState
                               TextSpan(
                                   text: '${endTime}', style: text2TextStyle),
                             ],
-                          )),
+                          )),*/
                           Divider(thickness: 2.0),
                         ],
                       ),

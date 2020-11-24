@@ -1,6 +1,6 @@
-import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_report_select/student_report_select_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_report_select/student_report_select_page.dart';
+import 'package:PeensA/app/modules/class/repositories/class_repository.dart';
+import 'package:PeensA/app/modules/users/student_2/student_pages/student_report_select/student_report_select_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_pages/student_report_select/student_report_select_page.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 

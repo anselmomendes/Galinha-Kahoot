@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
 
 class Splash extends StatefulWidget {
   final List<QuizModel> list;
@@ -19,7 +19,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 3)).then((_) {
+    Future.delayed(Duration(seconds: 5)).then((_) {
       Navigator.popAndPushNamed(context, '/student_quiz/quizpage',
           arguments: widget.list);
     });

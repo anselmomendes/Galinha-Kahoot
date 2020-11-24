@@ -1,6 +1,6 @@
 // Condicional para exibição do temporizador padrão ou o selecionado
 import 'package:flutter/cupertino.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
 
 Widget selectionText(Duration resultingDuration) {
   Duration v = Duration(minutes: 7200);

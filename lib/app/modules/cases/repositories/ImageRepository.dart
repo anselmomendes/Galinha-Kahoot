@@ -3,10 +3,10 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/common/exceptions/NotImplemented.dart';
-import 'package:galinha_karoot/app/modules/common/models/ImageModel.dart';
-import 'package:galinha_karoot/app/modules/common/utils/ImageUploader.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/common/exceptions/NotImplemented.dart';
+import 'package:PeensA/app/modules/common/models/ImageModel.dart';
+import 'package:PeensA/app/modules/common/utils/ImageUploader.dart';
 
 class ImageRepository extends Disposable {
 

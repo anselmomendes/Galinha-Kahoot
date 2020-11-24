@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_edit/cases_edit_controller.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
+import 'package:PeensA/app/modules/cases/models/ComponentModel.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_edit/cases_edit_controller.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 import 'dart:io';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';

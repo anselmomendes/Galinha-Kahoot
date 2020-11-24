@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/repositories/cases_repository.dart';
+import 'package:PeensA/app/modules/cases/repositories/cases_repository.dart';
 
 import 'cases_public_controller.dart';
 import 'cases_public_page.dart';

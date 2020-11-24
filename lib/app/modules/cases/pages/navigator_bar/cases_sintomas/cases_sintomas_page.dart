@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
-import 'package:galinha_karoot/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/cases/models/ComponentModel.dart';
+import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 
 class CasesSintomasPage extends StatefulWidget {
   final String title;
@@ -362,7 +362,7 @@ class _CasesSintomasPageState
                           await controller.getDocuments(
                               widget.model.id, widget.page);
                         }),
-                    Padding(
+                    /*Padding(
                       padding: EdgeInsets.only(
                         bottom: 30.0,
                       ),
@@ -397,7 +397,7 @@ class _CasesSintomasPageState
                           await controller.create(model);
                           await controller.getDocuments(
                               widget.model.id, widget.page);
-                        }),
+                        }),*/
                   ],
                 ),
               ],

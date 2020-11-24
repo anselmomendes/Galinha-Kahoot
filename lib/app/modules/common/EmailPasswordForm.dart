@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
-import 'package:galinha_karoot/app/modules/welcome/pages/welcome/welcome_controller.dart';
+import 'package:PeensA/app/modules/common/BaseAuth.dart';
+import 'package:PeensA/app/modules/welcome/pages/welcome/welcome_controller.dart';
 
 import 'styles.dart';
 import 'package:flutter/material.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/test_student_menu/test_student_menu_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student/widgets_student/ClassCard.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/users/student/pages/test_student_menu/test_student_menu_controller.dart';
+import 'package:PeensA/app/modules/users/student/widgets_student/ClassCard.dart';
 import 'package:mobx/src/api/async.dart';
 import '../../widgets_student/custom_drawer.dart';
 

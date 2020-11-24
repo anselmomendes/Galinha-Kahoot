@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuestionModel.dart';
+import 'package:PeensA/app/modules/cases/models/QuestionModel.dart';
 
 import 'interfaces/question_repositories_interface.dart';
 

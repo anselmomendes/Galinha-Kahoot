@@ -1,4 +1,4 @@
-import 'package:galinha_karoot/app/modules/cases/models/QuestionModel.dart';
+import 'package:PeensA/app/modules/cases/models/QuestionModel.dart';
 
 abstract class IQuizRepository {
   Stream<List<QuestionModel>> get();

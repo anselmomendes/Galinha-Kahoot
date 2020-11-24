@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
 
 Widget circularButton({String text, Function func, double sizeFont}) {
   

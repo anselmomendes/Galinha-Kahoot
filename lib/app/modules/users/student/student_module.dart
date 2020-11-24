@@ -1,9 +1,9 @@
-import 'package:galinha_karoot/app/modules/users/student/pages/student_case/student_case_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/student_case/student_case_page.dart';
-import 'package:galinha_karoot/app/modules/users/student/pages/test_student_menu/test_student_menu_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_controller.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_page.dart';
-// import 'package:galinha_karoot/app/modules/common/AuthPage.dart';
+import 'package:PeensA/app/modules/users/student/pages/student_case/student_case_controller.dart';
+import 'package:PeensA/app/modules/users/student/pages/student_case/student_case_page.dart';
+import 'package:PeensA/app/modules/users/student/pages/test_student_menu/test_student_menu_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_add_class/student_add_class_page.dart';
+// import 'package:PeensA/app/modules/common/AuthPage.dart';
 import 'pages/student_login_email/student_login_email_page.dart';
 import 'pages/student_login_options/student_menu_options_page.dart';
 import 'pages/student_cadastro/student_cadastro_controller.dart';

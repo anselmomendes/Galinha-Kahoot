@@ -1,5 +1,5 @@
-import 'package:galinha_karoot/app/modules/class/models/ClassModels.dart';
-import 'package:galinha_karoot/app/modules/class/repositories/class_repository.dart';
+import 'package:PeensA/app/modules/class/models/ClassModels.dart';
+import 'package:PeensA/app/modules/class/repositories/class_repository.dart';
 import 'package:mobx/mobx.dart';
 
 part 'class_detail_controller.g.dart';

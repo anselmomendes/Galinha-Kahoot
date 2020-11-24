@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:galinha_karoot/app/modules/common/BaseAuth.dart';
-import 'package:galinha_karoot/app/modules/common/EmailPasswordForm.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/common/BaseAuth.dart';
+import 'package:PeensA/app/modules/common/EmailPasswordForm.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
 
 class TeacherLoginPage extends StatefulWidget {
   TeacherLoginPage({Key key, this.title = "Entrar como professor"})

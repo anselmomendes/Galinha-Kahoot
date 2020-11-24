@@ -1,5 +1,5 @@
-import 'package:galinha_karoot/app/modules/cases/models/CasesModels.dart';
-import 'package:galinha_karoot/app/modules/cases/models/ComponentModel.dart';
+import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
+import 'package:PeensA/app/modules/cases/models/ComponentModel.dart';
 
 abstract class ICasesRepository {
   //fuções de casos

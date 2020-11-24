@@ -1,7 +1,7 @@
-import 'package:galinha_karoot/app/modules/welcome/pages/welcome/welcome_controller.dart';
-import 'package:galinha_karoot/app/modules/welcome/pages/welcome/welcome_page.dart';
-import 'package:galinha_karoot/app/modules/welcome/services/welcome_service.dart';
-import 'package:galinha_karoot/app/modules/welcome/repositories/welcome_repository.dart';
+import 'package:PeensA/app/modules/welcome/pages/welcome/welcome_controller.dart';
+import 'package:PeensA/app/modules/welcome/pages/welcome/welcome_page.dart';
+import 'package:PeensA/app/modules/welcome/services/welcome_service.dart';
+import 'package:PeensA/app/modules/welcome/repositories/welcome_repository.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class WelcomeModule extends ChildModule {

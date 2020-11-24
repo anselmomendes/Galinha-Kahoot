@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_root/student_root_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_pages/student_root/student_root_controller.dart';
 
 class DrawersWidget extends StatelessWidget {
   final controller = Modular.get<StudentRootController>();

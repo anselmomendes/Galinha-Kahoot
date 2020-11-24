@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_pages/student_perfil/student_perfil_page.dart';
+import 'package:PeensA/app/modules/users/student_2/student_pages/student_perfil/student_perfil_page.dart';
 import '../../student_pages/student_perfil/student_perfil_page.dart';
 
 class StudentPerfilModule extends ModuleWidget {

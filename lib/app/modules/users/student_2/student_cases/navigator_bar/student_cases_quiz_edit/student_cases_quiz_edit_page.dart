@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
-import 'package:galinha_karoot/app/modules/common/styles.dart';
-import 'package:galinha_karoot/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz_edit/student_cases_quiz_edit_controller.dart';
-import 'package:galinha_karoot/app/shared/widgets/raise_button/RaiseButton.dart';
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
+import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/navigator_bar/student_cases_quiz_edit/student_cases_quiz_edit_controller.dart';
+import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 
 
 class StudentCasesQuizEditPage extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:galinha_karoot/app/modules/users/student_2/repositories/student_2_repository.dart';
+import 'package:PeensA/app/modules/users/student_2/repositories/student_2_repository.dart';
 
 import '../../models/StudentModel.dart';
 // import '../../repositories/teacher_repository.dart';

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/welcome/pages/welcome/welcome_controller.dart';
+import 'package:PeensA/app/modules/welcome/pages/welcome/welcome_controller.dart';
 
 class WelcomePage extends StatefulWidget {
   final String title;

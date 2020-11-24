@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:galinha_karoot/app/modules/cases/models/QuizModel.dart';
+import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
 
 class QuizRepository extends Disposable {
   final Firestore firestore;
