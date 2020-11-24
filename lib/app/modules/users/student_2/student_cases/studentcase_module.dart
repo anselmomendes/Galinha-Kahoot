@@ -1,3 +1,5 @@
+import 'package:PeensA/app/modules/users/student_2/student_cases/cases_list/cases_list_controller.dart';
+import 'package:PeensA/app/modules/users/student_2/student_cases/cases_list/cases_list_page.dart';
 import 'package:PeensA/app/modules/users/student_2/student_cases/student_cases_public/student_quiz_public/student_quiz_public_controller.dart';
 import 'package:PeensA/app/modules/users/student_2/student_cases/student_cases_public/student_quiz_public/student_quiz_public_page.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +42,7 @@ class StudentCaseModule extends MainModule {
         Bind((i) => StudentCasesRelatorioController(
             student2Repository: i.get<Student2Repository>())),
         Bind((i) => StudentQuizPublicController()),
+        Bind((i) => CasesListController()),
       ];
 
   @override
@@ -47,6 +50,10 @@ class StudentCaseModule extends MainModule {
         Router('/cases_home',
             child: (_, args) => StudentCasesHomePage(
                   casesModel: args.data,
+                )),
+        Router('/cases_list',
+            child: (_, args) => CasesListPage(
+                  classModel: args.data,
                 )),
         Router('/cases_public', child: (_, args) => StudentCasesPublicPage()),
         Router('/sintomas',
