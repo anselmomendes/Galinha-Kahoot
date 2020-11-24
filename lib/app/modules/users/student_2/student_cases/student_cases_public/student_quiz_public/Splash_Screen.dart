@@ -19,6 +19,7 @@ class _SplashQuizPublicState extends State<SplashQuizPublic> {
   @override
   void initState() {
     super.initState();
+    print("Splash recebeu ${widget.list.length} questoes");
     SystemChrome.setEnabledSystemUIOverlays([]);
     Future.delayed(Duration(seconds: 3)).then((_) {
       Navigator.popAndPushNamed(context, '/student_cases/student_quiz_public',

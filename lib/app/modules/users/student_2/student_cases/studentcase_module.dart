@@ -39,7 +39,7 @@ class StudentCaseModule extends MainModule {
             student2repository: i.get<Student2Repository>())),
         Bind((i) => StudentCasesRelatorioController(
             student2Repository: i.get<Student2Repository>())),
-         Bind((i) => StudentQuizPublicController()),
+        Bind((i) => StudentQuizPublicController()),
       ];
 
   @override
@@ -55,9 +55,9 @@ class StudentCaseModule extends MainModule {
             child: (_, args) => StudentCasesQuizPage(model: args.data)),
         Router('/cases_relatory',
             child: (_, args) => StudentCasesRelatorioPage(model: args.data)),
-         Router('/student_quiz_public',
+        Router('/student_quiz_public',
             // ignore: missing_required_param
-            child: (_, args) => StudentQuizPublicPage(model: args.data)),    
+            child: (_, args) => StudentQuizPublicPage(list: args.data)),
       ];
 
   static Inject get to => Inject<CasesModule>.of();
