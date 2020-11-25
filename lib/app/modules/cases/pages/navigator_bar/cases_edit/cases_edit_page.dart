@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:PeensA/app/modules/cases/models/ComponentModel.dart';
 import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_edit/cases_edit_controller.dart';
@@ -24,6 +25,7 @@ class _CasesEditPageState
   final picker = ImagePicker();
   File _selectedImage;
   bool _inProcess = false;
+  String type;
 
   @override
   Widget build(BuildContext context) {
@@ -110,18 +112,34 @@ class _CasesEditPageState
               height: 10,
               thickness: 1.0,
             ),
-            Container(height: screenWidth * 1.01, child: _selectField(screenWidth)),
+            Container(
+                height: screenWidth * 1.01, child: _selectField(screenWidth)),
             // SizedBox(height: 20),
-            circularButton(
-                text: 'Salvar',
-                func: () async {
-                  if (await controller.update(widget.model)) {
-                    _showAlertDialog(context, 'Componente Registrado',
-                        'O componente do caso foi registrado com sucesso!');
-                  } else
-                    _showAlertDialog(context, 'Componente não Registrado',
-                        'O componente do caso não foi registrado com sucesso!');
-                })
+            Observer(builder: (_) {
+              return circularButton(
+                  text: 'Salvar',
+                  func: () async {
+                    if (widget.model.type == "Imagem") {
+                      await controller.uploadFile(_selectedImage);
+                      if (controller.uploadedFileURL != null) {
+                        widget.model.value = controller.uploadedFileURL;
+                        if (await controller.update(widget.model)) {
+                          _showAlertDialog(context, 'Componente Registrado',
+                              'O componente do caso foi registrado com sucesso!');
+                        } else
+                          _showAlertDialog(context, 'Componente não Registrado',
+                              'O componente do caso não foi registrado com sucesso!');
+                      }
+                    } else {
+                      if (await controller.update(widget.model)) {
+                        _showAlertDialog(context, 'Componente Registrado',
+                            'O componente do caso foi registrado com sucesso!');
+                      } else
+                        _showAlertDialog(context, 'Componente não Registrado',
+                            'O componente do caso não foi registrado com sucesso!');
+                    }
+                  });
+            })
           ],
         ),
       ),
@@ -224,18 +242,17 @@ class _CasesEditPageState
 
   // Campo do tipo "Imagem"
   Widget _fieldImage(var screenWidth) {
-
     return Column(
       children: <Widget>[
         // SizedBox(height: 5),
         _inProcess != false
             ? Container(
-              padding: EdgeInsets.fromLTRB(10, 30, 20, 10),
+                padding: EdgeInsets.fromLTRB(10, 30, 20, 10),
                 // color: Colors.white,
                 // height: double.infinity,
-                height: screenWidth*0.3,
+                height: screenWidth * 0.3,
                 // width: double.infinity,
-                width: screenWidth*0.3,
+                width: screenWidth * 0.3,
                 alignment: Alignment.center,
                 child: SizedBox(
                   width: 70,
@@ -257,9 +274,7 @@ class _CasesEditPageState
                           fit: BoxFit.cover,
                         )
                       : Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[300]
-                        ),
+                          decoration: BoxDecoration(color: Colors.grey[300]),
                           width: 300,
                           height: 300,
                           child: Icon(
@@ -361,5 +376,4 @@ class _CasesEditPageState
       });
     }
   }
-
 }
