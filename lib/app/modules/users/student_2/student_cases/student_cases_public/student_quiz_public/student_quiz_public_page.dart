@@ -44,6 +44,17 @@ class _StudentQuizPublicPageState
 
   @override
   Widget build(BuildContext context) {
+    if (widget.list.isEmpty) {
+      return Scaffold(
+          appBar: AppBar(
+            title: Text(widget.title),
+            centerTitle: true,
+            backgroundColor: Colors.blue,
+          ),
+          body: Center(
+            child: Text("Nenhuma questão foi criada para o Quiz"),
+          ));
+    }
     if (controller.getType() == 'type1') {
       return Scaffold(
           appBar: AppBar(

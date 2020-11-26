@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "232979856353-ou6aemut4il06vo36ti972i9u3iq31jf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.ffreire.galinha_karoot",
+            "certificate_hash": "dda57f873296c2e889343a4cdd536d8eb616aaed"
+          }
+        },
+        {
           "client_id": "232979856353-f7rj5s3dslhlcn79kb22cfsjtsn88afg.apps.googleusercontent.com",
           "client_type": 3
         }

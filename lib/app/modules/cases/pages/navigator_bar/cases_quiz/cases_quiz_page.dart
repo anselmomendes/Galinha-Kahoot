@@ -213,8 +213,11 @@ class _CasesQuizPageState
                                 ),
                                 onTap: () {
                                   Navigator.pushNamed(
-                                      context, '/cases/cases_quiz_edit',
-                                      arguments: model).then((value) async => await controller.getDocuments(model.idCases, model.page));
+                                          context, '/cases/cases_quiz_edit',
+                                          arguments: model)
+                                      .then((value) async =>
+                                          await controller.getDocuments(
+                                              model.idCases, model.page));
                                 },
                               ),
                             ),
@@ -242,56 +245,92 @@ class _CasesQuizPageState
               SizedBox(
                 height: 30.0,
               ),
-              Row(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(left: screenWidth * 0.1),
-                    child: circularButton(
-                        text: 'Múltipla \nEscolha',
-                        sizeFont: 14,
-                        func: () async {
-                          QuizModel model = QuizModel();
-
-                          // Questão do tipo 1
-                          model.type = 'type1';
-
-                          // Método para informar o número da questão (alertDialog)
-                          _showAlertDialogQuestionNumber(model, screenWidth);
-                        }),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: Container(),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                      right: screenWidth * 0.1,
-                    ),
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(height: 10.0),
-                        circularButton(
-                            text: 'Verdadeiro \nou Falso',
+              Column(
+                children: [
+                  Row(
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: screenWidth * 0.1),
+                        child: circularButton(
+                            text: 'Múltipla \nEscolha',
                             sizeFont: 14,
                             func: () async {
                               QuizModel model = QuizModel();
 
-                              // Questão do tipo 2
-                              model.type = 'type2';
+                              // Questão do tipo 1
+                              model.type = 'type1';
 
                               // Método para informar o número da questão (alertDialog)
                               _showAlertDialogQuestionNumber(
                                   model, screenWidth);
+                            }),
+                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Container(),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          right: screenWidth * 0.1,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(height: 10.0),
+                            circularButton(
+                                text: 'Verdadeiro \nou Falso',
+                                sizeFont: 14,
+                                func: () async {
+                                  QuizModel model = QuizModel();
+
+                                  // Questão do tipo 2
+                                  model.type = 'type2';
+
+                                  // Método para informar o número da questão (alertDialog)
+                                  _showAlertDialogQuestionNumber(
+                                      model, screenWidth);
+                                }),
+                            Divider(
+                              height: 10.0,
+                              indent: 5.0,
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Center(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: Container(),
+                        ),
+                        SizedBox(height: 10.0),
+                        circularButton(
+                            text: 'Testar Quiz',
+                            sizeFont: 14,
+                            func: () async {
+                              Navigator.pushNamed(
+                                context,
+                                '/student_2/splash_screen_quiz_public',
+                                arguments: controller.quiz,
+                              );
                             }),
                         Divider(
                           height: 10.0,
                           indent: 5.0,
                           color: Colors.black,
                         ),
+                        Expanded(
+                          flex: 2,
+                          child: Container(),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 10),
                 ],
               ),
               SizedBox(height: 10.0),
