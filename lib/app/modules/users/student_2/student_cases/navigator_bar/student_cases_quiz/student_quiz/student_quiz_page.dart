@@ -801,8 +801,9 @@ class _StudentQuizPageState
                         ),
                         Text(
                           "Verdadeiro",
-                          style: TextStyle(color: colorsTrue,
-                           fontSize: 16,
+                          style: TextStyle(
+                            color: colorsTrue,
+                            fontSize: 16,
                           ),
                         )
                       ],
@@ -838,8 +839,9 @@ class _StudentQuizPageState
                         ),
                         Text(
                           "Falso",
-                          style: TextStyle(color: colorsFalse,
-                          fontSize: 16,
+                          style: TextStyle(
+                            color: colorsFalse,
+                            fontSize: 16,
                           ),
                         )
                       ],
@@ -872,11 +874,10 @@ class _StudentQuizPageState
         onPressed: () {
           bool correct = controller.correctAnswer(answer);
           setState(() {
-            ResultDialog.show(
-              context,
-              question: controller.question,
-              correct: correct,
-            );
+            ResultDialog.show(context,
+                question: controller.question,
+                correct: correct,
+                commentary: controller.question.commentary);
             _scoreKeeper.add(
               Icon(
                 correct ? Icons.check : Icons.close,
@@ -888,10 +889,14 @@ class _StudentQuizPageState
             } else {
               Navigator.pop(context);
               Navigator.pop(context);
+              controller.saveAnswer();
               FinishDialog.show(context,
                   hitNumber: controller.hitNumber,
                   questionNumber: controller.questionsNumber);
-              controller.saveAnswer();
+              ResultDialog.show(context,
+                  question: controller.question,
+                  correct: correct,
+                  commentary: controller.question.commentary);
             }
           });
         });

@@ -2,11 +2,10 @@ import 'package:PeensA/app/modules/cases/models/QuizModel.dart';
 import 'package:flutter/material.dart';
 
 class ResultDialog {
-  static Future show(
-    BuildContext context, {
-    @required QuizModel question,
-    @required bool correct,
-  }) {
+  static Future show(BuildContext context,
+      {@required QuizModel question,
+      @required bool correct,
+      @required String commentary}) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -39,6 +38,18 @@ class ResultDialog {
               ),
               Text(
                 question.right.toUpperCase(),
+                style: TextStyle(
+                  color: Colors.white70,
+                ),
+              ),
+              Text(
+                'Comentario da questão: ',
+                style: TextStyle(
+                  color: Colors.white70,
+                ),
+              ),
+              Text(
+                commentary,
                 style: TextStyle(
                   color: Colors.white70,
                 ),

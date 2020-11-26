@@ -885,11 +885,10 @@ class _StudentQuizPublicPageState
         onPressed: () {
           bool correct = controller.correctAnswer(answer);
           setState(() {
-            ResultDialog.show(
-              context,
-              question: controller.question,
-              correct: correct,
-            );
+            ResultDialog.show(context,
+                question: controller.question,
+                correct: correct,
+                commentary: controller.question.commentary);
             _scoreKeeper.add(
               Icon(
                 correct ? Icons.check : Icons.close,
@@ -901,9 +900,14 @@ class _StudentQuizPublicPageState
             } else {
               Navigator.pop(context);
               Navigator.pop(context);
+
               FinishDialog.show(context,
                   hitNumber: controller.hitNumber,
                   questionNumber: controller.questionsNumber);
+              ResultDialog.show(context,
+                  question: controller.question,
+                  correct: correct,
+                  commentary: controller.question.commentary);
             }
           });
         });
