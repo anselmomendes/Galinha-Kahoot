@@ -18,14 +18,13 @@ abstract class _StudentClassDetailControllerBase with Store {
   @action
   Future setClass(ClassModel model) async {
     try {
-      await student2repository.getClass(model);
+      classModel = student2repository.getClass(model).asObservable();
     } catch (e) {
       print("Erro ao procurar turma: $e");
     }
-    getClassforController();
   }
 
   getClassforController() async {
-    classModel = await student2repository.outClass.asObservable();
+    classModel = student2repository.outClass.asObservable();
   }
 }

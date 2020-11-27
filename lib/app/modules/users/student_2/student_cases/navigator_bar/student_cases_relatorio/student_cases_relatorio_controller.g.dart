@@ -47,14 +47,14 @@ mixin _$StudentCasesRelatorioController on _StudentCasesRelatorioBase, Store {
   final _$accessAtom = Atom(name: '_StudentCasesRelatorioBase.access');
 
   @override
-  ObservableStream<bool> get access {
+  bool get access {
     _$accessAtom.context.enforceReadPolicy(_$accessAtom);
     _$accessAtom.reportObserved();
     return super.access;
   }
 
   @override
-  set access(ObservableStream<bool> value) {
+  set access(bool value) {
     _$accessAtom.context.conditionallyRunInAction(() {
       super.access = value;
       _$accessAtom.reportChanged();
@@ -80,20 +80,6 @@ mixin _$StudentCasesRelatorioController on _StudentCasesRelatorioBase, Store {
   @override
   Future verifyQuiz(String idCases) {
     return _$verifyQuizAsyncAction.run(() => super.verifyQuiz(idCases));
-  }
-
-  final _$_StudentCasesRelatorioBaseActionController =
-      ActionController(name: '_StudentCasesRelatorioBase');
-
-  @override
-  dynamic loadAccess() {
-    final _$actionInfo =
-        _$_StudentCasesRelatorioBaseActionController.startAction();
-    try {
-      return super.loadAccess();
-    } finally {
-      _$_StudentCasesRelatorioBaseActionController.endAction(_$actionInfo);
-    }
   }
 
   @override

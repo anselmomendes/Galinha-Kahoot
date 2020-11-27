@@ -17,7 +17,7 @@ abstract class _StudentCasesRelatorioBase with Store {
   String hits;
 
   @observable
-  ObservableStream<bool> access;
+  bool access;
 
   _StudentCasesRelatorioBase({this.student2Repository});
 
@@ -35,15 +35,14 @@ abstract class _StudentCasesRelatorioBase with Store {
   @action
   verifyQuiz(String idCases) async {
     try {
-      await student2Repository.verifyAccessQuizReport(idCases);
+      access = await student2Repository.verifyAccessQuizReport(idCases);
     } catch (e) {
       print("Não foi possivel verificar: $e");
     }
-    loadAccess();
   }
-
+/*
   @action
   loadAccess() {
     access = student2Repository.outAccessQuiz.asObservable(initialValue: true);
-  }
+  }*/
 }

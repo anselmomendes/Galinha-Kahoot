@@ -86,14 +86,13 @@ class Student2Repository extends Disposable {
    * fica armazenada no repositorio do aluno(essa turma possui menos dados,
    *  por isso e necessario carregar a original)
    */
-  Future<void> getClass(ClassModel classModel) async {
-    firestore
+  Stream<ClassModel> getClass(ClassModel classModel) {
+    return firestore
         .collection("Class")
         .document(classModel.id)
         .snapshots()
-        .listen((turma) {
-      ClassModel model = ClassModel.fromDocument(turma);
-      _classController.add(model);
+        .map((turma) {
+      return ClassModel.fromDocument(turma);
     });
   }
 
@@ -212,7 +211,7 @@ class Student2Repository extends Disposable {
   }
 
   //Verifica se o aluno pode fazer o quiz
-  Future<void> verifyAccessQuizReport(String idCases) async {
+  Future<bool> verifyAccessQuizReport(String idCases) async {
     StudentModel student = await getUserInfo();
     String idClass = await getIDClass(idCases);
     bool access = true;
@@ -228,11 +227,11 @@ class Student2Repository extends Disposable {
       doc.data.forEach((key, value) {
         if (value == "disable") {
           access = false;
-          _accessquizConttoller.add(access);
         }
       });
+      return access;
     } catch (e) {
-      _accessquizConttoller.add(access);
+      return access;
     }
   }
 

@@ -15,39 +15,38 @@ class ClassModel {
   int timer;
   int position;
   DocumentReference reference;
-  List<StudentModel> listStudents;
 
-  ClassModel(
-      {this.id = '',
-      this.className = '',
-      this.accessCode,
-      this.status = true,
-      this.casesID = '',
-      this.titleCase = '',
-      this.creationDate,
-      this.modifiedDate,
-      this.endTime,
-      this.timer,
-      this.position,
-      this.teacherID = '',
-      this.reference,
-      this.listStudents});
+  ClassModel({
+    this.id = '',
+    this.className = '',
+    this.accessCode,
+    this.status = true,
+    this.casesID = '',
+    this.titleCase = '',
+    this.creationDate,
+    this.modifiedDate,
+    this.endTime,
+    this.timer,
+    this.position,
+    this.teacherID = '',
+    this.reference,
+  });
 
   factory ClassModel.fromDocument(DocumentSnapshot doc) => ClassModel(
-      id: doc["id"],
-      className: doc["className"],
-      accessCode: doc["accessCode"],
-      status: doc["status"],
-      casesID: doc["casesID"],
-      titleCase: doc["titleCase"],
-      creationDate: doc["creationDate"],
-      modifiedDate: doc["modifiedDate"],
-      endTime: doc["endTime"],
-      timer: doc["timer"],
-      position: doc["position"],
-      teacherID: doc["teacherID"],
-      reference: doc.reference,
-      listStudents: doc['listStudents']);
+        id: doc["id"],
+        className: doc["className"],
+        accessCode: doc["accessCode"],
+        status: doc["status"],
+        casesID: doc["casesID"],
+        titleCase: doc["titleCase"],
+        creationDate: doc["creationDate"],
+        modifiedDate: doc["modifiedDate"],
+        endTime: doc["endTime"],
+        timer: doc["timer"],
+        position: doc["position"],
+        teacherID: doc["teacherID"],
+        reference: doc.reference,
+      );
 
   Map<String, dynamic> toJson() => {
         "id": id,
@@ -62,6 +61,5 @@ class ClassModel {
         "timer": timer,
         "position": position,
         "teacherID": teacherID,
-        "listStudents": listStudents
       };
 }

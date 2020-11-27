@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
 import 'package:PeensA/app/modules/class/models/ClassModels.dart';
 import 'package:PeensA/app/modules/common/styles.dart';
 import 'package:PeensA/app/modules/users/student_2/student_class/pages/student_class_detail/student_class_detail_controller.dart';
@@ -47,7 +46,22 @@ class _StudentClassDetailPageState
       body: Container(
         child: Observer(
           builder: (_) {
-            if (controller.classModel == null)
+            if (controller.classModel.hasError) {
+              return Center(
+                child: Column(
+                  children: [
+                    Text(
+                        "Houve um erro recarregue a pagina pressionando o botão:"),
+                    RaisedButton(
+                        child: Text("Recarregar turma"),
+                        onPressed: () {
+                          controller.setClass(widget.classModel);
+                        }),
+                  ],
+                ),
+              );
+            }
+            if (controller.classModel.data == null)
               return Center(
                 child: CircularProgressIndicator(),
               );

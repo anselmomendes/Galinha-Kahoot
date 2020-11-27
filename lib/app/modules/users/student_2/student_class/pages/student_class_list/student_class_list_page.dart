@@ -57,41 +57,31 @@ class _StudentClassListPageState
                     child: Card(
                       margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
                       elevation: 20,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: <Widget>[
-                          ListTile(
-                            leading: Icon(Icons.arrow_forward_ios),
-                            title: Text(
-                              'Turma ${model.className}',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                fontSize: 18,
-                              ),
+                      child: Center(
+                        child: ListTile(
+                          leading: Icon(Icons.arrow_forward_ios),
+                          title: Text(
+                            'Turma: ${model.className}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 18,
                             ),
-                            subtitle: Text(
-                              // model.creationDate,
-                              'Turma: ${model.id}',
-                              style: TextStyle(
-                                fontSize: 16,
-                              ),
-                            ),
-
-                            // AO CLICAR AQUI, EXIBIR AQUI O CASO
-
-                            onTap: () {
-                              /* Navigator.pushNamed(
-                                  context, '/cases/cases_single',
-                                  arguments: question_model) */
-                              Navigator.pushNamed(
-                                context,
-                                '/student_class/student_class_detail',
-                                arguments: model,
-                              );
-                            },
-                            //subtitle: Text(model.right),
                           ),
-                        ],
+
+                          // AO CLICAR AQUI, EXIBIR AQUI O CASO
+
+                          onTap: () {
+                            /* Navigator.pushNamed(
+                                context, '/cases/cases_single',
+                                arguments: question_model) */
+                            Navigator.pushNamed(
+                              context,
+                              '/student_class/student_class_detail',
+                              arguments: model,
+                            );
+                          },
+                          //subtitle: Text(model.right),
+                        ),
                       ),
                     ),
                   );

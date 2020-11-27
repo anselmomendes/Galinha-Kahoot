@@ -47,7 +47,7 @@ class _StudentCasesRelatorioPageState extends ModularState<
               child: CircularProgressIndicator(),
             );
           } else {
-            if (controller.access.value) {
+            if (controller.access) {
               return SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
                 child: Column(
