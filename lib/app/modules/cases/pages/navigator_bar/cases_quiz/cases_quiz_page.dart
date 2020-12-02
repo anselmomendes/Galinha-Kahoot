@@ -275,7 +275,11 @@ class _CasesQuizPageState
                         ),
                         child: Row(
                           children: <Widget>[
-                            SizedBox(height: 10.0),
+                              Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.0,
+                        ),
+                              ),
                             circularButton(
                                 text: 'Verdadeiro \nou Falso',
                                 sizeFont: 14,
@@ -297,10 +301,18 @@ class _CasesQuizPageState
                           ],
                         ),
                       ),
-                      SizedBox(height: 10),
+                      Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.0,
+                        ),
+                              ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                   Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.0,
+                        ),
+                              ),
                   Center(
                     child: Row(
                       children: <Widget>[
@@ -308,10 +320,14 @@ class _CasesQuizPageState
                           flex: 2,
                           child: Container(),
                         ),
-                        SizedBox(height: 10.0),
+                        Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.0,
+                        ),
+                              ),
                         circularButton(
                             text: 'Testar Quiz',
-                            sizeFont: 14,
+                            sizeFont: 13,
                             func: () async {
                               Navigator.pushNamed(
                                 context,
@@ -333,7 +349,11 @@ class _CasesQuizPageState
                   ),
                 ],
               ),
-              SizedBox(height: 10.0),
+              Padding(
+                        padding: EdgeInsets.only(
+                          top: 10.0,
+                        ),
+                              ),
               Column(
                 children: [
                   Padding(

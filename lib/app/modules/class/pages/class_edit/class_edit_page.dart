@@ -119,7 +119,7 @@ class _ClassEditPageState
                       prefixIcon: Icon(Icons.title),
                     ),
                   ),
-                  /*
+                  
                   Text("Selecione o temporizador:", style: headerTextStyle),
                   Text("Temporizador atual: ${currentTime} minutos"),
                   SizedBox(height: 5),
@@ -151,7 +151,7 @@ class _ClassEditPageState
                       child: Text(
                         "Selecionar",
                         style: TextStyle(color: Colors.white),
-                      )),*/
+                      )),
                   Divider(
                     height: 30,
                   ),
@@ -295,8 +295,8 @@ class _ClassEditPageState
     }
     return Text("Turma será desativada em ${resultingDuration.inMinutes} min.");
   } */
-
-  void _showAlertDialog(BuildContext context) {
+  
+    void _showAlertDialog(BuildContext context) {
     // configura o button
     Widget okButton = FlatButton(
       child: Text("OK"),

@@ -324,9 +324,52 @@ class _CasesSintomasPageState
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    right: 100.0,
+                    right: 50.0,
                   ),
+                ), 
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                
+                  children: [
+                   
+                     Padding(padding: EdgeInsets.only(left: 20),
+                    child: Text(
+                      'PDF',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13.0,
+                      ),
+                    ),
+                  ),
+                    IconButton(
+                        icon: Icon(
+                          Icons.picture_as_pdf,
+                          color: Colors.blueGrey[500],
+                          size: 50.0,
+                          semanticLabel: 'PDF',
+                        ),
+                        tooltip: 'PDF',
+                        onPressed: () async {
+                          ComponentModel model = ComponentModel();
+                          model.type = 'PDF';
+                          model.idCases = widget.model.id;
+                          model.page = widget.page;
+                          model.value = 'Selecione um PDF para o conteúdo';
+                          // model.type = 'topic';
+                          model.position = lastPosition;
+                          print(lastPosition);
+
+                          await controller.create(model);
+                          await controller.getDocuments(
+                              widget.model.id, widget.page);
+                        }),
+                  ],
                 ),
+                 Padding(
+                  padding: EdgeInsets.only(
+                    right: 50.0,
+                  ),
+                ), 
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                 
@@ -362,7 +405,7 @@ class _CasesSintomasPageState
                           await controller.getDocuments(
                               widget.model.id, widget.page);
                         }),
-                    /*Padding(
+                    Padding(
                       padding: EdgeInsets.only(
                         bottom: 30.0,
                       ),
@@ -397,7 +440,7 @@ class _CasesSintomasPageState
                           await controller.create(model);
                           await controller.getDocuments(
                               widget.model.id, widget.page);
-                        }),*/
+                        }),
                   ],
                 ),
               ],
