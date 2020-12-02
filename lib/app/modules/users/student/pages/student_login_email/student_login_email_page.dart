@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:PeensA/app/modules/common/BaseAuth.dart';
 import 'package:PeensA/app/modules/common/EmailPasswordForm.dart';
 import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:load/load.dart';
 
 class StudentEmailLoginPage extends StatefulWidget {
   final String title;
@@ -59,8 +60,8 @@ class _StudentEmailLoginPageState extends State<StudentEmailLoginPage> {
           if (user.isEmailVerified) {
             if (role == "student")
               Navigator.pushNamed(context, '/student_2/student_root');
-              // Navigator.pushNamed(context, '/student_2/teacher_menu');
-              // Navigator.pushNamed(context, '/student/student_menu');
+            // Navigator.pushNamed(context, '/student_2/teacher_menu');
+            // Navigator.pushNamed(context, '/student/student_menu');
             else if (role == "teacher")
               throw Exception("Este usuário já cadastrado como professor!");
             else

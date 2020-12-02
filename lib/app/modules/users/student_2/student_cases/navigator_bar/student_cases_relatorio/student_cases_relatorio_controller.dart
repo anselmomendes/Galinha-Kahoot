@@ -40,9 +40,4 @@ abstract class _StudentCasesRelatorioBase with Store {
       print("Não foi possivel verificar: $e");
     }
   }
-/*
-  @action
-  loadAccess() {
-    access = student2Repository.outAccessQuiz.asObservable(initialValue: true);
-  }*/
 }

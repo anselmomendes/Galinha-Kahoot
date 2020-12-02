@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:PeensA/app/modules/common/BaseAuth.dart';
 import 'package:PeensA/app/modules/common/EmailPasswordForm.dart';
 import 'package:PeensA/app/modules/common/styles.dart';
+import 'package:load/load.dart';
 
 class TeacherLoginPage extends StatefulWidget {
   TeacherLoginPage({Key key, this.title = "Entrar como professor"})
@@ -21,28 +22,24 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
     return Scaffold(
         resizeToAvoidBottomPadding: false,
         resizeToAvoidBottomInset: false,
-        body: GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-            },
-            child: Center(
-                child: SingleChildScrollView(
-                    padding: EdgeInsets.all(
-                        MediaQuery.of(context).size.width * appPadding),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Image.asset("assets/bits.png",
-                              width: MediaQuery.of(context).size.width *
-                                  appLogoMediumSize),
-                          SizedBox(height: 20),
-                          Text(widget.title, style: headerTextStyle),
-                          EmailPasswordForm(callback: _authCallback),
-                          InkWell(
-                              child: Text("Não tem uma conta?",
-                                  style: TextStyle(color: Colors.blue)),
-                              onTap: () => _gotoRegister())
-                        ])))));
+        body: Center(
+            child: SingleChildScrollView(
+                padding: EdgeInsets.all(
+                    MediaQuery.of(context).size.width * appPadding),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Image.asset("assets/bits.png",
+                          width: MediaQuery.of(context).size.width *
+                              appLogoMediumSize),
+                      SizedBox(height: 20),
+                      Text(widget.title, style: headerTextStyle),
+                      EmailPasswordForm(callback: _authCallback),
+                      InkWell(
+                          child: Text("Não tem uma conta?",
+                              style: TextStyle(color: Colors.blue)),
+                          onTap: () => _gotoRegister())
+                    ]))));
   }
 
   _authCallback(result) async {
@@ -64,9 +61,11 @@ class _TeacherLoginPageState extends State<TeacherLoginPage> {
           _showVerifyEmailSentDialog();
         }
       } else {
+        Navigator.pop(context);
         throw Exception("Usuário não cadastrado!");
       }
     } catch (e) {
+      Navigator.pop(context);
       _showSignInError(e.toString());
     }
   }

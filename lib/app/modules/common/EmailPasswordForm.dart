@@ -1,6 +1,8 @@
+import 'package:PeensA/app/modules/common/splash_loading.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:PeensA/app/modules/common/BaseAuth.dart';
 import 'package:PeensA/app/modules/welcome/pages/welcome/welcome_controller.dart';
+import 'package:load/load.dart';
 
 import 'styles.dart';
 import 'package:flutter/material.dart';
@@ -78,10 +80,14 @@ class _EmailPasswordFormState
   void onSubmit() async {
     String userId;
     try {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => SplashLoad()));
       userId = await widget.auth
           .signIn(_emailController.text, _passwordController.text);
       if (userId != null && userId.length > 0) {
         emitCallback(await widget.auth.getCurrentUser());
+      } else {
+        Navigator.pop(context);
       }
     } catch (e) {
       emitError(e.toString());
@@ -94,6 +100,7 @@ class _EmailPasswordFormState
   }
 
   void emitError(error) {
+    Navigator.pop(context);
     widget.ecallback(error);
   }
 
