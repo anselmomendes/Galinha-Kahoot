@@ -1,7 +1,7 @@
 import 'package:PeensA/app/modules/cases/models/ComponentModel.dart';
 import 'package:PeensA/app/modules/cases/repositories/cases_repository.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:mobx/mobx.dart';
-
 part 'cases_sintomas_controller.g.dart';
 
 class CasesSintomasController = _CasesSintomasBase
@@ -38,5 +38,19 @@ abstract class _CasesSintomasBase with Store {
   @action
   create(ComponentModel model) {
     return casesRepository.createWidget(model);
+  }
+
+  void downloadFile(String url) async {
+    await FlutterDownloader.initialize(
+        debug: true // optional: set false to disable printing logs to console
+        );
+    final taskId = await FlutterDownloader.enqueue(
+      url: url,
+      savedDir: '/PeensaFiles',
+      showNotification:
+          true, // show download progress in status bar (for Android)
+      openFileFromNotification:
+          true, // click on notification to open downloaded file (for Android)
+    );
   }
 }

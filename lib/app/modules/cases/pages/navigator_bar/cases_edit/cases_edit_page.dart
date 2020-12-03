@@ -9,6 +9,10 @@ import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 import 'dart:io';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:file_picker/file_picker.dart';
+import 'package:load/load.dart';
+
+import 'package:path/path.dart' as Path;
 
 class CasesEditPage extends StatefulWidget {
   final String title;
@@ -25,6 +29,7 @@ class _CasesEditPageState
   final picker = ImagePicker();
   File _selectedImage;
   bool _inProcess = false;
+  File _file;
   String type;
 
   @override
@@ -119,24 +124,47 @@ class _CasesEditPageState
               return circularButton(
                   text: 'Salvar',
                   func: () async {
+                    showLoadingDialog();
                     if (widget.model.type == "Imagem") {
-                      await controller.uploadFile(_selectedImage);
+                      await controller.uploadImage(
+                          _selectedImage, widget.model.idCases);
                       if (controller.uploadedFileURL != null) {
                         widget.model.value = controller.uploadedFileURL;
                         if (await controller.update(widget.model)) {
+                          hideLoadingDialog();
                           _showAlertDialog(context, 'Componente Registrado',
                               'O componente do caso foi registrado com sucesso!');
-                        } else
+                        } else {
+                          hideLoadingDialog();
                           _showAlertDialog(context, 'Componente não Registrado',
                               'O componente do caso não foi registrado com sucesso!');
+                        }
+                      }
+                    }
+                    if (widget.model.type == "PDF") {
+                      await controller.uploadFile(_file, widget.model.idCases);
+                      if (controller.uploadedFileURL != null) {
+                        widget.model.value = controller.uploadedFileURL;
+                        if (await controller.update(widget.model)) {
+                          hideLoadingDialog();
+                          _showAlertDialog(context, 'Componente Registrado',
+                              'O componente do caso foi registrado com sucesso!');
+                        } else {
+                          hideLoadingDialog();
+                          _showAlertDialog(context, 'Componente não Registrado',
+                              'O componente do caso não foi registrado com sucesso!');
+                        }
                       }
                     } else {
                       if (await controller.update(widget.model)) {
+                        hideLoadingDialog();
                         _showAlertDialog(context, 'Componente Registrado',
                             'O componente do caso foi registrado com sucesso!');
-                      } else
+                      } else {
+                        hideLoadingDialog();
                         _showAlertDialog(context, 'Componente não Registrado',
                             'O componente do caso não foi registrado com sucesso!');
+                      }
                     }
                   });
             })
@@ -154,6 +182,8 @@ class _CasesEditPageState
       return _fieldText();
     } else if (widget.model.type.compareTo("Imagem") == 0) {
       return _fieldImage(screenWidth);
+    } else if (widget.model.type.compareTo("PDF") == 0) {
+      return _fieldFile(screenWidth);
     } else
       return null;
   }
@@ -306,6 +336,64 @@ class _CasesEditPageState
     );
   }
 
+  Widget _fieldFile(var screenWidth) {
+    return Column(
+      children: <Widget>[
+        // SizedBox(height: 5),
+        _inProcess != false
+            ? Container(
+                padding: EdgeInsets.fromLTRB(10, 30, 20, 10),
+                // color: Colors.white,
+                // height: double.infinity,
+                height: screenWidth * 0.3,
+                // width: double.infinity,
+                width: screenWidth * 0.3,
+                alignment: Alignment.center,
+                child: SizedBox(
+                  width: 70,
+                  height: 70,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 5.0,
+                    backgroundColor: Theme.of(context).primaryColor,
+                  ),
+                ),
+              )
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          child: Container(
+                            decoration: BoxDecoration(color: Colors.grey[300]),
+                            width: 100,
+                            height: 100,
+                            child: Icon(
+                              Icons.file_upload,
+                              size: 75,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          onTap: () {
+                            getFile();
+                          },
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        _file != null
+                            ? Text("${Path.basename(_file.path)}")
+                            : Text("Upload do arquivo")
+                      ],
+                    ),
+                  ),
+                ],
+              )
+      ],
+    );
+  }
+
   // ShowDialog p/ informar se os dados foram salvos ou não
   void _showAlertDialog(BuildContext context, String titulo, String mensagem) {
     // configura o button
@@ -368,6 +456,20 @@ class _CasesEditPageState
           ));
       setState(() {
         _selectedImage = cropped;
+        _inProcess = false;
+      });
+    } else {
+      setState(() {
+        _inProcess = false;
+      });
+    }
+  }
+
+  void getFile() async {
+    var result = await FilePicker.getFile();
+    if (result != null) {
+      setState(() {
+        _file = File(result.path);
         _inProcess = false;
       });
     } else {

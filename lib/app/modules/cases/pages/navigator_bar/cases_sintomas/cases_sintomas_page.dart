@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:PeensA/app/modules/cases/models/CasesModels.dart';
@@ -6,6 +7,14 @@ import 'package:PeensA/app/modules/cases/models/ComponentModel.dart';
 import 'package:PeensA/app/modules/cases/pages/navigator_bar/cases_sintomas/cases_sintomas_controller.dart';
 import 'package:PeensA/app/modules/common/styles.dart';
 import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
+import 'dart:isolate';
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:load/load.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class CasesSintomasPage extends StatefulWidget {
   final String title;
@@ -25,11 +34,29 @@ class _CasesSintomasPageState
   // Variável p/ pegar o valor da posição do último campo
   int lastPosition;
 
+  int progress = 0;
+
+  ReceivePort _receivePort = ReceivePort();
+
   @override
   void initState() {
+    IsolateNameServer.registerPortWithName(
+        _receivePort.sendPort, "downloading");
+
+    ///Listening for the data is comming other isolataes
+
+    FlutterDownloader.registerCallback(downloadingCallback);
     controller.getDocuments(widget.model.id, widget.page);
     editMode = false;
     super.initState();
+  }
+
+  static downloadingCallback(id, status, progress) {
+    ///Looking up for a send port
+    SendPort sendPort = IsolateNameServer.lookupPortByName("downloading");
+
+    ///ssending the data
+    sendPort.send([id, status, progress]);
   }
 
   @override
@@ -47,6 +74,8 @@ class _CasesSintomasPageState
 
   // Modo visualização do tópico do caso
   Scaffold modeVisualization(var screenWidth) {
+    WidgetsFlutterBinding.ensureInitialized();
+
     return Scaffold(
         appBar: AppBar(
           elevation: 0.1,
@@ -62,98 +91,162 @@ class _CasesSintomasPageState
                 editMode = true;
               });
             }),
-        body: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
-          child: Column(
-            children: <Widget>[
-              Container(
-                height: screenWidth * 1.4,
-                child: Observer(
-                  name: 'componentes',
-                  builder: (_) {
-                    if (controller.cases == null)
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    else {
-                      List<ComponentModel> list = controller.cases;
-                      return ListView.builder(
-                        itemCount: controller.cases.length,
-                        itemBuilder: (_, index) {
-                          ComponentModel model = list[index];
+        body: LoadingProvider(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+            child: Column(
+              children: <Widget>[
+                Container(
+                  height: screenWidth * 1.4,
+                  child: Observer(
+                    name: 'componentes',
+                    builder: (_) {
+                      if (controller.cases == null)
+                        return Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      else {
+                        List<ComponentModel> list = controller.cases;
+                        return ListView.builder(
+                          itemCount: controller.cases.length,
+                          itemBuilder: (_, index) {
+                            ComponentModel model = list[index];
 
-                          if (model.type.compareTo("Título") == 0) {
-                            return Container(
-                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
-                              child: Text(model.value,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  )),
-                            );
-                          }
-                          if (model.type.compareTo("Texto") == 0) {
-                            return Container(
-                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                            if (model.type.compareTo("Título") == 0) {
+                              return Container(
+                                margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                                child: Text(model.value,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              );
+                            }
+                            if (model.type.compareTo("Texto") == 0) {
+                              return Container(
+                                margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
 
-                              // height: 50,
-                              child: Text(
-                                model.value,
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(fontSize: 18),
-                              ),
-                            );
-                          } else if (model.type.compareTo("Imagem") == 0) {
-                            return Container(
-                              margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                                // height: 50,
+                                child: Text(
+                                  model.value,
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                              );
+                            }
+                            if (model.type.compareTo("PDF") == 0) {
+                              return Container(
+                                margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
 
-                              // height: 50,
-                              child: Image.network(
-                                model.value,
-                                fit: BoxFit.contain,
-                                // height: 400,
-                                width: 300,
-                              ),
-                            );
-                          }
+                                // height: 50,
+                                child: GestureDetector(
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey[300]),
+                                        width: 100,
+                                        height: 100,
+                                        child: Icon(
+                                          Icons.file_download,
+                                          size: 75,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 20,
+                                      ),
+                                      Text("Baixar Anexo")
+                                    ],
+                                  ),
+                                  onTap: () async {
+                                    final status =
+                                        await Permission.storage.request();
+                                    if (status.isGranted) {
+                                      final externalDir =
+                                          await getExternalStorageDirectory();
+                                      showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return AlertDialog(
+                                            title: Text(
+                                                "O download do arquivo foi iniciado!"),
+                                            actions: [
+                                              FlatButton(
+                                                  onPressed: () {
+                                                    Modular.to.pop();
+                                                  },
+                                                  child: Text("Ok"))
+                                            ],
+                                          );
+                                        },
+                                      );
+                                      final id =
+                                          await FlutterDownloader.enqueue(
+                                        url: "${model.value}",
+                                        savedDir: externalDir.path,
+                                        fileName: "download",
+                                        showNotification: true,
+                                        openFileFromNotification: true,
+                                      );
+                                    } else {
+                                      print("Permission deined");
+                                    }
+                                  },
+                                ),
+                              );
+                            } else if (model.type.compareTo("Imagem") == 0) {
+                              return Container(
+                                margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
 
-                          /* return Container(
-                          child: Card(
-                            margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                            elevation: 20,
-                            child: GestureDetector(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  ListTile(
-                                    title: Center(
-                                      child: Text(
-                                        model.type,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 18,
+                                // height: 50,
+                                child: Image.network(
+                                  model.value,
+                                  fit: BoxFit.contain,
+                                  // height: 400,
+                                  width: 300,
+                                ),
+                              );
+                            }
+
+                            /* return Container(
+                            child: Card(
+                              margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                              elevation: 20,
+                              child: GestureDetector(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: <Widget>[
+                                    ListTile(
+                                      title: Center(
+                                        child: Text(
+                                          model.type,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 18,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, '/cases/cases_edit',
+                                      arguments: model);
+                                },
                               ),
-                              onTap: () {
-                                Navigator.pushNamed(
-                                    context, '/cases/cases_edit',
-                                    arguments: model);
-                              },
                             ),
-                          ),
-                        ); */
-                        },
-                      );
-                    }
-                  },
+                          ); */
+                          },
+                        );
+                      }
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ));
   }
@@ -239,7 +332,6 @@ class _CasesSintomasPageState
               color: Colors.black,
             ),
             Padding(padding: EdgeInsets.only(bottom: 8)),
-            
             Padding(
               padding: EdgeInsets.only(
                 bottom: 8.0,
@@ -250,18 +342,17 @@ class _CasesSintomasPageState
               children: <Widget>[
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  
                   children: [
-                    
-                    Padding(padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Imagem',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0,
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Imagem',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13.0,
+                        ),
                       ),
                     ),
-                  ),
                     IconButton(
                         icon: Icon(
                           Icons.add_photo_alternate,
@@ -289,15 +380,16 @@ class _CasesSintomasPageState
                         bottom: 30.0,
                       ),
                     ),
-                    Padding(padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Texto',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0,
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Texto',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13.0,
+                        ),
                       ),
                     ),
-                  ),
                     IconButton(
                         icon: Icon(
                           Icons.description,
@@ -326,21 +418,20 @@ class _CasesSintomasPageState
                   padding: EdgeInsets.only(
                     right: 50.0,
                   ),
-                ), 
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                
                   children: [
-                   
-                     Padding(padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      'PDF',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0,
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'PDF',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13.0,
+                        ),
                       ),
                     ),
-                  ),
                     IconButton(
                         icon: Icon(
                           Icons.picture_as_pdf,
@@ -365,24 +456,24 @@ class _CasesSintomasPageState
                         }),
                   ],
                 ),
-                 Padding(
+                Padding(
                   padding: EdgeInsets.only(
                     right: 50.0,
                   ),
-                ), 
+                ),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                
                   children: [
-                  Padding(padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Título',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0,
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Título',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13.0,
+                        ),
                       ),
                     ),
-                  ),
                     IconButton(
                         icon: Icon(
                           Icons.title,
@@ -410,15 +501,16 @@ class _CasesSintomasPageState
                         bottom: 30.0,
                       ),
                     ),
-                     Padding(padding: EdgeInsets.only(left: 20),
-                    child: Text(
-                      'Link',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13.0,
+                    Padding(
+                      padding: EdgeInsets.only(left: 20),
+                      child: Text(
+                        'Link',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 13.0,
+                        ),
                       ),
                     ),
-                  ),
                     IconButton(
                         icon: Icon(
                           Icons.link,

@@ -23,11 +23,23 @@ abstract class _CasesEditBase with Store {
     return casesRepository.updateWidget(model);
   }
 
-  Future uploadFile(File _selectedImage) async {
+  Future uploadImage(File _selectedImage, String casesId) async {
     StorageReference storageReference = FirebaseStorage.instance
         .ref()
-        .child('Cases/${Path.basename(_selectedImage.path)}');
+        .child('Cases/$casesId/Images/${Path.basename(_selectedImage.path)}');
     StorageUploadTask uploadTask = storageReference.putFile(_selectedImage);
+    await uploadTask.onComplete;
+    print('File Uploaded');
+    await storageReference.getDownloadURL().then((fileURL) {
+      uploadedFileURL = fileURL;
+    });
+  }
+
+  Future uploadFile(File _file, String casesId) async {
+    StorageReference storageReference = FirebaseStorage.instance
+        .ref()
+        .child('Cases/$casesId/Files/${Path.basename(_file.path)}');
+    StorageUploadTask uploadTask = storageReference.putFile(_file);
     await uploadTask.onComplete;
     print('File Uploaded');
     await storageReference.getDownloadURL().then((fileURL) {
