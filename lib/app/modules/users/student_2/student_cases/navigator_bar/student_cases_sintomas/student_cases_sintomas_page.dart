@@ -8,6 +8,15 @@ import 'package:PeensA/app/modules/common/styles.dart';
 import 'package:PeensA/app/modules/users/student_2/student_cases/navigator_bar/student_cases_sintomas/student_cases_sintomas_controller.dart';
 import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 
+import 'dart:isolate';
+import 'dart:ui';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:load/load.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
+
 class StudentCasesSintomasPage extends StatefulWidget {
   final String title;
   final String page;
@@ -27,10 +36,28 @@ class _StudentCasesSintomasPageState extends ModularState<
   // Variável p/ pegar o valor da posição do último campo
   int lastPosition;
 
+  int progress = 0;
+
+  ReceivePort _receivePort = ReceivePort();
+
   @override
   void initState() {
+    IsolateNameServer.registerPortWithName(
+        _receivePort.sendPort, "downloading");
+
+    ///Listening for the data is comming other isolataes
+
+    FlutterDownloader.registerCallback(downloadingCallback);
     super.initState();
     controller.getDocuments(widget.idCase, widget.page);
+  }
+
+  static downloadingCallback(id, status, progress) {
+    ///Looking up for a send port
+    SendPort sendPort = IsolateNameServer.lookupPortByName("downloading");
+
+    ///ssending the data
+    sendPort.send([id, status, progress]);
   }
 
   @override
@@ -83,6 +110,67 @@ class _StudentCasesSintomasPageState extends ModularState<
                                 model.value,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(fontSize: 18),
+                              ),
+                            );
+                          }
+                          if (model.type.compareTo("PDF") == 0) {
+                            return Container(
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+
+                              // height: 50,
+                              child: GestureDetector(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[300]),
+                                      width: 100,
+                                      height: 100,
+                                      child: Icon(
+                                        Icons.file_download,
+                                        size: 75,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text("Baixar Anexo")
+                                  ],
+                                ),
+                                onTap: () async {
+                                  final status =
+                                      await Permission.storage.request();
+                                  if (status.isGranted) {
+                                    final externalDir =
+                                        await getExternalStorageDirectory();
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              "O download do arquivo foi iniciado!"),
+                                          actions: [
+                                            FlatButton(
+                                                onPressed: () {
+                                                  Modular.to.pop();
+                                                },
+                                                child: Text("Ok"))
+                                          ],
+                                        );
+                                      },
+                                    );
+                                    final id = await FlutterDownloader.enqueue(
+                                      url: "${model.value}",
+                                      savedDir: externalDir.path,
+                                      fileName: "download",
+                                      showNotification: true,
+                                      openFileFromNotification: true,
+                                    );
+                                  } else {
+                                    print("Permission deined");
+                                  }
+                                },
                               ),
                             );
                           } else if (model.type.compareTo("Imagem") == 0) {
