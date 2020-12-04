@@ -9,5 +9,5 @@ void main() async {
   await FlutterDownloader.initialize(
       debug: true // optional: set false to disable printing logs to console
       );
-  runApp(LoadingProvider(child: ModularApp(module: AppModule())));
+  runApp(ModularApp(module: AppModule()));
 }

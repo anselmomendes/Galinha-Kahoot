@@ -9,6 +9,7 @@ import 'package:PeensA/app/modules/common/styles.dart';
 import 'package:PeensA/app/shared/widgets/raise_button/RaiseButton.dart';
 import 'dart:isolate';
 import 'dart:ui';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
@@ -91,162 +92,179 @@ class _CasesSintomasPageState
                 editMode = true;
               });
             }),
-        body: LoadingProvider(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  height: screenWidth * 1.4,
-                  child: Observer(
-                    name: 'componentes',
-                    builder: (_) {
-                      if (controller.cases == null)
-                        return Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      else {
-                        List<ComponentModel> list = controller.cases;
-                        return ListView.builder(
-                          itemCount: controller.cases.length,
-                          itemBuilder: (_, index) {
-                            ComponentModel model = list[index];
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
+          child: Column(
+            children: <Widget>[
+              Container(
+                height: screenWidth * 1.4,
+                child: Observer(
+                  name: 'componentes',
+                  builder: (_) {
+                    if (controller.cases == null)
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    else {
+                      List<ComponentModel> list = controller.cases;
+                      return ListView.builder(
+                        itemCount: controller.cases.length,
+                        itemBuilder: (_, index) {
+                          ComponentModel model = list[index];
 
-                            if (model.type.compareTo("Título") == 0) {
-                              return Container(
-                                margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
-                                child: Text(model.value,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              );
-                            }
-                            if (model.type.compareTo("Texto") == 0) {
-                              return Container(
-                                margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                          if (model.type.compareTo("Título") == 0) {
+                            return Container(
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                              child: Text(model.value,
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            );
+                          }
+                          if (model.type.compareTo("Texto") == 0) {
+                            return Container(
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
 
-                                // height: 50,
+                              // height: 50,
+                              child: Text(
+                                model.value,
+                                textAlign: TextAlign.justify,
+                                style: TextStyle(fontSize: 18),
+                              ),
+                            );
+                          }
+                          if (model.type.compareTo("Link") == 0) {
+                            return Container(
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+
+                              // height: 50,
+                              child: InkWell(
                                 child: Text(
                                   model.value,
                                   textAlign: TextAlign.justify,
-                                  style: TextStyle(fontSize: 18),
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline),
                                 ),
-                              );
-                            }
-                            if (model.type.compareTo("PDF") == 0) {
-                              return Container(
-                                margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+                                onTap: () {
+                                  launch(model.value);
+                                },
+                              ),
+                            );
+                          }
+                          if (model.type.compareTo("PDF") == 0) {
+                            return Container(
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
 
-                                // height: 50,
-                                child: GestureDetector(
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color: Colors.grey[300]),
-                                        width: 100,
-                                        height: 100,
-                                        child: Icon(
-                                          Icons.file_download,
-                                          size: 75,
-                                          color: Colors.grey,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 20,
-                                      ),
-                                      Text("Baixar Anexo")
-                                    ],
-                                  ),
-                                  onTap: () async {
-                                    final status =
-                                        await Permission.storage.request();
-                                    if (status.isGranted) {
-                                      final externalDir =
-                                          await getExternalStorageDirectory();
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return AlertDialog(
-                                            title: Text(
-                                                "O download do arquivo foi iniciado!"),
-                                            actions: [
-                                              FlatButton(
-                                                  onPressed: () {
-                                                    Modular.to.pop();
-                                                  },
-                                                  child: Text("Ok"))
-                                            ],
-                                          );
-                                        },
-                                      );
-                                      final id =
-                                          await FlutterDownloader.enqueue(
-                                        url: "${model.value}",
-                                        savedDir: externalDir.path,
-                                        fileName: "download",
-                                        showNotification: true,
-                                        openFileFromNotification: true,
-                                      );
-                                    } else {
-                                      print("Permission deined");
-                                    }
-                                  },
-                                ),
-                              );
-                            } else if (model.type.compareTo("Imagem") == 0) {
-                              return Container(
-                                margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
-
-                                // height: 50,
-                                child: Image.network(
-                                  model.value,
-                                  fit: BoxFit.contain,
-                                  // height: 400,
-                                  width: 300,
-                                ),
-                              );
-                            }
-
-                            /* return Container(
-                            child: Card(
-                              margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
-                              elevation: 20,
+                              // height: 50,
                               child: GestureDetector(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    ListTile(
-                                      title: Center(
-                                        child: Text(
-                                          model.type,
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: 18,
-                                          ),
+                                child: Row(
+                                  children: [
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[300]),
+                                      width: 100,
+                                      height: 100,
+                                      child: Icon(
+                                        Icons.file_download,
+                                        size: 75,
+                                        color: Colors.grey,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 20,
+                                    ),
+                                    Text("Baixar Anexo")
+                                  ],
+                                ),
+                                onTap: () async {
+                                  final status =
+                                      await Permission.storage.request();
+                                  if (status.isGranted) {
+                                    final externalDir =
+                                        await getExternalStorageDirectory();
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Text(
+                                              "O download do arquivo foi iniciado!"),
+                                          actions: [
+                                            FlatButton(
+                                                onPressed: () {
+                                                  Modular.to.pop();
+                                                },
+                                                child: Text("Ok"))
+                                          ],
+                                        );
+                                      },
+                                    );
+                                    final id = await FlutterDownloader.enqueue(
+                                      url: "${model.value}",
+                                      savedDir: externalDir.path,
+                                      fileName: "download",
+                                      showNotification: true,
+                                      openFileFromNotification: true,
+                                    );
+                                  } else {
+                                    print("Permission deined");
+                                  }
+                                },
+                              ),
+                            );
+                          } else if (model.type.compareTo("Imagem") == 0) {
+                            return Container(
+                              margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+
+                              // height: 50,
+                              child: Image.network(
+                                model.value,
+                                fit: BoxFit.contain,
+                                // height: 400,
+                                width: 300,
+                              ),
+                            );
+                          }
+
+                          /* return Container(
+                          child: Card(
+                            margin: EdgeInsets.fromLTRB(15.0, 5.0, 15.0, 5.0),
+                            elevation: 20,
+                            child: GestureDetector(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  ListTile(
+                                    title: Center(
+                                      child: Text(
+                                        model.type,
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18,
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, '/cases/cases_edit',
-                                      arguments: model);
-                                },
+                                  ),
+                                ],
                               ),
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, '/cases/cases_edit',
+                                    arguments: model);
+                              },
                             ),
-                          ); */
-                          },
-                        );
-                      }
-                    },
-                  ),
+                          ),
+                        ); */
+                        },
+                      );
+                    }
+                  },
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ));
   }

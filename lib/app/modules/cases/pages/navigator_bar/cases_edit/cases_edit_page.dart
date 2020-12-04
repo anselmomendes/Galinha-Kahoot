@@ -184,6 +184,8 @@ class _CasesEditPageState
       return _fieldImage(screenWidth);
     } else if (widget.model.type.compareTo("PDF") == 0) {
       return _fieldFile(screenWidth);
+    } else if (widget.model.type.compareTo("Link") == 0) {
+      return _fieldLink();
     } else
       return null;
   }
@@ -390,6 +392,46 @@ class _CasesEditPageState
                   ),
                 ],
               )
+      ],
+    );
+  }
+
+  Widget _fieldLink() {
+    return Column(
+      children: <Widget>[
+        SizedBox(height: 5),
+        Text(
+          'Descrição',
+          style: TextStyle(fontSize: 18),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(height: 5),
+        TextFormField(
+          // controller: _initalValue,
+          maxLength: 1000,
+          maxLines: 15,
+          //initialValue: widget.model.topicTree,
+          initialValue: widget.model.value,
+          onChanged: (v) => widget.model.value = v,
+          decoration: InputDecoration(
+            labelText: 'Cole aqui o link',
+            // hintText: 'Descreva o caso',
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 1.0,
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(5.0),
+              borderSide: BorderSide(
+                color: Colors.black,
+                width: 2.0,
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

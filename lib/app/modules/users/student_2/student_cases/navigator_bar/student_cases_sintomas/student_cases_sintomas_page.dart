@@ -16,6 +16,7 @@ import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:load/load.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class StudentCasesSintomasPage extends StatefulWidget {
   final String title;
@@ -110,6 +111,26 @@ class _StudentCasesSintomasPageState extends ModularState<
                                 model.value,
                                 textAlign: TextAlign.justify,
                                 style: TextStyle(fontSize: 18),
+                              ),
+                            );
+                          }
+                          if (model.type.compareTo("Link") == 0) {
+                            return Container(
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
+
+                              // height: 50,
+                              child: InkWell(
+                                child: Text(
+                                  model.value,
+                                  textAlign: TextAlign.justify,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: Colors.blue,
+                                      decoration: TextDecoration.underline),
+                                ),
+                                onTap: () {
+                                  launch(model.value);
+                                },
                               ),
                             );
                           }
