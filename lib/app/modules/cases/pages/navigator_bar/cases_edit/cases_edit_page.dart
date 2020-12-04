@@ -508,7 +508,19 @@ class _CasesEditPageState
   }
 
   void getFile() async {
-    var result = await FilePicker.getFile();
+    var result = await FilePicker.getFile(
+        type: FileType.custom,
+        allowedExtensions: [
+          'jpg',
+          'pdf',
+          'doc',
+          'docx',
+          'odt',
+          'txt',
+          'pptx',
+          'ppt',
+          'png'
+        ]);
     if (result != null) {
       setState(() {
         _file = File(result.path);
