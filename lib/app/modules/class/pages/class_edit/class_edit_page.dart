@@ -120,7 +120,7 @@ class _ClassEditPageState
                     ),
                   ),
                   
-                  Text("Selecione o temporizador:", style: headerTextStyle),
+                /*  Text("Selecione o temporizador:", style: headerTextStyle),
                   Text("Temporizador atual: ${currentTime} minutos"),
                   SizedBox(height: 5),
                   // selectionText(resultingDuration),
@@ -151,9 +151,9 @@ class _ClassEditPageState
                       child: Text(
                         "Selecionar",
                         style: TextStyle(color: Colors.white),
-                      )),
+                      )),*/
                   Divider(
-                    height: 30,
+                    height: 10,
                   ),
                   Form(
                       child: Column(

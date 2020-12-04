@@ -216,7 +216,7 @@ class _StudentClassDetailPageState
                           )),
                           Divider(thickness: 2.0),
                           SizedBox(height: 20),
-                          RichText(
+                         /* RichText(
                               text: TextSpan(
                             text: 'Temporizador: ',
                             style: TextStyle(
@@ -244,7 +244,7 @@ class _StudentClassDetailPageState
                                   text: '${endTime}', style: text2TextStyle),
                             ],
                           )),
-                          Divider(thickness: 2.0),
+                          Divider(thickness: 2.0),*/
                         ],
                       ),
                     ),

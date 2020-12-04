@@ -20,14 +20,14 @@ class _CasesQuizEditPageState
   //use 'controller' variable to access controller
 
   // Lista de widget de texto representando o temporizador da questão
-  List<Widget> listTime = <Widget>[
+/*  List<Widget> listTime = <Widget>[
     Text('10s'),
     Text('15s'),
     Text('25s'),
     Text('30s'),
     Text('45s'),
     Text('60s'),
-  ];
+  ];*/
 
   // Seleção do tempo da questão
   List<bool> isSelectedTimer = List.generate(6, (_) => false);
@@ -500,7 +500,7 @@ class _CasesQuizEditPageState
             },
             isSelected: isSelectedRight1),
         SizedBox(height: 20),
-       Text(
+        /* Text(
           'Selecione o tempo da questão',
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
@@ -528,7 +528,7 @@ class _CasesQuizEditPageState
               });
             },
             isSelected: isSelectedTimer),
-        SizedBox(height: 20),
+        SizedBox(height: 20),*/
         Divider(
           height: 10,
           thickness: 1.0,
@@ -724,16 +724,15 @@ class _CasesQuizEditPageState
             },
             isSelected: isSelectedRight2),
         SizedBox(height: 20),
-         Text(
+       /* Text(
           'Selecione o tempo da questão',
           style: TextStyle(fontSize: 18),
           textAlign: TextAlign.center,
         ),
 
-        //Temporizador 
+        //Temporizador
 
-  
-         ToggleButtons(
+        ToggleButtons(
             textStyle: TextStyle(fontSize: 14.0),
             children: listTime,
             onPressed: (int index) {
@@ -751,8 +750,8 @@ class _CasesQuizEditPageState
                 }
               });
             },
-            isSelected: isSelectedTimer), 
-        SizedBox(height: 20),
+            isSelected: isSelectedTimer),
+        SizedBox(height: 20),*/
         Divider(
           height: 10,
           thickness: 1.0,

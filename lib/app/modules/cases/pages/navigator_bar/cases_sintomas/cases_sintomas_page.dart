@@ -155,13 +155,14 @@ class _CasesSintomasPageState
                               ),
                             );
                           }
-                          if (model.type.compareTo("PDF") == 0) {
+                          if (model.type.compareTo("Documento") == 0) {
                             return Container(
                               margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
 
                               // height: 50,
                               child: GestureDetector(
                                 child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
@@ -177,7 +178,9 @@ class _CasesSintomasPageState
                                     SizedBox(
                                       width: 20,
                                     ),
-                                    Text("Baixar Anexo")
+                                    Text("Baixar Anexo",
+                                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20,),
+                                    ),
                                   ],
                                 ),
                                 onTap: () async {
@@ -410,7 +413,7 @@ class _CasesSintomasPageState
                     ),
                     IconButton(
                         icon: Icon(
-                          Icons.description,
+                          Icons.subject,
                           color: Colors.blueGrey[500],
                           size: 50.0,
                           semanticLabel: 'Texto',
@@ -434,7 +437,7 @@ class _CasesSintomasPageState
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    right: 50.0,
+                    right: 40.0,
                   ),
                 ),
                 Column(
@@ -443,7 +446,7 @@ class _CasesSintomasPageState
                     Padding(
                       padding: EdgeInsets.only(left: 20),
                       child: Text(
-                        'PDF',
+                        'Documento',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 13.0,
@@ -452,18 +455,18 @@ class _CasesSintomasPageState
                     ),
                     IconButton(
                         icon: Icon(
-                          Icons.picture_as_pdf,
+                          Icons.description,
                           color: Colors.blueGrey[500],
                           size: 50.0,
-                          semanticLabel: 'PDF',
+                          semanticLabel: 'Documento',
                         ),
-                        tooltip: 'PDF',
+                        tooltip: 'Documento',
                         onPressed: () async {
                           ComponentModel model = ComponentModel();
-                          model.type = 'PDF';
+                          model.type = 'Documento';
                           model.idCases = widget.model.id;
                           model.page = widget.page;
-                          model.value = 'Selecione um PDF para o conteúdo';
+                          model.value = 'Selecione um Documento para o conteúdo';
                           // model.type = 'topic';
                           model.position = lastPosition;
                           print(lastPosition);
@@ -476,7 +479,7 @@ class _CasesSintomasPageState
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                    right: 50.0,
+                    right: 40.0,
                   ),
                 ),
                 Column(

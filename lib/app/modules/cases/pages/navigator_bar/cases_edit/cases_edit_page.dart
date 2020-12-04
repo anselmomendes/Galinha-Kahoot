@@ -141,7 +141,7 @@ class _CasesEditPageState
                         }
                       }
                     }
-                    if (widget.model.type == "PDF") {
+                    if (widget.model.type == "Documento") {
                       await controller.uploadFile(_file, widget.model.idCases);
                       if (controller.uploadedFileURL != null) {
                         widget.model.value = controller.uploadedFileURL;
@@ -182,7 +182,7 @@ class _CasesEditPageState
       return _fieldText();
     } else if (widget.model.type.compareTo("Imagem") == 0) {
       return _fieldImage(screenWidth);
-    } else if (widget.model.type.compareTo("PDF") == 0) {
+    } else if (widget.model.type.compareTo("Documento") == 0) {
       return _fieldFile(screenWidth);
     } else if (widget.model.type.compareTo("Link") == 0) {
       return _fieldLink();
@@ -306,29 +306,51 @@ class _CasesEditPageState
                           fit: BoxFit.cover,
                         )
                       : Container(
-                          decoration: BoxDecoration(color: Colors.grey[300]),
+                         decoration: BoxDecoration(
+          color: Colors.transparent,
+          image: DecorationImage(
+            image: AssetImage("assets/imagem4.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
                           width: 300,
                           height: 300,
                           child: Icon(
                             Icons.camera_alt,
                             size: 250,
-                            color: Colors.grey,
+                            color: Colors.blueGrey[400],
                           ),
                         ),
+                         Padding(padding: EdgeInsets.only(bottom: 10.0)),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       RaisedButton(
+                           color: Colors.redAccent,
+                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.redAccent)),
                         onPressed: () {
                           getImage(ImageSource.camera);
                         },
-                        child: Text('Câmera'),
+                        child: Text('Câmera',  style: TextStyle(
+                                  color: Colors.white,
+                                ),),
                       ),
+                      Padding(padding: EdgeInsets.only(right: 10.0)),
                       RaisedButton(
+                          color: Colors.redAccent,
+                               padding: const EdgeInsets.fromLTRB(18.0, 13.0, 18.0, 13.0),
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  side: BorderSide(color: Colors.redAccent)),
                         onPressed: () {
                           getImage(ImageSource.gallery);
                         },
-                        child: Text('Galeria'),
+                        child: Text('Galeria', style: TextStyle(
+                                  color: Colors.white,
+                                ),),
                       ),
                     ],
                   )
@@ -368,13 +390,19 @@ class _CasesEditPageState
                       children: [
                         GestureDetector(
                           child: Container(
-                            decoration: BoxDecoration(color: Colors.grey[300]),
-                            width: 100,
-                            height: 100,
+                              decoration: BoxDecoration(
+          color: Colors.transparent,
+          image: DecorationImage(
+            image: AssetImage("assets/imagem4.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+                            width: 300,
+                          height: 300,
                             child: Icon(
                               Icons.file_upload,
-                              size: 75,
-                              color: Colors.grey,
+                               size: 250,
+                               color: Colors.blueGrey[400],
                             ),
                           ),
                           onTap: () {
@@ -386,7 +414,9 @@ class _CasesEditPageState
                         ),
                         _file != null
                             ? Text("${Path.basename(_file.path)}")
-                            : Text("Upload do arquivo")
+                            : Text("Upload do arquivo",
+                            style: TextStyle(fontWeight: FontWeight.w300, fontSize: 22,),
+),
                       ],
                     ),
                   ),

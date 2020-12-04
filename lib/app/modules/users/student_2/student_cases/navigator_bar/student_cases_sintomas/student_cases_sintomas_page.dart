@@ -129,13 +129,14 @@ class _StudentCasesSintomasPageState extends ModularState<
                               ),
                             );
                           }
-                          if (model.type.compareTo("PDF") == 0) {
+                          if (model.type.compareTo("Documento") == 0) {
                             return Container(
                               margin: EdgeInsets.fromLTRB(0, 15, 0, 10),
 
                               // height: 50,
                               child: GestureDetector(
                                 child: Row(
+                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(
@@ -151,7 +152,9 @@ class _StudentCasesSintomasPageState extends ModularState<
                                     SizedBox(
                                       width: 20,
                                     ),
-                                    Text("Baixar Anexo")
+                                    Text("Baixar Anexo", 
+                                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 22,),
+                                    ),
                                   ],
                                 ),
                                 onTap: () async {
