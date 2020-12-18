@@ -52,6 +52,9 @@ scripts:
 flutter:
 
   assets:
+    - assets/logoCipe.png
+    - assets/logo-original-fundo-claro.png
+    - assets/brasaouepa.png
     - assets/bits.png
     - assets/hemograma.png
     - assets/logo_bitsjr.png

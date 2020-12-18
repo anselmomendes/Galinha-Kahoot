@@ -142,7 +142,7 @@ Este aplicativo é um produto de tese desenvolvido por Eunice Lara dos Santos Cu
                                     ),
                                     InkWell(
                                       child: Text(
-                                        "bcgcantao@hotmail.com",
+                                        "laracunha30@hotmail.com",
                                         style: TextStyle(
                                           fontSize: subtitle,
                                           color: Colors.blue,
@@ -151,7 +151,7 @@ Este aplicativo é um produto de tese desenvolvido por Eunice Lara dos Santos Cu
                                       ),
                                       onTap: () {
                                         launch(
-                                            'mailto:fabianabenedik@gmail.com');
+                                            'mailto:laracunha30@hotmail.com');
                                       },
                                     ),
                                     Text(

@@ -156,21 +156,6 @@ class _ClassDetailPageState
                                   style: text2TextStyle),
                             ],
                           )),
-                           Divider(thickness: 2.0),
-                          SizedBox(height: 20),
-                          RichText(
-                              text: TextSpan(
-                            text: 'Autor: ',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontSize: headerFontSize,
-                                fontWeight: headerFontWeight),
-                            children: <TextSpan>[
-                              TextSpan(
-                                  text: '',
-                                  style: text2TextStyle),
-                            ],
-                          )), 
                           Divider(thickness: 2.0),
                           SizedBox(height: 20),
                           RichText(
@@ -202,7 +187,7 @@ class _ClassDetailPageState
                             ],
                           )),
                           Divider(thickness: 2.0),
-                        /*  SizedBox(height: 20),
+                          /*  SizedBox(height: 20),
                           RichText(
                               text: TextSpan(
                             text: 'Temporizador: ',
