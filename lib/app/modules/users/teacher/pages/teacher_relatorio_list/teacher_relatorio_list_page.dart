@@ -55,8 +55,7 @@ class _TeacherRelatorioListPageState extends ModularState<
         return ListTile(
           leading: Icon(Icons.person_outline),
           title: Text("Aluno(a): ${model[index].name}"),
-          subtitle: Text(
-              "Acertos: ${model[index].hits} / Erros: ${model[index].errors}"),
+          subtitle: Text("Acertos: ${model[index].hits}"),
         );
       },
     );
