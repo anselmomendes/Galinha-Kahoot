@@ -125,44 +125,10 @@ class _ClassRegisterPageState
                       )),
                   // SizedBox(height: 20),
                   // Divider(height: 20),
-                  Text("Selecione o temporizador:", style: headerTextStyle),
                   SizedBox(height: 5),
                   // selectionText(resultingDuration),
                   selectionText(resultingDuration),
                   SizedBox(height: 5),
-                  FlatButton(
-                      onPressed: () async {
-                        resultingDuration = await showDurationPicker(
-                          context: context,
-                          initialTime: new Duration(minutes: 30),
-                        );
-                        // var time = new DateTime.now();
-                        // var time2;
-                        if (resultingDuration != null) {
-                          Duration durationZeroTest = Duration(minutes: 0);
-
-                          if (resultingDuration.compareTo(durationZeroTest) ==
-                              0) {
-                            resultingDuration = Duration(minutes: 7200);
-                            // time2 = new DateTime.now().add(resultingDuration);
-                          }
-                          // time2 = new DateTime.now().add(resultingDuration);
-                        } else {
-                          resultingDuration = Duration(minutes: 7200);
-                          // time2 = new DateTime.now().add(resultingDuration);
-                        }
-                        // print(time);
-                        // print(time2);
-                        setState(() {
-                          resultingDuration = resultingDuration;
-                        });
-                        // print(resultingDuration);
-                      },
-                      color: appContrastColor,
-                      child: Text(
-                        "Selecionar",
-                        style: TextStyle(color: Colors.white),
-                      )),
                   Divider(
                     height: 30,
                   ),
@@ -261,12 +227,12 @@ class _ClassRegisterPageState
                               } else {
                                 model.status = false;
                               }
-                              
+
                               controller.save(model);
                               _showAlertDialog(context);
 
                               /* == Comentários importantes == */
-                              
+
                               // Modelo antigo de captura de data e horário
                               // model.creationDate =
                               //     new DateFormat("dd/MM/y hh:mm")
